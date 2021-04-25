@@ -1,0 +1,348 @@
+<UserControl x:Class="KeqingNiuza.View.WishSummaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:lc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:KeqingNiuza.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="{StaticResource ContentViewBackground}"
+             DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
+             mc:Ignorable="d">
+    <Grid>
+        <ScrollViewer>
+            <StackPanel Margin="0,20,0,0">
+                <Border Height="Auto"
+                        Margin="30,10,30,10"
+                        Background="White"
+                        BorderThickness="1"
+                        CornerRadius="10">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CharacterEventStatistics.Count}" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="120" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Column="0"
+                                Margin="0,10,0,10"
+                                BorderBrush="Gray"
+                                BorderThickness="0,0,1,0">
+                            <TextBlock Grid.Column="0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="角色活动祈愿" />
+                        </Border>
+                        <Button x:Name="Button_Expand"
+                                Width="40"
+                                Height="30"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Bottom"
+                                Content="{StaticResource ChevronDown}"
+                                DockPanel.Dock="Bottom"
+                                FontFamily="{StaticResource IconFamily}"
+                                Style="{StaticResource ExpandButtonStyle}">
+                            <Button.ToolTip>
+                                <TextBlock Text="展开" />
+                            </Button.ToolTip>
+                        </Button>
+                        <StackPanel Grid.Column="1" DataContext="{Binding CharacterEventStatistics}" Orientation="Horizontal">
+                            <StackPanel Width="140" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="总次数" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="#FAC858"
+                                           Text="{Binding Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding EndTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                            </StackPanel>
+                            <StackPanel Width="80" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="5星" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="{StaticResource Star5}"
+                                           Text="{Binding Star5Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding Ratio5, StringFormat=P3}" />
+                            </StackPanel>
+                            <StackPanel Width="80" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="4星" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="{StaticResource Star4}"
+                                           Text="{Binding Star4Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding Ratio4, StringFormat=P3}" />
+                            </StackPanel>
+                            <StackPanel Width="80" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="{Binding GuaranteeType}" />
+                                <TextBlock Margin="0,10,0,25"
+                                           FontSize="28"
+                                           Foreground="#91CC75"
+                                           Text="{Binding Guarantee}" />
+                                <ProgressBar VerticalAlignment="Center"
+                                             Maximum="90"
+                                             Style="{StaticResource ProgressBarFlat}"
+                                             Value="{Binding Guarantee}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <Border Grid.Column="2"
+                                Margin="0,10,10,10"
+                                BorderBrush="Gray"
+                                BorderThickness="1,0,0,0">
+                            <lc:PieChart DataTooltip="{x:Null}"
+                                         HoverPushOut="3"
+                                         LegendLocation="Right"
+                                         Series="{Binding CharacterEventSeries}" />
+                        </Border>
+
+                        <!--  祈愿详细信息  -->
+
+                    </Grid>
+                </Border>
+
+                <Border Height="120"
+                        Margin="30,10,30,10"
+                        Background="White"
+                        BorderThickness="1"
+                        CornerRadius="6">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding WeaponEventStatistics.Count}" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0"
+                                Margin="0,10,0,10"
+                                BorderBrush="Gray"
+                                BorderThickness="0,0,1,0">
+                            <TextBlock Grid.Column="0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="武器活动祈愿" />
+                        </Border>
+                        <StackPanel Grid.Column="1" DataContext="{Binding WeaponEventStatistics}" Orientation="Horizontal">
+                            <StackPanel Width="140" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="总次数" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="#FAC858"
+                                           Text="{Binding Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding EndTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                            </StackPanel>
+                            <StackPanel Width="80" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="5星" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="{StaticResource Star5}"
+                                           Text="{Binding Star5Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding Ratio5, StringFormat=P3}" />
+                            </StackPanel>
+                            <StackPanel Width="80" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="4星" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="{StaticResource Star4}"
+                                           Text="{Binding Star4Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding Ratio4, StringFormat=P3}" />
+                            </StackPanel>
+                            <StackPanel Width="80" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="{Binding GuaranteeType}" />
+                                <TextBlock Margin="0,10,0,25"
+                                           FontSize="28"
+                                           Foreground="#91CC75"
+                                           Text="{Binding Guarantee}" />
+                                <ProgressBar VerticalAlignment="Center"
+                                             Maximum="90"
+                                             Style="{StaticResource ProgressBarFlat}"
+                                             Value="{Binding Guarantee}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <Border Grid.Column="2"
+                                Margin="0,10,10,10"
+                                BorderBrush="Gray"
+                                BorderThickness="1,0,0,0">
+                            <lc:PieChart DataTooltip="{x:Null}"
+                                         HoverPushOut="3"
+                                         LegendLocation="Right"
+                                         Series="{Binding WeaponEventSeries}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Height="120"
+                        Margin="30,10,30,10"
+                        Background="White"
+                        BorderThickness="1"
+                        CornerRadius="6">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding PermanentStatistics.Count}" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0"
+                                Margin="0,10,0,10"
+                                BorderBrush="Gray"
+                                BorderThickness="0,0,1,0">
+                            <TextBlock Grid.Column="0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="常驻祈愿" />
+                        </Border>
+                        <StackPanel Grid.Column="1" DataContext="{Binding PermanentStatistics}" Orientation="Horizontal">
+                            <StackPanel Width="140" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="总次数" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="#FAC858"
+                                           Text="{Binding Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding EndTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                            </StackPanel>
+                            <StackPanel Width="80" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="5星" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="{StaticResource Star5}"
+                                           Text="{Binding Star5Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding Ratio5, StringFormat=P3}" />
+                            </StackPanel>
+                            <StackPanel Width="80" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="4星" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="{StaticResource Star4}"
+                                           Text="{Binding Star4Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding Ratio4, StringFormat=P3}" />
+                            </StackPanel>
+                            <StackPanel Width="80" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="{Binding GuaranteeType}" />
+                                <TextBlock Margin="0,10,0,25"
+                                           FontSize="28"
+                                           Foreground="#91CC75"
+                                           Text="{Binding Guarantee}" />
+                                <ProgressBar VerticalAlignment="Center"
+                                             Maximum="90"
+                                             Style="{StaticResource ProgressBarFlat}"
+                                             Value="{Binding Guarantee}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <Border Grid.Column="2"
+                                Margin="0,10,10,10"
+                                BorderBrush="Gray"
+                                BorderThickness="1,0,0,0">
+                            <lc:PieChart DataTooltip="{x:Null}"
+                                         HoverPushOut="3"
+                                         LegendLocation="Right"
+                                         Series="{Binding PermanentSeries}" />
+                        </Border>
+                    </Grid>
+                </Border>
+
+                <Border Height="120"
+                        Margin="30,10,30,10"
+                        Background="White"
+                        BorderThickness="1"
+                        CornerRadius="6">
+                    <Border.Style>
+                        <Style TargetType="Border">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding NoviceStatistics.Count}" Value="0">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="0"
+                                Margin="0,10,0,10"
+                                BorderBrush="Gray"
+                                BorderThickness="0,0,1,0">
+                            <TextBlock Grid.Column="0"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Text="新手祈愿" />
+                        </Border>
+                        <StackPanel Grid.Column="1" DataContext="{Binding NoviceStatistics}" Orientation="Horizontal">
+                            <StackPanel Width="140" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="总次数" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="#FAC858"
+                                           Text="{Binding Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding EndTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                            </StackPanel>
+                            <StackPanel Width="80" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="5星" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="{StaticResource Star5}"
+                                           Text="{Binding Star5Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding Ratio5, StringFormat=P3}" />
+                            </StackPanel>
+                            <StackPanel Width="80" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="4星" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="{StaticResource Star4}"
+                                           Text="{Binding Star4Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding Ratio4, StringFormat=P3}" />
+                            </StackPanel>
+                            <StackPanel Width="150" Margin="20,10,20,10">
+                                <TextBlock Foreground="Gray" Text="3星" />
+                                <TextBlock Margin="0,10,0,20"
+                                           FontSize="28"
+                                           Foreground="{StaticResource Star3}"
+                                           Text="{Binding Star3Count}" />
+                                <TextBlock Foreground="Gray" Text="{Binding Ratio3, StringFormat=P3}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <Border Grid.Column="2"
+                                Margin="0,10,10,10"
+                                BorderBrush="Gray"
+                                BorderThickness="1,0,0,0">
+                            <lc:PieChart DataTooltip="{x:Null}"
+                                         HoverPushOut="3"
+                                         LegendLocation="Right"
+                                         Series="{Binding NoviceSeries}" />
+                        </Border>
+                    </Grid>
+                </Border>
+            </StackPanel>
+
+        </ScrollViewer>
+    </Grid>
+</UserControl>

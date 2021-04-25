@@ -1,0 +1,59 @@
+<UserControl x:Class="KeqingNiuza.View.AboutView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:KeqingNiuza.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="{StaticResource ContentViewBackground}"
+             mc:Ignorable="d">
+    <Grid Margin="40">
+        <ScrollViewer>
+            <StackPanel>
+                <TextBlock Margin="0,10,0,10" FontSize="20" Text="关于" />
+                <TextBlock x:Name="TextBlock_Version" Margin="0,5,0,5" />
+                <TextBlock Margin="0,5,0,5" Text="本软件以MIT协议开源" />
+                <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+                    <TextBlock Text="项目地址：" />
+                    <TextBlock>
+                        <Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/Scighost/KeqingNiuza" TextDecorations="None">
+                            Github@Scighost/KeqingNiuza
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+                    <TextBlock Text="如果有Bug或建议，可以 " />
+                    <TextBlock>
+                        <Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/Scighost/KeqingNiuza/issues" TextDecorations="None">
+                            提交Issue
+                        </Hyperlink>
+                    </TextBlock>
+                    <TextBlock Text=" 或 " />
+                    <TextBlock>
+                        <Hyperlink Click="Hyperlink_Click" NavigateUri="https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__RAbSUNURU00OUhPWUY5QVFURDExRFRLV1E2MEFHNy4u" TextDecorations="None">
+                            填写表单
+                        </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+                <TextBlock Margin="0,10,0,10" FontSize="20" Text="如何加载祈愿数据" />
+                <TextBlock Margin="0,5,0,5" Text="● 在游戏中打开任意祈愿历史记录" />
+                <TextBlock Margin="0,5,0,5" Text="● 点击软件右上角加载数据" />
+                <TextBlock Margin="0,10,0,10" FontSize="20" Text="如何进行云备份" />
+                <TextBlock Margin="0,5,0,5" Text="● 注册坚果云账户" />
+                <TextBlock Margin="0,5,0,5" Text="● 账户信息-&gt;安全选项-&gt;第三方应用管理-&gt;添加应用" />
+                <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+                    <TextBlock Text="● 点击软件右上角的云，填写账户和" />
+                    <TextBlock FontWeight="Bold" Text="应用密码" />
+                </StackPanel>
+                <TextBlock Margin="0,5,0,5" Text="● 坚果云账户和用户密码会加密保存在本地" />
+                <TextBlock Margin="0,10,0,10" FontSize="20" Text="如何导入6个月之前的数据" />
+                <TextBlock Margin="0,5,0,5" Text="此功能将会在后续更新中完善" />
+            </StackPanel>
+        </ScrollViewer>
+
+
+
+
+    </Grid>
+</UserControl>
