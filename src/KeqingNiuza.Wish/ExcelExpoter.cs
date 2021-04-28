@@ -13,7 +13,7 @@ namespace KeqingNiuza.Wish
         private static readonly Color Star4Color = Color.FromArgb(0xA2, 0x56, 0xE1);
         private static readonly Color FirstRowColor = Color.FromArgb(0x00, 0x70, 0xC0);
 
-        private ExcelPackage ExcelPackage;
+        private readonly ExcelPackage ExcelPackage;
 
         public ExcelExpoter()
         {

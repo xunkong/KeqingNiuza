@@ -1,7 +1,5 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,19 +16,13 @@ using System.Windows.Shapes;
 namespace KeqingNiuza.View
 {
     /// <summary>
-    /// WelcomeView.xaml 的交互逻辑
+    /// UpdateLogView.xaml 的交互逻辑
     /// </summary>
-    public partial class WelcomeView : UserControl
+    public partial class UpdateLogView : UserControl
     {
-        public WelcomeView()
+        public UpdateLogView()
         {
             InitializeComponent();
-        }
-
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            var link = sender as Hyperlink;
-            Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
         }
     }
 }

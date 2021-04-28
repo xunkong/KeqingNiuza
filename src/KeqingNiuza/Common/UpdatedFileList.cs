@@ -14,6 +14,8 @@ namespace KeqingNiuza.Common
         /// </summary>
         public bool IsUpdateFinished { get; set; }
 
+        public bool ShowUpdateLogView { get; set; }
+
         /// <summary>
         /// 需要更新的文件
         /// </summary>

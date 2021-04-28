@@ -82,18 +82,14 @@ namespace KeqingNiuza.Update
                 {
                     return;
                 }
-                var newversion = new Version(
-                    fileList.Version.Major,
-                    fileList.Version.Minor,
-                    fileList.Version.Build,
-                    int.Parse(DateTime.Now.ToString("yyMMddHH")));
+                var newversion = new Version(0, 1, 1, int.Parse(DateTime.Now.ToString("yyMMddHH")));
                 var oldversion = fileList.Version;
                 // 避免同一时间多次构建时不更新FileList.json
                 if (newversion > oldversion)
                 {
                     File.Copy("..\\FileList.json", $"..\\FileList_{oldversion}.json", true);
-                    fileList.Version = newversion;
                     fileList.VersionHistory.Add(new FileList(fileList));
+                    fileList.Version = newversion;
                 }
                 fileList.AllFiles = allFiles;
                 fileList.UpdateTime = DateTime.Now;

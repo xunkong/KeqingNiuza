@@ -14,6 +14,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using HandyControl.Controls;
+using HandyControl.Tools.Extension;
+using KeqingNiuza.Wish;
+using System.Text.Json;
+using KeqingNiuza.Model;
+using System.IO;
 
 namespace KeqingNiuza.View
 {
@@ -25,13 +31,40 @@ namespace KeqingNiuza.View
         public AboutView()
         {
             InitializeComponent();
-            TextBlock_Version.Text = "版本：" + Const.Version.ToString();
+            TextBlock_Version.Text = "版本：" + Const.Version.ToString(3);
+            TextBlock_Version_All.Text = Const.Version.ToString();
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             var link = sender as Hyperlink;
             Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
+        }
+
+        private async void Button_ImportExcel_Click(object sender, RoutedEventArgs e)
+        {
+            var result = await Dialog.Show(new ExcelImportDialog()).GetResultAsync<(bool, UserData, List<WishData>)>();
+            if (result.Item1)
+            {
+                try
+                {
+                    var str = JsonSerializer.Serialize(result.Item3, Const.JsonOptions);
+                    File.WriteAllText(result.Item2.WishLogFile, str);
+                    result.Item2.LastUpdateTime = DateTime.Now;
+                    Growl.Success("导入数据成功");
+                }
+                catch (Exception ex)
+                {
+                    Growl.Error(ex.Message);
+                }
+            }
+            else
+            {
+                if (result.Item2 != null)
+                {
+                    Growl.Error("导入数据失败");
+                }
+            }
         }
     }
 }

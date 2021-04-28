@@ -10,6 +10,7 @@
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
                 <ResourceDictionary Source="Resource/PropertyDictionary.xaml" />
                 <ResourceDictionary Source="Resource/StyleDictionary.xaml" />
+                <ResourceDictionary Source="Resource/DataGridStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
 

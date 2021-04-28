@@ -27,6 +27,8 @@ namespace KeqingNiuza.Common
         /// </summary>
         public bool AutoUpdate { get; set; } = true;
 
+        public bool ShowUpdateLogView { get; set; }
+
         /// <summary>
         /// 压缩包下载地址
         /// </summary>
@@ -72,7 +74,6 @@ namespace KeqingNiuza.Common
             PackageUrl = fileList.PackageUrl;
             UpdateTime = fileList.UpdateTime;
             Description = fileList.Description;
-            AllFiles = fileList.AllFiles.ConvertAll(x => new UpdatedFileInfo(x));
             UpdatedFiles = fileList.UpdatedFiles.ConvertAll(x => new UpdatedFileInfo(x));
         }
     }

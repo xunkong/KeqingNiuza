@@ -48,9 +48,11 @@
   <ItemGroup>
     <Compile Include="Const.cs" />
     <Compile Include="ExcelExpoter.cs" />
+    <Compile Include="ExcelImporter.cs" />
+    <Compile Include="ImportedWishData.cs" />
     <Compile Include="WishAnalyzer.cs" />
     <Compile Include="WishData.cs" />
-    <Compile Include="GachaLogExporter.cs" />
+    <Compile Include="WishLogExporter.cs" />
     <Compile Include="WishEvent.cs" />
     <Compile Include="WishStatistics.cs" />
     <Compile Include="WishType.cs" />

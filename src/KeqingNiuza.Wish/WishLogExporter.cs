@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KeqingNiuza.Wish
 {
-    public class GachaLogExporter
+    public class WishLogExporter
     {
         private readonly string baseRequestUrl = @"https://hk4e-api.mihoyo.com/event/gacha_info/api/getGachaLog";
 
@@ -15,7 +15,7 @@ namespace KeqingNiuza.Wish
 
         private readonly HttpClient HttpClient;
 
-        public GachaLogExporter(string url)
+        public WishLogExporter(string url)
         {
             if (url.EndsWith("#/log"))
             {
@@ -78,18 +78,18 @@ namespace KeqingNiuza.Wish
                 url = $@"{baseRequestUrl}{authString}&{param}";
                 str = HttpClient.GetStringAsync(url).Result;
                 result = JsonSerializer.Deserialize<ResponseData>(str);
-                if (result.retcode != 0)
+                if (result.Retcode != 0)
                 {
-                    throw new ArgumentException(result.message);
+                    throw new ArgumentException(result.Message);
                 }
-                if (result.data.list.Count != 0)
+                if (result.Data.List.Count != 0)
                 {
-                    list.AddRange(result.data.list);
+                    list.AddRange(result.Data.List);
                     param.Page++;
-                    param.EndId = result.data.list.Last().Id;
+                    param.EndId = result.Data.List.Last().Id;
                 }
 
-            } while (result.data.list.Count == param.Size);
+            } while (result.Data.List.Count == param.Size);
             return list;
         }
     }

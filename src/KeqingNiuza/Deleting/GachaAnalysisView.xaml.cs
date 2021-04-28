@@ -64,9 +64,9 @@ namespace GenshinHelper.Desktop.View
             }
         }
 
-        private PieChartViewModel _NovicePieChart;
+        private readonly PieChartViewModel _NovicePieChart;
 
-        private UserData _UserData;
+        private readonly UserData _UserData;
 
 
 

@@ -4,12 +4,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:lc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Width="320"
              d:DesignHeight="800"
-             d:DesignWidth="400"
              mc:Ignorable="d">
 
 
-    <Grid Margin="30">
+    <Grid Margin="10">
         <StackPanel HorizontalAlignment="Center">
             <TextBlock Margin="0,0,0,10"
                        HorizontalAlignment="Center"

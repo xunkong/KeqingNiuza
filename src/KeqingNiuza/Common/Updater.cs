@@ -14,7 +14,9 @@ namespace KeqingNiuza.Common
 
         private const string _UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36 Edg/89.0.774.68";
 
-        private string _FileListUrl = "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/FileList.json";
+
+        private readonly string _FileListUrl = "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/FileList.json";
+
 
         private FileList _FileList;
 
@@ -61,8 +63,11 @@ namespace KeqingNiuza.Common
                 Directory.Delete($"{name.Replace(".zip", "")}", true);
             }
             ZipFile.ExtractToDirectory(name, $"{name.Replace(".zip", "")}");
-            UpdatedFileList updatedFileList = new UpdatedFileList();
-            updatedFileList.SourceDirPath = $"{name.Replace(".zip", "")}";
+            UpdatedFileList updatedFileList = new UpdatedFileList
+            {
+                SourceDirPath = $"{name.Replace(".zip", "")}",
+                ShowUpdateLogView = _FileList.ShowUpdateLogView
+            };
             updatedFileList.UpdatedFiles.AddRange(_FileList.UpdatedFiles);
             foreach (var list in _FileList.VersionHistory)
             {

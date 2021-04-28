@@ -30,7 +30,7 @@
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220" />
+            <ColumnDefinition Width="200" />
             <ColumnDefinition />
             <ColumnDefinition Width="340" />
         </Grid.ColumnDefinitions>
@@ -63,6 +63,11 @@
                 <RadioButton x:Name="SideMenu_WishSummary"
                              Click="RadioButton_SideMenu_Click"
                              Content="祈愿总览"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}" />
+                <RadioButton x:Name="SideMenu_WishOriginalData"
+                             Click="RadioButton_SideMenu_Click"
+                             Content="原始数据"
                              GroupName="SideMenu"
                              Style="{StaticResource SideMenuRadioButton}" />
             </StackPanel>
@@ -199,7 +204,8 @@
                     </Ellipse>
                     <StackPanel Grid.Row="1" Grid.Column="1">
                         <TextBlock Margin="20,20,0,0" FontSize="20" Text="{Binding Uid}" />
-                        <TextBlock Margin="20,10,0,0" Text="{Binding LastUpdateTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                        <TextBlock Margin="20,5,0,0" Foreground="Gray" Text="最后更新数据的时间" />
+                        <TextBlock Margin="20,5,0,0" Text="{Binding LastUpdateTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
                     </StackPanel>
                     <UniformGrid Grid.Row="2"
                                  Grid.Column="0"

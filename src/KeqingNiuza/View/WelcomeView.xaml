@@ -17,14 +17,21 @@
             <TextBlock Margin="0,5,0,5" Text="● 点击软件右上角加载数据" />
             <TextBlock Margin="0,10,0,10" FontSize="20" Text="如何进行云备份" />
             <TextBlock Margin="0,5,0,5" Text="● 注册坚果云账户" />
-            <TextBlock Margin="0,5,0,5" Text="● 账户信息-&gt;安全选项-&gt;第三方应用管理-&gt;添加应用" />
+            <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+                <TextBlock Text="● 授权第三方应用，" />
+                <TextBlock>
+                    <Hyperlink Click="Hyperlink_Click" NavigateUri="https://help.jianguoyun.com/?p=2064" TextDecorations="None">
+                        授权教程
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
             <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
                 <TextBlock Text="● 点击软件右上角的云，填写账户和" />
                 <TextBlock FontWeight="Bold" Text="应用密码" />
             </StackPanel>
             <TextBlock Margin="0,5,0,5" Text="● 坚果云账户和用户密码会加密保存在本地" />
             <TextBlock Margin="0,10,0,10" FontSize="20" Text="如何导入6个月之前的数据" />
-            <TextBlock Margin="0,5,0,5" Text="此功能将会在后续更新中完善" />
+            <TextBlock Margin="0,5,0,5" Text="在关于页面导入数据" />
         </StackPanel>
     </Grid>
 </UserControl>

@@ -4,26 +4,31 @@ using System.Text.Json.Serialization;
 namespace KeqingNiuza.Wish { 
     class ResponseData
     {
-        public int retcode { get; set; }
+        [JsonPropertyName("retcode")]
+        public int Retcode { get; set; }
 
-        public string message { get; set; }
+        [JsonPropertyName("message")]
+        public string Message { get; set; }
 
-        public Data data { get; set; }
+        [JsonPropertyName("data")]
+        public DataItem Data { get; set; }
 
-        public class Data
+        public class DataItem
         {
-            [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
-            public int page { get; set; }
+            [JsonPropertyName("page"),JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+            public int Page { get; set; }
 
-            [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
-            public int size { get; set; }
+            [JsonPropertyName("size"), JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+            public int Size { get; set; }
 
-            [JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
-            public int total { get; set; }
+            [JsonPropertyName("total"),JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+            public int Total { get; set; }
 
-            public List<WishData> list { get; set; }
+            [JsonPropertyName("list")]
+            public List<WishData> List { get; set; }
 
-            public string region { get; set; }
+            [JsonPropertyName("region")]
+            public string Region { get; set; }
         }
     }
 }

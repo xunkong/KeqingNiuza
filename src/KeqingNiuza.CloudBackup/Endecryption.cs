@@ -11,7 +11,7 @@ namespace KeqingNiuza.CloudBackup
     static class Endecryption
     {
 
-        private static byte[] Key;
+        private static readonly byte[] Key;
 
         private static readonly byte[] IV;
 

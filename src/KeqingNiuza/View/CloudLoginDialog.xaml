@@ -54,7 +54,8 @@
                     <Button x:Name="Button_Login"
                             Width="60"
                             Click="Button_Login_Click"
-                            Content="登录" />
+                            Content="登录"
+                            Style="{StaticResource YesButtonStyle}" />
                     <Button x:Name="Button_Cancel"
                             Width="60"
                             Click="Button_Cancel_Click"

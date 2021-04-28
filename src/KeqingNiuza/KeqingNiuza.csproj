@@ -36,7 +36,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -46,7 +46,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>TRACE;TestUpdate</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -95,7 +95,9 @@
     <Compile Include="Deleting\PieChartViewModel.cs" />
     <Compile Include="Model\Config.cs" />
     <Compile Include="Model\UserData.cs" />
+    <Compile Include="ViewModel\ExcelImportViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\WishOriginalDataViewModel.cs" />
     <Compile Include="ViewModel\WishSummaryViewModel.cs" />
     <Compile Include="View\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
@@ -109,12 +111,18 @@
     <Compile Include="View\CloudLoginDialog.xaml.cs">
       <DependentUpon>CloudLoginDialog.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ExcelImportDialog.xaml.cs">
+      <DependentUpon>ExcelImportDialog.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\NoUidView.xaml.cs">
       <DependentUpon>NoUidView.xaml</DependentUpon>
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\UpdateLogView.xaml.cs">
+      <DependentUpon>UpdateLogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
@@ -171,6 +179,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Resource\DataGridStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resource\PropertyDictionary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -195,11 +207,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ExcelImportDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\NoUidView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UpdateLogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -381,4 +401,5 @@ if $(ConfigurationName) == Release move /Y *.dll .\Assembly
 if $(ConfigurationName) == Release move /Y Update.exe .\Assembly
 if $(ConfigurationName) == Release move /Y Update.exe.config .\Assembly</PostBuildEvent>
   </PropertyGroup>
+  <ProjectExtensions />
 </Project>

@@ -47,6 +47,11 @@ namespace KeqingNiuza.ViewModel
             {
                 CloudClient = CloudClient.GetClientFromEncryption();
             }
+            if (File.Exists("Resource\\ShowUpdateLog"))
+            {
+                ViewContent = new UpdateLogView();
+                File.Delete("Resource\\ShowUpdateLog");
+            }
         }
 
 
@@ -231,7 +236,7 @@ namespace KeqingNiuza.ViewModel
 
         private async Task UpdateDataFromUrl(string url)
         {
-            var exporter = new GachaLogExporter(url);
+            var exporter = new WishLogExporter(url);
             var newList = await exporter.GetAllLog();
             var uid = 0;
             if (newList.Any())
@@ -343,6 +348,17 @@ namespace KeqingNiuza.ViewModel
                 else
                 {
                     ViewContent = new GachaAnalysisView(SelectedUserData);
+                }
+            }
+            if (header == "SideMenu_WishOriginalData" && !(ViewContent is WishOriginalDataView))
+            {
+                if (SelectedUserData == null)
+                {
+                    ViewContent = new NoUidView();
+                }
+                else
+                {
+                    ViewContent = new WishOriginalDataView(SelectedUserData);
                 }
             }
             if (header == "SideMenu_About")

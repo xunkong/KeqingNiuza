@@ -15,5 +15,6 @@ namespace KeqingNiuza.CloudBackup
         public string Password { get; set; }
 
         public DateTime LastSyncTime { get; set; }
+
     }
 }

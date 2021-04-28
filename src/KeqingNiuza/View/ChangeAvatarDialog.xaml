@@ -63,6 +63,7 @@
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
             <Button x:Name="Button_Confirm"
+                    Style="{StaticResource YesButtonStyle}"
                     Width="60"
                     Margin="10,0,10,0"
                     Click="Button_Confirm_Click"

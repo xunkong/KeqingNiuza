@@ -44,7 +44,7 @@ namespace KeqingNiuza.CloudBackup
             return result.IsSuccessful;
         }
 
-        [Obsolete]
+        [Obsolete("因为同步逻辑问题暂时不使用")]
         public override async Task SyncFiles()
         {
             var result = await _WebDevClient.GetRawFile("KeqingNiuza/BackupFileList.json");

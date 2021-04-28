@@ -69,7 +69,10 @@ namespace KeqingNiuza.Update
                 //{
                 //    Process.Start("Genshin Helper.exe");
                 //}
-
+                if (list.ShowUpdateLogView)
+                {
+                    File.Create("Resource\\ShowUpdateLog");
+                }
                 Directory.Delete(".\\Update", true);
             }
         }

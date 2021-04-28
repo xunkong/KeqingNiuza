@@ -33,7 +33,7 @@
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Uid}" Header="Uid" />
-                    <GridViewColumn DisplayMemberBinding="{Binding LastUpdateTime,StringFormat='yyyy-MM-dd HH:mm:ss'}" Header="最后更新时间" />
+                    <GridViewColumn DisplayMemberBinding="{Binding LastUpdateTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" Header="最后更新时间" />
                 </GridView>
             </ListView.View>
         </ListView>
@@ -47,7 +47,8 @@
                     Width="60"
                     Margin="10,0,10,0"
                     Click="Button_Confirm_Click"
-                    Content="确认" />
+                    Content="确认"
+                    Style="{StaticResource YesButtonStyle}" />
             <Button x:Name="Button_Cancel"
                     Width="60"
                     Margin="10,0,10,0"
