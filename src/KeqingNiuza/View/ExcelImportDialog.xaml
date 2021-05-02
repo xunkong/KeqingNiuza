@@ -81,10 +81,9 @@
             <DataGrid x:Name="DataGrid_ImportedData"
                       Grid.Row="1"
                       AutoGenerateColumns="False"
-                      CanUserAddRows="False"
-                      CanUserDeleteRows="True"
                       ColumnHeaderHeight="30"
                       HorizontalGridLinesBrush="LightGray"
+                      IsReadOnly="True"
                       ItemsSource="{Binding CollectionView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       LoadingRow="DataGrid_ImportedData_LoadingRow"
                       RowHeaderWidth="40"
@@ -96,7 +95,7 @@
                     <DataGridTextColumn Width="150" Binding="{Binding Name}" Header="名称" />
                     <DataGridTextColumn Width="80" Binding="{Binding ItemType}" Header="类型" />
                     <DataGridTextColumn Width="80" Binding="{Binding RankType}" Header="星级" />
-                    <DataGridTextColumn Width="150" Binding="{Binding WishType}" Header="祈愿类型" />
+                    <DataGridTextColumn Width="150" Binding="{Binding WishType, Converter={StaticResource WishTypeConverter}}" Header="祈愿类型" />
                     <DataGridTextColumn Width="200"
                                         Binding="{Binding Comment}"
                                         Foreground="Red"

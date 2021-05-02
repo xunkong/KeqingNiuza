@@ -68,7 +68,7 @@
                 <DataGridTextColumn Width="80" Binding="{Binding ItemType}" Header="类型" />
                 <DataGridTextColumn Width="80" Binding="{Binding RankType}" Header="星级" />
                 <DataGridTextColumn Width="80" Binding="{Binding Guarantee}" Header="保底内" />
-                <DataGridTextColumn Width="150" Binding="{Binding WishType}" Header="祈愿类型" />
+                <DataGridTextColumn Width="150" Binding="{Binding WishType, Converter={StaticResource WishTypeConverter}}" Header="祈愿类型" />
                 <DataGridTextColumn Width="200" Binding="{Binding Id}" Header="祈愿 Id" />
             </DataGrid.Columns>
         </DataGrid>

@@ -185,6 +185,10 @@ namespace KeqingNiuza.ViewModel
             {
                 ViewContent = new GachaAnalysisView(SelectedUserData);
             }
+            if (ViewContent is WishOriginalDataView)
+            {
+                ViewContent = new WishOriginalDataView(SelectedUserData);
+            }
         }
 
 
@@ -316,7 +320,7 @@ namespace KeqingNiuza.ViewModel
 
 
         /// <summary>
-        /// 备份用户文件
+        /// 以压缩包形式备份用户文件
         /// </summary>
         /// <returns></returns>
         public async Task CloudBackupFileArchive()
@@ -390,6 +394,7 @@ namespace KeqingNiuza.ViewModel
             if (result != null)
             {
                 SelectedUserData = result;
+                ReloadViewContent();
             }
         }
 

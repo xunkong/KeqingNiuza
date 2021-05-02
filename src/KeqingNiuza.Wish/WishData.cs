@@ -71,10 +71,17 @@ namespace KeqingNiuza.Wish
         public bool IsLostId { get; set; }
 
         /// <summary>
+        /// 在相应卡池中的序号
+        /// </summary>
+        [JsonIgnore]
+        public int Number { get; set; }
+
+        /// <summary>
         /// 保底内次数，此值不保存，需每次重新计算
         /// </summary>
         [JsonIgnore]
         public int Guarantee { get; set; }
+
 
         public bool Equals(WishData other)
         {

@@ -120,26 +120,28 @@ namespace KeqingNiuza.CloudBackup
 
         public override async Task BackupFileArchive()
         {
-            var date = DateTime.Now.ToString("yyMMddHH");
-            var name = $"UserData_{date}.zip";
-            File.Delete(name);
-            ZipFile.CreateFromDirectory(".\\UserData", name);
-            using (var archive = ZipFile.Open(name, ZipArchiveMode.Update))
+            await Task.Run(async () =>
             {
-                var entry = archive.GetEntry("Account");
-                entry?.Delete();
-            }
-            _ = _WebDevClient.Mkcol("KeqingNiuza/Archive").Result;
-            var resultTask = _WebDevClient.PutFile($"KeqingNiuza/Archive/{name}", File.OpenRead(name));
-            var result = await resultTask;
-            File.Delete(name);
-            if (!result.IsSuccessful)
-            {
-                throw new Exception(result.Description);
-            }
-            await PutBackupFileList();
-            LastSyncTime = DateTime.Now;
-            SaveEncyptedAccount();
+                var date = DateTime.Now.ToString("yyMMddHH");
+                var name = $"UserData_{date}.zip";
+                File.Delete(name);
+                ZipFile.CreateFromDirectory(".\\UserData", name);
+                using (var archive = ZipFile.Open(name, ZipArchiveMode.Update))
+                {
+                    var entry = archive.GetEntry("Account");
+                    entry?.Delete();
+                }
+                _ = _WebDevClient.Mkcol("KeqingNiuza/Archive").Result;
+                var result = await _WebDevClient.PutFile($"KeqingNiuza/Archive/{name}", File.OpenRead(name));
+                File.Delete(name);
+                if (!result.IsSuccessful)
+                {
+                    throw new Exception(result.Description);
+                }
+                await PutBackupFileList();
+                LastSyncTime = DateTime.Now;
+                SaveEncyptedAccount();
+            });
         }
 
         public override void SaveEncyptedAccount()

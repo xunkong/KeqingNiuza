@@ -86,6 +86,7 @@
     <Compile Include="Common\UpdatedFileInfo.cs" />
     <Compile Include="Common\UpdatedFileList.cs" />
     <Compile Include="Common\Updater.cs" />
+    <Compile Include="Common\WishTypeConverter.cs" />
     <Compile Include="Deleting\GachaAnalysisView.xaml.cs">
       <DependentUpon>GachaAnalysisView.xaml</DependentUpon>
     </Compile>
@@ -160,6 +161,7 @@
     <None Include="Resource\List\AvatarList.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Resource\List\ClassifyColorList.json" />
     <None Include="Resource\List\ElementDictionary.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
