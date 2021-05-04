@@ -14,7 +14,7 @@
         DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
         Loaded="Window_Main_Loaded"
         WindowStartupLocation="CenterScreen"
-        WindowStyle="None"
+        WindowStyle="SingleBorderWindow"
         mc:Ignorable="d">
 
     <WindowChrome.WindowChrome>

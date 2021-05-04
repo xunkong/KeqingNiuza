@@ -8,9 +8,9 @@
              d:DesignWidth="800"
              Background="{StaticResource ContentViewBackground}"
              mc:Ignorable="d">
-    <Grid Margin="40">
+    <Grid>
         <ScrollViewer>
-            <StackPanel>
+            <StackPanel Margin="40">
                 <TextBlock Margin="0,10,0,10" FontSize="20" Text="关于" />
                 <TextBlock x:Name="TextBlock_Version" Margin="0,5,0,5">
                     <TextBlock.ToolTip>
@@ -65,6 +65,16 @@
                         HorizontalAlignment="Left"
                         Click="Button_ImportExcel_Click"
                         Content="导入数据" />
+                <TextBlock Margin="0,10,0,10" FontSize="20" Text="最近更新内容" />
+                <TextBlock Margin="0,5,0,5" Text="● 导入数据页面的表格禁止修改数据" />
+                <TextBlock Margin="0,5,0,5" Text="● 祈愿类型以中文显示" />
+                <TextBlock Margin="0,5,0,5" Text="● 修复更换Uid后不能刷新界面的问题" />
+                <TextBlock Margin="0,5,0,5" Text="● 修复了最大化窗口时会遮挡任务栏的问题" />
+                <TextBlock Margin="0,5,0,5">
+                    <Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/Scighost/KeqingNiuza/blob/main/ChangeLog.md" TextDecorations="None">
+                        历史记录
+                    </Hyperlink>
+                </TextBlock>
             </StackPanel>
         </ScrollViewer>
 

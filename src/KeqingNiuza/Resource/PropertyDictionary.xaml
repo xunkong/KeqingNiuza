@@ -25,6 +25,7 @@
     <SolidColorBrush x:Key="ContentViewBackground">#F3F3F3</SolidColorBrush>
 
     <c:UidConverter x:Key="UidConverter" />
+    <c:WishTypeConverter x:Key="WishTypeConverter" />
 
     <ImageSource x:Key="JianguoyunIcon">/Resource/Other/JianguoyuLogo.png</ImageSource>
 

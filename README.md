@@ -9,7 +9,11 @@
 - [jsDelivr](https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/KeqingNiuza/KeqingNiuza.zip)
 - [Github Release](https://github.com/Scighost/KeqingNiuza/releases)
 
-## 其他问题
+## 已知问题
+
+- 5星历史记录中武器的文字颜色全为黑色
+
+## 其他
 
 ### 如何加载祈愿数据
 

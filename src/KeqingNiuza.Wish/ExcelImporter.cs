@@ -25,15 +25,26 @@ namespace KeqingNiuza.Wish
         private ExcelRange permanentCells;
         private ExcelRange noviceCells;
 
-
+        /// <summary>
+        /// 导入数据和现有数据在时间上是否有交集
+        /// </summary>
         public bool HasIntersectData { get; set; }
 
+        /// <summary>
+        /// 导入数据与现有数据是否匹配
+        /// </summary>
         public bool IsMatchOriginalData { get; set; }
 
+        /// <summary>
+        /// 数据不匹配的时间
+        /// </summary>
         public DateTime MatchErrorTime { get; set; }
 
 
         private bool _CanExport;
+        /// <summary>
+        /// 能否导出合并数据
+        /// </summary>
         public bool CanExport
         {
             get { return _CanExport && (IsMatchOriginalData || !HasIntersectData); }
@@ -49,8 +60,6 @@ namespace KeqingNiuza.Wish
         public List<WishData> OriginalWishDataList { get; set; }
 
         public List<ImportedWishData> ImportedWishDataList { get; set; }
-
-        public List<DateTime> DuplicateDateTimeList { get; set; }
 
 
         private ObservableCollection<ImportedWishData> _ShownWishDataCollection;
@@ -70,9 +79,10 @@ namespace KeqingNiuza.Wish
             OriginalWishDataList = originalWishDataList.OrderBy(x => x.Id).ToList();
         }
 
-        public ExcelImporter() { }
-
-
+        /// <summary>
+        /// 从Excel文件导入数据
+        /// </summary>
+        /// <param name="path"></param>
         public void ImportFromExcel(string path)
         {
             ExcelPackage = new ExcelPackage(new System.IO.FileInfo(path));
@@ -91,6 +101,11 @@ namespace KeqingNiuza.Wish
             }
         }
 
+        /// <summary>
+        /// 当数据发生更改时重新校验
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ShownWishDataCollection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             Task.Run(() =>
@@ -106,6 +121,9 @@ namespace KeqingNiuza.Wish
             });
         }
 
+        /// <summary>
+        /// 以祈愿时间为为顺序给导入数据排序
+        /// </summary>
         private void SortImportedData()
         {
             var CharacterList = new List<ImportedWishData>();
@@ -293,8 +311,9 @@ namespace KeqingNiuza.Wish
 
 
 
-        // 检测重复数据
-
+        /// <summary>
+        /// 检测重复数据，同一时间点只能由1条或10条数据
+        /// </summary>
         public void DectectDuplicate()
         {
             var groups = ShownWishDataCollection.GroupBy(x => x.Time);
@@ -314,8 +333,10 @@ namespace KeqingNiuza.Wish
 
 
 
-        // 与现有数据匹配
-
+        
+        /// <summary>
+        /// 检测导入数据与现有数据匹配
+        /// </summary>
         public void MatchOriginalData()
         {
             var time = OriginalWishDataList.First().Time;
@@ -343,7 +364,10 @@ namespace KeqingNiuza.Wish
             IsMatchOriginalData = true;
         }
 
-
+        /// <summary>
+        /// 导出合并数据
+        /// </summary>
+        /// <returns></returns>
         public List<WishData> ExportMergedDataList()
         {
             var mergedDataList = new List<WishData>();
