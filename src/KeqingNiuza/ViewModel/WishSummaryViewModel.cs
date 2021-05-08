@@ -37,7 +37,7 @@ namespace KeqingNiuza.ViewModel
         {
             var json = File.ReadAllText(userData.WishLogFile);
             var list = JsonSerializer.Deserialize<List<WishData>>(json, JsonOptions);
-            var analyzer = new WishAnalyzer(list);
+            var analyzer = new PieChartAnalyzer(list);
             NoviceStatistics = analyzer.NoviceStatistics;
             PermanentStatistics = analyzer.PermanentStatistics;
             CharacterEventStatistics = analyzer.CharacterEventStatistics;

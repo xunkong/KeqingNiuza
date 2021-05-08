@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace KeqingNiuza.Wish
 {
-    public class WishAnalyzer
+    public class PieChartAnalyzer
     {
         List<WishData> WishDatas;
         List<WishData> NoviceDatas = new List<WishData>(20);
@@ -32,7 +32,7 @@ namespace KeqingNiuza.Wish
         /// </summary>
         public WishStatistics WeaponEventStatistics { get; private set; } = new WishStatistics();
 
-        public WishAnalyzer(List<WishData> wishDatas)
+        public PieChartAnalyzer(List<WishData> wishDatas)
         {
             if (wishDatas == null || wishDatas.Count == 0)
             {
@@ -91,11 +91,11 @@ namespace KeqingNiuza.Wish
             statistics.Star5Count = statistics.Star5List.Count;
             statistics.Star4List = GetDetailList(datas, 4);
             statistics.Star4Count = statistics.Star4List.Count;
-            statistics.Character5Count = datas.Where(x => x.RankType == 5 && x.ItemType == "角色").Count();
-            statistics.Weapon5Count = datas.Where(x => x.RankType == 5 && x.ItemType == "武器").Count();
-            statistics.Character4Count = datas.Where(x => x.RankType == 4 && x.ItemType == "角色").Count();
-            statistics.Weapon4Count = datas.Where(x => x.RankType == 4 && x.ItemType == "武器").Count();
-            statistics.Star3Count = datas.Where(x => x.RankType == 3).Count();
+            statistics.Character5Count = datas.Where(x => x.Rank == 5 && x.ItemType == "角色").Count();
+            statistics.Weapon5Count = datas.Where(x => x.Rank == 5 && x.ItemType == "武器").Count();
+            statistics.Character4Count = datas.Where(x => x.Rank == 4 && x.ItemType == "角色").Count();
+            statistics.Weapon4Count = datas.Where(x => x.Rank == 4 && x.ItemType == "武器").Count();
+            statistics.Star3Count = datas.Where(x => x.Rank == 3).Count();
             statistics.Weapon3Count = statistics.Star3Count;
         }
 
@@ -106,7 +106,7 @@ namespace KeqingNiuza.Wish
             {
                 return -1;
             }
-            var index = list.FindLastIndex(x => x.RankType == 5);
+            var index = list.FindLastIndex(x => x.Rank == 5);
             if (index == -1)
             {
                 return list.Count;
@@ -128,7 +128,7 @@ namespace KeqingNiuza.Wish
             {
                 return "保底内";
             }
-            var index = list.FindLastIndex(x => x.RankType == 5);
+            var index = list.FindLastIndex(x => x.Rank == 5);
             if (index == -1)
             {
                 return "小保底";
@@ -154,7 +154,7 @@ namespace KeqingNiuza.Wish
         private List<StarDetail> GetDetailList(List<WishData> datas, int star)
         {
             List<StarDetail> result;
-            var list = datas.Where(x => x.RankType == star).Select(x => new StarDetail(x.Name, datas.IndexOf(x), x.Time.ToString("yyyy/MM/dd hh:mm:ss"))).ToList();
+            var list = datas.Where(x => x.Rank == star).Select(x => new StarDetail(x.Name, datas.IndexOf(x), x.Time.ToString("yyyy/MM/dd hh:mm:ss"))).ToList();
             if (list.Any())
             {
                 result = new List<StarDetail>(list.Count);

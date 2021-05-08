@@ -28,39 +28,29 @@ namespace KeqingNiuza.Wish
             }
         }
 
-        public async Task<List<WishData>> GetAllLog()
-        {
-            List<WishData> wishDatas = new List<WishData>();
-            await Task.Run(() =>
-            {
-                QueryParam param = new QueryParam() { WishType = WishType.Novice, Page = 1, Size = 6, EndId = 0 };
-                wishDatas.AddRange(GetWishLogList(param));
-                param = new QueryParam() { WishType = WishType.Permanent, Page = 1, Size = 6, EndId = 0 };
-                wishDatas.AddRange(GetWishLogList(param));
-                param = new QueryParam() { WishType = WishType.CharacterEvent, Page = 1, Size = 6, EndId = 0 };
-                wishDatas.AddRange(GetWishLogList(param));
-                param = new QueryParam() { WishType = WishType.WeaponEvent, Page = 1, Size = 6, EndId = 0 };
-                wishDatas.AddRange(GetWishLogList(param));
-            });
-            return wishDatas;
-        }
-
-        public async Task<List<WishData>> GetAllLog(int size)
+        /// <summary>
+        /// 获取祈愿记录数据
+        /// </summary>
+        /// <param name="size">每次Api请求获取几条数据，默认6条，最多20条</param>
+        /// <param name="lastId">本地最新的id，获取的祈愿id小于最新id即停止</param>
+        /// <returns></returns>
+        public async Task<List<WishData>> GetAllLog(int size = 6, long lastId = 0)
         {
             List<WishData> wishDatas = new List<WishData>();
             await Task.Run(() =>
             {
                 QueryParam param = new QueryParam() { WishType = WishType.Novice, Page = 1, Size = size, EndId = 0 };
-                wishDatas.AddRange(GetWishLogList(param));
+                wishDatas.AddRange(GetWishLogList(param, lastId));
                 param = new QueryParam() { WishType = WishType.Permanent, Page = 1, Size = size, EndId = 0 };
-                wishDatas.AddRange(GetWishLogList(param));
+                wishDatas.AddRange(GetWishLogList(param, lastId));
                 param = new QueryParam() { WishType = WishType.CharacterEvent, Page = 1, Size = size, EndId = 0 };
-                wishDatas.AddRange(GetWishLogList(param));
+                wishDatas.AddRange(GetWishLogList(param, lastId));
                 param = new QueryParam() { WishType = WishType.WeaponEvent, Page = 1, Size = size, EndId = 0 };
-                wishDatas.AddRange(GetWishLogList(param));
+                wishDatas.AddRange(GetWishLogList(param, lastId));
             });
             return wishDatas;
         }
+
 
         public List<WishData> GetWishLogList(WishType type)
         {
@@ -68,7 +58,44 @@ namespace KeqingNiuza.Wish
             return GetWishLogList(param);
         }
 
-        public List<WishData> GetWishLogList(QueryParam param)
+
+        /// <summary>
+        /// 获取Url所属的Uid
+        /// </summary>
+        /// <exception cref="Exception">没有祈愿记录</exception>
+        /// <returns></returns>
+        public async Task<int> GetUidByUrl()
+        {
+            var list = new List<WishData>();
+            await Task.Run(() =>
+             {
+                 QueryParam param = new QueryParam() { WishType = WishType.Novice, Page = 1, Size = 6, EndId = 0 };
+                 list.AddRange(GetWishLog(param));
+                 param = new QueryParam() { WishType = WishType.Permanent, Page = 1, Size = 6, EndId = 0 };
+                 list.AddRange(GetWishLog(param));
+                 param = new QueryParam() { WishType = WishType.CharacterEvent, Page = 1, Size = 6, EndId = 0 };
+                 list.AddRange(GetWishLog(param));
+                 param = new QueryParam() { WishType = WishType.WeaponEvent, Page = 1, Size = 6, EndId = 0 };
+                 list.AddRange(GetWishLog(param));
+             });
+            if (list.Any())
+            {
+                return list.First().Uid;
+            }
+            else
+            {
+                throw new Exception("没有祈愿记录");
+            }
+        }
+
+
+        /// <summary>
+        /// 获取所有的祈愿记录，或截止到指定id
+        /// </summary>
+        /// <param name="param">祈愿类型</param>
+        /// <param name="lastId">截止到的祈愿id</param>
+        /// <returns></returns>
+        private List<WishData> GetWishLogList(QueryParam param, long lastId = 0)
         {
             List<WishData> list = new List<WishData>();
             string url, str;
@@ -87,9 +114,35 @@ namespace KeqingNiuza.Wish
                     list.AddRange(result.Data.List);
                     param.Page++;
                     param.EndId = result.Data.List.Last().Id;
+                    if (param.EndId <= lastId)
+                    {
+                        break;
+                    }
                 }
 
             } while (result.Data.List.Count == param.Size);
+            return list;
+        }
+
+        /// <summary>
+        /// 获取一页祈愿数据
+        /// </summary>
+        /// <param name="param">请求参数</param>
+        /// <returns></returns>
+        private List<WishData> GetWishLog(QueryParam param)
+        {
+            List<WishData> list = new List<WishData>();
+            var url = $@"{baseRequestUrl}{authString}&{param}";
+            var str = HttpClient.GetStringAsync(url).Result;
+            var result = JsonSerializer.Deserialize<ResponseData>(str);
+            if (result.Retcode != 0)
+            {
+                throw new ArgumentException(result.Message);
+            }
+            if (result.Data.List.Count != 0)
+            {
+                list.AddRange(result.Data.List);
+            }
             return list;
         }
     }

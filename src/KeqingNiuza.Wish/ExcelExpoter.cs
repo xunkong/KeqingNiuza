@@ -97,16 +97,16 @@ namespace KeqingNiuza.Wish
                 cells[i + 2, 1].Value = datas[i].Time.ToString("yyyy-MM-dd  HH:mm:ss");
                 cells[i + 2, 2].Value = datas[i].Name;
                 cells[i + 2, 3].Value = datas[i].ItemType;
-                cells[i + 2, 4].Value = datas[i].RankType;
+                cells[i + 2, 4].Value = datas[i].Rank;
                 cells[i + 2, 5].Value = i + 1;
                 cells[i + 2, 6].Value = guarantee;
                 cells[i + 2, 7].Value = datas[i].Id.ToString();
                 cells[i + 2, 1, i + 2, 7].Style.Font.Color.SetColor(Color.Gray);
-                if (datas[i].RankType == 4)
+                if (datas[i].Rank == 4)
                 {
                     cells[i + 2, 1, i + 2, 7].Style.Font.Color.SetColor(Star4Color);
                 }
-                if (datas[i].RankType == 5)
+                if (datas[i].Rank == 5)
                 {
                     cells[i + 2, 1, i + 2, 7].Style.Font.Color.SetColor(Star5Color);
                     guarantee = 0;

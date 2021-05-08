@@ -58,4 +58,6 @@ namespace KeqingNiuza.Wish
             writer.WriteStringValue(value.ToString(@"yyyy'-'MM'-'dd HH':'mm':'ss"));
         }
     }
+
+
 }

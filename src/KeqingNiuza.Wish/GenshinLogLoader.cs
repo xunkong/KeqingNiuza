@@ -8,7 +8,11 @@ namespace KeqingNiuza.Wish
 {
     public class GenshinLogLoader
     {
-
+        /// <summary>
+        /// 从日志查找祈愿记录Url
+        /// </summary>
+        /// <exception cref="Exception">没有找到 Url</exception>
+        /// <returns></returns>
         public static string FindUrlFromLogFile()
         {
             string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);

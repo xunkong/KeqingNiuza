@@ -48,7 +48,7 @@
                Grid.ColumnSpan="2"
                HorizontalAlignment="Right"
                Source="/Resource/Namecard/keqing_lightning_stiletto_party_black.png"
-               Visibility="Collapsed" />
+               Visibility="Visible" />
 
         <!--  侧边菜单  -->
         <DockPanel Grid.Row="1" Grid.Column="0" Background="{StaticResource MainColorFocus}">
@@ -68,6 +68,11 @@
                 <RadioButton x:Name="SideMenu_WishOriginalData"
                              Click="RadioButton_SideMenu_Click"
                              Content="原始数据"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}" />
+                <RadioButton x:Name="SideMenu_WishAchievement"
+                             Click="RadioButton_SideMenu_Click"
+                             Content="祈愿成就"
                              GroupName="SideMenu"
                              Style="{StaticResource SideMenuRadioButton}" />
             </StackPanel>
@@ -256,6 +261,7 @@
                     <Button Name="Button_Logout"
                             Grid.Row="0"
                             HorizontalAlignment="Right"
+                            Click="Button_Logout_Click"
                             Style="{StaticResource ChangeUidButtonStyle}">
                         <TextBlock Margin="10,0,10,0" Text="注销" />
                     </Button>

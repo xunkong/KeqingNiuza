@@ -82,7 +82,7 @@ namespace KeqingNiuza.Update
                 {
                     return;
                 }
-                var newversion = new Version(0, 1, 1, int.Parse(DateTime.Now.ToString("yyMMddHH")));
+                var newversion = new Version(0, 1, 2, int.Parse(DateTime.Now.ToString("yyMMddHH")));
                 var oldversion = fileList.Version;
                 // 避免同一时间多次构建时不更新FileList.json
                 if (newversion > oldversion)
