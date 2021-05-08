@@ -66,10 +66,8 @@
                         Click="Button_ImportExcel_Click"
                         Content="导入数据" />
                 <TextBlock Margin="0,10,0,10" FontSize="20" Text="最近更新内容" />
-                <TextBlock Margin="0,5,0,5" Text="● 导入数据页面的表格禁止修改数据" />
-                <TextBlock Margin="0,5,0,5" Text="● 祈愿类型以中文显示" />
-                <TextBlock Margin="0,5,0,5" Text="● 修复更换Uid后不能刷新界面的问题" />
-                <TextBlock Margin="0,5,0,5" Text="● 修复了最大化窗口时会遮挡任务栏的问题" />
+                <TextBlock Margin="0,5,0,5" Text="● 更新祈愿数据时，当获取到本地已有数据即停止" />
+                <TextBlock Margin="0,5,0,5" Text="● 新增祈愿成就" />
                 <TextBlock Margin="0,5,0,5">
                     <Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/Scighost/KeqingNiuza/blob/main/ChangeLog.md" TextDecorations="None">
                         历史记录

@@ -41,8 +41,8 @@ namespace GenshinHelper.Desktop.View
             ToggleButton_HiddenNoviceWish.IsChecked = userData.HiddenNoviceWish;
             _PieChartViewModels = new ObservableCollection<PieChartViewModel>();
             ItemsControl_PieChartView.DataContext = this;
-            var gachaList = JsonSerializer.Deserialize<List<WishData>>(File.ReadAllText(userData.WishLogFile), JsonOptions);
-            var analyzer = new WishAnalyzer(gachaList);
+            var wishList = LocalWishLogLoader.Load(userData.WishLogFile);
+            var analyzer = new PieChartAnalyzer(wishList);
             PieChartViewModels.Clear();
 
             if (analyzer.CharacterEventStatistics.Count > 0)
@@ -57,11 +57,15 @@ namespace GenshinHelper.Desktop.View
             {
                 PieChartViewModels.Add(new PieChartViewModel(analyzer.PermanentStatistics));
             }
-            _NovicePieChart = new PieChartViewModel(analyzer.NoviceStatistics);
-            if (!_UserData.HiddenNoviceWish)
+            if (analyzer.NoviceStatistics.Count > 0)
             {
-                PieChartViewModels.Add(_NovicePieChart);
+                _NovicePieChart = new PieChartViewModel(analyzer.NoviceStatistics);
+                if (!_UserData.HiddenNoviceWish)
+                {
+                    PieChartViewModels.Add(_NovicePieChart);
+                }
             }
+
         }
 
         private readonly PieChartViewModel _NovicePieChart;
@@ -89,7 +93,7 @@ namespace GenshinHelper.Desktop.View
                 return;
             }
             var gachaList = JsonSerializer.Deserialize<List<WishData>>(File.ReadAllText(userData.WishLogFile), JsonOptions);
-            var analyzer = new WishAnalyzer(gachaList);
+            var analyzer = new PieChartAnalyzer(gachaList);
             PieChartViewModels.Clear();
             if (analyzer.CharacterEventStatistics.Count > 0)
             {

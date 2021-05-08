@@ -16,6 +16,7 @@ using HandyControl.Controls;
 using HandyControl.Tools.Extension;
 using HandyControl.Data;
 using GenshinHelper.Desktop.View;
+using System.IO;
 
 namespace KeqingNiuza.View
 {
@@ -100,7 +101,7 @@ namespace KeqingNiuza.View
                 {
                     ViewModel.CloudClient = client;
                     Popup_Cloud.IsOpen = true;
-                    Growl.Success(new GrowlInfo { Message = "登录成功", });
+                    Growl.Success("登录成功");
                 }
             }
             else
@@ -108,6 +109,18 @@ namespace KeqingNiuza.View
                 Popup_Cloud.IsOpen = true;
             }
         }
+
+        private void Button_Logout_Click(object sender, RoutedEventArgs e)
+        {
+            if (File.Exists("UserData\\Account"))
+            {
+                File.Delete("UserData\\Account");
+            }
+            ViewModel.CloudClient = null;
+            Popup_Cloud.IsOpen = false;
+            Growl.Success("已删除保存的账号和密码");
+        }
+
 
         private async void Button_Load_Click(object sender, RoutedEventArgs e)
         {
@@ -154,5 +167,7 @@ namespace KeqingNiuza.View
             Popup_Uid.IsOpen = false;
             await ViewModel.ChangeUid();
         }
+
+
     }
 }

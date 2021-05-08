@@ -138,7 +138,7 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=DataGridRow}}" Value="True" />
-                    <Condition Binding="{Binding RankType}" Value="5" />
+                    <Condition Binding="{Binding Rank}" Value="5" />
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="Foreground" Value="White" />
@@ -147,7 +147,7 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=DataGridRow}}" Value="True" />
-                    <Condition Binding="{Binding RankType}" Value="4" />
+                    <Condition Binding="{Binding Rank}" Value="4" />
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="Foreground" Value="White" />
@@ -156,7 +156,7 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=DataGridRow}}" Value="True" />
-                    <Condition Binding="{Binding RankType}" Value="3" />
+                    <Condition Binding="{Binding Rank}" Value="3" />
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="Foreground" Value="Black" />
@@ -168,16 +168,16 @@
     <Style TargetType="DataGridRow">
         <Setter Property="BorderThickness" Value="0" />
         <Style.Triggers>
-            <DataTrigger Binding="{Binding RankType}" Value="5">
+            <DataTrigger Binding="{Binding Rank}" Value="5">
                 <Setter Property="Foreground" Value="{StaticResource Star5}" />
             </DataTrigger>
-            <DataTrigger Binding="{Binding RankType}" Value="4">
+            <DataTrigger Binding="{Binding Rank}" Value="4">
                 <Setter Property="Foreground" Value="{StaticResource Star4}" />
             </DataTrigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
-                    <Condition Binding="{Binding RankType}" Value="5" />
+                    <Condition Binding="{Binding Rank}" Value="5" />
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="Background" Value="{StaticResource Star5}" />
@@ -186,7 +186,7 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
-                    <Condition Binding="{Binding RankType}" Value="4" />
+                    <Condition Binding="{Binding Rank}" Value="4" />
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="Background" Value="{StaticResource Star4}" />
@@ -195,7 +195,7 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
-                    <Condition Binding="{Binding RankType}" Value="3" />
+                    <Condition Binding="{Binding Rank}" Value="3" />
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="Background" Value="LightGray" />
@@ -218,7 +218,7 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
-                    <Condition Binding="{Binding RankType}" Value="5" />
+                    <Condition Binding="{Binding Rank}" Value="5" />
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="Foreground" Value="White" />
@@ -227,7 +227,7 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
-                    <Condition Binding="{Binding RankType}" Value="4" />
+                    <Condition Binding="{Binding Rank}" Value="4" />
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="Foreground" Value="White" />
@@ -236,7 +236,7 @@
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
                     <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="True" />
-                    <Condition Binding="{Binding RankType}" Value="3" />
+                    <Condition Binding="{Binding Rank}" Value="3" />
                 </MultiDataTrigger.Conditions>
                 <MultiDataTrigger.Setters>
                     <Setter Property="Foreground" Value="Black" />

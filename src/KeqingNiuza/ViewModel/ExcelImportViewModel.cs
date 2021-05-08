@@ -79,8 +79,7 @@ namespace KeqingNiuza.ViewModel
 
         public void ImportExcelFile(string path)
         {
-            var json = File.ReadAllText(SelectedUserData.WishLogFile);
-            var list = JsonSerializer.Deserialize<List<WishData>>(json, Const.JsonOptions);
+            var list = LocalWishLogLoader.Load(SelectedUserData.WishLogFile);
             ExcelImporter = new ExcelImporter(list);
             ExcelImporter.ImportFromExcel(path);
             CollectionView = CollectionViewSource.GetDefaultView(ExcelImporter.ShownWishDataCollection);

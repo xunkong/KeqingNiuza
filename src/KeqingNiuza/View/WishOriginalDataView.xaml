@@ -41,7 +41,7 @@
                 <ComboBox Width="60" ItemsSource="{Binding ItemRankList}" SelectedItem="{Binding SelectedItemRank}" />
                 <hc:Divider LineStroke="Gray" Orientation="Vertical" />
                 <TextBlock VerticalAlignment="Center" Text="祈愿活动：" />
-                <ComboBox MinWidth="150"
+                <ComboBox MinWidth="170"
                           DisplayMemberPath="DisplayName"
                           ItemsSource="{Binding WishEventList}"
                           SelectedItem="{Binding SelectedWishEvent}" />
@@ -66,7 +66,7 @@
                 <DataGridTextColumn Width="150" Binding="{Binding Time, StringFormat='yyyy-MM-dd  HH:mm:ss'}" Header="时间" />
                 <DataGridTextColumn Width="150" Binding="{Binding Name}" Header="名称" />
                 <DataGridTextColumn Width="80" Binding="{Binding ItemType}" Header="类型" />
-                <DataGridTextColumn Width="80" Binding="{Binding RankType}" Header="星级" />
+                <DataGridTextColumn Width="80" Binding="{Binding Rank}" Header="星级" />
                 <DataGridTextColumn Width="80" Binding="{Binding Guarantee}" Header="保底内" />
                 <DataGridTextColumn Width="150" Binding="{Binding WishType, Converter={StaticResource WishTypeConverter}}" Header="祈愿类型" />
                 <DataGridTextColumn Width="200" Binding="{Binding Id}" Header="祈愿 Id" />

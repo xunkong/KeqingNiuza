@@ -45,7 +45,14 @@ namespace KeqingNiuza.ViewModel
             }
             if (File.Exists("UserData\\Account"))
             {
-                CloudClient = CloudClient.GetClientFromEncryption();
+                try
+                {
+                    CloudClient = CloudClient.GetClientFromEncryption();
+                }
+                catch (Exception e)
+                {
+                    Growl.Error(e.Message);
+                }
             }
             if (File.Exists("Resource\\ShowUpdateLog"))
             {
@@ -172,24 +179,7 @@ namespace KeqingNiuza.ViewModel
         }
 
 
-        /// <summary>
-        /// 重新加载内容页面
-        /// </summary>
-        private void ReloadViewContent()
-        {
-            if (ViewContent is WishSummaryView)
-            {
-                ViewContent = new WishSummaryView(SelectedUserData);
-            }
-            if (ViewContent is GachaAnalysisView || ViewContent is WelcomeView)
-            {
-                ViewContent = new GachaAnalysisView(SelectedUserData);
-            }
-            if (ViewContent is WishOriginalDataView)
-            {
-                ViewContent = new WishOriginalDataView(SelectedUserData);
-            }
-        }
+
 
 
         /// <summary>
@@ -241,20 +231,13 @@ namespace KeqingNiuza.ViewModel
         private async Task UpdateDataFromUrl(string url)
         {
             var exporter = new WishLogExporter(url);
-            var newList = await exporter.GetAllLog();
-            var uid = 0;
-            if (newList.Any())
+            var uid = await exporter.GetUidByUrl();
+            var userData = UserDataList.Find(x => x.Uid == uid);
+            List<WishData> oldList, newList;
+            if (userData == null || !File.Exists(userData?.WishLogFile))
             {
-                uid = newList[0].Uid;
-            }
-            else
-            {
-                throw new Exception("没有祈愿记录");
-            }
-            var index = UserDataList.FindIndex(x => x.Uid == uid);
-            UserData userData;
-            if (index == -1)
-            {
+                oldList = new List<WishData>();
+                newList = await exporter.GetAllLog();
                 userData = new UserData()
                 {
                     Uid = uid,
@@ -265,14 +248,10 @@ namespace KeqingNiuza.ViewModel
             }
             else
             {
-                userData = UserDataList[index];
+                oldList = LocalWishLogLoader.Load(userData.WishLogFile);
+                newList = await exporter.GetAllLog(lastId: oldList.Last().Id);
                 userData.Url = url;
                 userData.LastUpdateTime = DateTime.Now;
-            }
-            var oldList = new List<WishData>();
-            if (File.Exists(userData.WishLogFile))
-            {
-                oldList = JsonSerializer.Deserialize<List<WishData>>(File.ReadAllText(userData.WishLogFile), JsonOptions);
             }
             var list = newList.Union(oldList).ToList();
             File.WriteAllText(userData.WishLogFile, JsonSerializer.Serialize(list, JsonOptions));
@@ -297,7 +276,7 @@ namespace KeqingNiuza.ViewModel
             }
             var json = File.ReadAllText(SelectedUserData.WishLogFile);
             var data = JsonSerializer.Deserialize<List<WishData>>(json, JsonOptions);
-            var analyzer = new WishAnalyzer(data);
+            var analyzer = new PieChartAnalyzer(data);
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
                 FileName = $"原神祈愿记录_{SelectedUserData.Uid}.xlsx",
@@ -365,10 +344,45 @@ namespace KeqingNiuza.ViewModel
                     ViewContent = new WishOriginalDataView(SelectedUserData);
                 }
             }
+            if (header == "SideMenu_WishAchievement" && !(ViewContent is WishAchievementView))
+            {
+                if (SelectedUserData == null)
+                {
+                    ViewContent = new NoUidView();
+                }
+                else
+                {
+                    ViewContent = new WishAchievementView(SelectedUserData);
+                }
+            }
             if (header == "SideMenu_About")
             {
 
                 ViewContent = new AboutView();
+            }
+        }
+
+
+        /// <summary>
+        /// 重新加载内容页面
+        /// </summary>
+        private void ReloadViewContent()
+        {
+            if (ViewContent is WishSummaryView)
+            {
+                ViewContent = new WishSummaryView(SelectedUserData);
+            }
+            if (ViewContent is GachaAnalysisView || ViewContent is WelcomeView)
+            {
+                ViewContent = new GachaAnalysisView(SelectedUserData);
+            }
+            if (ViewContent is WishOriginalDataView)
+            {
+                ViewContent = new WishOriginalDataView(SelectedUserData);
+            }
+            if (ViewContent is WishAchievementView)
+            {
+                ViewContent = new WishAchievementView(SelectedUserData);
             }
         }
 

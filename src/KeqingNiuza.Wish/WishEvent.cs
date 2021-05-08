@@ -14,6 +14,7 @@ namespace KeqingNiuza.Wish
     {
         public WishType WishType { get; set; }
         public string Name { get; set; }
+        public float Version { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime EndTime { get; set; }
         public List<string> UpStar5 { get; set; }
@@ -26,11 +27,11 @@ namespace KeqingNiuza.Wish
             {
                 if (WishType == WishType.WeaponEvent)
                 {
-                    return $"{UpStar5[0]} {UpStar5[1]}";
+                    return $"{Version:F1} {UpStar5[0]} {UpStar5[1]}";
                 }
                 else
                 {
-                    return Name;
+                    return $"{Version:F1} {Name}";
                 }
             }
         }

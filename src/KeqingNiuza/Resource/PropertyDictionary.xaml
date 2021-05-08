@@ -17,6 +17,7 @@
 
     <FontFamily x:Key="IconFamily">Segoe MDL2 Assets</FontFamily>
 
+
     <SolidColorBrush x:Key="MainColor">#E1C9F8</SolidColorBrush>
     <SolidColorBrush x:Key="MainColorFocus">#E2DAF1</SolidColorBrush>
     <SolidColorBrush x:Key="Star5">#BD6932</SolidColorBrush>

@@ -10,7 +10,7 @@ namespace KeqingNiuza.Common
 {
     static class Const
     {
-        public static readonly Version Version = new Version(0, 1, 1, 21050218);
+        public static readonly Version Version = new Version(0, 1, 2, 21050810);
 
         public static readonly JsonSerializerOptions JsonOptions = new JsonSerializerOptions() { Encoder = JavaScriptEncoder.Create(UnicodeRanges.All) };
 

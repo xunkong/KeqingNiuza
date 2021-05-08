@@ -28,7 +28,6 @@ namespace KeqingNiuza.Update
                 {
                     Array.ForEach(proes, x => x.Kill());
                 }
-                Thread.Sleep(2000);
                 var str = File.ReadAllText(@"Update\UpdatedFileList.json");
                 var list = JsonSerializer.Deserialize<UpdatedFileList>(str);
                 var sourceDirPath = list.SourceDirPath;

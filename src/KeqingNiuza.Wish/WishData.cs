@@ -57,7 +57,7 @@ namespace KeqingNiuza.Wish
         /// 星级
         /// </summary>
         [JsonPropertyName("rank_type"), JsonNumberHandling(JsonNumberHandling.AllowReadingFromString | JsonNumberHandling.WriteAsString)]
-        public int RankType { get; set; }
+        public int Rank { get; set; }
 
         /// <summary>
         /// 祈愿Id，这个值很重要，全服唯一

@@ -26,6 +26,8 @@ namespace KeqingNiuza.ViewModel
         }
 
 
+        #region Item Source
+
         public List<WishData> WishDataList { get; set; }
 
 
@@ -85,6 +87,11 @@ namespace KeqingNiuza.ViewModel
             }
         }
 
+        #endregion
+
+
+        #region Control Property
+
 
         private bool _ToggleButton_Search_IsChecked;
         public bool ToggleButton_Search_IsChecked
@@ -111,6 +118,8 @@ namespace KeqingNiuza.ViewModel
         }
 
 
+        #endregion
+
 
         public WishOriginalDataViewModel(UserData userData)
         {
@@ -120,31 +129,10 @@ namespace KeqingNiuza.ViewModel
             var eventlist = JsonSerializer.Deserialize<List<WishEvent>>(json, Const.JsonOptions);
             WishEventList = eventlist.Prepend(Const.ZeroWishEvent).ToList();
             SelectedWishEvent = WishEventList[0];
-            json = File.ReadAllText(userData.WishLogFile);
-            var datas = JsonSerializer.Deserialize<List<WishData>>(json, Const.JsonOptions);
-            WishDataList = ComputeGuarantee(datas);
-            FilteredWishData = WishDataList;
-        }
 
-        private List<WishData> ComputeGuarantee(List<WishData> datas)
-        {
-            var groups = datas.GroupBy(x => x.WishType);
-            List<WishData> result = new List<WishData>(datas.Count);
-            foreach (var group in groups)
-            {
-                var list = group.OrderBy(x => x.Id).ToList();
-                int tmp = -1;
-                for (int i = 0; i < group.Count(); i++)
-                {
-                    list[i].Guarantee = i - tmp;
-                    if (list[i].RankType == 5)
-                    {
-                        tmp = i;
-                    }
-                }
-                result.AddRange(list);
-            }
-            return result.OrderByDescending(x => x.Id).ToList();
+            WishDataList = LocalWishLogLoader.Load(userData.WishLogFile);
+            WishDataList.Reverse();
+            FilteredWishData = WishDataList;
         }
 
 
@@ -186,7 +174,7 @@ namespace KeqingNiuza.ViewModel
                  }
                  if (SelectedItemRank != "-")
                  {
-                     tmp = tmp.FindAll(x => x.RankType == int.Parse(SelectedItemRank));
+                     tmp = tmp.FindAll(x => x.Rank == int.Parse(SelectedItemRank));
                  }
                  if (SelectedWishEvent.Name != "---")
                  {

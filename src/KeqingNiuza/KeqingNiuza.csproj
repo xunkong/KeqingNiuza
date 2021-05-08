@@ -98,6 +98,7 @@
     <Compile Include="Model\UserData.cs" />
     <Compile Include="ViewModel\ExcelImportViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\WishAchievementViewModel.cs" />
     <Compile Include="ViewModel\WishOriginalDataViewModel.cs" />
     <Compile Include="ViewModel\WishSummaryViewModel.cs" />
     <Compile Include="View\AboutView.xaml.cs">
@@ -128,6 +129,9 @@
     <Compile Include="View\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\WishAchievementView.xaml.cs">
+      <DependentUpon>WishAchievementView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WishOriginalDataView.xaml.cs">
       <DependentUpon>WishOriginalDataView.xaml</DependentUpon>
@@ -226,6 +230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\WelcomeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WishAchievementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -375,10 +383,16 @@
     <Content Include="Resource\Avatar\Zhongli.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resource\Other\JianguoyuLogo.png">
+    <Content Include="Resource\Other\achievement_achieved.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resource\Namecard\keqing_lightning_stiletto_party.png">
+    <Content Include="Resource\Other\achievement_show.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\Other\achievement_unachieve.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resource\Other\JianguoyuLogo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resource\Namecard\keqing_lightning_stiletto_party_black.png">
