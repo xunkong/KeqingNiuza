@@ -8,6 +8,7 @@
              Width="300"
              Height="240"
              mc:Ignorable="d">
+
     <Border Background="White"
             BorderBrush="Gray"
             BorderThickness="1"

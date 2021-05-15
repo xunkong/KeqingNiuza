@@ -24,6 +24,8 @@ namespace KeqingNiuza.View
     {
 
         public WishSummaryViewModel ViewModel { get; set; }
+        public UserData UserData { get; set; }
+
         public WishSummaryView()
         {
             InitializeComponent();
@@ -32,8 +34,19 @@ namespace KeqingNiuza.View
         public WishSummaryView(UserData userData)
         {
             InitializeComponent();
-            ViewModel = new WishSummaryViewModel(userData);
+            UserData = userData;
+            ViewModel = new WishSummaryViewModel(UserData);
             DataContext = ViewModel;
+        }
+
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            //todo LiveCharts 图标初始化只能在UI线程调用
+            //if (ViewModel == null)
+            //{
+            //    await Task.Run(() => ViewModel = new WishSummaryViewModel(UserData));
+            //    DataContext = ViewModel;
+            //}
         }
     }
 }

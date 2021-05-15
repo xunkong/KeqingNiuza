@@ -1,24 +1,22 @@
+using HandyControl.Controls;
+using HandyControl.Tools.Extension;
+using KeqingNiuza.CloudBackup;
+using KeqingNiuza.Model;
+using KeqingNiuza.Service;
+using KeqingNiuza.View;
+using KeqingNiuza.Wish;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using KeqingNiuza.Model;
-using KeqingNiuza.View;
-using KeqingNiuza.Wish;
-using HandyControl.Controls;
-using Microsoft.Win32;
 using static KeqingNiuza.Common.Const;
-using KeqingNiuza.CloudBackup;
-using HandyControl.Data;
-using GenshinHelper.Desktop.View;
-using HandyControl.Tools.Extension;
-using System.Diagnostics;
-using KeqingNiuza.Common;
 
 namespace KeqingNiuza.ViewModel
 {
@@ -32,32 +30,22 @@ namespace KeqingNiuza.ViewModel
 
         public MainWindowViewModel()
         {
+            _viewContentList = new List<object>();
             Directory.CreateDirectory(".\\UserData");
             if (File.Exists("UserData\\Config.json"))
             {
                 LoadConfig();
-                ViewContent = new GachaAnalysisView(SelectedUserData);
+                ChangeViewContent("GachaAnalysisView");
             }
             else
             {
                 UserDataList = new List<UserData>();
                 ViewContent = new WelcomeView();
             }
-            if (File.Exists("UserData\\Account"))
-            {
-                try
-                {
-                    CloudClient = CloudClient.GetClientFromEncryption();
-                }
-                catch (Exception e)
-                {
-                    Growl.Error(e.Message);
-                }
-            }
-            if (File.Exists("Resource\\ShowUpdateLog"))
+            if (File.Exists("resource\\ShowUpdateLog"))
             {
                 ViewContent = new UpdateLogView();
-                File.Delete("Resource\\ShowUpdateLog");
+                File.Delete("resource\\ShowUpdateLog");
             }
         }
 
@@ -75,6 +63,8 @@ namespace KeqingNiuza.ViewModel
             }
         }
 
+        //todo
+        private List<object> _viewContentList;
 
 
         #endregion
@@ -124,16 +114,26 @@ namespace KeqingNiuza.ViewModel
         public async Task<bool> TestUpdate()
         {
             var updater = new Updater();
-            if (updater.IsDeleteUpdateDirectory())
+            try
             {
-                Directory.Delete(".\\Update", true);
+                var result = await updater.UpdateResourceFiles();
+                if (true)
+                {
+                    Log.OutputLog(LogType.Info, "Resource update finished");
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.OutputLog(LogType.Info, "TestUpdate_Resource", ex);
             }
             try
             {
+
                 var updateInfo = await updater.GetUpdateInfo();
                 if (updateInfo == (true, true))
                 {
-                    await updater.PrepareUpdatedFiles();
+                    await updater.PrepareUpdateFiles();
+                    Log.OutputLog(LogType.Info, "Update files prepare finished");
                     return true;
                 }
                 else
@@ -141,8 +141,9 @@ namespace KeqingNiuza.ViewModel
                     return false;
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
+                Log.OutputLog(LogType.Error, "TestUpdate_AllFile", ex);
                 return false;
             }
 
@@ -150,7 +151,8 @@ namespace KeqingNiuza.ViewModel
 
         public void CallUpdate(object sender, EventArgs e)
         {
-            Process.Start("Assembly\\Update.exe", "KeqingNiuza.Update");
+            Process.Start("update\\Update.exe", "KeqingNiuza.Update");
+            Log.OutputLog(LogType.Info, "Has called Update.exe");
         }
 
 
@@ -179,7 +181,25 @@ namespace KeqingNiuza.ViewModel
         }
 
 
-
+        public async Task LoadCloudAccount()
+        {
+            await Task.Run(() =>
+            {
+                if (File.Exists("UserData\\Account"))
+                {
+                    try
+                    {
+                        CloudClient = CloudClient.GetClientFromEncryption();
+                    }
+                    catch (Exception ex)
+                    {
+                        File.Delete("UserData\\Account");
+                        Growl.Error("无法解密云备份账户文件，已删除");
+                        Log.OutputLog(LogType.Error, "DecrypeCloudClient", ex);
+                    }
+                }
+            });
+        }
 
 
         /// <summary>
@@ -196,9 +216,10 @@ namespace KeqingNiuza.ViewModel
                 ReloadViewContent();
                 Growl.Success("加载成功");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Growl.Error(e.Message);
+                Growl.Error(ex.Message);
+                Log.OutputLog(LogType.Error, "LoadDataFromGenshinLogFile", ex);
             }
 
         }
@@ -221,9 +242,10 @@ namespace KeqingNiuza.ViewModel
                 ReloadViewContent();
                 Growl.Success("更新成功");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Growl.Error(e.Message);
+                Growl.Error(ex.Message);
+                Log.OutputLog(LogType.Error, "UpdateDataFromUrl", ex);
             }
         }
 
@@ -290,9 +312,10 @@ namespace KeqingNiuza.ViewModel
                     analyzer.ExportExcelFile(saveFileDialog.FileName);
                     Growl.Success("导出成功");
                 }
-                catch (Exception e)
+                catch (Exception ex)
                 {
-                    Growl.Error(e.Message);
+                    Growl.Error(ex.Message);
+                    Log.OutputLog(LogType.Error, "ExportExcelFile", ex);
                 }
             }
         }
@@ -310,57 +333,37 @@ namespace KeqingNiuza.ViewModel
                 await CloudClient.BackupFileArchive();
                 Growl.Success("备份成功");
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Growl.Error(e.Message);
+                Growl.Error(ex.Message);
+                Log.OutputLog(LogType.Error, "CloudBackupFileArchive", ex);
             }
         }
+
 
         /// <summary>
-        /// 侧边菜单栏点击
+        /// 更换页面内容
         /// </summary>
-        /// <param name="header">按钮名称(x:Name)</param>
-        public void SideMenuChangeContent(string header)
+        /// <param name="className">页面类名</param>
+        public void ChangeViewContent(string className)
         {
-            if (header == "SideMenu_WishSummary" && !(ViewContent is GachaAnalysisView))
+            var assembly = Assembly.GetAssembly(GetType());
+            var type = assembly.GetType("KeqingNiuza.View." + className);
+            if (ViewContent?.GetType().Name != type.Name)
             {
-                if (SelectedUserData == null)
+                if (_viewContentList.Any(x => x.GetType().Name == type.Name))
                 {
-                    ViewContent = new NoUidView();
+                    ViewContent = _viewContentList.First(x => x.GetType().Name == type.Name);
                 }
                 else
                 {
-                    ViewContent = new GachaAnalysisView(SelectedUserData);
+                    ViewContent = assembly.CreateInstance(type.FullName, false, BindingFlags.CreateInstance, null, new object[] { SelectedUserData }, null, null);
+                    _viewContentList.Add(ViewContent);
                 }
-            }
-            if (header == "SideMenu_WishOriginalData" && !(ViewContent is WishOriginalDataView))
-            {
-                if (SelectedUserData == null)
-                {
-                    ViewContent = new NoUidView();
-                }
-                else
-                {
-                    ViewContent = new WishOriginalDataView(SelectedUserData);
-                }
-            }
-            if (header == "SideMenu_WishAchievement" && !(ViewContent is WishAchievementView))
-            {
-                if (SelectedUserData == null)
-                {
-                    ViewContent = new NoUidView();
-                }
-                else
-                {
-                    ViewContent = new WishAchievementView(SelectedUserData);
-                }
-            }
-            if (header == "SideMenu_About")
-            {
-
-                ViewContent = new AboutView();
             }
         }
+
+
 
 
         /// <summary>
@@ -368,23 +371,13 @@ namespace KeqingNiuza.ViewModel
         /// </summary>
         private void ReloadViewContent()
         {
-            if (ViewContent is WishSummaryView)
-            {
-                ViewContent = new WishSummaryView(SelectedUserData);
-            }
-            if (ViewContent is GachaAnalysisView || ViewContent is WelcomeView)
-            {
-                ViewContent = new GachaAnalysisView(SelectedUserData);
-            }
-            if (ViewContent is WishOriginalDataView)
-            {
-                ViewContent = new WishOriginalDataView(SelectedUserData);
-            }
-            if (ViewContent is WishAchievementView)
-            {
-                ViewContent = new WishAchievementView(SelectedUserData);
-            }
+            var type = ViewContent.GetType();
+            ViewContent = type.Assembly.CreateInstance(type.FullName, false, BindingFlags.CreateInstance, null, new object[] { SelectedUserData }, null, null);
+            _viewContentList.Clear();
+            _viewContentList.Add(ViewContent);
         }
+
+
 
         public async Task ChangeAvatar()
         {

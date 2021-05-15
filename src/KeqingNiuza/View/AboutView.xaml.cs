@@ -20,6 +20,7 @@ using KeqingNiuza.Wish;
 using System.Text.Json;
 using KeqingNiuza.Model;
 using System.IO;
+using KeqingNiuza.Service;
 
 namespace KeqingNiuza.View
 {
@@ -28,7 +29,15 @@ namespace KeqingNiuza.View
     /// </summary>
     public partial class AboutView : UserControl
     {
+
         public AboutView()
+        {
+            InitializeComponent();
+            TextBlock_Version.Text = "版本：" + Const.Version.ToString(3);
+            TextBlock_Version_All.Text = Const.Version.ToString();
+        }
+
+        public AboutView(UserData userData)
         {
             InitializeComponent();
             TextBlock_Version.Text = "版本：" + Const.Version.ToString(3);
@@ -56,6 +65,7 @@ namespace KeqingNiuza.View
                 catch (Exception ex)
                 {
                     Growl.Error(ex.Message);
+                    Log.OutputLog(LogType.Error, "ImportExcelFile", ex);
                 }
             }
             else

@@ -18,7 +18,10 @@
         <TextBlock Margin="20,10,20,10" FontSize="20" Text="更换Uid" />
 
 
-        <ListView x:Name="ListView_UserData" Grid.Row="1" ItemsSource="{Binding UserDataList}">
+        <ListView x:Name="ListView_UserData"
+                  Grid.Row="1"
+                  ItemsSource="{Binding UserDataList}"
+                  MouseDoubleClick="ListView_UserData_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn>
@@ -26,7 +29,7 @@
                             <DataTemplate>
                                 <Ellipse Width="30" Height="30" Stroke="Gray">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding Avatar}" />
+                                        <ImageBrush ImageSource="{Binding Avatar, Converter={StaticResource AvatarConverter}}" />
                                     </Ellipse.Fill>
                                 </Ellipse>
                             </DataTemplate>

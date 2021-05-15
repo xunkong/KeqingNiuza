@@ -1,3 +1,4 @@
+using KeqingNiuza.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,5 +25,11 @@ namespace KeqingNiuza.View
         {
             InitializeComponent();
         }
+
+        public NoUidView(UserData userData)
+        {
+            InitializeComponent();
+        }
+
     }
 }

@@ -2,7 +2,7 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text.Json;
+using System.Net.Http;
 using System.Threading;
 
 namespace KeqingNiuza.Update
@@ -13,66 +13,37 @@ namespace KeqingNiuza.Update
         {
             if (args.Length == 0)
             {
-                return;
-            }
-            if (args[0] == "ExportFileList")
-            {
-                Util.ExportFileList();
+                var path = "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/KeqingNiuza/KeqingNiuza.zip";
+                var client = new HttpClient();
+                try
+                {
+                    var bytes = client.GetByteArrayAsync(path).Result;
+                    File.WriteAllBytes("KeqingNiuza.zip", bytes);
+                    Util.MessageBox(0, "已下载最新版本，文件名 KeqingNiuza.zip", "刻记牛杂店", 0);
+                }
+                catch (Exception ex)
+                {
+                    Util.MessageBox(0, ex.ToString(), "刻记牛杂店 - 无法下载最新版本", 0);
+                }
                 return;
             }
             if (args[0] == "KeqingNiuza.Update")
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 var proes = Process.GetProcessesByName("刻记牛杂店");
                 if (proes.Any())
                 {
                     Array.ForEach(proes, x => x.Kill());
                 }
-                var str = File.ReadAllText(@"Update\UpdatedFileList.json");
-                var list = JsonSerializer.Deserialize<UpdatedFileList>(str);
-                var sourceDirPath = list.SourceDirPath;
-                list.IsUpdateFinished = true;
-                foreach (var item in list.UpdatedFiles)
+                Log.OutputLog(LogType.Info, "Start update");
+                Directory.CreateDirectory(".\\dll");
+                Util.MoveAllFile();
+                if (File.Exists("update\\ShowUpdateLog"))
                 {
-                    try
-                    {
-                        if (item.Mode == 1)
-                        {
-                            File.Copy(Path.Combine(sourceDirPath, item.Path), item.Path, true);
-                        }
-                        if (item.Mode == -1)
-                        {
-                            File.Delete(item.Path);
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        list.IsUpdateFinished = false;
-                        //list.FailedFiles.Add(item);
-                    }
+                    File.Create("resource\\ShowUpdateLog");
                 }
-                //var diffList = Util.VerifyFiles();
-                //if (diffList.Any())
-                //{
-                //    list.FailedFiles.AddRange(diffList);
-                //    list.FailedFiles.Distinct();
-                //}
-                //else
-                //{
-                //    list.IsUpdateFinished = true;
-                //}
-                str = JsonSerializer.Serialize(list, Util.JsonOptions);
-                File.WriteAllText("Update\\UpdatedFileList.json", str);
-                //Directory.Delete(".\\Update", true);
-                //if (args[1] == "Restart")
-                //{
-                //    Process.Start("Genshin Helper.exe");
-                //}
-                if (list.ShowUpdateLogView)
-                {
-                    File.Create("Resource\\ShowUpdateLog");
-                }
-                Directory.Delete(".\\Update", true);
+                Log.OutputLog(LogType.Info, "Update finished");
+                Directory.Delete(".\\update", true);
             }
         }
     }

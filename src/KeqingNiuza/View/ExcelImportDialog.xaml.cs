@@ -1,4 +1,5 @@
 using HandyControl.Interactivity;
+using KeqingNiuza.Service;
 using KeqingNiuza.ViewModel;
 using System;
 using System.Windows;
@@ -53,6 +54,7 @@ namespace KeqingNiuza.View
                 {
                     TextBlock_Info.Text = "无法解析文件";
                     TextBlock_Info.Foreground = new SolidColorBrush(Colors.Red);
+                    Log.OutputLog(LogType.Error, "Button_SelectFile_Click", ex);
                 }
             }
         }

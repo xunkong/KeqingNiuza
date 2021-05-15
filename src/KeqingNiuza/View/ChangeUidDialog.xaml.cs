@@ -49,6 +49,10 @@ namespace KeqingNiuza.View
             ControlCommands.Close.Execute(null, this);
         }
 
-
+        private void ListView_UserData_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Result = ListView_UserData.SelectedItem as UserData;
+            ControlCommands.Close.Execute(null, this);
+        }
     }
 }

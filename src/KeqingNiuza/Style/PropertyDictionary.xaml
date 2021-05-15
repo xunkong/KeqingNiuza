@@ -1,0 +1,35 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:c="clr-namespace:KeqingNiuza.Converter"
+                    xmlns:cb="clr-namespace:KeqingNiuza.CloudBackup;assembly=KeqingNiuza.CloudBackup"
+                    xmlns:s="clr-namespace:System;assembly=mscorlib">
+
+    <s:String x:Key="ChromeMinimize">&#xE921;</s:String>
+    <s:String x:Key="ChromeMaximize">&#xE922;</s:String>
+    <s:String x:Key="ChromeRestore">&#xE923;</s:String>
+    <s:String x:Key="ChromeClose">&#xE8BB;</s:String>
+    <s:String x:Key="Cloud">&#xE753;</s:String>
+    <s:String x:Key="Add">&#xE710;</s:String>
+    <s:String x:Key="Update">&#xE72C;</s:String>
+    <s:String x:Key="Export">&#xE72D;</s:String>
+    <s:String x:Key="ChevronDown">&#xE70D;</s:String>
+    <s:String x:Key="ChevronUp">&#xE70E;</s:String>
+
+    <FontFamily x:Key="IconFamily">Segoe MDL2 Assets</FontFamily>
+
+
+    <SolidColorBrush x:Key="MainColor">#E1C9F8</SolidColorBrush>
+    <SolidColorBrush x:Key="MainColorFocus">#E2DAF1</SolidColorBrush>
+    <SolidColorBrush x:Key="Star5">#BD6932</SolidColorBrush>
+    <SolidColorBrush x:Key="Star4">#A256E1</SolidColorBrush>
+    <SolidColorBrush x:Key="Star3">#5F9CB8</SolidColorBrush>
+    <SolidColorBrush x:Key="ContentViewBackground">#F3F3F3</SolidColorBrush>
+
+    <c:UidConverter x:Key="UidConverter" />
+    <c:WishTypeConverter x:Key="WishTypeConverter" />
+    <c:AvatarConverter x:Key="AvatarConverter" />
+
+    <ImageSource x:Key="JianguoyunIcon">/Resource/Other/JianguoyuLogo.png</ImageSource>
+
+
+</ResourceDictionary>

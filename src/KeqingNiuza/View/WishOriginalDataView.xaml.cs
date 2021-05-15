@@ -28,6 +28,7 @@ namespace KeqingNiuza.View
     {
 
         public WishOriginalDataViewModel ViewModel { get; set; }
+        public UserData UserData { get; set; }
 
         public WishOriginalDataView()
         {
@@ -37,8 +38,7 @@ namespace KeqingNiuza.View
         public WishOriginalDataView(UserData userData)
         {
             InitializeComponent();
-            ViewModel = new WishOriginalDataViewModel(userData);
-            DataContext = ViewModel;
+            UserData = userData;
         }
 
 
@@ -52,5 +52,13 @@ namespace KeqingNiuza.View
             ViewModel.ResetFilter();
         }
 
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel == null)
+            {
+                await Task.Run(() => ViewModel = new WishOriginalDataViewModel(UserData));
+                DataContext = ViewModel;
+            }
+        }
     }
 }

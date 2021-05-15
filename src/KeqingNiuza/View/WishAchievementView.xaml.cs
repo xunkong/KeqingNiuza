@@ -25,12 +25,21 @@ namespace KeqingNiuza.View
         public WishAchievementView(UserData userData)
         {
             InitializeComponent();
-            ViewModel = new WishAchievementViewModel(userData);
-            DataContext = ViewModel;
+            UserData = userData;
         }
 
         public WishAchievementViewModel ViewModel { get; set; }
 
-        
+        public UserData UserData { get; set; }
+
+        private async void UserControl_WishAchievement_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel == null)
+            {
+                await Task.Run(() => ViewModel = new WishAchievementViewModel(UserData));
+                DataContext = ViewModel;
+            }
+
+        }
     }
 }

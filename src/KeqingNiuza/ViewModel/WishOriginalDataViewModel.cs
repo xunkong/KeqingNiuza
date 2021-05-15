@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -123,11 +124,20 @@ namespace KeqingNiuza.ViewModel
 
         public WishOriginalDataViewModel(UserData userData)
         {
+            Debug.WriteLine("WishOrtginalDataViewModel is called");
             WishTypeList = new List<string> { "---", "新手祈愿", "常驻祈愿", "角色活动祈愿", "武器活动祈愿" };
             ItemRankList = new List<string> { "-", "3", "4", "5" };
-            var json = File.ReadAllText("Resource\\List\\WishEventList.json");
+            var json = File.ReadAllText("resource\\list\\WishEventList.json");
             var eventlist = JsonSerializer.Deserialize<List<WishEvent>>(json, Const.JsonOptions);
-            WishEventList = eventlist.Prepend(Const.ZeroWishEvent).ToList();
+            var zeroWishEvent = new WishEvent
+            {
+                Name = "---",
+                StartTime = new DateTime(2020, 9, 15, 0, 0, 0, DateTimeKind.Local),
+                EndTime = DateTime.Now,
+                UpStar5 = new List<string>(),
+                UpStar4 = new List<string>()
+            };
+            WishEventList = eventlist.Prepend(zeroWishEvent).ToList();
             SelectedWishEvent = WishEventList[0];
 
             WishDataList = LocalWishLogLoader.Load(userData.WishLogFile);
@@ -156,6 +166,7 @@ namespace KeqingNiuza.ViewModel
                      //现在搜索框没动画了
                      //Thread.Sleep(160);
                  }
+                 FilteredWishData = null;
                  var tmp = WishDataList;
                  switch (SelectedWishType)
                  {

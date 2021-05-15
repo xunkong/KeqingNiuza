@@ -20,7 +20,8 @@
         <ListBox x:Name="ListBox_Avatar"
                  Grid.Row="1"
                  Background="{StaticResource ContentViewBackground}"
-                 ItemsSource="{Binding AvatarList}">
+                 ItemsSource="{Binding AvatarList}"
+                 MouseDoubleClick="ListBox_Avatar_MouseDoubleClick">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
                     <Setter Property="Template">
@@ -34,10 +35,10 @@
                     </Setter>
                     <Style.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="{StaticResource MainColorFocus}" />
+                            <Setter Property="Background" Value="LightGray" />
                         </Trigger>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="{StaticResource MainColorFocus}" />
+                            <Setter Property="Background" Value="LightGray" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -51,7 +52,7 @@
                 <DataTemplate>
                     <Ellipse Width="80" Height="80" Stroke="Gray">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding}" />
+                            <ImageBrush ImageSource="{Binding ., Converter={StaticResource AvatarConverter}}" />
                         </Ellipse.Fill>
                     </Ellipse>
                 </DataTemplate>
@@ -63,15 +64,15 @@
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
             <Button x:Name="Button_Confirm"
-                    Style="{StaticResource YesButtonStyle}"
                     Width="60"
                     Margin="10,0,10,0"
                     Click="Button_Confirm_Click"
-                    Content="确认" />
+                    Content="确认"
+                    Style="{StaticResource YesButtonStyle}" />
             <Button x:Name="Button_Cancel"
                     Width="60"
-                    Click="Button_Cancel_Click"
                     Margin="10,0,10,0"
+                    Click="Button_Cancel_Click"
                     Content="取消" />
         </StackPanel>
 

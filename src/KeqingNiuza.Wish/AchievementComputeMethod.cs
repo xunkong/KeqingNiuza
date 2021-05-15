@@ -206,7 +206,7 @@ namespace KeqingNiuza.Wish
                 //todo Comment = "原石的数量，令人安心",
                 IsFinished = true,
                 FinishTime = time,
-                Total = $"总计 {span.Days}",
+                Total = $"总计 {span.Days - 1}",
             };
             infos.Add(info);
         }
@@ -383,7 +383,7 @@ namespace KeqingNiuza.Wish
         /// </summary>
         /// <param name="datas"></param>
         /// <param name="infos"></param>
-        private static void 心甘晴愿(List<WishData> datas, List<AchievementInfo> infos)
+        private static void 晴深深雨蒙蒙(List<WishData> datas, List<AchievementInfo> infos)
         {
             var events = WishEventList.FindAll(x => x.Name == "浮生孰来");
             foreach (var item in events)
@@ -405,7 +405,7 @@ namespace KeqingNiuza.Wish
                     {
                         var info = new AchievementInfo
                         {
-                            Name = "心甘晴愿",
+                            Name = "晴深深雨蒙蒙",
                             Description = "在一次「浮生孰来」活动祈愿中抽中「甘雨」和「刻晴」",
                             IsFinished = true,
                             FinishTime = data.Time,
@@ -418,20 +418,43 @@ namespace KeqingNiuza.Wish
         }
 
 
+        /// <summary>
+        /// 在一次「深秘之息」活动祈愿中抽中「阿贝多」和「砂糖」
+        /// </summary>
+        /// <param name="datas"></param>
+        /// <param name="infos"></param>
         private static void 为什么不问问神奇的阿贝多呢(List<WishData> datas, List<AchievementInfo> infos)
         {
-            //todo
-            //var info = new AchievementInfo
-            //{
-            //    Name = "",
-            //    Description = "",
-            //    Comment = "",
-            //    IsFinished = true,
-            //    FinishTime = ,
-            //    Total = $"总计 {}",
-            //    Progress = $"{}/",
-            //};
-            //infos.Add(info);
+            var events = WishEventList.FindAll(x => x.Name == "深秘之息");
+            foreach (var item in events)
+            {
+                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime);
+                list = list.Where(x => x.Name == "阿贝多" || x.Name == "砂糖");
+                bool hasAlbedo = false, hasSucrose = false;
+                foreach (var data in list)
+                {
+                    if (data.Name == "阿贝多")
+                    {
+                        hasAlbedo = true;
+                    }
+                    else
+                    {
+                        hasSucrose = true;
+                    }
+                    if (hasAlbedo && hasSucrose)
+                    {
+                        var info = new AchievementInfo
+                        {
+                            Name = "为什么不问问神奇的阿贝多呢",
+                            Description = "在一次「深秘之息」活动祈愿中抽中「阿贝多」和「砂糖」",
+                            IsFinished = true,
+                            FinishTime = data.Time,
+                        };
+                        infos.Add(info);
+                        break;
+                    }
+                }
+            }
         }
 
 

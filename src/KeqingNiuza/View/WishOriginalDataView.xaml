@@ -5,10 +5,11 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:local="clr-namespace:KeqingNiuza.View"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
              d:DesignHeight="450"
              d:DesignWidth="800"
              Background="{StaticResource ContentViewBackground}"
-             DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
+             Loaded="UserControl_Loaded"
              mc:Ignorable="d">
 
 
@@ -72,6 +73,12 @@
                 <DataGridTextColumn Width="200" Binding="{Binding Id}" Header="祈愿 Id" />
             </DataGrid.Columns>
         </DataGrid>
+
+        <hc:LoadingCircle Grid.Row="2"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Foreground="Gray"
+                          Visibility="{Binding FilteredWishData, Converter={StaticResource Object2VisibilityReConverter}}" />
 
         <TextBox Name="TextBox_Search"
                  Grid.Row="1"
