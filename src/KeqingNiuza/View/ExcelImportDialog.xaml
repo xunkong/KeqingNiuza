@@ -7,7 +7,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              Width="1000"
              Height="600"
-             DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
+             d:DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
              mc:Ignorable="d">
 
     <Border Background="{StaticResource ContentViewBackground}"

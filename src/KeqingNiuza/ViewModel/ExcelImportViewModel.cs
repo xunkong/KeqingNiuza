@@ -11,6 +11,7 @@ using System.Windows.Data;
 using HandyControl.Tools.Extension;
 using KeqingNiuza.Common;
 using KeqingNiuza.Model;
+using KeqingNiuza.Service;
 using KeqingNiuza.Wish;
 
 namespace KeqingNiuza.ViewModel
@@ -94,9 +95,10 @@ namespace KeqingNiuza.ViewModel
                 var list = ExcelImporter.ExportMergedDataList();
                 Result = (true, ImportUserData, list);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
                 Result = (false, ImportUserData, null);
+                Log.OutputLog(LogType.Error, "ExportMergedDataList", ex);
             }
         }
 

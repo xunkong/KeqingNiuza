@@ -14,9 +14,9 @@ namespace KeqingNiuza.Wish
         static Const()
         {
             JsonOptions = new JsonSerializerOptions() { Encoder = JavaScriptEncoder.Create(UnicodeRanges.All) };
-            var json = File.ReadAllText("Resource\\List\\ElementDictionary.json");
+            var json = File.ReadAllText("resource\\list\\ElementDictionary.json");
             ElementDictionary = JsonSerializer.Deserialize<Dictionary<string, string>>(json, JsonOptions);
-            json = File.ReadAllText("Resource\\List\\WishEventList.json");
+            json = File.ReadAllText("resource\\list\\WishEventList.json");
             WishEventList = JsonSerializer.Deserialize<List<WishEvent>>(json, JsonOptions);
         }
     }

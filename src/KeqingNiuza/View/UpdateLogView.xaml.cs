@@ -1,4 +1,5 @@
-﻿using System;
+using KeqingNiuza.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,5 +25,8 @@ namespace KeqingNiuza.View
         {
             InitializeComponent();
         }
+
+       
+
     }
 }

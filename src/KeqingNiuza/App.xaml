@@ -2,15 +2,16 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:KeqingNiuza"
+             Startup="Application_Startup"
              StartupUri="View/MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/SkinDefault.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/HandyControl;component/Themes/Theme.xaml" />
-                <ResourceDictionary Source="Resource/PropertyDictionary.xaml" />
-                <ResourceDictionary Source="Resource/StyleDictionary.xaml" />
-                <ResourceDictionary Source="Resource/DataGridStyle.xaml" />
+                <ResourceDictionary Source="Style/PropertyDictionary.xaml" />
+                <ResourceDictionary Source="Style/StyleDictionary.xaml" />
+                <ResourceDictionary Source="Style/DataGridStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
 

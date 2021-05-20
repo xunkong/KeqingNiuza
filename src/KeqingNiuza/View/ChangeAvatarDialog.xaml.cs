@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using HandyControl.Tools.Extension;
 using HandyControl.Interactivity;
+using System.IO;
 
 namespace KeqingNiuza.View
 {
@@ -27,7 +28,7 @@ namespace KeqingNiuza.View
         {
             InitializeComponent();
             DataContext = this;
-            AvatarList = Const.AvatarList;
+            AvatarList = Directory.GetFiles("resource\\avatar").ToList();
         }
 
         public List<string> AvatarList { get; set; }
@@ -43,6 +44,12 @@ namespace KeqingNiuza.View
         private void Button_Cancel_Click(object sender, RoutedEventArgs e)
         {
             Result = null;
+            ControlCommands.Close.Execute(null, this);
+        }
+
+        private void ListBox_Avatar_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Result = ListBox_Avatar.SelectedItem as string;
             ControlCommands.Close.Execute(null, this);
         }
     }

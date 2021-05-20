@@ -15,8 +15,9 @@ using KeqingNiuza.ViewModel;
 using HandyControl.Controls;
 using HandyControl.Tools.Extension;
 using HandyControl.Data;
-using GenshinHelper.Desktop.View;
+using KeqingNiuza.View;
 using System.IO;
+using KeqingNiuza.Service;
 
 namespace KeqingNiuza.View
 {
@@ -38,7 +39,18 @@ namespace KeqingNiuza.View
 
         private async void Window_Main_Loaded(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                WindowState = Properties.Settings.Default.IsWindowMaximized ? WindowState.Maximized : WindowState.Normal;
+            }
+            catch (Exception ex)
+            {
+                WindowState = WindowState.Normal;
+                Log.OutputLog(LogType.Warning, "Window_Main_Loaded", ex);
+            }
+
             InitSideMenuChecked();
+            await ViewModel.LoadCloudAccount();
 #if !DEBUG
             var result = await ViewModel.TestUpdate();
             if (result)
@@ -52,14 +64,16 @@ namespace KeqingNiuza.View
         {
             if (ViewModel.ViewContent is GachaAnalysisView)
             {
-                SideMenu_WishSummary.IsChecked = true;
+                SideMenu_GachaAnalysisView.IsChecked = true;
             }
         }
 
         private void Window_Main_Closed(object sender, EventArgs e)
         {
-#warning 重构UI后记得删除
+#warning 重构UI/停用GachaAnalysisView后记得删除
             ViewModel.SaveConfig();
+            Properties.Settings.Default.IsWindowMaximized = WindowState == WindowState.Maximized ? true : false;
+            Properties.Settings.Default.Save();
         }
 
         private void Button_Close_Click(object sender, RoutedEventArgs e)
@@ -152,7 +166,7 @@ namespace KeqingNiuza.View
         private void RadioButton_SideMenu_Click(object sender, RoutedEventArgs e)
         {
             var radioButton = sender as RadioButton;
-            ViewModel.SideMenuChangeContent(radioButton.Name);
+            ViewModel.ChangeViewContent(radioButton.Name.Replace("SideMenu_", ""));
         }
 
 
@@ -168,6 +182,22 @@ namespace KeqingNiuza.View
             await ViewModel.ChangeUid();
         }
 
-
+        private void Window_Main_StateChanged(object sender, EventArgs e)
+        {
+            switch (WindowState)
+            {
+                case WindowState.Normal:
+                    BorderThickness = new Thickness(0);
+                    break;
+                case WindowState.Minimized:
+                    BorderThickness = new Thickness(0);
+                    break;
+                case WindowState.Maximized:
+                    BorderThickness = new Thickness(7);
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 }

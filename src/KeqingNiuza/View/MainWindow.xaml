@@ -1,6 +1,7 @@
 <Window x:Class="KeqingNiuza.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ce="urn:controlzex"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:local="clr-namespace:KeqingNiuza.View"
@@ -9,16 +10,18 @@
         Title="刻记牛杂店"
         Width="1200"
         Height="800"
-        BorderThickness="0"
+        d:DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
         Closed="Window_Main_Closed"
-        DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
+        Icon="/Resource/Other/logo_256.jpg"
         Loaded="Window_Main_Loaded"
+        StateChanged="Window_Main_StateChanged"
+        UseLayoutRounding="True"
         WindowStartupLocation="CenterScreen"
         WindowStyle="SingleBorderWindow"
         mc:Ignorable="d">
 
     <WindowChrome.WindowChrome>
-        <WindowChrome CaptionHeight="35" />
+        <WindowChrome CaptionHeight="32" />
     </WindowChrome.WindowChrome>
 
 
@@ -26,7 +29,7 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="80" />
+            <RowDefinition Height="35" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -35,44 +38,78 @@
             <ColumnDefinition Width="340" />
         </Grid.ColumnDefinitions>
 
+        <Border Grid.Row="0"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                Background="{StaticResource MainColorFocus}"
+                BorderThickness="0" />
+        <Border Grid.Row="0"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                Background="{Binding Content.Background, ElementName=ContentControl_ViewContent}"
+                BorderThickness="0" />
 
         <TextBlock Grid.Row="0"
                    Grid.Column="0"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   Text="这里放logo" />
+                   Foreground="Purple"
+                   Text="刻记牛杂店" />
 
-
-        <Image Grid.Row="0"
-               Grid.Column="1"
-               Grid.ColumnSpan="2"
-               HorizontalAlignment="Right"
-               Source="/Resource/Namecard/keqing_lightning_stiletto_party_black.png"
-               Visibility="Visible" />
 
         <!--  侧边菜单  -->
-        <DockPanel Grid.Row="1" Grid.Column="0" Background="{StaticResource MainColorFocus}">
-            <RadioButton x:Name="SideMenu_About"
-                         Click="RadioButton_SideMenu_Click"
-                         Content="关于"
-                         DockPanel.Dock="Bottom"
-                         GroupName="SideMenu"
-                         Style="{StaticResource SideMenuRadioButton}" />
+        <DockPanel Grid.Row="1"
+                   Grid.Column="0"
+                   Margin="0,20,0,0"
+                   Background="{StaticResource MainColorFocus}">
+            <StackPanel DockPanel.Dock="Bottom">
+                <Polyline Width="140"
+                          Margin="0,2,0,2"
+                          Points="0 0 140 0"
+                          Stroke="Purple"
+                          StrokeThickness="0.6" />
+                <RadioButton x:Name="SideMenu_AboutView"
+                             Click="RadioButton_SideMenu_Click"
+                             Content="关于"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}" />
+            </StackPanel>
+
 
             <StackPanel>
-                <RadioButton x:Name="SideMenu_WishSummary"
+                <Polyline Width="140"
+                          Margin="0,2,0,2"
+                          Points="0 0 140 0"
+                          Stroke="Purple"
+                          StrokeThickness="0.6" />
+                <RadioButton x:Name="SideMenu_GachaAnalysisView"
                              Click="RadioButton_SideMenu_Click"
                              Content="祈愿总览"
                              GroupName="SideMenu"
                              Style="{StaticResource SideMenuRadioButton}" />
-                <RadioButton x:Name="SideMenu_WishOriginalData"
+                <RadioButton x:Name="SideMenu_WishOriginalDataView"
                              Click="RadioButton_SideMenu_Click"
                              Content="原始数据"
                              GroupName="SideMenu"
                              Style="{StaticResource SideMenuRadioButton}" />
-                <RadioButton x:Name="SideMenu_WishAchievement"
+                <RadioButton x:Name="SideMenu_WishAchievementView"
                              Click="RadioButton_SideMenu_Click"
                              Content="祈愿成就"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}" />
+                <RadioButton x:Name="SideMenu_WishSummaryView"
+                             Click="RadioButton_SideMenu_Click"
+                             Content="新视图"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}" />
+                <Polyline Width="140"
+                          Margin="0,2,0,2"
+                          Points="0 0 140 0"
+                          Stroke="Purple"
+                          StrokeThickness="0.6" />
+                <RadioButton x:Name="SideMenu_MidiView"
+                             Click="RadioButton_SideMenu_Click"
+                             Content="流浪大地的乐团"
                              GroupName="SideMenu"
                              Style="{StaticResource SideMenuRadioButton}" />
             </StackPanel>
@@ -94,8 +131,7 @@
             <Button x:Name="Button_Uid"
                     Height="35"
                     Click="Button_Uid_Click"
-                    FontSize="18"
-                    Style="{StaticResource ChromeButtonStyle}">
+                    FontSize="18">
                 <Button.Content>
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Margin="15,0,5,0"
@@ -105,11 +141,21 @@
                                    Text="{Binding SelectedUserData, Converter={StaticResource UidConverter}}" />
                         <Ellipse Width="28" Height="28" Margin="5,0,15,0">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding SelectedUserData.Avatar}" />
+                                <ImageBrush ImageSource="{Binding SelectedUserData.Avatar, Converter={StaticResource AvatarConverter}}" />
                             </Ellipse.Fill>
                         </Ellipse>
                     </StackPanel>
                 </Button.Content>
+                <Button.Style>
+                    <Style BasedOn="{StaticResource ChromeButtonStyle}" TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsOpen, ElementName=Popup_Uid}" Value="True">
+                                <Setter Property="Background" Value="Gray" />
+                                <Setter Property="Foreground" Value="White" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
             </Button>
             <!--  云备份  -->
             <Button x:Name="Button_Cloud"
@@ -118,8 +164,18 @@
                     Click="Button_Cloud_Click"
                     Content="{StaticResource Cloud}"
                     FontFamily="{StaticResource IconFamily}"
-                    FontSize="18"
-                    Style="{StaticResource ChromeButtonStyle}" />
+                    FontSize="18">
+                <Button.Style>
+                    <Style BasedOn="{StaticResource ChromeButtonStyle}" TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsOpen, ElementName=Popup_Cloud}" Value="True">
+                                <Setter Property="Background" Value="Gray" />
+                                <Setter Property="Foreground" Value="White" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
             <!--  最小化  -->
             <Button x:Name="Button_Minimize"
                     Width="50"
@@ -127,13 +183,15 @@
                     Click="Button_Minimize_Click"
                     Content="{StaticResource ChromeMinimize}"
                     FontFamily="{StaticResource IconFamily}"
+                    FontSize="10"
                     Style="{StaticResource ChromeButtonStyle}" />
             <!--  最大化  -->
             <Button x:Name="Button_Maxmize"
                     Width="50"
                     Height="35"
                     Click="Button_Maxmize_Click"
-                    FontFamily="{StaticResource IconFamily}">
+                    FontFamily="{StaticResource IconFamily}"
+                    FontSize="10">
                 <Button.Style>
                     <Style BasedOn="{StaticResource MaxButtonStyle}" TargetType="Button" />
                 </Button.Style>
@@ -145,11 +203,13 @@
                     Click="Button_Close_Click"
                     Content="{StaticResource ChromeClose}"
                     FontFamily="{StaticResource IconFamily}"
+                    FontSize="10"
                     Style="{StaticResource CloseButtonStyle}" />
         </StackPanel>
 
         <!--  主要内容  -->
-        <ContentControl Grid.Row="1"
+        <ContentControl Name="ContentControl_ViewContent"
+                        Grid.Row="1"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
                         Background="#F3F3F3"
@@ -165,13 +225,12 @@
         </ScrollViewer>
 
         <!--  个人信息详情  -->
-        <Popup x:Name="Popup_Uid"
-               AllowsTransparency="True"
-               DataContext="{Binding SelectedUserData}"
-               Placement="Bottom"
-               PlacementTarget="{Binding ElementName=Button_Uid}"
-               PopupAnimation="Slide"
-               StaysOpen="False">
+        <ce:PopupEx x:Name="Popup_Uid"
+                    AllowsTransparency="True"
+                    DataContext="{Binding SelectedUserData}"
+                    Placement="Bottom"
+                    PlacementTarget="{Binding ElementName=Button_Uid}"
+                    StaysOpen="False">
             <Border BorderBrush="Gray" BorderThickness="1">
                 <Grid Width="315" Height="200" Background="White">
                     <Grid.RowDefinitions>
@@ -204,7 +263,7 @@
                              MouseLeftButtonUp="Ellipse_Avatar_MouseLeftButtonUp"
                              Stroke="Gray">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding Avatar}" />
+                            <ImageBrush ImageSource="{Binding Avatar, Converter={StaticResource AvatarConverter}}" />
                         </Ellipse.Fill>
                     </Ellipse>
                     <StackPanel Grid.Row="1" Grid.Column="1">
@@ -233,16 +292,15 @@
                     </UniformGrid>
                 </Grid>
             </Border>
-        </Popup>
+        </ce:PopupEx>
 
 
         <!--  云备份详情  -->
-        <Popup x:Name="Popup_Cloud"
-               AllowsTransparency="True"
-               Placement="Bottom"
-               PlacementTarget="{Binding ElementName=Button_Cloud}"
-               PopupAnimation="Slide"
-               StaysOpen="False">
+        <ce:PopupEx x:Name="Popup_Cloud"
+                    AllowsTransparency="True"
+                    Placement="Bottom"
+                    PlacementTarget="{Binding ElementName=Button_Cloud}"
+                    StaysOpen="False">
             <Border Width="240"
                     Height="200"
                     Background="White"
@@ -285,7 +343,7 @@
                             Style="{StaticResource BrushButtonStyle}" />
                 </Grid>
             </Border>
-        </Popup>
+        </ce:PopupEx>
 
 
 

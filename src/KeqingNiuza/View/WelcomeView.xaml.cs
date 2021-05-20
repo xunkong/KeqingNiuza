@@ -1,3 +1,4 @@
+using KeqingNiuza.Model;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,6 +27,7 @@ namespace KeqingNiuza.View
         {
             InitializeComponent();
         }
+
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {

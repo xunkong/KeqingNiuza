@@ -24,16 +24,29 @@ namespace KeqingNiuza.View
     {
 
         public WishSummaryViewModel ViewModel { get; set; }
+        public UserData UserData { get; set; }
+
+
         public WishSummaryView()
         {
             InitializeComponent();
+            UserData = MainWindowViewModel.GetSelectedUserData();
+            if (UserData == null)
+            {
+                throw new NullReferenceException("没有数据");
+            }
+            ViewModel = new WishSummaryViewModel(UserData);
+            DataContext = ViewModel;
         }
 
-        public WishSummaryView(UserData userData)
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
-            ViewModel = new WishSummaryViewModel(userData);
-            DataContext = ViewModel;
+            //todo LiveCharts 图标初始化只能在UI线程调用
+            //if (ViewModel == null)
+            //{
+            //    await Task.Run(() => ViewModel = new WishSummaryViewModel(UserData));
+            //    DataContext = ViewModel;
+            //}
         }
     }
 }

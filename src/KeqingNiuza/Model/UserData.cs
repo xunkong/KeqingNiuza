@@ -24,7 +24,7 @@ namespace KeqingNiuza.Model
             }
         }
 
-        private string _Avatar = "/Resource/Avatar/Paimon.png";
+        private string _Avatar = "/resource/avatar/Paimon.png";
         public string Avatar
         {
             get { return _Avatar; }
