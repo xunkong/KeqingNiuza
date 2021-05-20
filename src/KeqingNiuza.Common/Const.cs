@@ -12,11 +12,12 @@ namespace KeqingNiuza.Common
 {
     public static class Const
     {
-        public static readonly Version Version = new Version(0, 1, 2, 21050810);
+        public static readonly Version Version = new Version(0, 2, 0, 21060715);
 
 
         public static readonly JsonSerializerOptions JsonOptions = new JsonSerializerOptions() { Encoder = JavaScriptEncoder.Create(UnicodeRanges.All) };
 
+        
 
 
         static Const()

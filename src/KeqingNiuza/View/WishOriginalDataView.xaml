@@ -64,8 +64,22 @@
                   RowHeight="30"
                   VerticalGridLinesBrush="Transparent">
             <DataGrid.Columns>
+                <DataGridTemplateColumn Header="名称">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Border Width="140" Margin="20,0,20,0">
+                                <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
+                                    <Image Source="{Binding Thumb, Converter={StaticResource ImageConverter}}" />
+                                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding Name}" />
+                                </StackPanel>
+                                <Border.ToolTip>
+                                    <Image Width="200" Source="{Binding Thumb, Converter={StaticResource ImageConverter}}" />
+                                </Border.ToolTip>
+                            </Border>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
                 <DataGridTextColumn Width="150" Binding="{Binding Time, StringFormat='yyyy-MM-dd  HH:mm:ss'}" Header="时间" />
-                <DataGridTextColumn Width="150" Binding="{Binding Name}" Header="名称" />
                 <DataGridTextColumn Width="80" Binding="{Binding ItemType}" Header="类型" />
                 <DataGridTextColumn Width="80" Binding="{Binding Rank}" Header="星级" />
                 <DataGridTextColumn Width="80" Binding="{Binding Guarantee}" Header="保底内" />

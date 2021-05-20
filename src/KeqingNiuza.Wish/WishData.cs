@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace KeqingNiuza.Wish
@@ -77,10 +78,59 @@ namespace KeqingNiuza.Wish
         public int Number { get; set; }
 
         /// <summary>
+        /// 是否Up
+        /// </summary>
+        [JsonIgnore]
+        public bool? IsUp { get; set; }
+
+        /// <summary>
         /// 保底内次数，此值不保存，需每次重新计算
         /// </summary>
         [JsonIgnore]
         public int Guarantee { get; set; }
+
+        /// <summary>
+        /// 保底类型，小保底还是大保底
+        /// </summary>
+        [JsonIgnore]
+        public string GuaranteeType { get; set; }
+
+
+
+        [JsonIgnore]
+        public string Thumb
+        {
+            get
+            {
+                if (ItemType == "角色")
+                {
+                    return Const.CharacterInfoList.Where(x => x.Name == Name).Select(x => x.Thumb).First();
+                }
+                if (ItemType == "武器")
+                {
+                    return Const.WeaponInfoList.Where(x => x.Name == Name).Select(x => x.Thumb).First();
+                }
+                return null;
+            }
+        }
+
+
+        [JsonIgnore]
+        public string Portrait
+        {
+            get
+            {
+                if (ItemType == "角色")
+                {
+                    return Const.CharacterInfoList.Where(x => x.Name == Name).Select(x => x.Portrait).First();
+                }
+                if (ItemType == "武器")
+                {
+                    return Const.WeaponInfoList.Where(x => x.Name == Name).Select(x => x.Portrait).First();
+                }
+                return null;
+            }
+        }
 
 
         public bool Equals(WishData other)

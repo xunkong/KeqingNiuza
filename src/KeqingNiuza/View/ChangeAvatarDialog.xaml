@@ -52,7 +52,7 @@
                 <DataTemplate>
                     <Ellipse Width="80" Height="80" Stroke="Gray">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding ., Converter={StaticResource AvatarConverter}}" />
+                            <ImageBrush ImageSource="{Binding ., Converter={StaticResource ImageConverter}}" />
                         </Ellipse.Fill>
                     </Ellipse>
                 </DataTemplate>

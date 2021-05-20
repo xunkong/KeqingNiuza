@@ -31,22 +31,45 @@ namespace KeqingNiuza.View
         {
             InitializeComponent();
             UserData = MainWindowViewModel.GetSelectedUserData();
-            if (UserData == null)
+            if (UserData == null || MainWindowViewModel.WishDataList == null)
             {
-                throw new NullReferenceException("没有数据");
+                throw new NullReferenceException("没有祈愿数据");
             }
-            ViewModel = new WishSummaryViewModel(UserData);
-            DataContext = ViewModel;
         }
 
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            //todo LiveCharts 图标初始化只能在UI线程调用
-            //if (ViewModel == null)
-            //{
-            //    await Task.Run(() => ViewModel = new WishSummaryViewModel(UserData));
-            //    DataContext = ViewModel;
-            //}
+            if (ViewModel == null)
+            {
+                await Task.Run(() => ViewModel = new WishSummaryViewModel());
+                DataContext = ViewModel;
+            }
+        }
+
+        private void CharacterOrderRadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as RadioButton;
+            var str = button.Content as string;
+            ViewModel.CharacterOrder(str);
+        }
+
+        private void WeaponOrderRadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            var button = sender as RadioButton;
+            var str = button.Content as string;
+            ViewModel.WeaponOrder(str);
+        }
+
+        private void Button_Detail_Click(object sender, RoutedEventArgs e)
+        {
+            var tag = (sender as Button).Tag;
+            ViewModel.ShowDetailView(tag as string);
+        }
+
+        private void Grid_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            var grid = sender as Grid;
+            ViewModel.ShowDetailView(grid.DataContext);
         }
     }
 }

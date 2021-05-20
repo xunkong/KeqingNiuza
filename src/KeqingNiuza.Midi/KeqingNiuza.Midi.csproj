@@ -56,8 +56,5 @@
       <Version>5.2.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="PlayState.cs" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

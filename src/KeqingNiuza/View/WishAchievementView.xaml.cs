@@ -26,9 +26,9 @@ namespace KeqingNiuza.View
         {
             InitializeComponent();
             UserData = MainWindowViewModel.GetSelectedUserData();
-            if (UserData == null)
+            if (UserData == null || MainWindowViewModel.WishDataList == null)
             {
-                throw new NullReferenceException("没有数据");
+                throw new NullReferenceException("没有祈愿数据");
             }
         }
 
@@ -40,7 +40,7 @@ namespace KeqingNiuza.View
         {
             if (ViewModel == null)
             {
-                await Task.Run(() => ViewModel = new WishAchievementViewModel(UserData));
+                await Task.Run(() => ViewModel = new WishAchievementViewModel());
                 DataContext = ViewModel;
             }
 

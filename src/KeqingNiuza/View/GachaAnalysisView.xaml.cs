@@ -33,7 +33,7 @@ namespace KeqingNiuza.View
             UserData = MainWindowViewModel.GetSelectedUserData();
             if (UserData == null)
             {
-                throw new NullReferenceException("没有数据");
+                throw new NullReferenceException("没有祈愿数据");
             }
             ToggleButton_HiddenNoviceWish.IsChecked = UserData.HiddenNoviceWish;
             _PieChartViewModels = new ObservableCollection<PieChartViewModel>();

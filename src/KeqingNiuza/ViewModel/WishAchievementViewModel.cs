@@ -21,7 +21,6 @@ namespace KeqingNiuza.ViewModel
         }
 
 
-        public FontFamily Hanyi { get; set; }
 
         public WishAchievementViewModel(UserData userData)
         {
@@ -29,6 +28,12 @@ namespace KeqingNiuza.ViewModel
             AchievementInfoList = analyzer.AchievementList;
         }
 
+
+        public WishAchievementViewModel()
+        {
+            var analyzer = new AchievementAnalyzer(MainWindowViewModel.WishDataList);
+            AchievementInfoList = analyzer.AchievementList;
+        }
 
 
 

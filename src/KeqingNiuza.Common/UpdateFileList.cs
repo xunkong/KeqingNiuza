@@ -23,11 +23,6 @@ namespace KeqingNiuza.Common
         public string Description { get; set; }
 
         /// <summary>
-        /// 是否自动更新
-        /// </summary>
-        public bool AutoUpdate { get; set; }
-
-        /// <summary>
         /// 显示更新完提示
         /// </summary>
         public bool ShowUpdateLogView { get; set; }

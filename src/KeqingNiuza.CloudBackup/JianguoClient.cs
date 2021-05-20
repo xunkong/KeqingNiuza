@@ -144,6 +144,44 @@ namespace KeqingNiuza.CloudBackup
             });
         }
 
+
+        public override async Task RestoreFileArchive()
+        {
+            var propfindResponse = await _WebDevClient.Propfind("KeqingNiuza/Archive");
+            if (!propfindResponse.IsSuccessful)
+            {
+                throw new Exception(propfindResponse.Description);
+            }
+            if (propfindResponse.Resources.Count < 2)
+            {
+                throw new Exception("没有已备份的数据");
+            }
+            int date = 0;
+            foreach (var resource in propfindResponse.Resources)
+            {
+                if (resource.DisplayName.Contains("UserData"))
+                {
+                    var id = int.Parse(resource.DisplayName.Replace("UserData_", "").Replace(".zip", ""));
+                    if (id > date)
+                    {
+                        date = id;
+                    }
+                }
+            }
+            var url = $"KeqingNiuza/Archive/UserData_{date}.zip";
+            var streamResponse = await _WebDevClient.GetRawFile(url);
+            if (!streamResponse.IsSuccessful)
+            {
+                throw new Exception(streamResponse.Description);
+            }
+            var zipArchive = new ZipArchive(streamResponse.Stream);
+            var entries = zipArchive.Entries;
+            foreach (var entry in entries)
+            {
+                entry.ExtractToFile("UserData\\" + entry.FullName, true);
+            }
+        }
+
         public override void SaveEncyptedAccount()
         {
             var account = new AccountInfo()
@@ -157,5 +195,7 @@ namespace KeqingNiuza.CloudBackup
             var bytes = Endecryption.Encrypt(json);
             File.WriteAllBytes("UserData\\Account", bytes);
         }
+
+
     }
 }

@@ -52,7 +52,24 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}" BorderThickness="0">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                            <hc:LoadingCircle Margin="0,0,2,0" Foreground="Gray">
+                                <hc:LoadingCircle.Style>
+                                    <Style BasedOn="{StaticResource LoadingCircleBaseStyle}" TargetType="hc:LoadingCircle">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Setter Property="DotDiameter" Value="3" />
+                                        <Setter Property="Width" Value="20" />
+                                        <Setter Property="Height" Value="20" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType=Button}}" Value="False">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </hc:LoadingCircle.Style>
+                            </hc:LoadingCircle>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -70,12 +87,7 @@
     <!--  更换uid按钮  -->
     <Style x:Key="ChangeUidButtonStyle" BasedOn="{StaticResource BrushButtonStyle}" TargetType="Button">
         <Setter Property="Foreground" Value="Gray" />
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="LightGray" />
-                <Setter Property="Foreground" Value="White" />
-            </Trigger>
-        </Style.Triggers>
+        <Style.Triggers />
     </Style>
 
     <!--  展开详细信息按钮  -->
@@ -84,7 +96,21 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}" BorderThickness="0" CornerRadius="0 10 0 10">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        <StackPanel Orientation="Horizontal">
+                            <hc:LoadingCircle Name="Button_Loading" Foreground="Gray" Visibility="Collapsed">
+                                <hc:LoadingCircle.Style>
+                                    <Style BasedOn="{StaticResource LoadingCircleBaseStyle}" TargetType="hc:LoadingCircle">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType=Button}}">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </hc:LoadingCircle.Style>
+                            </hc:LoadingCircle>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </StackPanel>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
@@ -140,7 +166,8 @@
                                        Margin="6,0,0,0"
                                        VerticalAlignment="Center" />
                             <ContentPresenter Grid.ColumnSpan="2"
-                                              HorizontalAlignment="Center"
+                                              Margin="30,0,0,0"
+                                              HorizontalAlignment="Left"
                                               VerticalAlignment="Center"
                                               RecognizesAccessKey="True" />
                         </Grid>
@@ -186,6 +213,70 @@
                 <Setter Property="BorderBrush" Value="#BBBBBB" />
                 <Setter Property="Foreground" Value="Gray" />
             </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="RarityBackground" TargetType="Image">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Rank}" Value="5">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Rarity_5_background.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Rank}" Value="4">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Rarity_4_background.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Rank}" Value="3">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Rarity_3_background.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Rank}" Value="2">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Rarity_2_background.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Rank}" Value="1">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Rarity_1_background.png" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="StarIcon" TargetType="Image">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Rank}" Value="5">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Icon_5_Stars.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Rank}" Value="4">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Icon_4_Stars.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Rank}" Value="3">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Icon_3_Stars.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Rank}" Value="2">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Icon_2_Stars.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Rank}" Value="1">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Icon_1_Star.png" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+    <Style x:Key="ElementIcon" TargetType="Image">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementType}" Value="1">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Element_Pyro.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementType}" Value="2">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Element_Hydro.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementType}" Value="3">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Element_Anemo.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementType}" Value="4">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Element_Electro.png" />
+            </DataTrigger>
+            <!--<DataTrigger Binding="{Binding ElementType}" Value="5">
+                    <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Element_Pyro.png" />
+                </DataTrigger>-->
+            <DataTrigger Binding="{Binding ElementType}" Value="6">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Element_Cryo.png" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementType}" Value="7">
+                <Setter Property="Source" Value="/KeqingNiuza.Common;Component/resource/others/Element_Geo.png" />
+            </DataTrigger>
         </Style.Triggers>
     </Style>
 

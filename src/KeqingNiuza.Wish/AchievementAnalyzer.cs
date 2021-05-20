@@ -10,13 +10,19 @@ namespace KeqingNiuza.Wish
     public class AchievementAnalyzer
     {
 
-        private List<WishData> _WishDataList;
+        private readonly List<WishData> _WishDataList;
 
         public List<AchievementInfo> AchievementList { get; set; }
 
         public AchievementAnalyzer(string path)
         {
             _WishDataList = LocalWishLogLoader.Load(path);
+            Analyzer();
+        }
+
+        public AchievementAnalyzer(List<WishData> list)
+        {
+            _WishDataList = list;
             Analyzer();
         }
 

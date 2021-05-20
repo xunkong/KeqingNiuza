@@ -26,7 +26,7 @@
                    Text="功能尚不完善，欢迎给出建议" />
 
 
-        <ScrollViewer Margin="0,10,0,0">
+        <hc:ScrollViewer IsInertiaEnabled="True" Margin="0,10,0,0">
             <ItemsControl Margin="0,5,0,5" ItemsSource="{Binding AchievementInfoList}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -42,12 +42,9 @@
                                 BorderThickness="1">
                             <Border.Style>
                                 <Style TargetType="Border">
-                                    <Setter Property="BorderBrush" Value="#E0D6CB" />
-                                    <Setter Property="Background" Value="#F5F1EB" />
+                                    <Setter Property="BorderBrush" Value="#EBE2D8" />
+                                    <Setter Property="Background" Value="#F4F0EA" />
                                     <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="#FAF8F2" />
-                                        </Trigger>
                                         <DataTrigger Binding="{Binding IsFinished}" Value="True">
                                             <Setter Property="Background" Value="#EBE2D8" />
                                         </DataTrigger>
@@ -61,11 +58,11 @@
                                 <Grid DockPanel.Dock="Left">
                                     <Image Margin="3"
                                            DockPanel.Dock="Left"
-                                           Source="/Resource/Other/achievement_achieved.png"
+                                           Source="/KeqingNiuza.Common;Component/resource/others/achievement_achieved.png"
                                            Visibility="{Binding IsFinished, Converter={StaticResource Boolean2VisibilityConverter}}" />
                                     <Image Margin="3"
                                            DockPanel.Dock="Left"
-                                           Source="/Resource/Other/achievement_unachieve.png"
+                                           Source="/KeqingNiuza.Common;Component/resource/others/achievement_unachieve.png"
                                            Visibility="{Binding IsFinished, Converter={StaticResource Boolean2VisibilityReConverter}}" />
                                 </Grid>
 
@@ -77,9 +74,9 @@
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="20" />
                                         <RowDefinition />
-                                        <RowDefinition Height="23" />
+                                        <RowDefinition Height="22" />
                                     </Grid.RowDefinitions>
-                                    <Image Grid.RowSpan="3" Source="/Resource/Other/achievement_show.png" Visibility="{Binding IsFinished, Converter={StaticResource Boolean2VisibilityConverter}}" />
+                                    <Image Grid.RowSpan="3" Source="/KeqingNiuza.Common;Component/resource/others/achievement_show.png" Visibility="{Binding IsFinished, Converter={StaticResource Boolean2VisibilityConverter}}" />
                                     <TextBlock Grid.Row="2"
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
@@ -113,32 +110,27 @@
                                 </Grid>
 
                                 <!--  中间介绍  -->
-                                <Grid Margin="20,0,20,0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition />
-                                        <RowDefinition Height="20" />
-                                    </Grid.RowDefinitions>
-                                    <StackPanel Grid.RowSpan="2" VerticalAlignment="Center">
-                                        <TextBlock Margin="0,0,0,1"
-                                                   FontSize="16"
-                                                   FontWeight="Bold"
-                                                   Foreground="#555555"
-                                                   Text="{Binding Name}" />
-                                        <TextBlock Margin="0,1,0,4"
-                                                   FontSize="14"
-                                                   FontWeight="Bold"
-                                                   Foreground="#B7A18C"
-                                                   Text="{Binding Description}" />
-
-                                    </StackPanel>
+                                <StackPanel Grid.RowSpan="2" Margin="20,0,20,0" VerticalAlignment="Center">
+                                    <TextBlock Margin="0,0,0,2"
+                                               FontSize="16"
+                                               FontWeight="Bold"
+                                               Foreground="#555555"
+                                               Text="{Binding Name}" />
+                                    <TextBlock Margin="0,2,0,2"
+                                               FontSize="14"
+                                               FontWeight="Bold"
+                                               Foreground="#B7A18C"
+                                               Text="{Binding Description}" />
                                     <TextBlock Grid.Row="1"
+                                               Margin="0,2,0,0"
                                                VerticalAlignment="Center"
-                                               FontFamily="楷体"
+                                               FontFamily="楷体,微软雅黑"
                                                FontSize="14"
                                                FontWeight="Black"
                                                Foreground="#B7A18C"
-                                               Text="{Binding Comment}" />
-                                </Grid>
+                                               Text="{Binding Comment}"
+                                               Visibility="{Binding Comment, Converter={StaticResource Object2VisibilityConverter}}" />
+                                </StackPanel>
 
                             </DockPanel>
                         </Border>
@@ -147,7 +139,7 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-        </ScrollViewer>
+        </hc:ScrollViewer>
 
         <hc:LoadingCircle HorizontalAlignment="Center"
                           VerticalAlignment="Center"

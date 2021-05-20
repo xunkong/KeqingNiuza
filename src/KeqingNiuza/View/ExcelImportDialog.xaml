@@ -10,10 +10,7 @@
              d:DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
              mc:Ignorable="d">
 
-    <Border Background="{StaticResource ContentViewBackground}"
-            BorderBrush="Gray"
-            BorderThickness="1"
-            CornerRadius="6">
+    <Border Background="{StaticResource ContentViewBackground}" BorderThickness="0" CornerRadius="4">
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -30,7 +27,7 @@
                                 <StackPanel Orientation="Horizontal">
                                     <Ellipse Width="24" Height="24" Stroke="Gray">
                                         <Ellipse.Fill>
-                                            <ImageBrush ImageSource="{Binding Avatar}" />
+                                            <ImageBrush ImageSource="{Binding Avatar,Converter={StaticResource ImageConverter}}" />
                                         </Ellipse.Fill>
                                     </Ellipse>
                                     <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding Uid}" />

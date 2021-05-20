@@ -8,7 +8,7 @@ using System.Windows;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("KeqingNiuza")]
-[assembly: AssemblyDescription("刻记牛杂店")]
+[assembly: AssemblyDescription("KeqingNiuza")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("KeqingNiuza")]

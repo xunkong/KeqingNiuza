@@ -18,12 +18,12 @@ namespace KeqingNiuza
         {
             if (e.Args.Length != 0)
             {
-                if (e.Args[0] == "ExportFileList")
+                if (e.Args[0] == "Package")
                 {
-                    Util.ExportUpdateFileList();
-                    Util.ExportResourceFileList();
+                    Util.ExportResourceFile();
+                    Util.ExportUpdateFile();
+                    Shutdown();
                 }
-                Shutdown();
             }
         }
     }

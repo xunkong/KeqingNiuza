@@ -9,7 +9,6 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -30,27 +29,58 @@ namespace KeqingNiuza.ViewModel
 
         public MainWindowViewModel()
         {
+            bool first = false;
             _viewContentList = new List<object>();
             Directory.CreateDirectory(".\\UserData");
             if (File.Exists("UserData\\Config.json"))
             {
-                LoadConfig();
-                ChangeViewContent("GachaAnalysisView");
+                try
+                {
+                    LoadConfig();
+                    ChangeViewContent("WishSummaryView");
+                }
+                catch (Exception ex)
+                {
+                    ViewContent = new ErrorView(ex);
+                    Log.OutputLog(LogType.Warning, "MainWindowViewModel constructor", ex);
+                }
             }
             else
             {
                 UserDataList = new List<UserData>();
                 ViewContent = new WelcomeView();
+                first = true;
             }
             if (File.Exists("resource\\ShowUpdateLog"))
             {
                 ViewContent = new UpdateLogView();
                 File.Delete("resource\\ShowUpdateLog");
             }
+            _timer = new System.Timers.Timer(500);
+            _timer.AutoReset = false;
+            _timer.Elapsed += LoadCloudAccount;
+#if !DEBUG||TestCDN
+            if (!first)
+            {
+                _timer.Elapsed += TestUpdate;
+            }
+#endif
+            _viewContentList = new List<object>();
+            _timer.Start();
         }
 
 
+
+        private readonly List<object> _viewContentList;
+
+        public static List<WishData> WishDataList;
+
+        private readonly System.Timers.Timer _timer;
+
+        private bool IsAutoUpdate => Properties.Settings.Default.IsAutoUpdate;
+
         #region ControlProperty
+
 
         private object _ViewContent;
         public object ViewContent
@@ -63,14 +93,18 @@ namespace KeqingNiuza.ViewModel
             }
         }
 
-        private List<object> _viewContentList;
 
+        private string _LoadWishDataProgress;
+        public string LoadWishDataProgress
+        {
+            get { return _LoadWishDataProgress; }
+            set
+            {
+                _LoadWishDataProgress = value;
+                OnPropertyChanged();
+            }
+        }
 
-        #endregion
-
-
-
-        #region ItemSource
 
         private List<UserData> _UserDataList;
         public List<UserData> UserDataList
@@ -96,7 +130,21 @@ namespace KeqingNiuza.ViewModel
             set
             {
                 _SelectedUserData = value;
+                SelectedUserData_Changed();
                 OnPropertyChanged();
+            }
+        }
+
+        private void SelectedUserData_Changed()
+        {
+            try
+            {
+                WishDataList = LocalWishLogLoader.Load(SelectedUserData.WishLogFile);
+            }
+            catch (Exception ex)
+            {
+                Growl.Warning(ex.Message);
+                Log.OutputLog(LogType.Warning, "SelectedUserData_Changed", ex);
             }
         }
 
@@ -115,58 +163,63 @@ namespace KeqingNiuza.ViewModel
         #endregion
 
 
-        public async Task<bool> TestUpdate()
+
+
+        private async void TestUpdate(object sender, System.Timers.ElapsedEventArgs e)
         {
             var updater = new Updater();
+            bool callUpdate = false;
+            bool showMessage = false;
+            try
+            {
+                var updateInfo = await updater.GetUpdateInfo();
+                if (updateInfo.IsNeedUpdate)
+                {
+                    // 设置为自动更新，或者仅修订号不同，则自动下载
+                    if (IsAutoUpdate || updateInfo.IsAutoUpdate)
+                    {
+                        await updater.PrepareUpdateFiles();
+                        callUpdate = true;
+                        Log.OutputLog(LogType.Info, "Update files prepare finished");
+                        if (!updateInfo.IsAutoUpdate)
+                        {
+                            showMessage = true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.OutputLog(LogType.Error, "TestUpdate_AllFile", ex);
+            }
             try
             {
                 var result = await updater.UpdateResourceFiles();
-                if (true)
+                if (result)
                 {
-                    Log.OutputLog(LogType.Info, "Resource update finished");
+                    callUpdate = true;
                 }
             }
             catch (Exception ex)
             {
                 Log.OutputLog(LogType.Info, "TestUpdate_Resource", ex);
             }
-            try
+            if (callUpdate)
             {
-
-                var updateInfo = await updater.GetUpdateInfo();
-                if (updateInfo == (true, true))
-                {
-                    await updater.PrepareUpdateFiles();
-                    Log.OutputLog(LogType.Info, "Update files prepare finished");
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                updater.CallUpdateWhenExit();
             }
-            catch (Exception ex)
+            if (showMessage)
             {
-                Log.OutputLog(LogType.Error, "TestUpdate_AllFile", ex);
-                return false;
+                Growl.Success("更新文件准备完毕");
             }
-
         }
-
-        public void CallUpdate(object sender, EventArgs e)
-        {
-            Process.Start("update\\Update.exe", "KeqingNiuza.Update");
-            Log.OutputLog(LogType.Info, "Has called Update.exe");
-        }
-
-
 
 
         private void LoadConfig()
         {
             var setting = JsonSerializer.Deserialize<Config>(File.ReadAllText("UserData\\Config.json"), JsonOptions);
             UserDataList = setting.UserDataList ?? new List<UserData>();
-            SelectedUserData = UserDataList.Find(x => x.Uid == setting.LatestUid);
+            SelectedUserData = UserDataList.Find(x => x.Uid == setting.LatestUid) ?? UserDataList.First();
         }
 
 
@@ -179,13 +232,13 @@ namespace KeqingNiuza.ViewModel
             var setting = new Config()
             {
                 LatestUid = SelectedUserData.Uid,
-                UserDataList = UserDataList,
+                UserDataList = UserDataList.Distinct().OrderBy(x => x.Uid).ToList(),
             };
             File.WriteAllText("UserData\\Config.json", JsonSerializer.Serialize(setting, JsonOptions));
         }
 
 
-        public async Task LoadCloudAccount()
+        public async void LoadCloudAccount(object sender, System.Timers.ElapsedEventArgs e)
         {
             await Task.Run(() =>
             {
@@ -198,69 +251,96 @@ namespace KeqingNiuza.ViewModel
                     catch (Exception ex)
                     {
                         File.Delete("UserData\\Account");
-                        Growl.Error("无法解密云备份账户文件，已删除");
+                        Growl.Warning("无法解密云备份账户文件，已删除");
                         Log.OutputLog(LogType.Error, "DecrypeCloudClient", ex);
                     }
                 }
             });
         }
 
-
-        /// <summary>
-        /// 加载祈愿数据
-        /// </summary>
-        /// <returns></returns>
-        public async Task LoadDataFromGenshinLogFile()
+        public void AddNewUid()
         {
-            try
+            SelectedUserData = new UserData
             {
-                Growl.Info("正在加载");
-                var url = GenshinLogLoader.FindUrlFromLogFile();
-                await UpdateDataFromUrl(url);
-                ReloadViewContent();
-                Growl.Success("加载成功");
-            }
-            catch (Exception ex)
-            {
-                Growl.Error(ex.Message);
-                Log.OutputLog(LogType.Error, "LoadDataFromGenshinLogFile", ex);
-            }
-
-        }
-
-        /// <summary>
-        /// 更新祈愿数据
-        /// </summary>
-        /// <returns></returns>
-        public async Task UpdateDataFromUrl()
-        {
-            if (SelectedUserData == null)
-            {
-                Growl.Info("请先加载数据");
-                return;
-            }
-            try
-            {
-                Growl.Info("正在更新");
-                await UpdateDataFromUrl(SelectedUserData.Url);
-                ReloadViewContent();
-                Growl.Success("更新成功");
-            }
-            catch (Exception ex)
-            {
-                Growl.Error(ex.Message);
-                Log.OutputLog(LogType.Error, "UpdateDataFromUrl", ex);
-            }
+                Uid = 0
+            };
         }
 
 
-        private async Task UpdateDataFromUrl(string url)
+        public async Task UpdateWishData()
+        {
+            try
+            {
+                bool skipLoadGenshinLogFile = false;
+                if (SelectedUserData != null)
+                {
+                    if (!string.IsNullOrEmpty(SelectedUserData.Url))
+                    {
+                        if (await IsUrlTimeout(SelectedUserData.Url))
+                        {
+                            skipLoadGenshinLogFile = true;
+                            await LoadDataFromUrl(SelectedUserData.Url);
+                            ReloadViewContent();
+                            ChangeViewContent("WishSummaryView");
+                        }
+                        else
+                        {
+                            Growl.Warning("原 Url 已过期");
+                        }
+                    }
+                }
+                if (!skipLoadGenshinLogFile)
+                {
+                    var url = GenshinLogLoader.FindUrlFromLogFile();
+                    await LoadDataFromUrl(url);
+                    ReloadViewContent();
+                    ChangeViewContent("WishSummaryView");
+                }
+                LoadWishDataProgress = "加载完成";
+            }
+            catch (Exception ex)
+            {
+                Growl.Warning(ex.Message);
+                LoadWishDataProgress = "加载过程中遇到错误";
+                Log.OutputLog(LogType.Error, "UpdateWishData", ex);
+            }
+        }
+
+
+        /// <summary>
+        /// 检测url是否过期
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
+        private async Task<bool> IsUrlTimeout(string url)
+        {
+            try
+            {
+                var exporter = new WishLogExporter(url);
+                var uid = await exporter.GetUidByUrl();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "authkey timeout")
+                {
+                    return false;
+                }
+                else
+                {
+                    throw ex;
+                }
+            }
+        }
+
+        private async Task LoadDataFromUrl(string url)
         {
             var exporter = new WishLogExporter(url);
+            exporter.ProgressChanged += WishLoadExporter_ProgressChanged;
             var uid = await exporter.GetUidByUrl();
             var userData = UserDataList.Find(x => x.Uid == uid);
             List<WishData> oldList, newList;
-            if (userData == null || !File.Exists(userData?.WishLogFile))
+            if (userData == null)
             {
                 oldList = new List<WishData>();
                 newList = await exporter.GetAllLog();
@@ -274,8 +354,16 @@ namespace KeqingNiuza.ViewModel
             }
             else
             {
-                oldList = LocalWishLogLoader.Load(userData.WishLogFile);
-                newList = await exporter.GetAllLog(lastId: oldList.Last().Id);
+                if (File.Exists(userData?.WishLogFile))
+                {
+                    oldList = LocalWishLogLoader.Load(userData.WishLogFile);
+                    newList = await exporter.GetAllLog(lastId: oldList.Last().Id);
+                }
+                else
+                {
+                    oldList = new List<WishData>();
+                    newList = await exporter.GetAllLog();
+                }
                 userData.Url = url;
                 userData.LastUpdateTime = DateTime.Now;
             }
@@ -284,6 +372,12 @@ namespace KeqingNiuza.ViewModel
             SelectedUserData = userData;
             SaveConfig();
         }
+
+        private void WishLoadExporter_ProgressChanged(object sender, string e)
+        {
+            LoadWishDataProgress = e;
+        }
+
 
         /// <summary>
         /// 导出Excel文件
@@ -333,14 +427,30 @@ namespace KeqingNiuza.ViewModel
         {
             try
             {
-                Growl.Info("正在备份");
                 await CloudClient.BackupFileArchive();
                 Growl.Success("备份成功");
             }
             catch (Exception ex)
             {
                 Growl.Error(ex.Message);
-                Log.OutputLog(LogType.Error, "CloudBackupFileArchive", ex);
+                Log.OutputLog(LogType.Warning, "CloudBackupFileArchive", ex);
+            }
+        }
+
+
+        public async Task CloudRestoreFileArchive()
+        {
+            try
+            {
+                await CloudClient.RestoreFileArchive();
+                LoadConfig();
+                ChangeViewContent("WishSummaryView");
+                Growl.Success("还原成功");
+            }
+            catch (Exception ex)
+            {
+                Growl.Warning(ex.Message);
+                Log.OutputLog(LogType.Warning, "CloudBackupFileArchive", ex);
             }
         }
 
@@ -368,48 +478,36 @@ namespace KeqingNiuza.ViewModel
                     }
                     catch (Exception ex)
                     {
-                        if (ex.Message == "没有数据")
-                        {
-                            ViewContent = new NoUidView();
-                        }
-                        else
-                        {
-                            Growl.Warning(ex.Message);
-                            Log.OutputLog(LogType.Warning, "ChangeViewContent", ex);
-                        }
+                        ViewContent = new ErrorView(ex);
+                        Log.OutputLog(LogType.Warning, "ChangeViewContent", ex);
                     }
-
                 }
             }
         }
 
 
-
-
         /// <summary>
         /// 重新加载内容页面
         /// </summary>
-        private void ReloadViewContent()
+        public void ReloadViewContent()
         {
             var type = ViewContent.GetType();
             try
             {
                 ViewContent = type.Assembly.CreateInstance(type.FullName);
+                foreach (var content in _viewContentList)
+                {
+                    var d = content as MidiView;
+                    d?.ViewModel?.Dispose();
+                }
                 _viewContentList.Clear();
                 _viewContentList.Add(ViewContent);
 
             }
             catch (Exception ex)
             {
-                if (ex.Message == "没有数据")
-                {
-                    ViewContent = new NoUidView();
-                }
-                else
-                {
-                    Growl.Warning(ex.Message);
-                    Log.OutputLog(LogType.Warning, "ReloadViewContent", ex);
-                }
+                ViewContent = new ErrorView(ex);
+                Log.OutputLog(LogType.Warning, "ReloadViewContent", ex);
             }
 
         }
@@ -432,14 +530,10 @@ namespace KeqingNiuza.ViewModel
             }
         }
 
-        public async Task ChangeUid()
+        public void ChangeUid(object userData)
         {
-            var result = await Dialog.Show(new ChangeUidDialog(UserDataList)).Initialize<ChangeUidDialog>(x => { }).GetResultAsync<UserData>();
-            if (result != null)
-            {
-                SelectedUserData = result;
-                ReloadViewContent();
-            }
+            SelectedUserData = userData as UserData;
+            ReloadViewContent();
         }
 
 

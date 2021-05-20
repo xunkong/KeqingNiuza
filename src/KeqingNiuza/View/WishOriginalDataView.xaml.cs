@@ -30,14 +30,14 @@ namespace KeqingNiuza.View
         public WishOriginalDataViewModel ViewModel { get; set; }
         public UserData UserData { get; set; }
 
-      
+
         public WishOriginalDataView()
         {
             InitializeComponent();
             UserData = MainWindowViewModel.GetSelectedUserData();
-            if (UserData == null)
+            if (UserData == null || MainWindowViewModel.WishDataList == null)
             {
-                throw new NullReferenceException("没有数据");
+                throw new NullReferenceException("没有祈愿数据");
             }
         }
 
@@ -56,7 +56,7 @@ namespace KeqingNiuza.View
         {
             if (ViewModel == null)
             {
-                await Task.Run(() => ViewModel = new WishOriginalDataViewModel(UserData));
+                await Task.Run(() => ViewModel = new WishOriginalDataViewModel());
                 DataContext = ViewModel;
             }
         }

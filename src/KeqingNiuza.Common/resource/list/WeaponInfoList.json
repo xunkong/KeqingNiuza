@@ -1,0 +1,793 @@
+[
+    {
+        "Name": "暗巷猎手",
+        "NameEn": "Alley Hunter",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "",
+        "NameEn": "Amber Catalyst",
+        "Rank": 0,
+        "ItemType": "武器",
+        "WeaponType": 0
+    },
+    {
+        "Name": "阿莫斯之弓",
+        "NameEn": "Amos\u0027 Bow",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "学徒笔记",
+        "NameEn": "Apprentice\u0027s Notes",
+        "Rank": 1,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "风鹰剑",
+        "NameEn": "Aquila Favonia",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "新手长枪",
+        "NameEn": "Beginner\u0027s Protector",
+        "Rank": 1,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "黑岩绯玉",
+        "NameEn": "Blackcliff Agate",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "黑岩长剑",
+        "NameEn": "Blackcliff Longsword",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "黑岩刺枪",
+        "NameEn": "Blackcliff Pole",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "黑岩斩刀",
+        "NameEn": "Blackcliff Slasher",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "黑岩战弓",
+        "NameEn": "Blackcliff Warbow",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "黑缨枪",
+        "NameEn": "Black Tassel",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "沐浴龙血的剑",
+        "NameEn": "Bloodtainted Greatsword",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "钢轮弓",
+        "NameEn": "Compound Bow",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "冷刃",
+        "NameEn": "Cool Steel",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "流月针",
+        "NameEn": "Crescent Pike",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "暗铁剑",
+        "NameEn": "Dark Iron Sword",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "决斗之枪",
+        "NameEn": "Deathmatch",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "以理服人",
+        "NameEn": "Debate Club",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "匣里灭辰",
+        "NameEn": "Dragon\u0027s Bane",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "龙脊长枪",
+        "NameEn": "Dragonspine Spear",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "无锋剑",
+        "NameEn": "Dull Blade",
+        "Rank": 1,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "",
+        "NameEn": "Ebony Bow",
+        "Rank": 0,
+        "ItemType": "武器",
+        "WeaponType": 0
+    },
+    {
+        "Name": "终末嗟叹之诗",
+        "NameEn": "Elegy for the End",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "翡玉法球",
+        "NameEn": "Emerald Orb",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "昭心",
+        "NameEn": "Eye of Perception",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "西风秘典",
+        "NameEn": "Favonius Codex",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "西风大剑",
+        "NameEn": "Favonius Greatsword",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "西风长枪",
+        "NameEn": "Favonius Lance",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "西风剑",
+        "NameEn": "Favonius Sword",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "西风猎弓",
+        "NameEn": "Favonius Warbow",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "铁影阔剑",
+        "NameEn": "Ferrous Shadow",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "腐殖之剑",
+        "NameEn": "Festering Desire",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "吃虎鱼刀",
+        "NameEn": "Fillet Blade",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "苍古自由之誓",
+        "NameEn": "Freedom-Sworn",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "忍冬之果",
+        "NameEn": "Frostbearer",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "钺矛",
+        "NameEn": "Halberd",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "黎明神剑",
+        "NameEn": "Harbinger of Dawn",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "猎弓",
+        "NameEn": "Hunter\u0027s Bow",
+        "Rank": 1,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "铁尖枪",
+        "NameEn": "Iron Point",
+        "Rank": 2,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "铁蜂刺",
+        "NameEn": "Iron Sting",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "匣里龙吟",
+        "NameEn": "Lion\u0027s Roar",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "千岩古剑",
+        "NameEn": "Lithic Blade",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "千岩长枪",
+        "NameEn": "Lithic Spear",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "四风原典",
+        "NameEn": "Lost Prayer to the Sacred Winds",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "魔导绪论",
+        "NameEn": "Magic Guide",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "万国诸海图谱",
+        "NameEn": "Mappa Mare",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "尘世之锁",
+        "NameEn": "Memory of Dust",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "信使",
+        "NameEn": "Messenger",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "佣兵重剑",
+        "NameEn": "Old Merc\u0027s Pal",
+        "Rank": 2,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "异世界行记",
+        "NameEn": "Otherworldly Story",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "口袋魔导书",
+        "NameEn": "Pocket Grimoire",
+        "Rank": 2,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "磐岩结绿",
+        "NameEn": "Primordial Jade Cutter",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "和璞鸢",
+        "NameEn": "Primordial Jade Winged-Spear",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "试作金珀",
+        "NameEn": "Prototype Amber",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "试作古华",
+        "NameEn": "Prototype Archaic",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "试作澹月",
+        "NameEn": "Prototype Crescent",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "试作斩岩",
+        "NameEn": "Prototype Rancour",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "试作星镰",
+        "NameEn": "Prototype Starglitter",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "",
+        "NameEn": "Quartz",
+        "Rank": 0,
+        "ItemType": "武器",
+        "WeaponType": 0
+    },
+    {
+        "Name": "雨裁",
+        "NameEn": "Rainslasher",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "鸦羽弓",
+        "NameEn": "Raven Bow",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "反曲弓",
+        "NameEn": "Recurve Bow",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "宗室长弓",
+        "NameEn": "Royal Bow",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "宗室大剑",
+        "NameEn": "Royal Greatsword",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "宗室秘法录",
+        "NameEn": "Royal Grimoire",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "宗室长剑",
+        "NameEn": "Royal Longsword",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "宗室猎枪",
+        "NameEn": "Royal Spear",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "弓藏",
+        "NameEn": "Rust",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "祭礼弓",
+        "NameEn": "Sacrificial Bow",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "祭礼残章",
+        "NameEn": "Sacrificial Fragments",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "祭礼大剑",
+        "NameEn": "Sacrificial Greatsword",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "祭礼剑",
+        "NameEn": "Sacrificial Sword",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "历练的猎弓",
+        "NameEn": "Seasoned Hunter\u0027s Bow",
+        "Rank": 2,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "魑骨剑",
+        "NameEn": "Serpent Spine",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "神射手之誓",
+        "NameEn": "Sharpshooter\u0027s Oath",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "银剑",
+        "NameEn": "Silver Sword",
+        "Rank": 2,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "飞天大御剑",
+        "NameEn": "Skyrider Greatsword",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "飞天御剑",
+        "NameEn": "Skyrider Sword",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "天空之卷",
+        "NameEn": "Skyward Atlas",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "天空之刃",
+        "NameEn": "Skyward Blade",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "天空之翼",
+        "NameEn": "Skyward Harp",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "天空之傲",
+        "NameEn": "Skyward Pride",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "天空之脊",
+        "NameEn": "Skyward Spine",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "弹弓",
+        "NameEn": "Slingshot",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "雪葬的星银",
+        "NameEn": "Snow-Tombed Starsilver",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "匣里日月",
+        "NameEn": "Solar Pearl",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "松籁响起之时",
+        "NameEn": "Song of Broken Pines",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "护摩之杖",
+        "NameEn": "Staff of Homa",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "斫峰之刃",
+        "NameEn": "Summit Shaper",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "降临之剑",
+        "NameEn": "Sword of Descension",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "暗巷闪光",
+        "NameEn": "The Alley Flash",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "钟剑",
+        "NameEn": "The Bell",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "黑剑",
+        "NameEn": "The Black Sword",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "笛剑",
+        "NameEn": "The Flute",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "绝弦",
+        "NameEn": "The Stringless",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "无工之剑",
+        "NameEn": "The Unforged",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "苍翠猎弓",
+        "NameEn": "The Viridescent Hunt",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "流浪乐章",
+        "NameEn": "The Widsith",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "讨龙英杰谭",
+        "NameEn": "Thrilling Tales of Dragon Slayers",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "旅行剑",
+        "NameEn": "Traveler\u0027s Handy Sword",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "甲级宝珏",
+        "NameEn": "Twin Nephrite",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "贯虹之槊",
+        "NameEn": "Vortex Vanquisher",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "训练大剑",
+        "NameEn": "Waster Greatsword",
+        "Rank": 1,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "白影剑",
+        "NameEn": "Whiteblind",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "白铁大剑",
+        "NameEn": "White Iron Greatsword",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "白缨枪",
+        "NameEn": "White Tassel",
+        "Rank": 3,
+        "ItemType": "武器",
+        "WeaponType": 4
+    },
+    {
+        "Name": "风花之颂",
+        "NameEn": "Windblume Ode",
+        "Rank": 0,
+        "ItemType": "武器",
+        "WeaponType": 0
+    },
+    {
+        "Name": "暗巷的酒与诗",
+        "NameEn": "Wine and Song",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    },
+    {
+        "Name": "狼的末路",
+        "NameEn": "Wolf\u0027s Gravestone",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 2
+    },
+    {
+        "Name": "苍古自由之誓",
+        "NameEn": "Freedom-Sworn",
+        "Rank": 5,
+        "ItemType": "武器",
+        "WeaponType": 1
+    },
+    {
+        "Name": "幽夜华尔兹",
+        "NameEn": "Mitternachts Waltz",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 3
+    },
+    {
+        "Name": "嘟嘟可故事集",
+        "NameEn": "Dodoco Tales",
+        "Rank": 4,
+        "ItemType": "武器",
+        "WeaponType": 5
+    }
+]

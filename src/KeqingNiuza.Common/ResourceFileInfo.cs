@@ -25,8 +25,19 @@ namespace KeqingNiuza.Common
 
         public string SHA256 { get; set; }
 
-
         public ResourceFileInfo() { }
+
+
+        public ResourceFileInfo(string path)
+        {
+            var fileInfo = new FileInfo(path);
+            Name = fileInfo.Name;
+            var dir = Environment.CurrentDirectory;
+            Path = fileInfo.FullName.Replace(dir + "\\", "");
+            Size = fileInfo.Length;
+            SHA256 = Util.GetFileHash(fileInfo.FullName);
+            Url = new Uri(_baseUri, Path).ToString();
+        }
 
 
         public ResourceFileInfo(FileInfo fileInfo)

@@ -34,10 +34,10 @@ namespace KeqingNiuza.View
             InitializeComponent();
             ViewModel = new MainWindowViewModel();
             DataContext = ViewModel;
-
         }
 
-        private async void Window_Main_Loaded(object sender, RoutedEventArgs e)
+
+        private void Window_Main_Loaded(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -48,32 +48,21 @@ namespace KeqingNiuza.View
                 WindowState = WindowState.Normal;
                 Log.OutputLog(LogType.Warning, "Window_Main_Loaded", ex);
             }
-
             InitSideMenuChecked();
-            await ViewModel.LoadCloudAccount();
-#if !DEBUG
-            var result = await ViewModel.TestUpdate();
-            if (result)
-            {
-                Closed += ViewModel.CallUpdate;
-            }
-#endif
         }
 
         private void InitSideMenuChecked()
         {
-            if (ViewModel.ViewContent is GachaAnalysisView)
+            if (ViewModel.ViewContent is WishSummaryView)
             {
-                SideMenu_GachaAnalysisView.IsChecked = true;
+                SideMenu_WishSummaryView.IsChecked = true;
             }
         }
 
         private void Window_Main_Closed(object sender, EventArgs e)
         {
-#warning 重构UI/停用GachaAnalysisView后记得删除
             ViewModel.SaveConfig();
-            Properties.Settings.Default.IsWindowMaximized = WindowState == WindowState.Maximized ? true : false;
-            Properties.Settings.Default.Save();
+            Properties.Settings.Default.IsWindowMaximized = WindowState == WindowState.Maximized;
         }
 
         private void Button_Close_Click(object sender, RoutedEventArgs e)
@@ -139,16 +128,11 @@ namespace KeqingNiuza.View
         private async void Button_Load_Click(object sender, RoutedEventArgs e)
         {
             Button_Load.IsEnabled = false;
-            await ViewModel.LoadDataFromGenshinLogFile();
+            await ViewModel.UpdateWishData();
             Button_Load.IsEnabled = true;
         }
 
-        private async void Button_Update_Click(object sender, RoutedEventArgs e)
-        {
-            Button_Update.IsEnabled = false;
-            await ViewModel.UpdateDataFromUrl();
-            Button_Update.IsEnabled = true;
-        }
+
 
         private void Button_Export_Click(object sender, RoutedEventArgs e)
         {
@@ -163,10 +147,17 @@ namespace KeqingNiuza.View
             Button_Backup.IsEnabled = true;
         }
 
+        private async void Button_Restore_Click(object sender, RoutedEventArgs e)
+        {
+            Button_Restore.IsEnabled = false;
+            await ViewModel.CloudRestoreFileArchive();
+            Button_Restore.IsEnabled = true;
+        }
+
         private void RadioButton_SideMenu_Click(object sender, RoutedEventArgs e)
         {
             var radioButton = sender as RadioButton;
-            ViewModel.ChangeViewContent(radioButton.Name.Replace("SideMenu_", ""));
+            ViewModel.ChangeViewContent(radioButton.Tag as string);
         }
 
 
@@ -176,10 +167,9 @@ namespace KeqingNiuza.View
             await ViewModel.ChangeAvatar();
         }
 
-        private async void Button_ChangeUid_Click(object sender, RoutedEventArgs e)
+        private void Button_ChangeUid_Click(object sender, RoutedEventArgs e)
         {
-            Popup_Uid.IsOpen = false;
-            await ViewModel.ChangeUid();
+            Grid_UserData.Visibility = Visibility.Visible;
         }
 
         private void Window_Main_StateChanged(object sender, EventArgs e)
@@ -198,6 +188,24 @@ namespace KeqingNiuza.View
                 default:
                     break;
             }
+        }
+
+        private void ListView_UserData_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ViewModel.ChangeUid(ListView_UserData.SelectedItem);
+            Popup_Uid.IsOpen = false;
+        }
+
+        private void Popup_Uid_Closed(object sender, EventArgs e)
+        {
+            Grid_UserData.Visibility = Visibility.Collapsed;
+            ViewModel.LoadWishDataProgress = null;
+        }
+
+        private void Button_AddUid_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.AddNewUid();
+            Grid_UserData.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -21,20 +21,40 @@ using System.Text.Json;
 using KeqingNiuza.Model;
 using System.IO;
 using KeqingNiuza.Service;
+using Const = KeqingNiuza.Common.Const;
+using System.Net.Http;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace KeqingNiuza.View
 {
     /// <summary>
     /// AboutView.xaml 的交互逻辑
     /// </summary>
-    public partial class AboutView : UserControl
+    public partial class AboutView : UserControl, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
 
         public AboutView()
         {
             InitializeComponent();
             TextBlock_Version.Text = "版本：" + Const.Version.ToString(3);
             TextBlock_Version_All.Text = Const.Version.ToString();
+        }
+
+        public bool IsAutoUpdate
+        {
+            get => Properties.Settings.Default.IsAutoUpdate;
+            set
+            {
+                Properties.Settings.Default.IsAutoUpdate = value;
+                OnPropertyChanged();
+            }
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
@@ -57,17 +77,84 @@ namespace KeqingNiuza.View
                 }
                 catch (Exception ex)
                 {
-                    Growl.Error(ex.Message);
-                    Log.OutputLog(LogType.Error, "ImportExcelFile", ex);
+                    Growl.Warning(ex.Message);
+                    Log.OutputLog(LogType.Warning, "ImportExcelFile", ex);
                 }
             }
             else
             {
                 if (result.Item2 != null)
                 {
-                    Growl.Error("导入数据失败");
+                    Growl.Warning("导入数据失败");
                 }
             }
+        }
+
+
+        private async void UserControl_Initialized(object sender, EventArgs e)
+        {
+            const string path = "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/";
+            const string _UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.114 Safari/537.36 Edg/89.0.774.68";
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", _UserAgent);
+            try
+            {
+#if TestCDN
+
+                TextBlock_UpdateContent.Text = await client.GetStringAsync(path + "UpdateContent_Debug.txt");
+                TextBlock_News.Text = await client.GetStringAsync(path + "News_Debug.txt");
+
+#else
+
+                TextBlock_UpdateContent.Text = await client.GetStringAsync(path + "UpdateContent.txt");
+                TextBlock_News.Text = await client.GetStringAsync(path + "News.txt");
+
+#endif
+
+                if (!string.IsNullOrWhiteSpace(TextBlock_UpdateContent.Text))
+                {
+                    TextBlock_UpdateContent.Visibility = Visibility.Visible;
+                }
+                if (!string.IsNullOrWhiteSpace(TextBlock_News.Text))
+                {
+                    StackPanel_News.Visibility = Visibility.Visible;
+                }
+            }
+            catch (Exception ex)
+            {
+                Growl.Warning(ex.Message);
+            }
+            LoadingCircle_UpdateContent.Visibility = Visibility.Collapsed;
+        }
+
+        private async void Button_TestUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            Button_TestUpdate.IsEnabled = false;
+            LoadingCircle_TestUpdate.Visibility = Visibility.Visible;
+            try
+            {
+                var updater = new Updater();
+                var info = await updater.GetUpdateInfo();
+                if (info.IsNeedUpdate)
+                {
+                    await updater.PrepareUpdateFiles();
+                    updater.CallUpdateWhenExit();
+                    Log.OutputLog(LogType.Info, "Update files prepare finished");
+                    Growl.Success("更新文件准备完毕");
+                }
+                else
+                {
+                    Growl.Info("已是最新版本");
+                }
+            }
+            catch (Exception ex)
+            {
+                Growl.Warning(ex.Message);
+                Log.OutputLog(LogType.Warning, "TestUpdate", ex);
+            }
+
+            LoadingCircle_TestUpdate.Visibility = Visibility.Hidden;
+            Button_TestUpdate.IsEnabled = true;
         }
     }
 }

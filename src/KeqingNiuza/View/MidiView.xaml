@@ -27,18 +27,22 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <TextBlock Margin="20,0,0,10" FontSize="20" Text="播放列表" />
+            <StackPanel Margin="20,0,0,0" Orientation="Horizontal">
+                <TextBlock FontSize="20" Text="播放列表" />
+                <TextBlock Margin="10,0,0,0"
+                           VerticalAlignment="Bottom"
+                           Foreground="Gray"
+                           Text="(双击演奏)" />
+            </StackPanel>
             <ListBox x:Name="ListBox_MidiFileInfo"
                      Grid.Row="1"
-                     Margin="20,0,0,0"
+                     Margin="20,10,0,0"
                      Background="Transparent"
                      ItemsSource="{Binding MidiFileInfoList}"
                      MouseDoubleClick="ListBox_MidiFileInfo_MouseDoubleClick">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid Width="300" Background="Transparent">
-                            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Name}" />
-                        </Grid>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Name}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -68,7 +72,7 @@
                             Content="{Binding Button_Restart_Content}"
                             Visibility="{Binding Button_Restart_Content, Converter={StaticResource Object2VisibilityConverter}}" />
                 </StackPanel>
-                <Grid Width="240" Margin="0,10,0,0" HorizontalAlignment="Left">
+                <Grid Width="250" Margin="0,10,0,0" HorizontalAlignment="Left">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30" />
                         <RowDefinition Height="30" />
@@ -102,12 +106,14 @@
                                Grid.Column="0"
                                VerticalAlignment="Center"
                                Text="速度" />
-                    <TextBox Grid.Row="2"
-                             Grid.Column="1"
-                             Width="70"
-                             HorizontalAlignment="Left"
-                             IsEnabled="{Binding MidiPlayer.IsPlaying, Converter={StaticResource Boolean2BooleanReConverter}}"
-                             Text="{Binding MidiPlayer.Speed, UpdateSourceTrigger=PropertyChanged}" />
+                    <hc:NumericUpDown Grid.Row="2"
+                                      Grid.Column="1"
+                                      Width="70"
+                                      HorizontalAlignment="Left"
+                                      DecimalPlaces="1"
+                                      Increment="0.1"
+                                      IsEnabled="{Binding MidiPlayer.IsPlaying, Converter={StaticResource Boolean2BooleanReConverter}}"
+                                      Value="{Binding MidiPlayer.Speed, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3"
                                Grid.Column="0"
                                VerticalAlignment="Center"
@@ -220,6 +226,7 @@
                         Background="Gray"
                         IsMoveToPointEnabled="True"
                         Maximum="{Binding MidiPlayer.TotalTime, Converter={StaticResource TimeSpanToSliderValueConverter}}"
+                        Thumb.DragCompleted="Slider_Play_DragCompleted"
                         UseLayoutRounding="False"
                         Value="{Binding MidiPlayer.CurrentTime, Converter={StaticResource TimeSpanToSliderValueConverter}, Delay=100}" />
             </Grid>

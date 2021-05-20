@@ -1,0 +1,233 @@
+[
+    {
+        "Name": "阿贝多",
+        "NameEn": "Albedo",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 7
+    },
+    {
+        "Name": "安柏",
+        "NameEn": "Amber",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 1
+    },
+    {
+        "Name": "芭芭拉",
+        "NameEn": "Barbara",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 2
+    },
+    {
+        "Name": "北斗",
+        "NameEn": "Beidou",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 4
+    },
+    {
+        "Name": "班尼特",
+        "NameEn": "Bennett",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 1
+    },
+    {
+        "Name": "重云",
+        "NameEn": "Chongyun",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 6
+    },
+    {
+        "Name": "迪卢克",
+        "NameEn": "Diluc",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 1
+    },
+    {
+        "Name": "迪奥娜",
+        "NameEn": "Diona",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 6
+    },
+    {
+        "Name": "优菈",
+        "NameEn": "Eula",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 6
+    },
+    {
+        "Name": "菲谢尔",
+        "NameEn": "Fischl",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 4
+    },
+    {
+        "Name": "甘雨",
+        "NameEn": "Ganyu",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 6
+    },
+    {
+        "Name": "胡桃",
+        "NameEn": "Hu Tao",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 1
+    },
+    {
+        "Name": "琴",
+        "NameEn": "Jean",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 3
+    },
+    {
+        "Name": "凯亚",
+        "NameEn": "Kaeya",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 6
+    },
+    {
+        "Name": "刻晴",
+        "NameEn": "Keqing",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 4
+    },
+    {
+        "Name": "可莉",
+        "NameEn": "Klee",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 1
+    },
+    {
+        "Name": "丽莎",
+        "NameEn": "Lisa",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 4
+    },
+    {
+        "Name": "莫娜",
+        "NameEn": "Mona",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 2
+    },
+    {
+        "Name": "凝光",
+        "NameEn": "Ningguang",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 7
+    },
+    {
+        "Name": "诺艾尔",
+        "NameEn": "Noelle",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 7
+    },
+    {
+        "Name": "七七",
+        "NameEn": "Qiqi",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 6
+    },
+    {
+        "Name": "雷泽",
+        "NameEn": "Razor",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 4
+    },
+    {
+        "Name": "罗莎莉亚",
+        "NameEn": "Rosaria",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 6
+    },
+    {
+        "Name": "砂糖",
+        "NameEn": "Sucrose",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 3
+    },
+    {
+        "Name": "达达利亚",
+        "NameEn": "Tartaglia",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 2
+    },
+    {
+        "Name": "旅行者",
+        "NameEn": "Traveler",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 0
+    },
+    {
+        "Name": "温迪",
+        "NameEn": "Venti",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 3
+    },
+    {
+        "Name": "香菱",
+        "NameEn": "Xiangling",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 1
+    },
+    {
+        "Name": "魈",
+        "NameEn": "Xiao",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 3
+    },
+    {
+        "Name": "行秋",
+        "NameEn": "Xingqiu",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 2
+    },
+    {
+        "Name": "辛焱",
+        "NameEn": "Xinyan",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 1
+    },
+    {
+        "Name": "烟绯",
+        "NameEn": "Yanfei",
+        "Rank": 4,
+        "ItemType": "角色",
+        "ElementType": 1
+    },
+    {
+        "Name": "钟离",
+        "NameEn": "Zhongli",
+        "Rank": 5,
+        "ItemType": "角色",
+        "ElementType": 7
+    }
+]

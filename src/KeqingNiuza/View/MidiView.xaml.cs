@@ -59,5 +59,10 @@ namespace KeqingNiuza.View
         {
             ViewModel.PlayNext();
         }
+
+        private void Slider_Play_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
+        {
+            ViewModel.MoveToTime((int)Slider_Play.Value);
+        }
     }
 }

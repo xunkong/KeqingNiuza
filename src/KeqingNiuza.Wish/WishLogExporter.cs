@@ -15,6 +15,8 @@ namespace KeqingNiuza.Wish
 
         private readonly HttpClient HttpClient;
 
+        public event EventHandler<string> ProgressChanged;
+
         public WishLogExporter(string url)
         {
             if (url.EndsWith("#/log"))
@@ -90,7 +92,7 @@ namespace KeqingNiuza.Wish
 
 
         /// <summary>
-        /// 获取所有的祈愿记录，或截止到指定id
+        /// 获取指定类型的所有祈愿记录，或截止到指定id
         /// </summary>
         /// <param name="param">祈愿类型</param>
         /// <param name="lastId">截止到的祈愿id</param>
@@ -102,6 +104,7 @@ namespace KeqingNiuza.Wish
             ResponseData result;
             do
             {
+                OnProgressChanged(param);
                 url = $@"{baseRequestUrl}{authString}&{param}";
                 str = HttpClient.GetStringAsync(url).Result;
                 result = JsonSerializer.Deserialize<ResponseData>(str);
@@ -144,6 +147,28 @@ namespace KeqingNiuza.Wish
                 list.AddRange(result.Data.List);
             }
             return list;
+        }
+
+
+        private void OnProgressChanged(QueryParam param)
+        {
+            string type = null;
+            switch (param.WishType)
+            {
+                case WishType.Novice:
+                    type = "新手";
+                    break;
+                case WishType.Permanent:
+                    type = "常驻";
+                    break;
+                case WishType.CharacterEvent:
+                    type = "角色";
+                    break;
+                case WishType.WeaponEvent:
+                    type = "武器";
+                    break;
+            }
+            ProgressChanged?.Invoke(this, $"正在获取 {type}祈愿 第 {param.Page} 页");
         }
     }
 }

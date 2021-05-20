@@ -42,6 +42,8 @@ namespace KeqingNiuza.CloudBackup
 
         public abstract Task BackupFileArchive();
 
+        public abstract Task RestoreFileArchive();
+
         public abstract void SaveEncyptedAccount();
 
 

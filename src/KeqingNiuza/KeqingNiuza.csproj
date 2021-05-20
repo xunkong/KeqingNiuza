@@ -7,7 +7,7 @@
     <ProjectGuid>{67034299-8A8A-41C9-B276-400B63E7BBAE}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>KeqingNiuza</RootNamespace>
-    <AssemblyName>刻记牛杂店</AssemblyName>
+    <AssemblyName>KeqingNiuza</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -36,7 +36,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;TestCDN</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -46,9 +46,10 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE;TestUpdate</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup />
   <PropertyGroup>
@@ -81,14 +82,21 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Converter\AvatarConverter.cs" />
+    <Compile Include="Control\ScrollViewerEx.cs" />
+    <Compile Include="Converter\ImageConverter.cs" />
     <Compile Include="Converter\IntToNoteStringConverter.cs" />
+    <Compile Include="Converter\ItemDetailRankConverter.cs" />
     <Compile Include="Converter\MilliSecondToTimeConverter.cs" />
+    <Compile Include="Converter\ProbabilityConverter.cs" />
+    <Compile Include="Converter\ReVisibilityConverter.cs" />
     <Compile Include="Converter\TimeSpanToSliderValueConverter.cs" />
     <Compile Include="Converter\UidConverter.cs" />
     <Compile Include="Converter\WishTypeConverter.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\MidiViewModel.cs" />
+    <Compile Include="View\ErrorView.xaml.cs">
+      <DependentUpon>ErrorView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GachaAnalysisView.xaml.cs">
       <DependentUpon>GachaAnalysisView.xaml</DependentUpon>
     </Compile>
@@ -115,9 +123,6 @@
     <Compile Include="View\ChangeAvatarDialog.xaml.cs">
       <DependentUpon>ChangeAvatarDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ChangeUidDialog.xaml.cs">
-      <DependentUpon>ChangeUidDialog.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\CloudLoginDialog.xaml.cs">
       <DependentUpon>CloudLoginDialog.xaml</DependentUpon>
     </Compile>
@@ -127,9 +132,8 @@
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\NoUidView.xaml.cs">
-      <DependentUpon>NoUidView.xaml</DependentUpon>
-      <SubType>UserControl</SubType>
+    <Compile Include="View\SettingView.xaml.cs">
+      <DependentUpon>SettingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UpdateLogView.xaml.cs">
       <DependentUpon>UpdateLogView.xaml</DependentUpon>
@@ -141,11 +145,17 @@
     <Compile Include="View\WishAchievementView.xaml.cs">
       <DependentUpon>WishAchievementView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\WishItemDetailView.xaml.cs">
+      <DependentUpon>WishItemDetailView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WishOriginalDataView.xaml.cs">
       <DependentUpon>WishOriginalDataView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\WishSummaryView.xaml.cs">
       <DependentUpon>WishSummaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WishTypeDetailView.xaml.cs">
+      <DependentUpon>WishTypeDetailView.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -170,21 +180,15 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="resource\list\AvatarList.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\list\ClassifyColorList.json" />
-    <None Include="resource\list\ElementDictionary.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\list\WishEventList.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="View\ErrorView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\GachaAnalysisView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -217,10 +221,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ChangeUidDialog.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\CloudLoginDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -233,7 +233,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\NoUidView.xaml">
+    <Page Include="View\SettingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -249,11 +249,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\WishItemDetailView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\WishOriginalDataView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\WishSummaryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WishTypeDetailView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -307,250 +315,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resource\other\[アナ]刻晴[85419665_p0]_35%25.jpg" />
     <Resource Include="logo_256.ico" />
-    <None Include="resource\avatar\Aether.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Albedo.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Amber.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Barbara.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Beidou.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Bennett.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Chongyun.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Diluc.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Diona.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Fischl.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Ganyu.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Hutao.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Jean.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Kaeya.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Keqing.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Klee.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Lisa.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Lumine.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Mona.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Ningguang.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Noelle.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Paimon.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Qiqi.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Razor.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Rosaria.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Sucrose.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Tartaglia.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Venti.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Xiangling.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Xiao.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Xingqiu.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Xinyan.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\avatar\Zhongli.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <Resource Include="resource\other\achievement_achieved.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="resource\other\achievement_show.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="resource\other\achievement_unachieve.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="resource\other\JianguoyuLogo.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <None Include="resource\namecard\keqing_lightning_stiletto_party_black.png" />
-    <Resource Include="resource\other\logo_256.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="resource\avatar\Eula.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resource\avatar\Yanfei.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="resource\midi\Beyond - 海阔天空.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\Doki Doki Literature Club!.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\lovelive - Snow Halation.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\lovelive - 爱してるばんざい.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\Tempestissimo.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\YOASOBI - ハルジオン.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\YOASOBI - 夜に駆ける.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\YOASOBI - 群青.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\东方Project - どうして....mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\东方Project - 妖怪之山.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\东方Project - 月まで届け、不死の煙.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\久石让 - Summer.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\久石让 - 天空之城.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\初音未来 - magnet.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\初音未来 - 千本樱.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\初音未来 - 朧月.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\初音未来 - 活动小丑.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\初音未来 - 深海少女.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\初音未来 - 脑浆炸裂女孩.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\千年龙诗.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\原神 - 疾如猛火.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\国际歌.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\夜的钢琴曲五 - 石进.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\崩坏3rd - Rubia.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\旋转吧！雪月花 - 机巧少女不会受伤.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\未闻花名 - secret base 你给我的所有.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\某科学的超电磁炮 - only my railgun.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\泽野弘之 - aLIEZ.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\游戏人生 - There is a reason.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\甘城光辉游乐园OST - ソリテュード.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\白色相簿2 - After All 缀る想い.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\紫罗兰永恒花园 - Sincerely.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\缘之空OST - Old Memory.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\缘之空OST - 遠い空へ.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\青鸟 - 火影忍者.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\鬼灭之刃 - 红莲华.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\魔法少女小圆 - コネクト.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="resource\midi\鸟之诗 - Air.mid">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rd /s /q ca-ES
@@ -563,10 +330,10 @@ rd /s /q pt-BR
 rd /s /q ru
 rd /s /q tr
 
-if $(ConfigurationName) == Release del *.pdb *.xml *.dll.config Update.exe.config
-if $(ConfigurationName) == Release mkdir dll
-if $(ConfigurationName) == Release move /Y *.dll .\dll
-if $(ConfigurationName) == Release move /Y Update.exe ..\</PostBuildEvent>
+del *.pdb *.xml *.dll.config Update.exe.config
+mkdir dll
+move /Y *.dll .\dll
+move /Y Update.exe ..\</PostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions />
 </Project>

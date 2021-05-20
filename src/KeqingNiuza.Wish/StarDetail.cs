@@ -8,7 +8,7 @@ namespace KeqingNiuza.Wish
 
         public string Time { get; set; }
 
-        public string Brush => Const.ElementDictionary.ContainsKey(Name) ? Const.ElementDictionary[Name] : "#000000";
+        public string Brush { get; set; }
 
 
         public StarDetail(string name, int num, string time)

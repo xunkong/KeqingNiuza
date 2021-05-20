@@ -12,7 +12,7 @@ namespace KeqingNiuza.Update
     {
         internal static void MoveAllFile()
         {
-            var dir = "update\\Release\\";
+            var dir = "update\\KeqingNiuza\\";
             var list = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories);
             foreach (var file in list)
             {
@@ -28,7 +28,7 @@ namespace KeqingNiuza.Update
         }
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]
-        public static extern int MessageBox(int hWnd, String text, String caption, uint type);
+        public static extern int MessageBox(int hWnd, string text, string caption, uint type);
 
     }
 }

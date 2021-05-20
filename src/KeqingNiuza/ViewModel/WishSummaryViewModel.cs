@@ -13,6 +13,8 @@ using System.Runtime.CompilerServices;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System.Windows.Media;
+using System.Threading;
+using KeqingNiuza.View;
 
 namespace KeqingNiuza.ViewModel
 {
@@ -24,146 +26,147 @@ namespace KeqingNiuza.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
-
-
-        private SolidColorBrush BrushCharacter5 { get; } = new SolidColorBrush(new Color { R = 0xFA, G = 0xC8, B = 0x58, A = 0xFF });
-        private SolidColorBrush BrushWeapon5 { get; } = new SolidColorBrush(new Color { R = 0xEE, G = 0x66, B = 0x66, A = 0xFF });
-        private SolidColorBrush BrushCharacter4 { get; } = new SolidColorBrush(new Color { R = 0x54, G = 0x70, B = 0xC6, A = 0xFF });
-        private SolidColorBrush BrushWeapon4 { get; } = new SolidColorBrush(new Color { R = 0x91, G = 0xCC, B = 0x75, A = 0xFF });
-        private SolidColorBrush BrushWeapon3 { get; } = new SolidColorBrush(new Color { R = 0x73, G = 0xC0, B = 0xDE, A = 0xFF });
-
         public WishSummaryViewModel(UserData userData)
         {
-            var json = File.ReadAllText(userData.WishLogFile);
-            var list = JsonSerializer.Deserialize<List<WishData>>(json, JsonOptions);
-            var analyzer = new PieChartAnalyzer(list);
-            NoviceStatistics = analyzer.NoviceStatistics;
-            PermanentStatistics = analyzer.PermanentStatistics;
-            CharacterEventStatistics = analyzer.CharacterEventStatistics;
-            WeaponEventStatistics = analyzer.WeaponEventStatistics;
-            InitPieChart();
+            UserData = userData;
+            WishDataList = LocalWishLogLoader.Load(userData.WishLogFile);
+            WishSummary = WishSummary.Create(userData.WishLogFile);
+            CharacterOrder("ÐÇ¼¶");
+            WeaponOrder("ÐÇ¼¶");
         }
 
-
-        public WishStatistics NoviceStatistics { get; set; }
-        public WishStatistics PermanentStatistics { get; set; }
-        public WishStatistics CharacterEventStatistics { get; set; }
-        public WishStatistics WeaponEventStatistics { get; set; }
-
-        public SeriesCollection NoviceSeries { get; set; }
-        public SeriesCollection PermanentSeries { get; set; }
-        public SeriesCollection CharacterEventSeries { get; set; }
-        public SeriesCollection WeaponEventSeries { get; set; }
-
-
-        private void InitPieChart()
+        public WishSummaryViewModel()
         {
-            PieSeries series;
-
-            // Novice
-            NoviceSeries = new SeriesCollection(3);
-            series = new PieSeries()
-            {
-                Title = "5æ˜Ÿè§’è‰²",
-                Fill = BrushCharacter5,
-                Values = new ChartValues<int> { 0, NoviceStatistics.Character5Count }
-            };
-            NoviceSeries.Add(series);
-            series = new PieSeries()
-            {
-                Title = "4æ˜Ÿè§’è‰²",
-                Fill = BrushCharacter4,
-                Values = new ChartValues<int> { 0, NoviceStatistics.Character4Count }
-            };
-            NoviceSeries.Add(series);
-            series = new PieSeries()
-            {
-                Title = "3æ˜Ÿæ­¦å™¨",
-                Fill = BrushWeapon3,
-                Values = new ChartValues<int> { 0, NoviceStatistics.Weapon3Count }
-            };
-            NoviceSeries.Add(series);
-
-            // Permanent
-            PermanentSeries = new SeriesCollection(4);
-            series = new PieSeries()
-            {
-                Title = "5æ˜Ÿè§’è‰²",
-                Fill = BrushCharacter5,
-                Values = new ChartValues<int> { 0, PermanentStatistics.Character5Count }
-            };
-            PermanentSeries.Add(series);
-            series = new PieSeries()
-            {
-                Title = "4æ˜Ÿè§’è‰²",
-                Fill = BrushCharacter4,
-                Values = new ChartValues<int> { 0, PermanentStatistics.Character4Count }
-            };
-            PermanentSeries.Add(series);
-            series = new PieSeries()
-            {
-                Title = "5æ˜Ÿæ­¦å™¨",
-                Fill = BrushWeapon5,
-                Values = new ChartValues<int> { 0, PermanentStatistics.Weapon5Count }
-            };
-            PermanentSeries.Add(series);
-            series = new PieSeries()
-            {
-                Title = "4æ˜Ÿæ­¦å™¨",
-                Fill = BrushWeapon4,
-                Values = new ChartValues<int> { 0, PermanentStatistics.Weapon4Count }
-            };
-            PermanentSeries.Add(series);
-
-            // CharacterEvent
-            CharacterEventSeries = new SeriesCollection(3);
-            series = new PieSeries()
-            {
-                Title = "5æ˜Ÿè§’è‰²",
-                Fill = BrushCharacter5,
-                Values = new ChartValues<int> { 0, CharacterEventStatistics.Character5Count }
-            };
-            CharacterEventSeries.Add(series);
-            series = new PieSeries()
-            {
-                Title = "4æ˜Ÿè§’è‰²",
-                Fill = BrushCharacter4,
-                Values = new ChartValues<int> { 0, CharacterEventStatistics.Character4Count }
-            };
-            CharacterEventSeries.Add(series);
-            series = new PieSeries()
-            {
-                Title = "4æ˜Ÿæ­¦å™¨",
-                Fill = BrushWeapon4,
-                Values = new ChartValues<int> { 0, CharacterEventStatistics.Weapon4Count }
-            };
-            CharacterEventSeries.Add(series);
-
-            // WeaponEvent
-            WeaponEventSeries = new SeriesCollection(3);
-            series = new PieSeries()
-            {
-                Title = "4æ˜Ÿè§’è‰²",
-                Fill = BrushCharacter4,
-                Values = new ChartValues<int> { 0, WeaponEventStatistics.Character4Count }
-            };
-            WeaponEventSeries.Add(series);
-            series = new PieSeries()
-            {
-                Title = "5æ˜Ÿæ­¦å™¨",
-                Fill = BrushWeapon5,
-                Values = new ChartValues<int> { 0, WeaponEventStatistics.Weapon5Count }
-            };
-            WeaponEventSeries.Add(series);
-            series = new PieSeries()
-            {
-                Title = "4æ˜Ÿæ­¦å™¨",
-                Fill = BrushWeapon4,
-                Values = new ChartValues<int> { 0, WeaponEventStatistics.Weapon4Count }
-            };
-            WeaponEventSeries.Add(series);
+            WishDataList = MainWindowViewModel.WishDataList;
+            WishSummary = WishSummary.Create(WishDataList);
+            CharacterOrder("ÐÇ¼¶");
+            WeaponOrder("ÐÇ¼¶");
         }
 
+        public UserData UserData { get; set; }
+        public static List<WishData> WishDataList;
+
+
+
+
+        private WishSummary _WishSummary;
+        public WishSummary WishSummary
+        {
+            get { return _WishSummary; }
+            set
+            {
+                _WishSummary = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private List<ItemInfo> _CharacterInfoList;
+        public List<ItemInfo> CharacterInfoList
+        {
+            get { return _CharacterInfoList; }
+            set
+            {
+                _CharacterInfoList = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private List<ItemInfo> _WeaponInfoList;
+        public List<ItemInfo> WeaponInfoList
+        {
+            get { return _WeaponInfoList; }
+            set
+            {
+                _WeaponInfoList = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private object _DetailContent;
+        public object DetailContent
+        {
+            get { return _DetailContent; }
+            set
+            {
+                _DetailContent = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+
+        public void CharacterOrder(string order)
+        {
+            switch (order)
+            {
+                case "×î½ü»ñµÃ":
+                    CharacterInfoList = WishSummary.CharacterInfoList.OrderByDescending(x => x.LastGetTime).ThenByDescending(x => x.Count).ToList();
+                    break;
+                case "ÊýÁ¿":
+                    CharacterInfoList = WishSummary.CharacterInfoList.OrderByDescending(x => x.Count).ThenByDescending(x => x.Rank).ThenByDescending(x => x.LastGetTime).ToList();
+                    break;
+                case "ÐÇ¼¶":
+                    CharacterInfoList = WishSummary.CharacterInfoList.OrderByDescending(x => x.Rank).ThenByDescending(x => x.Count).ThenByDescending(x => x.LastGetTime).ToList();
+                    break;
+            }
+        }
+
+        public void WeaponOrder(string order)
+        {
+            switch (order)
+            {
+                case "×î½ü»ñµÃ":
+                    WeaponInfoList = WishSummary.WeaponInfoList.OrderByDescending(x => x.LastGetTime).ThenByDescending(x => x.Count).ToList();
+                    break;
+                case "ÊýÁ¿":
+                    WeaponInfoList = WishSummary.WeaponInfoList.OrderByDescending(x => x.Count).ThenByDescending(x => x.Rank).ThenByDescending(x => x.LastGetTime).ToList();
+                    break;
+                case "ÐÇ¼¶":
+                    WeaponInfoList = WishSummary.WeaponInfoList.OrderByDescending(x => x.Rank).ThenByDescending(x => x.Count).ThenByDescending(x => x.LastGetTime).ToList();
+                    break;
+            }
+        }
+
+
+        public void ShowDetailView(string type)
+        {
+            if (type == "Character")
+            {
+                var view = new WishItemDetailView(CharacterInfoList);
+                view.BackEvent += DetailContent_BackEvent;
+                DetailContent = view;
+            }
+            if (type == "Weapon")
+            {
+                var view = new WishItemDetailView(WeaponInfoList);
+                view.BackEvent += DetailContent_BackEvent;
+                DetailContent = view;
+            }
+        }
+
+        public void ShowDetailView(object dataContext)
+        {
+            var info = dataContext as ItemInfo;
+            if (info.ItemType == "½ÇÉ«")
+            {
+                var view = new WishItemDetailView(CharacterInfoList, info);
+                view.BackEvent += DetailContent_BackEvent;
+                DetailContent = view;
+            }
+            if (info.ItemType == "ÎäÆ÷")
+            {
+                var view = new WishItemDetailView(WeaponInfoList, info);
+                view.BackEvent += DetailContent_BackEvent;
+                DetailContent = view;
+            }
+        }
+
+        private void DetailContent_BackEvent(object sender, EventArgs e)
+        {
+            DetailContent = null;
+        }
     }
 }

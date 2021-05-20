@@ -34,12 +34,14 @@ namespace KeqingNiuza.Midi
 
         public static void RestartAsAdmin()
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-            startInfo.UseShellExecute = true;
-            startInfo.WorkingDirectory = Environment.CurrentDirectory;
-            startInfo.FileName = Process.GetCurrentProcess().ProcessName;
-            startInfo.Verb = "runas";
-            Process p = Process.Start(startInfo);
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                UseShellExecute = true,
+                WorkingDirectory = Environment.CurrentDirectory,
+                FileName = Process.GetCurrentProcess().ProcessName,
+                Verb = "runas"
+            };
+            Process.Start(startInfo);
             Environment.Exit(0);
         }
 

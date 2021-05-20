@@ -44,16 +44,15 @@ namespace KeqingNiuza.Wish
         /// </summary>
         /// <param name="datas"></param>
         /// <param name="infos"></param>
-        public static void 我就是欧皇(List<WishData> datas, List<AchievementInfo> infos)
+        public static void 欧皇时刻(List<WishData> datas, List<AchievementInfo> infos)
         {
             var list = datas.GroupBy(x => x.Time).Where(g => g.Count(x => x.Rank == 5) >= 2).OrderBy(g => g.Key);
             if (list.Any())
             {
                 var info = new AchievementInfo
                 {
-                    Name = "我就是欧皇！",
+                    Name = "欧皇时刻！",
                     Description = "十连两金及以上",
-                    Comment = "",
                     IsFinished = true,
                     FinishTime = list.First().Key,
                     Total = $"总计 {list.Count()} 次",
@@ -153,8 +152,7 @@ namespace KeqingNiuza.Wish
                 {
                     Name = "一掷千金",
                     Description = "一天抽卡达到78次",
-                    //todo 成就一掷千金的完成评论
-                    Comment = "",
+                    Comment = "千金指1000人民币",
                     IsFinished = true,
                     FinishTime = group.Key,
                     Total = $"总计 {group.Count()}",
@@ -167,9 +165,8 @@ namespace KeqingNiuza.Wish
                 {
                     Name = "一掷千金",
                     Description = "一天抽卡达到78次",
-                    Comment = "",
                     IsFinished = false,
-                    Progress = $"{group.Count() / 78}",
+                    Progress = $"{group.Count()} / 78",
                 };
                 infos.Add(info);
             }
@@ -203,7 +200,7 @@ namespace KeqingNiuza.Wish
             {
                 Name = "仓鼠",
                 Description = "累计超过20天没有进行活动祈愿",
-                //todo Comment = "原石的数量，令人安心",
+                Comment = "原石的数量，令人安心",
                 IsFinished = true,
                 FinishTime = time,
                 Total = $"总计 {span.Days - 1}",
@@ -236,7 +233,7 @@ namespace KeqingNiuza.Wish
         /// </summary>
         /// <param name="datas"></param>
         /// <param name="infos"></param>
-        private static void 三个胡桃(List<WishData> datas, List<AchievementInfo> infos)
+        public static void 三个胡桃(List<WishData> datas, List<AchievementInfo> infos)
         {
             var events = WishEventList.FindAll(x => x.Name == "赤团开时");
             foreach (var item in events)
@@ -265,7 +262,7 @@ namespace KeqingNiuza.Wish
         /// </summary>
         /// <param name="datas"></param>
         /// <param name="infos"></param>
-        private static void 椰羊的奶好喝(List<WishData> datas, List<AchievementInfo> infos)
+        public static void 椰羊的奶好喝(List<WishData> datas, List<AchievementInfo> infos)
         {
             var events = WishEventList.FindAll(x => x.Name == "浮生孰来");
             foreach (var item in events)
@@ -306,7 +303,7 @@ namespace KeqingNiuza.Wish
         /// </summary>
         /// <param name="datas"></param>
         /// <param name="infos"></param>
-        private static void 七匹狼(List<WishData> datas, List<AchievementInfo> infos)
+        public static void 七匹狼(List<WishData> datas, List<AchievementInfo> infos)
         {
             var list = datas.Where(x => x.Name == "狼的末路");
             if (list.Count() >= 7)
@@ -330,7 +327,7 @@ namespace KeqingNiuza.Wish
         /// </summary>
         /// <param name="datas"></param>
         /// <param name="infos"></param>
-        private static void 七匹狼的诅咒(List<WishData> datas, List<AchievementInfo> infos)
+        public static void 七匹狼的诅咒(List<WishData> datas, List<AchievementInfo> infos)
         {
             var events = WishEventList.Where(x => x.UpStar5.Contains("护摩之杖"));
             foreach (var item in events)
@@ -369,7 +366,7 @@ namespace KeqingNiuza.Wish
                         Name = "七匹狼的诅咒",
                         Description = "在一次「神铸赋形」活动祈愿中抽出7把狼的末路，还没有抽出护摩之杖",
                         IsFinished = false,
-                        Progress = $"{langmo}/7",
+                        Progress = $"{langmo} / 7",
                     };
                     infos.Add(info);
                 }
@@ -383,7 +380,7 @@ namespace KeqingNiuza.Wish
         /// </summary>
         /// <param name="datas"></param>
         /// <param name="infos"></param>
-        private static void 晴深深雨蒙蒙(List<WishData> datas, List<AchievementInfo> infos)
+        public static void 晴深深雨蒙蒙(List<WishData> datas, List<AchievementInfo> infos)
         {
             var events = WishEventList.FindAll(x => x.Name == "浮生孰来");
             foreach (var item in events)
@@ -423,7 +420,7 @@ namespace KeqingNiuza.Wish
         /// </summary>
         /// <param name="datas"></param>
         /// <param name="infos"></param>
-        private static void 为什么不问问神奇的阿贝多呢(List<WishData> datas, List<AchievementInfo> infos)
+        public static void 为什么不问问神奇的阿贝多呢(List<WishData> datas, List<AchievementInfo> infos)
         {
             var events = WishEventList.FindAll(x => x.Name == "深秘之息");
             foreach (var item in events)
@@ -458,9 +455,197 @@ namespace KeqingNiuza.Wish
         }
 
 
+        /// <summary>
+        /// 累计抽出8把风鹰剑
+        /// </summary>
+        /// <param name="datas"></param>
+        /// <param name="infos"></param>
+        public static void 八重鹰(List<WishData> datas, List<AchievementInfo> infos)
+        {
+            var list = datas.Where(x => x.Name == "风鹰剑");
+            if (list.Count() >= 8)
+            {
+                var info = new AchievementInfo
+                {
+                    Name = "风鹰剑",
+                    Description = "累计抽出8把风鹰剑",
+                    IsFinished = true,
+                    FinishTime = list.ElementAt(7).Time,
+                    Total = $"总计 {list.Count()}",
+                };
+                infos.Add(info);
+            }
+
+        }
 
 
+        /// <summary>
+        /// 在一次「神铸赋形」活动祈愿中抽出8把风鹰剑，还没有抽出松籁响起之时
+        /// </summary>
+        /// <param name="datas"></param>
+        /// <param name="infos"></param>
+        public static void 鹰鹰鹰鹰鹰鹰鹰鹰(List<WishData> datas, List<AchievementInfo> infos)
+        {
+            var events = WishEventList.Where(x => x.UpStar5.Contains("松籁响起之时"));
+            foreach (var item in events)
+            {
+                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime).Where(x => x.Name == "风鹰剑" || x.Name == "松籁响起之时");
+                int fengying = 0;
+                DateTime time = DateTime.Now;
+                foreach (var data in list)
+                {
+                    if (data.Name == "风鹰剑")
+                    {
+                        fengying++;
+                        time = data.Time;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                if (fengying >= 8)
+                {
+                    var info = new AchievementInfo
+                    {
+                        Name = "鹰鹰鹰鹰鹰鹰鹰鹰",
+                        Description = "在一次「神铸赋形」活动祈愿中抽出8把风鹰剑，还没有抽出松籁响起之时",
+                        IsFinished = true,
+                        FinishTime = time,
+                        Total = $"总计 {fengying}",
+                    };
+                    infos.Add(info);
+                }
+                if (fengying > 0)
+                {
+                    var info = new AchievementInfo
+                    {
+                        Name = "鹰鹰鹰鹰鹰鹰鹰鹰",
+                        Description = "在一次「神铸赋形」活动祈愿中抽出8把风鹰剑，还没有抽出松籁响起之时",
+                        IsFinished = false,
+                        Progress = $"{fengying} / 8",
+                    };
+                    infos.Add(info);
+                }
+            }
 
+        }
+
+
+        /// <summary>
+        /// 没有抽过武器池
+        /// </summary>
+        /// <param name="datas"></param>
+        /// <param name="infos"></param>
+        public static void 不存在的武器池(List<WishData> datas, List<AchievementInfo> infos)
+        {
+            var list = datas.Where(x => x.WishType == WishType.WeaponEvent);
+            if (list.Any())
+            {
+                return;
+            }
+            var info = new AchievementInfo
+            {
+                Name = "不存在的武器池",
+                Description = "没有抽过武器池",
+                Comment = "「我一发都不敢抽啊」",
+                IsFinished = true,
+                FinishTime = DateTime.Now,
+            };
+            infos.Add(info);
+        }
+
+
+        /// <summary>
+        /// 在活动祈愿关闭前最后一分钟抽到当期Up5星
+        /// </summary>
+        /// <param name="datas"></param>
+        /// <param name="infos"></param>
+        public static void 最后一分钟的奇迹(List<WishData> datas, List<AchievementInfo> infos)
+        {
+            int count1 = 0, count2 = 0, count3 = 0;
+            DateTime time1 = new DateTime(), time2 = new DateTime(), time3 = new DateTime();
+            foreach (var @event in WishEventList)
+            {
+                var list = datas.Where(x => x.WishType == @event.WishType && x.Time >= @event.EndTime - new TimeSpan(0, 1, 0) && x.Time <= @event.EndTime);
+                if (list.Any())
+                {
+                    var star5 = list.Where(x => x.Rank == 5);
+                    if (star5.Any())
+                    {
+                        bool isup = false;
+                        foreach (var item in star5)
+                        {
+                            if (@event.UpStar5.Contains(item.Name))
+                            {
+                                isup = true;
+                                count1++;
+                                if (time1 == new DateTime())
+                                {
+                                    time1 = item.Time;
+                                }
+                                break;
+                            }
+                        }
+                        if (!isup)
+                        {
+                            count2++;
+                            if (time2 == new DateTime())
+                            {
+                                time2 = star5.First().Time;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        count3++;
+                        if (time3 == new DateTime())
+                        {
+                            time3 = list.First().Time;
+                        }
+                    }
+                }
+            }
+            if (count1 != 0)
+            {
+                var info = new AchievementInfo
+                {
+                    Name = "最后一分钟的奇迹",
+                    Description = "在活动祈愿关闭前最后一分钟抽到当期Up5星",
+                    Comment = "有惊无险",
+                    IsFinished = true,
+                    FinishTime = time1,
+                    Total = $"总计 {count1}",
+                };
+                infos.Add(info);
+            }
+            if (count2 != 0)
+            {
+                var info = new AchievementInfo
+                {
+                    Name = "最后一分钟的奇迹？",
+                    Description = "在活动祈愿关闭前最后一分钟没抽到当期Up5星",
+                    Comment = "抽到了，但没完全抽到",
+                    IsFinished = true,
+                    FinishTime = time2,
+                    Total = $"总计 {count2}",
+                };
+                infos.Add(info);
+            }
+            if (count3 != 0)
+            {
+                var info = new AchievementInfo
+                {
+                    Name = "最后一分钟没有奇迹",
+                    Description = "在活动祈愿关闭前最后一分钟没抽到5星",
+                    IsFinished = true,
+                    FinishTime = time3,
+                    Total = $"总计 {count3}",
+                };
+                infos.Add(info);
+            }
+
+        }
 
 
 

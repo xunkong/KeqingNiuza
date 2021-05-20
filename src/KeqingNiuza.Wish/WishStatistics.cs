@@ -37,6 +37,36 @@ namespace KeqingNiuza.Wish
         public string GuaranteeType { get; set; }
 
         /// <summary>
+        /// 小保底数
+        /// </summary>
+        public int Count_XiaoBaoDi { get; set; }
+
+        /// <summary>
+        /// 大保底数
+        /// </summary>
+        public int Count_DaBaoDi { get; set; }
+
+        /// <summary>
+        /// 最大保底
+        /// </summary>
+        public int GuaranteeMax { get; set; }
+
+        /// <summary>
+        /// 最小保底
+        /// </summary>
+        public int GuaranteeMin { get; set; }
+
+        /// <summary>
+        /// 最大保底信息
+        /// </summary>
+        public List<StarDetail> GuaranteeMaxItems { get; set; }
+
+        /// <summary>
+        /// 最小保底信息
+        /// </summary>
+        public List<StarDetail> GuaranteeMinItems { get; set; }
+
+        /// <summary>
         /// 5星总数
         /// </summary>
         public int Star5Count { get; set; }
@@ -95,6 +125,16 @@ namespace KeqingNiuza.Wish
         /// 5星平均出货次数
         /// </summary>
         public double Average5 => (double)(Count - Guarantee) / Star5Count;
+
+        /// <summary>
+        /// 保底歪了的数量
+        /// </summary>
+        public int Count_BaoDiWai => Count_DaBaoDi;
+
+        /// <summary>
+        /// 保底不歪的数量
+        /// </summary>
+        public int Count_BaoDiBuWai => Count_XiaoBaoDi - Count_DaBaoDi;
 
         /// <summary>
         /// 5星详细列表

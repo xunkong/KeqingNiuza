@@ -8,11 +8,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         Name="Window_Main"
         Title="刻记牛杂店"
-        Width="1200"
+        Width="1220"
         Height="800"
         d:DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
         Closed="Window_Main_Closed"
-        Icon="/Resource/Other/logo_256.jpg"
+        Icon="{StaticResource logo}"
         Loaded="Window_Main_Loaded"
         StateChanged="Window_Main_StateChanged"
         UseLayoutRounding="True"
@@ -51,8 +51,10 @@
 
         <TextBlock Grid.Row="0"
                    Grid.Column="0"
-                   HorizontalAlignment="Center"
+                   Margin="30,0,0,0"
+                   HorizontalAlignment="Left"
                    VerticalAlignment="Center"
+                   FontSize="12"
                    Foreground="Purple"
                    Text="刻记牛杂店" />
 
@@ -68,11 +70,33 @@
                           Points="0 0 140 0"
                           Stroke="Purple"
                           StrokeThickness="0.6" />
+                <RadioButton x:Name="SideMenu_SettingView"
+                             Click="RadioButton_SideMenu_Click"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}"
+                             Tag="SettingView"
+                             Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center"
+                                   FontFamily="{StaticResource IconFamily}"
+                                   FontSize="16"
+                                   Text="{StaticResource Setting}" />
+                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="设置" />
+                    </StackPanel>
+                </RadioButton>
                 <RadioButton x:Name="SideMenu_AboutView"
                              Click="RadioButton_SideMenu_Click"
-                             Content="关于"
                              GroupName="SideMenu"
-                             Style="{StaticResource SideMenuRadioButton}" />
+                             Style="{StaticResource SideMenuRadioButton}"
+                             Tag="AboutView">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center"
+                                   FontFamily="{StaticResource IconFamily}"
+                                   FontSize="16"
+                                   Text="{StaticResource Info}" />
+                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="关于" />
+                    </StackPanel>
+                </RadioButton>
             </StackPanel>
 
 
@@ -82,26 +106,66 @@
                           Points="0 0 140 0"
                           Stroke="Purple"
                           StrokeThickness="0.6" />
-                <RadioButton x:Name="SideMenu_GachaAnalysisView"
-                             Click="RadioButton_SideMenu_Click"
-                             Content="祈愿总览"
-                             GroupName="SideMenu"
-                             Style="{StaticResource SideMenuRadioButton}" />
-                <RadioButton x:Name="SideMenu_WishOriginalDataView"
-                             Click="RadioButton_SideMenu_Click"
-                             Content="原始数据"
-                             GroupName="SideMenu"
-                             Style="{StaticResource SideMenuRadioButton}" />
-                <RadioButton x:Name="SideMenu_WishAchievementView"
-                             Click="RadioButton_SideMenu_Click"
-                             Content="祈愿成就"
-                             GroupName="SideMenu"
-                             Style="{StaticResource SideMenuRadioButton}" />
                 <RadioButton x:Name="SideMenu_WishSummaryView"
                              Click="RadioButton_SideMenu_Click"
-                             Content="新视图"
                              GroupName="SideMenu"
-                             Style="{StaticResource SideMenuRadioButton}" />
+                             Style="{StaticResource SideMenuRadioButton}"
+                             Tag="WishSummaryView">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="18"
+                              Height="18"
+                              VerticalAlignment="Center"
+                              Data="{StaticResource Summary}"
+                              Fill="Purple"
+                              Stretch="Uniform" />
+                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="统计" />
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton x:Name="SideMenu_WishOriginalDataView"
+                             Click="RadioButton_SideMenu_Click"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}"
+                             Tag="WishOriginalDataView">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="18"
+                              Height="18"
+                              VerticalAlignment="Center"
+                              Data="{StaticResource Sheet}"
+                              Fill="Purple"
+                              Stretch="Uniform" />
+                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="数据" />
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton x:Name="SideMenu_WishAchievementView"
+                             Click="RadioButton_SideMenu_Click"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}"
+                             Tag="WishAchievementView">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="18"
+                              Height="18"
+                              VerticalAlignment="Center"
+                              Data="{StaticResource Achievement}"
+                              Fill="Purple"
+                              Stretch="Uniform" />
+                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="成就" />
+                    </StackPanel>
+                </RadioButton>
+                <RadioButton x:Name="SideMenu_GachaAnalysisView"
+                             Click="RadioButton_SideMenu_Click"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}"
+                             Tag="GachaAnalysisView">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="18"
+                              Height="18"
+                              VerticalAlignment="Center"
+                              Data="{StaticResource PieChart}"
+                              Fill="Purple"
+                              Stretch="Uniform" />
+                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="饼图" />
+                    </StackPanel>
+                </RadioButton>
                 <Polyline Width="140"
                           Margin="0,2,0,2"
                           Points="0 0 140 0"
@@ -109,9 +173,19 @@
                           StrokeThickness="0.6" />
                 <RadioButton x:Name="SideMenu_MidiView"
                              Click="RadioButton_SideMenu_Click"
-                             Content="流浪大地的乐团"
                              GroupName="SideMenu"
-                             Style="{StaticResource SideMenuRadioButton}" />
+                             Style="{StaticResource SideMenuRadioButton}"
+                             Tag="MidiView">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="18"
+                              Height="18"
+                              VerticalAlignment="Center"
+                              Data="{StaticResource Music}"
+                              Fill="Purple"
+                              Stretch="Uniform" />
+                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="流浪大地的乐团" />
+                    </StackPanel>
+                </RadioButton>
             </StackPanel>
 
         </DockPanel>
@@ -141,7 +215,7 @@
                                    Text="{Binding SelectedUserData, Converter={StaticResource UidConverter}}" />
                         <Ellipse Width="28" Height="28" Margin="5,0,15,0">
                             <Ellipse.Fill>
-                                <ImageBrush ImageSource="{Binding SelectedUserData.Avatar, Converter={StaticResource AvatarConverter}}" />
+                                <ImageBrush ImageSource="{Binding SelectedUserData.Avatar, Converter={StaticResource ImageConverter}}" />
                             </Ellipse.Fill>
                         </Ellipse>
                     </StackPanel>
@@ -227,12 +301,12 @@
         <!--  个人信息详情  -->
         <ce:PopupEx x:Name="Popup_Uid"
                     AllowsTransparency="True"
-                    DataContext="{Binding SelectedUserData}"
-                    Placement="Bottom"
+                    Closed="Popup_Uid_Closed"
+                    PlacementRectangle="-193 34 0 0"
                     PlacementTarget="{Binding ElementName=Button_Uid}"
                     StaysOpen="False">
-            <Border BorderBrush="Gray" BorderThickness="1">
-                <Grid Width="315" Height="200" Background="White">
+            <Border BorderBrush="LightGray" BorderThickness="1">
+                <Grid Width="315" Height="Auto" Background="White">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40" />
                         <RowDefinition />
@@ -259,52 +333,85 @@
                              Grid.Column="0"
                              Width="80"
                              Height="80"
+                             Margin="0,10,0,10"
                              Cursor="Hand"
                              MouseLeftButtonUp="Ellipse_Avatar_MouseLeftButtonUp"
                              Stroke="Gray">
                         <Ellipse.Fill>
-                            <ImageBrush ImageSource="{Binding Avatar, Converter={StaticResource AvatarConverter}}" />
+                            <ImageBrush ImageSource="{Binding SelectedUserData.Avatar, Converter={StaticResource ImageConverter}}" />
                         </Ellipse.Fill>
                     </Ellipse>
-                    <StackPanel Grid.Row="1" Grid.Column="1">
-                        <TextBlock Margin="20,20,0,0" FontSize="20" Text="{Binding Uid}" />
-                        <TextBlock Margin="20,5,0,0" Foreground="Gray" Text="最后更新数据的时间" />
-                        <TextBlock Margin="20,5,0,0" Text="{Binding LastUpdateTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="20,10,0,0">
+                        <TextBlock Margin="0,0,0,0" FontSize="20" Text="{Binding SelectedUserData.Uid}" />
+                        <TextBlock Margin="0,5,0,0" Foreground="Gray" Text="最后更新数据的时间" />
+                        <TextBlock Margin="0,5,0,0" Text="{Binding SelectedUserData.LastUpdateTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                        <TextBlock Margin="0,5,0,0" Foreground="Gray" Text="{Binding LoadWishDataProgress}" />
                     </StackPanel>
-                    <UniformGrid Grid.Row="2"
+                    <UniformGrid Grid.Row="3"
                                  Grid.Column="0"
                                  Grid.ColumnSpan="2"
                                  Background="#F3F3F3"
-                                 Columns="3"
+                                 Columns="2"
                                  Rows="1">
                         <Button x:Name="Button_Load"
                                 Click="Button_Load_Click"
                                 Content="加载数据"
                                 Style="{StaticResource BrushButtonStyle}" />
-                        <Button x:Name="Button_Update"
-                                Click="Button_Update_Click"
-                                Content="更新数据"
-                                Style="{StaticResource BrushButtonStyle}" />
+
                         <Button x:Name="Button_Export"
                                 Click="Button_Export_Click"
                                 Content="导出数据"
                                 Style="{StaticResource BrushButtonStyle}" />
                     </UniformGrid>
+                    <!--  更换Uid列表  -->
+                    <Grid x:Name="Grid_UserData"
+                          Grid.RowSpan="4"
+                          Grid.ColumnSpan="2"
+                          Visibility="Collapsed">
+                        <ListView x:Name="ListView_UserData" ItemsSource="{Binding UserDataList}" MouseDoubleClick="ListView_UserData_MouseDoubleClick">
+                            <ListView.View>
+                                <GridView>
+                                    <GridViewColumn>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Ellipse Width="30" Height="30" Stroke="Gray">
+                                                    <Ellipse.Fill>
+                                                        <ImageBrush ImageSource="{Binding Avatar, Converter={StaticResource ImageConverter}}" />
+                                                    </Ellipse.Fill>
+                                                </Ellipse>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn DisplayMemberBinding="{Binding Uid}" Header="Uid" />
+                                    <GridViewColumn DisplayMemberBinding="{Binding LastUpdateTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" Header="最后更新时间" />
+                                </GridView>
+                            </ListView.View>
+                        </ListView>
+                        <Button Name="Button_AddUid"
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Click="Button_AddUid_Click"
+                                Style="{StaticResource ChangeUidButtonStyle}">
+                            <TextBlock Margin="10,14,10,14" Text="添加Uid" />
+                        </Button>
+                    </Grid>
+
                 </Grid>
             </Border>
         </ce:PopupEx>
 
-
         <!--  云备份详情  -->
         <ce:PopupEx x:Name="Popup_Cloud"
                     AllowsTransparency="True"
-                    Placement="Bottom"
+                    PlacementRectangle="-195 34 0 0"
                     PlacementTarget="{Binding ElementName=Button_Cloud}"
                     StaysOpen="False">
             <Border Width="240"
                     Height="200"
                     Background="White"
-                    BorderBrush="Gray"
+                    BorderBrush="LightGray"
                     BorderThickness="1">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -315,7 +422,7 @@
                     <Image Grid.Row="0"
                            Margin="5"
                            HorizontalAlignment="Left"
-                           Source="{StaticResource JianguoyunIcon}" />
+                           Source="{StaticResource Jianguoyun}" />
                     <Button Name="Button_Logout"
                             Grid.Row="0"
                             HorizontalAlignment="Right"
@@ -333,18 +440,37 @@
                                    HorizontalAlignment="Left"
                                    Foreground="Gray"
                                    Text="最后备份时间" />
-                        <TextBlock HorizontalAlignment="Left" Foreground="Gray" Text="{Binding CloudClient.LastSyncTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                        <TextBlock HorizontalAlignment="Left" Text="{Binding CloudClient.LastSyncTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
 
                     </StackPanel>
-                    <Button x:Name="Button_Backup"
-                            Grid.Row="2"
-                            Click="Button_Backup_Click"
-                            Content="备份"
-                            Style="{StaticResource BrushButtonStyle}" />
+                    <UniformGrid Grid.Row="2"
+                                 Background="#F3F3F3"
+                                 Columns="2"
+                                 Rows="1">
+                        <Button x:Name="Button_Backup"
+                                Click="Button_Backup_Click"
+                                Content="备份"
+                                Style="{StaticResource BrushButtonStyle}" />
+                        <Button x:Name="Button_Restore"
+                                Click="Button_Restore_Click"
+                                Content="还原"
+                                Style="{StaticResource BrushButtonStyle}">
+                            <Button.ToolTip>
+                                <TextBlock Text="还原最新备份" />
+                            </Button.ToolTip>
+                        </Button>
+                    </UniformGrid>
+
                 </Grid>
             </Border>
         </ce:PopupEx>
 
+
+        <hc:LoadingCircle Grid.Row="1"
+                          Grid.Column="1"
+                          Grid.ColumnSpan="2"
+                          Foreground="Gray"
+                          Visibility="{Binding ViewContent, Converter={StaticResource Object2VisibilityReConverter}}" />
 
 
     </Grid>

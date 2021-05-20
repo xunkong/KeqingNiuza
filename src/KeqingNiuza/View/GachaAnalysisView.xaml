@@ -35,6 +35,11 @@
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
         </ScrollViewer>
-
+        <TextBlock Grid.Row="1"
+                   Margin="0,0,0,4"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Bottom"
+                   Foreground="Gray"
+                   Text="计划在后续更新中删除此页" />
     </Grid>
 </UserControl>

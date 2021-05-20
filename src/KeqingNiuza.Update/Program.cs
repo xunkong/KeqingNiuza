@@ -29,8 +29,8 @@ namespace KeqingNiuza.Update
             }
             if (args[0] == "KeqingNiuza.Update")
             {
-                Thread.Sleep(1000);
-                var proes = Process.GetProcessesByName("刻记牛杂店");
+                Thread.Sleep(500);
+                var proes = Process.GetProcessesByName("KeqingNiuza");
                 if (proes.Any())
                 {
                     Array.ForEach(proes, x => x.Kill());

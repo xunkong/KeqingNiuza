@@ -88,8 +88,10 @@ namespace KeqingNiuza.Wish
             statistics.Guarantee = GetGuarantee(datas);
             statistics.GuaranteeType = GetGuaranteeType(datas);
             statistics.Star5List = GetDetailList(datas, 5);
+            DefineColor(statistics.Star5List);
             statistics.Star5Count = statistics.Star5List.Count;
             statistics.Star4List = GetDetailList(datas, 4);
+            DefineColor(statistics.Star4List);
             statistics.Star4Count = statistics.Star4List.Count;
             statistics.Character5Count = datas.Where(x => x.Rank == 5 && x.ItemType == "角色").Count();
             statistics.Weapon5Count = datas.Where(x => x.Rank == 5 && x.ItemType == "武器").Count();
@@ -97,6 +99,25 @@ namespace KeqingNiuza.Wish
             statistics.Weapon4Count = datas.Where(x => x.Rank == 4 && x.ItemType == "武器").Count();
             statistics.Star3Count = datas.Where(x => x.Rank == 3).Count();
             statistics.Weapon3Count = statistics.Star3Count;
+        }
+
+
+        private static void DefineColor(List<StarDetail> list)
+        {
+            var random = new Random();
+            var brushList = Const.BrushList.OrderBy(x => random.Next()).ToList();
+            int brushIndex = 0;
+            var groups = list.GroupBy(x => x.Name);
+            foreach (var group in groups)
+            {
+                if (brushIndex >= brushList.Count)
+                {
+                    brushIndex = 0;
+                    brushList = Const.BrushList.OrderBy(x => random.Next()).ToList();
+                }
+                group.ToList().ForEach(x => x.Brush = brushList[brushIndex]);
+                brushIndex++;
+            }
         }
 
 

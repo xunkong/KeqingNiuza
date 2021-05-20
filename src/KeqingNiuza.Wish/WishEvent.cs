@@ -25,14 +25,7 @@ namespace KeqingNiuza.Wish
         {
             get
             {
-                if (WishType == WishType.WeaponEvent)
-                {
-                    return $"{Version:F1} {UpStar5[0]} {UpStar5[1]}";
-                }
-                else
-                {
-                    return $"{Version:F1} {Name}";
-                }
+                return $"{Version:F1} {Name}";
             }
         }
 

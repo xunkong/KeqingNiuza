@@ -137,15 +137,16 @@ namespace KeqingNiuza.ViewModel
 
         private bool hotkey;
         private bool disposedValue;
-        private IntPtr hWnd;
-        private HwndSource hwndSource;
+        private readonly IntPtr hWnd;
+        private readonly HwndSource hwndSource;
 
         public MidiViewModel()
         {
             var files = Directory.GetFiles("resource\\midi").ToList();
-            var infos = files.ConvertAll(x => new MidiFileInfo(x));
+            var infos = files.ConvertAll(x => new MidiFileInfo(x)).OrderBy(x => x.Name);
             MidiFileInfoList = new ObservableCollection<MidiFileInfo>(infos);
             MidiPlayer = new MidiPlayer("YuanShen");
+            SelectedMidiFile = MidiFileInfoList.First();
             hWnd = Process.GetCurrentProcess().MainWindowHandle;
             hotkey = Util.RegisterHotKey(hWnd);
             hwndSource = HwndSource.FromHwnd(hWnd);
@@ -213,7 +214,7 @@ namespace KeqingNiuza.ViewModel
                 StateText = "需要管理员权限";
                 TextBlock_Color = "Red";
                 Button_Restart_Content = "重启";
-                Tooltip_Content = "原神以管理员权限启动，软件需要管理员权限才能正常演奏";
+                Tooltip_Content = "软件会用管理员权限干什么？\n《原神》以管理员权限启动，软件需要管理员权限才能向游戏窗口发送键盘信息";
             }
         }
 
@@ -236,13 +237,14 @@ namespace KeqingNiuza.ViewModel
             {
                 MidiPlayer?.Dispose();
                 MidiPlayer = new MidiPlayer("YuanShen");
+                SelectedMidiFile = MidiFileInfoList.First();
                 RefreshState();
             }
             if (!hotkey)
             {
-                Util.UnregisterHotKey(hWnd);
+                _ = Util.UnregisterHotKey(hWnd);
                 hotkey = Util.RegisterHotKey(hWnd);
-                RestartOrRefresh();
+                RefreshState();
             }
         }
 
@@ -325,6 +327,12 @@ namespace KeqingNiuza.ViewModel
                     MidiPlayer.ChangeFileAndPlay(MidiFileInfoList[index + 1]);
                 }
             }
+        }
+
+
+        public void MoveToTime(int milliSeconds)
+        {
+            MidiPlayer?.MoveToTime(milliSeconds);
         }
 
 
