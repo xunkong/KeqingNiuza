@@ -63,7 +63,6 @@ namespace KeqingNiuza.ViewModel
             }
         }
 
-        //todo
         private List<object> _viewContentList;
 
 
@@ -84,8 +83,13 @@ namespace KeqingNiuza.ViewModel
             }
         }
 
+        public static UserData GetSelectedUserData()
+        {
+            return _SelectedUserData;
+        }
 
-        private UserData _SelectedUserData;
+
+        private static UserData _SelectedUserData;
         public UserData SelectedUserData
         {
             get { return _SelectedUserData; }
@@ -357,8 +361,24 @@ namespace KeqingNiuza.ViewModel
                 }
                 else
                 {
-                    ViewContent = assembly.CreateInstance(type.FullName, false, BindingFlags.CreateInstance, null, new object[] { SelectedUserData }, null, null);
-                    _viewContentList.Add(ViewContent);
+                    try
+                    {
+                        ViewContent = assembly.CreateInstance(type.FullName);
+                        _viewContentList.Add(ViewContent);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex.Message == "没有数据")
+                        {
+                            ViewContent = new NoUidView();
+                        }
+                        else
+                        {
+                            Growl.Warning(ex.Message);
+                            Log.OutputLog(LogType.Warning, "ChangeViewContent", ex);
+                        }
+                    }
+
                 }
             }
         }
@@ -372,9 +392,26 @@ namespace KeqingNiuza.ViewModel
         private void ReloadViewContent()
         {
             var type = ViewContent.GetType();
-            ViewContent = type.Assembly.CreateInstance(type.FullName, false, BindingFlags.CreateInstance, null, new object[] { SelectedUserData }, null, null);
-            _viewContentList.Clear();
-            _viewContentList.Add(ViewContent);
+            try
+            {
+                ViewContent = type.Assembly.CreateInstance(type.FullName);
+                _viewContentList.Clear();
+                _viewContentList.Add(ViewContent);
+
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "没有数据")
+                {
+                    ViewContent = new NoUidView();
+                }
+                else
+                {
+                    Growl.Warning(ex.Message);
+                    Log.OutputLog(LogType.Warning, "ReloadViewContent", ex);
+                }
+            }
+
         }
 
 
@@ -404,6 +441,8 @@ namespace KeqingNiuza.ViewModel
                 ReloadViewContent();
             }
         }
+
+
 
     }
 }

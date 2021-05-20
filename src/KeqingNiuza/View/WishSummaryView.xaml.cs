@@ -26,15 +26,15 @@ namespace KeqingNiuza.View
         public WishSummaryViewModel ViewModel { get; set; }
         public UserData UserData { get; set; }
 
+
         public WishSummaryView()
         {
             InitializeComponent();
-        }
-
-        public WishSummaryView(UserData userData)
-        {
-            InitializeComponent();
-            UserData = userData;
+            UserData = MainWindowViewModel.GetSelectedUserData();
+            if (UserData == null)
+            {
+                throw new NullReferenceException("没有数据");
+            }
             ViewModel = new WishSummaryViewModel(UserData);
             DataContext = ViewModel;
         }

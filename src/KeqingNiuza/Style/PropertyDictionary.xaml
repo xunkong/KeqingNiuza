@@ -14,6 +14,13 @@
     <s:String x:Key="Export">&#xE72D;</s:String>
     <s:String x:Key="ChevronDown">&#xE70D;</s:String>
     <s:String x:Key="ChevronUp">&#xE70E;</s:String>
+    <s:String x:Key="PlaySolid">&#xF5B0;</s:String>
+    <s:String x:Key="BackSolidBold">&#xF8AC;</s:String>
+    <s:String x:Key="ForwardSolidBold">&#xF8AD;</s:String>
+    <s:String x:Key="PauseBold">&#xF8AE;</s:String>
+    <s:String x:Key="MusicInfo">&#xE90B;</s:String>
+    <s:String x:Key="PlayBadge12">&#xEDB5;</s:String>
+
 
     <FontFamily x:Key="IconFamily">Segoe MDL2 Assets</FontFamily>
 
@@ -28,6 +35,9 @@
     <c:UidConverter x:Key="UidConverter" />
     <c:WishTypeConverter x:Key="WishTypeConverter" />
     <c:AvatarConverter x:Key="AvatarConverter" />
+    <c:MilliSecondToTimeConverter x:Key="MilliSecondToTimeConverter" />
+    <c:TimeSpanToSliderValueConverter x:Key="TimeSpanToSliderValueConverter" />
+    <c:IntToNoteStringConverter x:Key="IntToNoteStringConverter" />
 
     <ImageSource x:Key="JianguoyunIcon">/Resource/Other/JianguoyuLogo.png</ImageSource>
 

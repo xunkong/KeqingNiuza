@@ -82,10 +82,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Converter\AvatarConverter.cs" />
-    <Compile Include="Converter\JsonConverter.cs" />
+    <Compile Include="Converter\IntToNoteStringConverter.cs" />
+    <Compile Include="Converter\MilliSecondToTimeConverter.cs" />
+    <Compile Include="Converter\TimeSpanToSliderValueConverter.cs" />
     <Compile Include="Converter\UidConverter.cs" />
     <Compile Include="Converter\WishTypeConverter.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="ViewModel\MidiViewModel.cs" />
     <Compile Include="View\GachaAnalysisView.xaml.cs">
       <DependentUpon>GachaAnalysisView.xaml</DependentUpon>
     </Compile>
@@ -422,7 +425,132 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="resource\avatar\Eula.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\avatar\Yanfei.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\midi\Beyond - 海阔天空.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\Doki Doki Literature Club!.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\lovelive - Snow Halation.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\lovelive - 爱してるばんざい.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\Tempestissimo.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\YOASOBI - ハルジオン.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\YOASOBI - 夜に駆ける.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\YOASOBI - 群青.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\东方Project - どうして....mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\东方Project - 妖怪之山.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\东方Project - 月まで届け、不死の煙.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\久石让 - Summer.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\久石让 - 天空之城.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\初音未来 - magnet.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\初音未来 - 千本樱.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\初音未来 - 朧月.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\初音未来 - 活动小丑.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\初音未来 - 深海少女.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\初音未来 - 脑浆炸裂女孩.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\千年龙诗.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\原神 - 疾如猛火.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\国际歌.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\夜的钢琴曲五 - 石进.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\崩坏3rd - Rubia.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\旋转吧！雪月花 - 机巧少女不会受伤.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\未闻花名 - secret base 你给我的所有.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\某科学的超电磁炮 - only my railgun.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\泽野弘之 - aLIEZ.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\游戏人生 - There is a reason.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\甘城光辉游乐园OST - ソリテュード.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\白色相簿2 - After All 缀る想い.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\紫罗兰永恒花园 - Sincerely.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\缘之空OST - Old Memory.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\缘之空OST - 遠い空へ.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\青鸟 - 火影忍者.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\鬼灭之刃 - 红莲华.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\魔法少女小圆 - コネクト.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="resource\midi\鸟之诗 - Air.mid">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rd /s /q ca-ES
@@ -435,7 +563,7 @@ rd /s /q pt-BR
 rd /s /q ru
 rd /s /q tr
 
-if $(ConfigurationName) == Release del *.pdb *.xml *.dll.config
+if $(ConfigurationName) == Release del *.pdb *.xml *.dll.config Update.exe.config
 if $(ConfigurationName) == Release mkdir dll
 if $(ConfigurationName) == Release move /Y *.dll .\dll
 if $(ConfigurationName) == Release move /Y Update.exe ..\</PostBuildEvent>

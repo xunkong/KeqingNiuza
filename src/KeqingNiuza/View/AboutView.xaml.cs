@@ -37,13 +37,6 @@ namespace KeqingNiuza.View
             TextBlock_Version_All.Text = Const.Version.ToString();
         }
 
-        public AboutView(UserData userData)
-        {
-            InitializeComponent();
-            TextBlock_Version.Text = "版本：" + Const.Version.ToString(3);
-            TextBlock_Version_All.Text = Const.Version.ToString();
-        }
-
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             var link = sender as Hyperlink;

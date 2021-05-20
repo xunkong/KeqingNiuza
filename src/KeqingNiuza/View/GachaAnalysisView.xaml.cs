@@ -30,18 +30,15 @@ namespace KeqingNiuza.View
         public GachaAnalysisView()
         {
             InitializeComponent();
+            UserData = MainWindowViewModel.GetSelectedUserData();
+            if (UserData == null)
+            {
+                throw new NullReferenceException("没有数据");
+            }
+            ToggleButton_HiddenNoviceWish.IsChecked = UserData.HiddenNoviceWish;
             _PieChartViewModels = new ObservableCollection<PieChartViewModel>();
             ItemsControl_PieChartView.DataContext = this;
-        }
-
-        public GachaAnalysisView(UserData userData)
-        {
-            InitializeComponent();
-            UserData = userData;
-            ToggleButton_HiddenNoviceWish.IsChecked = userData.HiddenNoviceWish;
-            _PieChartViewModels = new ObservableCollection<PieChartViewModel>();
-            ItemsControl_PieChartView.DataContext = this;
-            var wishList = LocalWishLogLoader.Load(userData.WishLogFile);
+            var wishList = LocalWishLogLoader.Load(UserData.WishLogFile);
             var analyzer = new PieChartAnalyzer(wishList);
             PieChartViewModels.Clear();
             if (analyzer.CharacterEventStatistics.Count > 0)

@@ -30,15 +30,15 @@ namespace KeqingNiuza.View
         public WishOriginalDataViewModel ViewModel { get; set; }
         public UserData UserData { get; set; }
 
+      
         public WishOriginalDataView()
         {
             InitializeComponent();
-        }
-
-        public WishOriginalDataView(UserData userData)
-        {
-            InitializeComponent();
-            UserData = userData;
+            UserData = MainWindowViewModel.GetSelectedUserData();
+            if (UserData == null)
+            {
+                throw new NullReferenceException("没有数据");
+            }
         }
 
 

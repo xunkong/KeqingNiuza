@@ -6,10 +6,10 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using static KeqingNiuza.Midi.Native.User32;
-using static KeqingNiuza.Midi.Native.WindowMessage;
+using static KeqingNiuza.Midi.Native.Msg;
 using static KeqingNiuza.Midi.Native.VirtualKey;
-using NAudio.Midi;
 using KeqingNiuza.Midi.Native;
+using static KeqingNiuza.Midi.Native.FsModifier;
 
 namespace KeqingNiuza.Midi
 {
@@ -39,23 +39,46 @@ namespace KeqingNiuza.Midi
             startInfo.WorkingDirectory = Environment.CurrentDirectory;
             startInfo.FileName = Process.GetCurrentProcess().ProcessName;
             startInfo.Verb = "runas";
-            try
-            {
-                Process p = Process.Start(startInfo);
-                Environment.Exit(0);
-            }
-            catch (System.ComponentModel.Win32Exception ex)
-            {
-                throw ex;
-            }
+            Process p = Process.Start(startInfo);
+            Environment.Exit(0);
         }
 
-
-        internal static double GetTicksPerBeat(int ticksPerQuarterNote, TimeSignatureEvent timeSignature)
+        public static bool RegisterHotKey(IntPtr hWnd)
         {
-            var ticksPerBeat = ticksPerQuarterNote * 4 / (1 << timeSignature.Denominator);
-            return ticksPerBeat;
+            if (!User32.RegisterHotKey(hWnd, 1000, (uint)(MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT), (uint)VK_G))
+            {
+                return false;
+            }
+            if (!User32.RegisterHotKey(hWnd, 1001, (uint)(MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT), (uint)VK_LEFT))
+            {
+                return false;
+            }
+            if (!User32.RegisterHotKey(hWnd, 1002, (uint)(MOD_CONTROL | MOD_SHIFT | MOD_NOREPEAT), (uint)VK_RIGHT))
+            {
+                return false;
+            }
+            return true;
         }
+
+
+        public static bool UnregisterHotKey(IntPtr hWnd)
+        {
+            if (!User32.UnregisterHotKey(hWnd, 1000))
+            {
+                return false;
+            }
+            if (!User32.UnregisterHotKey(hWnd, 1001))
+            {
+                return false;
+            }
+            if (!User32.UnregisterHotKey(hWnd, 1002))
+            {
+                return false;
+            }
+            return true;
+        }
+
+
 
         /// <summary>
         /// Note到按键的映射
@@ -67,10 +90,12 @@ namespace KeqingNiuza.Midi
             return Const.NoteToVisualKeyDictionary[noteNumber];
         }
 
-        internal static void Postkey(IntPtr hWnd, int noteNumber)
+        internal static void Postkey(IntPtr hWnd, int noteNumber, bool allowBackground = false)
         {
-            // todo not finish
-            PostMessage(hWnd, WM_ACTIVATE, 2, 0);
+            if (allowBackground)
+            {
+                PostMessage(hWnd, WM_ACTIVATE, 1, 0);
+            }
             PostMessage(hWnd, WM_KEYDOWN, (uint)NoteNumberToVisualKey(noteNumber), 0x1e0001);
             PostMessage(hWnd, WM_CHAR, (uint)NoteNumberToVisualKey(noteNumber), 0x1e0001);
             PostMessage(hWnd, WM_KEYUP, (uint)NoteNumberToVisualKey(noteNumber), 0xc01e0001);

@@ -11,19 +11,21 @@ namespace KeqingNiuza.Midi.Native
     internal static class User32
     {
         [DllImport("user32.dll", SetLastError = true)]
-        internal static extern bool PostMessage(IntPtr hWnd, WindowMessage Msg, IntPtr wParam, IntPtr lParam);
+        internal static extern bool PostMessage(IntPtr hWnd, Msg Msg, IntPtr wParam, IntPtr lParam);
 
 
         [DllImport("user32.dll", SetLastError = true)]
-        internal static extern bool PostMessage(IntPtr hWnd, WindowMessage Msg, uint wParam, uint lParam);
+        internal static extern bool PostMessage(IntPtr hWnd, Msg Msg, uint wParam, uint lParam);
 
         [DllImport("user32.dll", SetLastError = true)]
-        internal static extern bool SendMessage(IntPtr hWnd, WindowMessage Msg, IntPtr wParam, IntPtr lParam);
+        internal static extern bool SendMessage(IntPtr hWnd, Msg Msg, IntPtr wParam, IntPtr lParam);
 
 
         [DllImport("user32.dll", SetLastError = true)]
-        internal static extern bool SendMessage(IntPtr hWnd, WindowMessage Msg, uint wParam, uint lParam);
+        internal static extern bool SendMessage(IntPtr hWnd, Msg Msg, uint wParam, uint lParam);
 
+        [DllImport("user32.dll", SetLastError = true)]
+        public static extern void SwitchToThisWindow(IntPtr hWnd, bool fUnknown);
 
         /// <returns>0 means noerror, others is error code</returns>
         [DllImport("winmm.dll")]
@@ -32,6 +34,12 @@ namespace KeqingNiuza.Midi.Native
         /// <returns>0 means noerror, others is error code</returns>
         [DllImport("winmm.dll")]
         internal static extern uint timeEndPeriod(uint uPeriod);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        internal static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+
+        [DllImport("user32.dll", SetLastError = true)]
+        internal static extern bool UnregisterHotKey(IntPtr hWnd, int id);
 
     }
 }

@@ -1,28 +1,46 @@
+using KeqingNiuza.Midi.Native;
+using Melanchall.DryWetMidi.Core;
+using Melanchall.DryWetMidi.Devices;
+using Melanchall.DryWetMidi.Interaction;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using NAudio.Midi;
 
 namespace KeqingNiuza.Midi
 {
-    public class MidiPlayer
+    public class MidiPlayer : INotifyPropertyChanged, IDisposable
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
 
-        /// <summary>
-        /// Midi文件路径
-        /// </summary>
-        public string FilePath { get; private set; }
+
+        public MidiFileInfo MidiFileInfo { get; private set; }
 
 
         /// <summary>
         /// Midi文件名
         /// </summary>
-        public string FileName { get; private set; }
+        private string _Name;
+        public string Name
+        {
+            get { return _Name; }
+            set
+            {
+                _Name = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         /// <summary>
@@ -34,100 +52,290 @@ namespace KeqingNiuza.Midi
         /// <summary>
         /// 演奏状态
         /// </summary>
-        public PlayState PlayState { get; private set; }
-
-        /// <summary>
-        /// Midi文件总时间，以毫秒表示
-        /// </summary>
-        public long TotalTimeInMilliseconds { get; private set; }
-
-        /// <summary>
-        /// Midi文件正在演奏的时间点，以毫秒表示
-        /// </summary>
-        public long NowTimeInMilloseconds { get; private set; }
-
-
-
-
-
-        /// <summary>
-        /// 后台演奏线程
-        /// </summary>
-        private static Thread _playingThread;
-
-
-        private MidiFile _midiFile;
-
-        /// <summary>
-        /// midi文件中每tick代表的毫秒数
-        /// </summary>
-        private double _millisecondsPerTicks;
-
-        /// <summary>
-        /// 系统时钟中当前时刻的tick
-        /// </summary>
-        private long nowTimestamp => Stopwatch.GetTimestamp();
-
-        /// <summary>
-        /// 系统时钟的频率
-        /// </summary>
-        private long frequency => Stopwatch.Frequency;
-
-        /// <summary>
-        /// 此轮演奏开始时系统时钟的tick
-        /// </summary>
-        private long _startTimestamp;
-
-        /// <summary>
-        /// 此轮演奏从文件中的哪一个时间点开始，以毫秒表示
-        /// </summary>
-        private long _midiStartPointInMilliseconds;
-
-
-        public MidiPlayer()
+        private bool _IsPlaying;
+        public bool IsPlaying
         {
-
-        }
-
-
-        public void Play() { }
-
-
-        public void Play(uint startSeconds) { }
-
-        public void Pause() { }
-
-        public void Stop() { }
-
-
-        public void ChangeFile()
-        {
-            if (_playingThread != null)
+            get { return _IsPlaying; }
+            set
             {
-                _playingThread.Abort();
-            }
-
-        }
-
-
-        private void PlayBackground()
-        {
-            switch (PlayState)
-            {
-                case PlayState.Stop:
-                    break;
-                case PlayState.Playing:
+                if (_playback == null)
+                {
+                    return;
+                }
+                if (_IsPlaying == value)
+                {
+                    return;
+                }
+                if (value)
+                {
+                    if (AutoSwitchToGenshinWindow)
                     {
-
+                        User32.SwitchToThisWindow(_hWnd, true);
+                        Thread.Sleep(100);
                     }
-                    break;
-                case PlayState.Pause:
-                    Thread.Sleep(Timeout.Infinite);
-                    break;
-                default:
-                    break;
+                    _playback.Start();
+                }
+                else
+                {
+                    _playback.Stop();
+                    _timeWatcher.Stop();
+                }
+                _IsPlaying = value;
+                OnPropertyChanged();
             }
         }
+
+
+        /// <summary>
+        /// Midi文件总时间，以秒为单位
+        /// </summary>
+        private TimeSpan _TotalTime;
+        public TimeSpan TotalTime
+        {
+            get { return _TotalTime; }
+            set
+            {
+                _TotalTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        /// <summary>
+        /// Midi文件正在演奏的时间点，以秒单位
+        /// </summary>
+        private TimeSpan _CurrentTime;
+        public TimeSpan CurrentTime
+        {
+            get { return _CurrentTime; }
+            set
+            {
+                _CurrentTime = value;
+                _playback?.MoveToTime(new MetricTimeSpan(value));
+                OnPropertyChanged();
+            }
+        }
+
+
+        private bool _AllowPlayBackground;
+        public bool AllowPlayBackground
+        {
+            get { return _AllowPlayBackground; }
+            set
+            {
+                _AllowPlayBackground = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private bool _AutoSwitchToGenshinWindow;
+        public bool AutoSwitchToGenshinWindow
+        {
+            get { return _AutoSwitchToGenshinWindow; }
+            set
+            {
+                _AutoSwitchToGenshinWindow = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double _Speed = 1;
+        public double Speed
+        {
+            get { return _Speed; }
+            set
+            {
+                if (_playback == null || IsPlaying)
+                {
+                    return;
+                }
+                if (value > 0)
+                {
+                    _playback.Speed = value;
+                    _timeWatcher.PollingInterval = new TimeSpan(0, 0, 0, 0, (int)(1000 / value));
+                    _Speed = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        private int _NoteLevel = 0;
+        public int NoteLevel
+        {
+            get { return _NoteLevel; }
+            set
+            {
+                _NoteLevel = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private bool disposed = false;
+
+        private Playback _playback;
+
+        private Process _process;
+
+        private IntPtr _hWnd;
+
+        private PlaybackCurrentTimeWatcher _timeWatcher;
+
+
+        public MidiPlayer(string processName)
+        {
+            var pros = Process.GetProcessesByName(processName);
+            if (pros.Any())
+            {
+                _process = pros[0];
+                CanPlay = true;
+                _process.Exited += GenshinExited;
+                _hWnd = _process.MainWindowHandle;
+            }
+            _timeWatcher = PlaybackCurrentTimeWatcher.Instance;
+            _timeWatcher.PollingInterval = new TimeSpan(0, 0, 1);
+            _timeWatcher.CurrentTimeChanged += _watcher_CurrentTimeChanged;
+        }
+
+
+        ~MidiPlayer()
+        {
+            Dispose(false);
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+            {
+                return;
+            }
+            if (disposing)
+            {
+                _playback?.Dispose();
+                _timeWatcher?.Dispose();
+            }
+            disposed = true;
+        }
+
+
+
+        private void _watcher_CurrentTimeChanged(object sender, PlaybackCurrentTimeChangedEventArgs e)
+        {
+            CurrentTime = e.Times.First().Time as MetricTimeSpan;
+        }
+
+        private void GenshinExited(object sender, EventArgs e)
+        {
+            CanPlay = false;
+            _playback?.Dispose();
+        }
+
+        public void Play()
+        {
+            _playback?.Start();
+        }
+
+        public void Play(int startSeconds)
+        {
+            var time = new MetricTimeSpan(0, 0, startSeconds);
+            if (_playback.IsRunning)
+            {
+                _playback.MoveToTime(time);
+            }
+            else
+            {
+                _playback.PlaybackStart = time;
+
+                _playback.Start();
+
+            }
+
+        }
+
+
+
+        private void _playback_Stopped(object sender, EventArgs e)
+        {
+            IsPlaying = false;
+            _timeWatcher.Stop();
+        }
+
+        private void _playback_Started(object sender, EventArgs e)
+        {
+            IsPlaying = true;
+            _timeWatcher.Start();
+        }
+
+        public void ChangeFile(MidiFileInfo info)
+        {
+            MidiFileInfo = info;
+            Name = info.Name;
+            CurrentTime = new TimeSpan();
+            _playback?.Dispose();
+            TotalTime = info.MidiFile.GetDuration<MetricTimeSpan>();
+            _playback = info.MidiFile.GetPlayback();
+            _playback.Speed = Speed;
+            _playback.InterruptNotesOnStop = true;
+            _playback.EventPlayed += NoteEventPlayed;
+            _playback.Started += _playback_Started;
+            _playback.Stopped += _playback_Stopped;
+            _playback.Finished += _playback_Finished;
+            _timeWatcher.RemoveAllPlaybacks();
+            _timeWatcher.AddPlayback(_playback, TimeSpanType.Metric);
+        }
+
+        public void ChangeFileAndPlay(MidiFileInfo info)
+        {
+            ChangeFile(info);
+            IsPlaying = true;
+        }
+
+        private void _playback_Finished(object sender, EventArgs e)
+        {
+            IsPlaying = false;
+            _timeWatcher.Stop();
+            CurrentTime = new TimeSpan();
+        }
+
+        private void NoteEventPlayed(object sender, MidiEventPlayedEventArgs e)
+        {
+            if (e.Event.EventType == MidiEventType.NoteOn)
+            {
+                var note = e.Event as NoteOnEvent;
+                var num = (int)note.NoteNumber + NoteLevel;
+                while (true)
+                {
+                    if (num < 48)
+                    {
+                        num += 12;
+                    }
+                    if (num > 83)
+                    {
+                        num -= 12;
+                    }
+                    if (num >= 48 || num <= 83)
+                    {
+                        break;
+                    }
+                }
+                if (Const.NoteToVisualKeyDictionary.ContainsKey(num))
+                {
+                    Util.Postkey(_hWnd, num, AllowPlayBackground);
+                }
+            }
+        }
+
+
+
+
 
     }
 }

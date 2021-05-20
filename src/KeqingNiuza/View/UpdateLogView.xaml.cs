@@ -26,10 +26,7 @@ namespace KeqingNiuza.View
             InitializeComponent();
         }
 
-        public UpdateLogView(UserData userData)
-        {
-            InitializeComponent();
-        }
+       
 
     }
 }

@@ -183,13 +183,15 @@
                     Click="Button_Minimize_Click"
                     Content="{StaticResource ChromeMinimize}"
                     FontFamily="{StaticResource IconFamily}"
+                    FontSize="10"
                     Style="{StaticResource ChromeButtonStyle}" />
             <!--  最大化  -->
             <Button x:Name="Button_Maxmize"
                     Width="50"
                     Height="35"
                     Click="Button_Maxmize_Click"
-                    FontFamily="{StaticResource IconFamily}">
+                    FontFamily="{StaticResource IconFamily}"
+                    FontSize="10">
                 <Button.Style>
                     <Style BasedOn="{StaticResource MaxButtonStyle}" TargetType="Button" />
                 </Button.Style>
@@ -201,6 +203,7 @@
                     Click="Button_Close_Click"
                     Content="{StaticResource ChromeClose}"
                     FontFamily="{StaticResource IconFamily}"
+                    FontSize="10"
                     Style="{StaticResource CloseButtonStyle}" />
         </StackPanel>
 

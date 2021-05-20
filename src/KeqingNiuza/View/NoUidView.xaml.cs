@@ -26,10 +26,7 @@ namespace KeqingNiuza.View
             InitializeComponent();
         }
 
-        public NoUidView(UserData userData)
-        {
-            InitializeComponent();
-        }
+       
 
     }
 }

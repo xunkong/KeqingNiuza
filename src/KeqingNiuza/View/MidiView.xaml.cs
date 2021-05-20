@@ -1,4 +1,6 @@
+using KeqingNiuza.Midi;
 using KeqingNiuza.Model;
+using KeqingNiuza.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +28,36 @@ namespace KeqingNiuza.View
             InitializeComponent();
         }
 
-        public MidiView(UserData userData)
+        public MidiViewModel ViewModel { get; set; }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
+            if (ViewModel == null)
+            {
+                ViewModel = new MidiViewModel();
+                DataContext = ViewModel;
+            }
+        }
+
+        private void ListBox_MidiFileInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var item = ListBox_MidiFileInfo.SelectedItem as MidiFileInfo;
+            ViewModel.ChangeFileAndPlay(item);
+        }
+
+        private void Button_Restart_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.RestartOrRefresh();
+        }
+
+        private void Button_Back_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.PlayLast();
+        }
+
+        private void Button_Forward_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.PlayNext();
         }
     }
 }

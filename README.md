@@ -2,8 +2,6 @@
 
 旅行者你好，欢迎来到**刻记牛杂店**，我是店长刻晴。
 
-你可以放心地把抽卡数据交给我保管。
-
 ## 下载地址
 
 - [jsDelivr](https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/KeqingNiuza/KeqingNiuza.zip)

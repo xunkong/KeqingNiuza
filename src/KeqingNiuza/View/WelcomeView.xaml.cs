@@ -28,11 +28,6 @@ namespace KeqingNiuza.View
             InitializeComponent();
         }
 
-        public WelcomeView(UserData userData)
-        {
-            InitializeComponent();
-        }
-
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {

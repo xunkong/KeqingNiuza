@@ -22,10 +22,14 @@ namespace KeqingNiuza.View
     /// </summary>
     public partial class WishAchievementView : UserControl
     {
-        public WishAchievementView(UserData userData)
+        public WishAchievementView()
         {
             InitializeComponent();
-            UserData = userData;
+            UserData = MainWindowViewModel.GetSelectedUserData();
+            if (UserData == null)
+            {
+                throw new NullReferenceException("没有数据");
+            }
         }
 
         public WishAchievementViewModel ViewModel { get; set; }
