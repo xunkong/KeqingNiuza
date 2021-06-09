@@ -450,7 +450,11 @@
                         <Button x:Name="Button_Backup"
                                 Click="Button_Backup_Click"
                                 Content="备份"
-                                Style="{StaticResource BrushButtonStyle}" />
+                                Style="{StaticResource BrushButtonStyle}" >
+                            <Button.ToolTip>
+                                <TextBlock Text="注意：每小时内的新备份会覆盖旧备份"/>
+                            </Button.ToolTip>
+                        </Button>
                         <Button x:Name="Button_Restore"
                                 Click="Button_Restore_Click"
                                 Content="还原"

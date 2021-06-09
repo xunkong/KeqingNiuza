@@ -16,7 +16,7 @@
         <DockPanel Margin="10">
             <TextBlock DockPanel.Dock="Bottom" Foreground="Gray" Text="* 用户名和密码会被加密保存在本地" />
             <StackPanel>
-                <Image Height="25" HorizontalAlignment="Left" Source="{StaticResource JianguoyunIcon}" />
+                <Image Height="25" HorizontalAlignment="Left" Source="{StaticResource Jianguoyun}" />
                 <Grid Margin="0,20,0,20">
                     <Grid.RowDefinitions>
                         <RowDefinition />

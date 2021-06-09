@@ -14,7 +14,7 @@ namespace KeqingNiuza.Common
     public static class Util
     {
 
-        private static readonly SHA256 _hash = System.Security.Cryptography.SHA256.Create();
+        private static readonly SHA256 _hash = SHA256.Create();
         internal static string GetFileHash(string path)
         {
             var stream = File.Open(path, FileMode.Open, FileAccess.Read, FileShare.Read);

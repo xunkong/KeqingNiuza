@@ -1,11 +1,19 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace KeqingNiuza.Wish
 {
 
-    public class WishStatistics
+    public class WishStatistics:INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
         /// <summary>
         /// 祈愿类型
         /// </summary>
@@ -136,15 +144,42 @@ namespace KeqingNiuza.Wish
         /// </summary>
         public int Count_BaoDiBuWai => Count_XiaoBaoDi - Count_DaBaoDi;
 
-        /// <summary>
-        /// 5星详细列表
-        /// </summary>
-        public List<StarDetail> Star5List { get; set; }
+        ///// <summary>
+        ///// 5星详细列表
+        ///// </summary>
+        //public List<StarDetail> Star5List { get; set; }
 
-        /// <summary>
-        /// 4星详细列表
-        /// </summary>
-        public List<StarDetail> Star4List { get; set; }
+        ///// <summary>
+        ///// 4星详细列表
+        ///// </summary>
+        //public List<StarDetail> Star4List { get; set; }
+
+
+
+
+        private List<StarDetail> _Star5List;
+        public List<StarDetail> Star5List
+        {
+            get { return _Star5List; }
+            set
+            {
+                _Star5List = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private List<StarDetail> _Star4List;
+        public List<StarDetail> Star4List
+        {
+            get { return _Star4List; }
+            set
+            {
+                _Star4List = value;
+                OnPropertyChanged();
+            }
+        }
+
+
 
 
     }

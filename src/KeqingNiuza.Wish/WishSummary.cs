@@ -1,21 +1,58 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace KeqingNiuza.Wish
 {
-    public class WishSummary
+    public class WishSummary:INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
 
         public List<WishData> WishDataList { get; set; }
 
-        public WishStatistics CharacterStatistics { get; set; }
+        private WishStatistics _CharacterStatistics;
+        public WishStatistics CharacterStatistics
+        {
+            get { return _CharacterStatistics; }
+            set
+            {
+                _CharacterStatistics = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public WishStatistics WeaponStatistics { get; set; }
+        private WishStatistics _WeaponStatistics;
+        public WishStatistics WeaponStatistics
+        {
+            get { return _WeaponStatistics; }
+            set
+            {
+                _WeaponStatistics = value;
+                OnPropertyChanged();
+            }
+        }
 
-        public WishStatistics PermanentStatistics { get; set; }
+
+        private WishStatistics _PermanentStatistics;
+        public WishStatistics PermanentStatistics
+        {
+            get { return _PermanentStatistics; }
+            set
+            {
+                _PermanentStatistics = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         public List<ItemInfo> CharacterInfoList { get; set; }
 
@@ -107,11 +144,9 @@ namespace KeqingNiuza.Wish
             ws.Count_DaBaoDi = list.Count(x => x.GuaranteeType == "大保底" && x.Rank == 5);
             ws.Star5List = GetDetailList(list, 5);
             DefineColor(ws.Star5List);
-            ws.Star5List.Reverse();
             ws.Star5Count = ws.Star5List.Count;
             ws.Star4List = GetDetailList(list, 4);
             DefineColor(ws.Star4List);
-            ws.Star4List.Reverse();
             ws.Star4Count = ws.Star4List.Count;
             ws.Character5Count = list.Where(x => x.Rank == 5 && x.ItemType == "角色").Count();
             ws.Weapon5Count = list.Where(x => x.Rank == 5 && x.ItemType == "武器").Count();

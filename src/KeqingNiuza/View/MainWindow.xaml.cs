@@ -18,6 +18,7 @@ using HandyControl.Data;
 using KeqingNiuza.View;
 using System.IO;
 using KeqingNiuza.Service;
+using System.Threading;
 
 namespace KeqingNiuza.View
 {
@@ -47,6 +48,11 @@ namespace KeqingNiuza.View
             {
                 WindowState = WindowState.Normal;
                 Log.OutputLog(LogType.Warning, "Window_Main_Loaded", ex);
+            }
+            // 如果软件窗口超出屏幕边界，则最大化
+            if (Native.IsWindowBeyondBounds(ActualWidth, ActualHeight))
+            {
+                WindowState = WindowState.Maximized;
             }
             InitSideMenuChecked();
         }

@@ -25,20 +25,12 @@ namespace KeqingNiuza.Wish
         private ExcelRange permanentCells;
         private ExcelRange noviceCells;
 
-        /// <summary>
-        /// 导入数据和现有数据在时间上是否有交集
-        /// </summary>
-        public bool HasIntersectData { get; set; }
+
 
         /// <summary>
         /// 导入数据与现有数据是否匹配
         /// </summary>
         public bool IsMatchOriginalData { get; set; }
-
-        /// <summary>
-        /// 数据不匹配的时间
-        /// </summary>
-        public DateTime MatchErrorTime { get; set; }
 
 
         private bool _CanExport;
@@ -47,7 +39,7 @@ namespace KeqingNiuza.Wish
         /// </summary>
         public bool CanExport
         {
-            get { return _CanExport && (IsMatchOriginalData || !HasIntersectData); }
+            get { return _CanExport; }
             set
             {
                 _CanExport = value;
@@ -93,31 +85,23 @@ namespace KeqingNiuza.Wish
             SortImportedData();
             ShownWishDataCollection = new ObservableCollection<ImportedWishData>(ImportedWishDataList);
             MatchOriginalData();
-            DectectDuplicate();
-            ShownWishDataCollection.CollectionChanged += ShownWishDataCollection_CollectionChanged;
-            if (!ShownWishDataCollection.Any(x => x.IsError))
-            {
-                CanExport = true;
-            }
         }
 
         /// <summary>
         /// 当数据发生更改时重新校验
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ShownWishDataCollection_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+
+        private void OnCellChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
             Task.Run(() =>
             {
-                CanExport = true;
                 foreach (var item in ShownWishDataCollection)
                 {
                     item.IsError = false;
                     item.Comment = "";
                 }
                 MatchOriginalData();
-                DectectDuplicate();
+                CanExport = true;
             });
         }
 
@@ -310,6 +294,8 @@ namespace KeqingNiuza.Wish
         }
 
 
+        // 因为很多未知Bug，取消此条
+#if false
 
         /// <summary>
         /// 检测重复数据，同一时间点只能由1条或10条数据
@@ -330,15 +316,17 @@ namespace KeqingNiuza.Wish
             }
         }
 
+#endif
 
 
+#if false
 
-        
         /// <summary>
         /// 检测导入数据与现有数据匹配
         /// </summary>
         public void MatchOriginalData()
         {
+            OriginalWishDataList.Except(ShownWishDataCollection,)
             var time = OriginalWishDataList.First().Time;
             var matches = ShownWishDataCollection.Where(x => x.Time >= time).Select(x => x).ToList();
             if (!matches.Any())
@@ -357,12 +345,49 @@ namespace KeqingNiuza.Wish
                     IsMatchOriginalData = false;
                     MatchErrorTime = matches[i].Time;
                     matches[i].IsError = true;
-                    matches[i].Comment = "与原始数据不匹配";
+                    matches[i].Comment = "与现有数据不匹配";
                     return;
                 }
             }
             IsMatchOriginalData = true;
         }
+
+#else
+
+        /// <summary>
+        /// 检测导入数据与现有数据匹配
+        /// </summary>
+        public void MatchOriginalData()
+        {
+            foreach (var item in ShownWishDataCollection)
+            {
+                item.IsError = false;
+                item.Comment = "";
+            }
+            var list = ShownWishDataCollection.Except(OriginalWishDataList, new ImportDataComparer());
+            var time = OriginalWishDataList.First().Time;
+            var errorlist = list.Where(x => x.Time >= time).Select(x => x).ToList();
+            if (errorlist.Any())
+            {
+                foreach (ImportedWishData data in errorlist)
+                {
+                    data.IsError = true;
+                    data.Comment = "与现有数据不匹配";
+                }
+                IsMatchOriginalData = false;
+                CanExport = false;
+            }
+            else
+            {
+                IsMatchOriginalData = true;
+                CanExport = true;
+            }
+        }
+
+
+#endif
+
+
 
         /// <summary>
         /// 导出合并数据
@@ -380,6 +405,19 @@ namespace KeqingNiuza.Wish
             mergedDataList.AddRange(foreList);
             mergedDataList.AddRange(OriginalWishDataList);
             return mergedDataList;
+        }
+    }
+
+    class ImportDataComparer : IEqualityComparer<WishData>
+    {
+        public bool Equals(WishData x, WishData y)
+        {
+            return (x.Time, x.Name) == (y.Time, y.Name);
+        }
+
+        public int GetHashCode(WishData obj)
+        {
+            return (obj.Time, obj.Name).GetHashCode();
         }
     }
 }

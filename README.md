@@ -6,15 +6,18 @@
 
 ## 下载地址
 
-- [jsDelivr](https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/KeqingNiuza/KeqingNiuza.zip)
-- [Github Release](https://github.com/Scighost/KeqingNiuza/releases)
+- [jsDelivr (最新)](https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/KeqingNiuza/KeqingNiuza.zip)
+- [Github Release (存档)](https://github.com/Scighost/KeqingNiuza/releases)
 
 ## 最近更新内容
 
-### v0.2.0
+### 0.2.1.21060911
 
-- 重构UI
-- 增加弹琴功能
+- 修复了软件在小尺寸屏幕上会超出屏幕范围的问题
+- 删除了导入Excel文件时同一时间点只能有1条或10条记录的校验规则
+- Excel导入页面可直接修改数据
+- 5星历史记录可以切换正序/倒序
+- 数据页面新增角色/武器筛选项
 
 ## 其他
 

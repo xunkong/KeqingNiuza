@@ -101,15 +101,8 @@ namespace KeqingNiuza.View
                 Updater = new Updater();
                 Updater.DownloadStarted += Updater_DownloadStarted;
                 Updater.OneFileDownloaded += Updater_OneFileDownloaded;
+                Updater.DownloadFinished += Updater_DownloadFinished;
                 var result = await Updater.UpdateResourceFiles();
-                if (result)
-                {
-                    DownloadState = "出了一些问题";
-                }
-                else
-                {
-                    DownloadState = "下载完成";
-                }
             }
             catch (Exception ex)
             {
@@ -118,6 +111,18 @@ namespace KeqingNiuza.View
                 Log.OutputLog(LogType.Warning, "First download resource", ex);
             }
             LoadingCircle_Download.Visibility = Visibility.Hidden;
+        }
+
+        private void Updater_DownloadFinished(object sender, bool e)
+        {
+            if (e)
+            {
+                DownloadState = "出了一些问题";
+            }
+            else
+            {
+                DownloadState = "下载完成";
+            }
         }
 
         private void Updater_DownloadStarted(object sender, EventArgs e)

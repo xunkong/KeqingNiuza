@@ -59,6 +59,22 @@ namespace KeqingNiuza.ViewModel
             }
         }
 
+        public List<string> ItemTypeList { get; set; }
+
+        private string _SelectedItemType = "-";
+        public string SelectedItemType
+        {
+            get { return _SelectedItemType; }
+            set
+            {
+                _SelectedItemType = value;
+                OnPropertyChanged();
+                FilterWishData();
+            }
+        }
+
+
+
         public List<string> ItemRankList { get; set; }
 
         private string _SelectedItemRank = "-";
@@ -125,6 +141,7 @@ namespace KeqingNiuza.ViewModel
         public WishOriginalDataViewModel(UserData userData)
         {
             WishTypeList = new List<string> { "---", "新手祈愿", "常驻祈愿", "角色活动祈愿", "武器活动祈愿" };
+            ItemTypeList = new List<string> { "-", "角色", "武器" };
             ItemRankList = new List<string> { "-", "3", "4", "5" };
             var eventlist = Wish.Const.WishEventList;
             var zeroWishEvent = new WishEvent
@@ -146,6 +163,7 @@ namespace KeqingNiuza.ViewModel
         public WishOriginalDataViewModel()
         {
             WishTypeList = new List<string> { "---", "新手祈愿", "常驻祈愿", "角色活动祈愿", "武器活动祈愿" };
+            ItemTypeList = new List<string> { "-", "角色", "武器" };
             ItemRankList = new List<string> { "-", "3", "4", "5" };
             var eventlist = Wish.Const.WishEventList;
             var zeroWishEvent = new WishEvent
@@ -169,6 +187,7 @@ namespace KeqingNiuza.ViewModel
         public void ResetFilter()
         {
             SelectedWishType = "---";
+            SelectedItemType = "-";
             SelectedItemRank = "-";
             SelectedWishEvent = WishEventList[0];
             ToggleButton_Search_IsChecked = false;
@@ -202,6 +221,10 @@ namespace KeqingNiuza.ViewModel
                      case "武器活动祈愿":
                          tmp = tmp.FindAll(x => x.WishType == WishType.WeaponEvent);
                          break;
+                 }
+                 if (SelectedItemType != "-")
+                 {
+                     tmp = tmp.FindAll(x => x.ItemType == SelectedItemType);
                  }
                  if (SelectedItemRank != "-")
                  {

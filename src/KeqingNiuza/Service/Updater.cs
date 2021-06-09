@@ -43,6 +43,8 @@ namespace KeqingNiuza.Service
 
         public event EventHandler OneFileDownloaded;
 
+        public event EventHandler<bool> DownloadFinished;
+
         public long DownloadSize { get; set; }
 
         public int AllFilesCount { get; set; }
@@ -105,46 +107,50 @@ namespace KeqingNiuza.Service
         {
             bool result = false;
             await Task.Run(async () =>
-             {
-                 var resourceContent = await HttpClient.GetStringAsync(_ResourceListUrl);
-                 _ResourceList = JsonSerializer.Deserialize<ResourceFileList>(resourceContent, JsonOptions);
-                 var dir = new DirectoryInfo(".\\resource");
-                 var files = dir.GetFiles("*.*", SearchOption.AllDirectories).ToList();
-                 var localFiles = files.ConvertAll(x => new ResourceFileInfo(x));
-                 var downloadFiles = _ResourceList.Files.Except(localFiles).ToList();
-                 if (downloadFiles.Any())
-                 {
-                     DownloadSize = downloadFiles.Sum(x => x.Size);
-                     downloadedFilesCount = 0;
-                     AllFilesCount = downloadFiles.Count;
-                     DownloadStarted?.Invoke(this, null);
-                     Parallel.ForEach(downloadFiles, async file =>
-                     {
-                         var bytes = await HttpClient.GetByteArrayAsync(file.Url);
-                         Directory.CreateDirectory(Path.GetDirectoryName(file.Path));
-                         try
-                         {
-                             File.WriteAllBytes(file.Path, bytes);
-                         }
-                         catch (Exception ex)
-                         {
-                             var path = "update\\KeqingNiuza\\" + file.Path;
-                             Directory.CreateDirectory(Path.GetDirectoryName(path));
-                             File.WriteAllBytes(path, bytes);
-                             result = true;
-                             Console.WriteLine(ex.Message);
-                         }
-                         lock (this)
-                         {
-                             DownloadedFilesCount++;
-                         }
-                     });
-                 }
-                 else
-                 {
-                     result = false;
-                 }
-             });
+               {
+                   var resourceContent = await HttpClient.GetStringAsync(_ResourceListUrl);
+                   _ResourceList = JsonSerializer.Deserialize<ResourceFileList>(resourceContent, JsonOptions);
+                   var dir = new DirectoryInfo(".\\resource");
+                   var files = dir.GetFiles("*.*", SearchOption.AllDirectories).ToList();
+                   var localFiles = files.ConvertAll(x => new ResourceFileInfo(x));
+                   var downloadFiles = _ResourceList.Files.Except(localFiles).ToList();
+                   if (downloadFiles.Any())
+                   {
+                       DownloadSize = downloadFiles.Sum(x => x.Size);
+                       downloadedFilesCount = 0;
+                       AllFilesCount = downloadFiles.Count;
+                       DownloadStarted?.Invoke(this, null);
+                       Parallel.ForEach(downloadFiles, async file =>
+                       {
+                           byte[] bytes = null;
+                           try
+                           {
+                               bytes = await HttpClient.GetByteArrayAsync(file.Url);
+                               Directory.CreateDirectory(Path.GetDirectoryName(file.Path));
+                               File.WriteAllBytes(file.Path, bytes);
+                           }
+                           catch (Exception ex)
+                           {
+                               var path = "update\\KeqingNiuza\\" + file.Path;
+                               Directory.CreateDirectory(Path.GetDirectoryName(path));
+                               if (bytes != null)
+                               {
+                                   File.WriteAllBytes(path, bytes);
+                                   result = true;
+                               }
+                           }
+                           lock (this)
+                           {
+                               DownloadedFilesCount++;
+                           }
+                       });
+                   }
+                   else
+                   {
+                       result = false;
+                   }
+                   DownloadFinished?.Invoke(this, result);
+               });
             return result;
         }
 

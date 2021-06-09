@@ -208,7 +208,18 @@
                         </StackPanel>
                         <!--  5星记录  -->
                         <StackPanel Grid.Column="2" Margin="50,0,0,0">
-                            <TextBlock Foreground="Gray" Text="5星记录（倒序）" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="5星记录" />
+                                <TextBlock Margin="10,0,0,0" Foreground="Gray" Text="排序：" />
+                                <RadioButton Margin="0,0,10,0"
+                                             Content="正序"
+                                             IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                             Style="{StaticResource FilterRadioButton}" />
+                                <RadioButton Margin="0,0,0,0"
+                                             Content="倒序"
+                                             IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource Boolean2BooleanReConverter}}"
+                                             Style="{StaticResource FilterRadioButton}" />
+                            </StackPanel>
                             <kc:ScrollViewerEx Height="100"
                                                Margin="0,10,0,0"
                                                IsInertiaEnabled="True"
@@ -367,7 +378,18 @@
                         </StackPanel>
                         <!--  5星记录  -->
                         <StackPanel Grid.Column="2" Margin="50,0,0,0">
-                            <TextBlock Foreground="Gray" Text="5星记录（倒序）" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="5星记录" />
+                                <TextBlock Margin="10,0,0,0" Foreground="Gray" Text="排序：" />
+                                <RadioButton Margin="0,0,10,0"
+                                             Content="正序"
+                                             IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                             Style="{StaticResource FilterRadioButton}" />
+                                <RadioButton Margin="0,0,0,0"
+                                             Content="倒序"
+                                             IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource Boolean2BooleanReConverter}}"
+                                             Style="{StaticResource FilterRadioButton}" />
+                            </StackPanel>
                             <kc:ScrollViewerEx Height="100"
                                                Margin="0,10,0,0"
                                                IsInertiaEnabled="True"
@@ -526,7 +548,18 @@
                         </StackPanel>
                         <!--  5星记录  -->
                         <StackPanel Grid.Column="2" Margin="50,0,0,0">
-                            <TextBlock Foreground="Gray" Text="5星记录（倒序）" />
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="5星记录" />
+                                <TextBlock Margin="10,0,0,0" Foreground="Gray" Text="排序：" />
+                                <RadioButton Margin="0,0,10,0"
+                                             Content="正序"
+                                             IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                             Style="{StaticResource FilterRadioButton}" />
+                                <RadioButton Margin="0,0,0,0"
+                                             Content="倒序"
+                                             IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource Boolean2BooleanReConverter}}"
+                                             Style="{StaticResource FilterRadioButton}" />
+                            </StackPanel>
                             <kc:ScrollViewerEx Height="100"
                                                Margin="0,10,0,0"
                                                IsInertiaEnabled="True"

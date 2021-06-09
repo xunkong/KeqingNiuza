@@ -46,5 +46,17 @@ namespace KeqingNiuza.Properties {
                 this["IsAutoUpdate"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsCorrectOrder {
+            get {
+                return ((bool)(this["IsCorrectOrder"]));
+            }
+            set {
+                this["IsCorrectOrder"] = value;
+            }
+        }
     }
 }

@@ -103,5 +103,10 @@ namespace KeqingNiuza.ViewModel
         }
 
 
+        public void MatchOriginalData()
+        {
+            ExcelImporter?.MatchOriginalData();
+        }
+
     }
 }

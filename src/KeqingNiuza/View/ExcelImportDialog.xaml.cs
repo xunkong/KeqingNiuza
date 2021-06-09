@@ -75,5 +75,10 @@ namespace KeqingNiuza.View
         {
             ControlCommands.Close.Execute(null, this);
         }
+
+        private void Button_Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.MatchOriginalData();
+        }
     }
 }

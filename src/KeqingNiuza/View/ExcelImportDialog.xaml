@@ -69,10 +69,10 @@
                 <TextBlock Margin="0,5,0,5" />
                 <TextBlock Margin="0,5,0,5" Text="由于1.4版本之前获取的数据中没有id，只能够采取Excel按行读取的方式。" />
                 <TextBlock Margin="0,5,0,5" Text="软件会对数据进行简单的校验：" />
-                <TextBlock Margin="0,5,0,5" Text="● 同一时间点只能够有1条或10条祈愿数据" />
                 <TextBlock Margin="0,5,0,5" Text="● 导入文件中近6个月数据必须和本地相同Uid匹配" />
-                <TextBlock Margin="0,5,0,5" Text="如果出现与原数据不匹配的情况，可以检查一下该条记录的时间和名称是否完全一致" />
+                <TextBlock Margin="0,5,0,5" Text="如果出现与现有数据不匹配的情况，可以检查一下该条记录的时间和名称是否完全一致" />
                 <TextBlock Margin="0,5,0,5" Text="出现大量记录不一致的情况，可以清空UserData文件夹重新加载" />
+                <TextBlock Margin="0,5,0,5" Text="v0.2.1新功能：可直接在本页面修改错误数据并刷新" />
             </StackPanel>
 
             <DataGrid x:Name="DataGrid_ImportedData"
@@ -80,8 +80,8 @@
                       AutoGenerateColumns="False"
                       ColumnHeaderHeight="30"
                       HorizontalGridLinesBrush="LightGray"
-                      IsReadOnly="True"
-                      ItemsSource="{Binding CollectionView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      IsReadOnly="False"
+                      ItemsSource="{Binding ExcelImporter.ShownWishDataCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                       LoadingRow="DataGrid_ImportedData_LoadingRow"
                       RowHeaderWidth="40"
                       RowHeight="30"
@@ -102,6 +102,12 @@
 
             <DockPanel Grid.Row="2" Margin="10">
                 <StackPanel HorizontalAlignment="Right" DockPanel.Dock="Right" Orientation="Horizontal">
+                    <Button x:Name="Button_Refresh"
+                            Width="60"
+                            Margin="5,0,5,0"
+                            Click="Button_Refresh_Click"
+                            Visibility="{Binding CollectionView, Converter={StaticResource Object2VisibilityConverter}}"
+                            Content="刷新" />
                     <Button x:Name="Button_Import"
                             Width="60"
                             Margin="5,0,5,0"

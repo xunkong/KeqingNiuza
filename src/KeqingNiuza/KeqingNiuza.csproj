@@ -36,7 +36,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;TestCDN</DefineConstants>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
@@ -92,6 +92,7 @@
     <Compile Include="Converter\TimeSpanToSliderValueConverter.cs" />
     <Compile Include="Converter\UidConverter.cs" />
     <Compile Include="Converter\WishTypeConverter.cs" />
+    <Compile Include="Service\Native.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\MidiViewModel.cs" />
     <Compile Include="View\ErrorView.xaml.cs">

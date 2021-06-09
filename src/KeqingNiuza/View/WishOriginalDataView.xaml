@@ -38,14 +38,26 @@
                 <TextBlock VerticalAlignment="Center" Text="祈愿类型：" />
                 <ComboBox Width="120" ItemsSource="{Binding WishTypeList}" SelectedItem="{Binding SelectedWishType}" />
                 <hc:Divider LineStroke="Gray" Orientation="Vertical" />
+                <TextBlock VerticalAlignment="Center" Text="物品类型：" />
+                <ComboBox Width="80" ItemsSource="{Binding ItemTypeList}" SelectedItem="{Binding SelectedItemType}" />
+                <hc:Divider LineStroke="Gray" Orientation="Vertical" />
                 <TextBlock VerticalAlignment="Center" Text="星级：" />
                 <ComboBox Width="60" ItemsSource="{Binding ItemRankList}" SelectedItem="{Binding SelectedItemRank}" />
                 <hc:Divider LineStroke="Gray" Orientation="Vertical" />
                 <TextBlock VerticalAlignment="Center" Text="祈愿活动：" />
                 <ComboBox MinWidth="170"
-                          DisplayMemberPath="DisplayName"
                           ItemsSource="{Binding WishEventList}"
-                          SelectedItem="{Binding SelectedWishEvent}" />
+                          SelectedItem="{Binding SelectedWishEvent}" >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DisplayName}">
+                                <TextBlock.ToolTip>
+                                    <TextBlock Text="{Binding UpItems}"/>
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
                 <hc:Divider LineStroke="Gray" Orientation="Vertical" />
                 <TextBlock VerticalAlignment="Center" Foreground="Gray" Text="{Binding SelectedWishEvent.UpItems}" />
             </StackPanel>
