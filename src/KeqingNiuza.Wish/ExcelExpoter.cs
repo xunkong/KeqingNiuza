@@ -1,5 +1,6 @@
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -94,7 +95,8 @@ namespace KeqingNiuza.Wish
             for (int i = 0; i < datas.Count; i++)
             {
                 guarantee++;
-                cells[i + 2, 1].Value = datas[i].Time.ToString("yyyy-MM-dd  HH:mm:ss");
+                var chinaTime = TimeZoneInfo.ConvertTime(datas[i].Time, TimeZoneInfo.FindSystemTimeZoneById("China Standard Time"));
+                cells[i + 2, 1].Value = chinaTime.ToString("yyyy-MM-dd  HH:mm:ss");
                 cells[i + 2, 2].Value = datas[i].Name;
                 cells[i + 2, 3].Value = datas[i].ItemType;
                 cells[i + 2, 4].Value = datas[i].Rank;

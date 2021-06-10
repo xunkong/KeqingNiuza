@@ -71,13 +71,21 @@ namespace KeqingNiuza.ViewModel
             {
                 if (IsCorrectOrder != value)
                 {
-
-                    WishSummary.CharacterStatistics.Star5List = WishSummary.CharacterStatistics.Star5List.Reverse<StarDetail>().ToList();
-                    WishSummary.CharacterStatistics.Star4List= WishSummary.CharacterStatistics.Star4List.Reverse<StarDetail>().ToList();
-                    WishSummary.WeaponStatistics.Star5List = WishSummary.WeaponStatistics.Star5List.Reverse<StarDetail>().ToList();
-                    WishSummary.WeaponStatistics.Star4List = WishSummary.WeaponStatistics.Star4List.Reverse<StarDetail>().ToList();
-                    WishSummary.PermanentStatistics.Star5List = WishSummary.PermanentStatistics.Star5List.Reverse<StarDetail>().ToList();
-                    WishSummary.PermanentStatistics.Star4List = WishSummary.PermanentStatistics.Star4List.Reverse<StarDetail>().ToList();
+                    if (WishSummary.CharacterStatistics != null)
+                    {
+                        WishSummary.CharacterStatistics.Star5List = WishSummary.CharacterStatistics.Star5List.Reverse<StarDetail>().ToList();
+                        WishSummary.CharacterStatistics.Star4List = WishSummary.CharacterStatistics.Star4List.Reverse<StarDetail>().ToList();
+                    }
+                    if (WishSummary.WeaponStatistics != null)
+                    {
+                        WishSummary.WeaponStatistics.Star5List = WishSummary.WeaponStatistics.Star5List.Reverse<StarDetail>().ToList();
+                        WishSummary.WeaponStatistics.Star4List = WishSummary.WeaponStatistics.Star4List.Reverse<StarDetail>().ToList();
+                    }
+                    if (WishSummary.PermanentStatistics != null)
+                    {
+                        WishSummary.PermanentStatistics.Star5List = WishSummary.PermanentStatistics.Star5List.Reverse<StarDetail>().ToList();
+                        WishSummary.PermanentStatistics.Star4List = WishSummary.PermanentStatistics.Star4List.Reverse<StarDetail>().ToList();
+                    }
                     Properties.Settings.Default.IsCorrectOrder = value;
                     OnPropertyChanged();
                 }

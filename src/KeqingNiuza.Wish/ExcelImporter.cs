@@ -20,7 +20,7 @@ namespace KeqingNiuza.Wish
 
 
         private ExcelPackage ExcelPackage;
-        private ExcelRange chracterCells;
+        private ExcelRange characterCells;
         private ExcelRange weaponCells;
         private ExcelRange permanentCells;
         private ExcelRange noviceCells;
@@ -78,7 +78,7 @@ namespace KeqingNiuza.Wish
         public void ImportFromExcel(string path)
         {
             ExcelPackage = new ExcelPackage(new System.IO.FileInfo(path));
-            chracterCells = ExcelPackage.Workbook.Worksheets["角色活动祈愿"].Cells;
+            characterCells = ExcelPackage.Workbook.Worksheets["角色活动祈愿"].Cells;
             weaponCells = ExcelPackage.Workbook.Worksheets["武器活动祈愿"].Cells;
             permanentCells = ExcelPackage.Workbook.Worksheets["常驻祈愿"].Cells;
             noviceCells = ExcelPackage.Workbook.Worksheets["新手祈愿"].Cells;
@@ -117,19 +117,25 @@ namespace KeqingNiuza.Wish
                 {
                     var data = new ImportedWishData
                     {
-                        Time = DateTime.Parse(chracterCells[i, 1].Value as string),
-                        Name = chracterCells[i, 2].Value as string,
-                        ItemType = chracterCells[i, 3].Value as string,
-                        Rank = int.Parse(chracterCells[i, 4].Value.ToString()),
+                        Time = DateTime.Parse(characterCells[i, 1].Value as string + " +08:00"),
+                        Name = characterCells[i, 2].Value as string,
+                        ItemType = characterCells[i, 3].Value as string,
+                        Rank = int.Parse(characterCells[i, 4].Value.ToString()),
                         WishType = WishType.CharacterEvent,
                         Count = 1,
                         IsLostId = true,
                         Language = "zh-cn"
                     };
+                    var id = characterCells[i, 7].Value as string;
+                    if (id != null)
+                    {
+                        data.Id = long.Parse(id);
+                    }
                     CharacterList.Add(data);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    // 读取到没有数据的行时，会发生错误，使用break跳出循环
                     break;
                 }
             }
@@ -148,7 +154,7 @@ namespace KeqingNiuza.Wish
                 {
                     var data = new ImportedWishData
                     {
-                        Time = DateTime.Parse(weaponCells[i, 1].Value as string),
+                        Time = DateTime.Parse(weaponCells[i, 1].Value as string + " +08:00"),
                         Name = weaponCells[i, 2].Value as string,
                         ItemType = weaponCells[i, 3].Value as string,
                         Rank = int.Parse(weaponCells[i, 4].Value.ToString()),
@@ -157,9 +163,14 @@ namespace KeqingNiuza.Wish
                         IsLostId = true,
                         Language = "zh-cn"
                     };
+                    var id = weaponCells[i, 7].Value as string;
+                    if (id != null)
+                    {
+                        data.Id = long.Parse(id);
+                    }
                     WeaponList.Add(data);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     break;
                 }
@@ -179,7 +190,7 @@ namespace KeqingNiuza.Wish
                 {
                     var data = new ImportedWishData
                     {
-                        Time = DateTime.Parse(permanentCells[i, 1].Value as string),
+                        Time = DateTime.Parse(permanentCells[i, 1].Value as string + " +08:00"),
                         Name = permanentCells[i, 2].Value as string,
                         ItemType = permanentCells[i, 3].Value as string,
                         Rank = int.Parse(permanentCells[i, 4].Value.ToString()),
@@ -188,9 +199,14 @@ namespace KeqingNiuza.Wish
                         IsLostId = true,
                         Language = "zh-cn"
                     };
+                    var id = permanentCells[i, 7].Value as string;
+                    if (id != null)
+                    {
+                        data.Id = long.Parse(id);
+                    }
                     PermanentList.Add(data);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     break;
                 }
@@ -210,7 +226,7 @@ namespace KeqingNiuza.Wish
                 {
                     var data = new ImportedWishData
                     {
-                        Time = DateTime.Parse(noviceCells[i, 1].Value as string),
+                        Time = DateTime.Parse(noviceCells[i, 1].Value as string + " +08:00"),
                         Name = noviceCells[i, 2].Value as string,
                         ItemType = noviceCells[i, 3].Value as string,
                         Rank = int.Parse(noviceCells[i, 4].Value.ToString()),
@@ -219,9 +235,14 @@ namespace KeqingNiuza.Wish
                         IsLostId = true,
                         Language = "zh-cn"
                     };
+                    var id = noviceCells[i, 7].Value as string;
+                    if (id != null)
+                    {
+                        data.Id = long.Parse(id);
+                    }
                     NoviceList.Add(data);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
                     break;
                 }
@@ -319,41 +340,6 @@ namespace KeqingNiuza.Wish
 #endif
 
 
-#if false
-
-        /// <summary>
-        /// 检测导入数据与现有数据匹配
-        /// </summary>
-        public void MatchOriginalData()
-        {
-            OriginalWishDataList.Except(ShownWishDataCollection,)
-            var time = OriginalWishDataList.First().Time;
-            var matches = ShownWishDataCollection.Where(x => x.Time >= time).Select(x => x).ToList();
-            if (!matches.Any())
-            {
-                HasIntersectData = false;
-                return;
-            }
-            else
-            {
-                HasIntersectData = true;
-            }
-            for (int i = 0; i < matches.Count; i++)
-            {
-                if (matches[i].Time != OriginalWishDataList[i].Time || matches[i].Name != OriginalWishDataList[i].Name)
-                {
-                    IsMatchOriginalData = false;
-                    MatchErrorTime = matches[i].Time;
-                    matches[i].IsError = true;
-                    matches[i].Comment = "与现有数据不匹配";
-                    return;
-                }
-            }
-            IsMatchOriginalData = true;
-        }
-
-#else
-
         /// <summary>
         /// 检测导入数据与现有数据匹配
         /// </summary>
@@ -385,7 +371,6 @@ namespace KeqingNiuza.Wish
         }
 
 
-#endif
 
 
 
@@ -398,9 +383,14 @@ namespace KeqingNiuza.Wish
             var mergedDataList = new List<WishData>();
             var time = OriginalWishDataList.First().Time;
             var foreList = ImportedWishDataList.Where(x => x.Time < time).Select(x => x).ToList();
-            for (int i = 0; i < foreList.Count; i++)
+            long i = 1000000000000000000;
+            foreach (var data in foreList)
             {
-                foreList[i].Id = 1000000000000000001 + i;
+                if (data.Id == 0)
+                {
+                    i++;
+                    data.Id = i;
+                }
             }
             mergedDataList.AddRange(foreList);
             mergedDataList.AddRange(OriginalWishDataList);

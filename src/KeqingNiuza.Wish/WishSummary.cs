@@ -219,7 +219,7 @@ namespace KeqingNiuza.Wish
         private static List<StarDetail> GetDetailList(List<WishData> datas, int star)
         {
             List<StarDetail> result;
-            var list = datas.Where(x => x.Rank == star).Select(x => new StarDetail(x.Name, datas.IndexOf(x), x.Time.ToString("yyyy/MM/dd hh:mm:ss"))).ToList();
+            var list = datas.Where(x => x.Rank == star).Select(x => new StarDetail(x.Name, datas.IndexOf(x), x.Time.ToString("yyyy/MM/dd HH:mm:ss"))).ToList();
             if (list.Any())
             {
                 result = new List<StarDetail>(list.Count);

@@ -93,6 +93,7 @@ namespace KeqingNiuza.ViewModel
             try
             {
                 var list = ExcelImporter.ExportMergedDataList();
+                list.ForEach(x => x.Uid = ImportUserData.Uid);
                 Result = (true, ImportUserData, list);
             }
             catch (Exception ex)
