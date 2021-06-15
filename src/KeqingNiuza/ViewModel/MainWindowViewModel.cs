@@ -56,7 +56,8 @@ namespace KeqingNiuza.ViewModel
                 ViewContent = new UpdateLogView();
                 File.Delete("resource\\ShowUpdateLog");
             }
-            _timer = new System.Timers.Timer(500);
+            _viewContentList = new List<object>();
+            _timer = new System.Timers.Timer(1000);
             _timer.AutoReset = false;
             _timer.Elapsed += LoadCloudAccount;
 #if !DEBUG||TestCDN
@@ -65,7 +66,6 @@ namespace KeqingNiuza.ViewModel
                 _timer.Elapsed += TestUpdate;
             }
 #endif
-            _viewContentList = new List<object>();
             _timer.Start();
         }
 
@@ -77,7 +77,6 @@ namespace KeqingNiuza.ViewModel
 
         private readonly System.Timers.Timer _timer;
 
-        private bool IsAutoUpdate => Properties.Settings.Default.IsAutoUpdate;
 
         #region ControlProperty
 
@@ -168,49 +167,36 @@ namespace KeqingNiuza.ViewModel
         private async void TestUpdate(object sender, System.Timers.ElapsedEventArgs e)
         {
             var updater = new Updater();
-            bool callUpdate = false;
-            bool showMessage = false;
-            try
+            if (Properties.Settings.Default.IsAutoUpdate)
             {
-                var updateInfo = await updater.GetUpdateInfo();
-                if (updateInfo.IsNeedUpdate)
+                try
                 {
-                    // 设置为自动更新，或者仅修订号不同，则自动下载
-                    if (IsAutoUpdate || updateInfo.IsAutoUpdate)
+                    var updateInfo = await updater.GetUpdateInfo();
+                    if (updateInfo)
                     {
                         await updater.PrepareUpdateFiles();
-                        callUpdate = true;
+                        updater.CallUpdateWhenExit();
                         Log.OutputLog(LogType.Info, "Update files prepare finished");
-                        if (!updateInfo.IsAutoUpdate)
-                        {
-                            showMessage = true;
-                        }
+                        Growl.Success("更新文件准备完毕，关闭窗口开始更新");
                     }
                 }
-            }
-            catch (Exception ex)
-            {
-                Log.OutputLog(LogType.Error, "TestUpdate_AllFile", ex);
+                catch (Exception ex)
+                {
+                    Log.OutputLog(LogType.Error, "TestUpdate_AllFile", ex);
+                }
             }
             try
             {
                 var result = await updater.UpdateResourceFiles();
                 if (result)
                 {
-                    callUpdate = true;
+                    updater.CallUpdateWhenExit();
+                    Growl.Success("关闭窗口完成资源文件的替换");
                 }
             }
             catch (Exception ex)
             {
                 Log.OutputLog(LogType.Info, "TestUpdate_Resource", ex);
-            }
-            if (callUpdate)
-            {
-                updater.CallUpdateWhenExit();
-            }
-            if (showMessage)
-            {
-                Growl.Success("更新文件准备完毕");
             }
         }
 

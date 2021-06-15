@@ -58,5 +58,41 @@ namespace KeqingNiuza.Properties {
                 this["IsCorrectOrder"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsUpdateShowResult {
+            get {
+                return ((bool)(this["IsUpdateShowResult"]));
+            }
+            set {
+                this["IsUpdateShowResult"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsLogonTrigger {
+            get {
+                return ((bool)(this["IsLogonTrigger"]));
+            }
+            set {
+                this["IsLogonTrigger"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsGenshinStartTrigger {
+            get {
+                return ((bool)(this["IsGenshinStartTrigger"]));
+            }
+            set {
+                this["IsGenshinStartTrigger"] = value;
+            }
+        }
     }
 }

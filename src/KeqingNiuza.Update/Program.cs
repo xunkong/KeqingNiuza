@@ -43,7 +43,36 @@ namespace KeqingNiuza.Update
                     File.Create("resource\\ShowUpdateLog");
                 }
                 Log.OutputLog(LogType.Info, "Update finished");
-                Directory.Delete(".\\update", true);
+                try
+                {
+                    Directory.Delete(".\\update", true);
+                }
+                catch { }
+                return;
+            }
+            if (args[0] == "KeqingNiuza.Update.ShowResult")
+            {
+                Thread.Sleep(500);
+                var proes = Process.GetProcessesByName("KeqingNiuza");
+                if (proes.Any())
+                {
+                    Array.ForEach(proes, x => x.Kill());
+                }
+                Log.OutputLog(LogType.Info, "Start update");
+                Directory.CreateDirectory(".\\dll");
+                Util.MoveAllFile();
+                if (File.Exists("update\\ShowUpdateLog"))
+                {
+                    File.Create("resource\\ShowUpdateLog");
+                }
+                Log.OutputLog(LogType.Info, "Update finished");
+                try
+                {
+                    Directory.Delete(".\\update", true);
+                }
+                catch { }
+                Util.MessageBox(0, "更新完成", "刻记牛杂店", 0);
+                return;
             }
         }
     }

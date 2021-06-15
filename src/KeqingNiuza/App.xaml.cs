@@ -2,10 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows;
+using HandyControl.Controls;
 using KeqingNiuza.Common;
+using KeqingNiuza.Service;
+using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace KeqingNiuza
 {
@@ -22,8 +27,13 @@ namespace KeqingNiuza
                 {
                     Util.ExportResourceFile();
                     Util.ExportUpdateFile();
-                    Shutdown();
                 }
+                if (e.Args[0] == "ScheduleTask")
+                {
+                    Task.Delay(2000);
+                    ScheduleTask.SendNotification();
+                }
+                Shutdown();
             }
         }
     }

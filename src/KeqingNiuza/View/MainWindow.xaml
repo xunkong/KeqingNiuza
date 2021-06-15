@@ -24,7 +24,11 @@
         <WindowChrome CaptionHeight="32" />
     </WindowChrome.WindowChrome>
 
-
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+    </Window.Resources>
 
     <Grid>
 
@@ -74,8 +78,7 @@
                              Click="RadioButton_SideMenu_Click"
                              GroupName="SideMenu"
                              Style="{StaticResource SideMenuRadioButton}"
-                             Tag="SettingView"
-                             Visibility="Collapsed">
+                             Tag="SettingView">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock VerticalAlignment="Center"
                                    FontFamily="{StaticResource IconFamily}"
@@ -171,6 +174,21 @@
                           Points="0 0 140 0"
                           Stroke="Purple"
                           StrokeThickness="0.6" />
+                <RadioButton x:Name="SideMenu_ScheduleTaskView"
+                             Click="RadioButton_SideMenu_Click"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}"
+                             Tag="ScheduleTaskView">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="18"
+                              Height="18"
+                              VerticalAlignment="Center"
+                              Data="{StaticResource clock}"
+                              Fill="Purple"
+                              Stretch="Uniform" />
+                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="定时提醒" />
+                    </StackPanel>
+                </RadioButton>
                 <RadioButton x:Name="SideMenu_MidiView"
                              Click="RadioButton_SideMenu_Click"
                              GroupName="SideMenu"
@@ -394,7 +412,11 @@
                                 VerticalAlignment="Top"
                                 Click="Button_AddUid_Click"
                                 Style="{StaticResource ChangeUidButtonStyle}">
-                            <TextBlock Margin="10,14,10,14" Text="添加Uid" />
+                            <TextBlock Margin="10,14,10,14" Text="添加Uid">
+                                <TextBlock.ToolTip>
+                                    <TextBlock Text="添加Uid后，点击加载数据" />
+                                </TextBlock.ToolTip>
+                            </TextBlock>
                         </Button>
                     </Grid>
 
@@ -450,9 +472,9 @@
                         <Button x:Name="Button_Backup"
                                 Click="Button_Backup_Click"
                                 Content="备份"
-                                Style="{StaticResource BrushButtonStyle}" >
+                                Style="{StaticResource BrushButtonStyle}">
                             <Button.ToolTip>
-                                <TextBlock Text="注意：每小时内的新备份会覆盖旧备份"/>
+                                <TextBlock Text="注意：每小时内的新备份会覆盖旧备份" />
                             </Button.ToolTip>
                         </Button>
                         <Button x:Name="Button_Restore"

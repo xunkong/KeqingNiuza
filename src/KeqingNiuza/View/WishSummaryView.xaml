@@ -15,8 +15,12 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
         <Style x:Key="GuaranteeText" TargetType="TextBlock">
             <Setter Property="Foreground" Value="DarkOrchid" />
+            <Setter Property="FontSize" Value="12" />
             <Style.Triggers>
                 <DataTrigger Binding="{Binding GuaranteeType}" Value="大保底">
                     <Setter Property="Foreground" Value="{StaticResource Star5}" />
@@ -25,6 +29,7 @@
         </Style>
         <Style BasedOn="{StaticResource ScrollViewerBaseStyle}" TargetType="kc:ScrollViewerEx" />
         <Style x:Key="FilterRadioButton" TargetType="RadioButton">
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="Foreground" Value="Gray" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Template">
@@ -43,6 +48,7 @@
             </Setter>
         </Style>
         <Style x:Key="DetailButton" TargetType="Button">
+            <Setter Property="FontSize" Value="12" />
             <Setter Property="Foreground" Value="Gray" />
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="Template">
@@ -81,8 +87,7 @@
                 </StackPanel>
 
                 <!--  角色祈愿统计  -->
-                <Border Height="150"
-                        Margin="5,10,5,0"
+                <Border Margin="5,10,5,0"
                         Background="White"
                         CornerRadius="4"
                         Visibility="{Binding WishSummary.CharacterStatistics, Converter={StaticResource Object2VisibilityConverter}}">
@@ -233,10 +238,10 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Margin="0,0,6,0" Orientation="Horizontal">
-                                                <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                                <TextBlock Foreground="{Binding Brush}" Text="[" />
-                                                <TextBlock Foreground="{Binding Brush}" Text="{Binding Num}" />
-                                                <TextBlock Foreground="{Binding Brush}" Text="]" />
+                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Name}" />
+                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="[" />
+                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Num}" />
+                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="]" />
                                                 <StackPanel.ToolTip>
                                                     <TextBlock Text="{Binding Time}" />
                                                 </StackPanel.ToolTip>
@@ -251,8 +256,7 @@
 
 
                 <!--  武器祈愿统计  -->
-                <Border Height="150"
-                        Margin="5,10,5,0"
+                <Border Margin="5,10,5,0"
                         Background="White"
                         CornerRadius="4"
                         Visibility="{Binding WishSummary.WeaponStatistics, Converter={StaticResource Object2VisibilityConverter}}">
@@ -403,10 +407,10 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Margin="0,0,6,0" Orientation="Horizontal">
-                                                <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                                <TextBlock Foreground="{Binding Brush}" Text="[" />
-                                                <TextBlock Foreground="{Binding Brush}" Text="{Binding Num}" />
-                                                <TextBlock Foreground="{Binding Brush}" Text="]" />
+                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Name}" />
+                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="[" />
+                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Num}" />
+                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="]" />
                                                 <StackPanel.ToolTip>
                                                     <TextBlock Text="{Binding Time}" />
                                                 </StackPanel.ToolTip>
@@ -421,8 +425,7 @@
 
 
                 <!--  常驻祈愿统计  -->
-                <Border Height="150"
-                        Margin="5,10,5,0"
+                <Border Margin="5,10,5,0"
                         Background="White"
                         CornerRadius="4"
                         Visibility="{Binding WishSummary.PermanentStatistics, Converter={StaticResource Object2VisibilityConverter}}">
@@ -573,10 +576,10 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Margin="0,0,6,0" Orientation="Horizontal">
-                                                <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                                <TextBlock Foreground="{Binding Brush}" Text="[" />
-                                                <TextBlock Foreground="{Binding Brush}" Text="{Binding Num}" />
-                                                <TextBlock Foreground="{Binding Brush}" Text="]" />
+                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Name}" />
+                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="[" />
+                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Num}" />
+                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="]" />
                                                 <StackPanel.ToolTip>
                                                     <TextBlock Text="{Binding Time}" />
                                                 </StackPanel.ToolTip>
@@ -653,6 +656,7 @@
                                 <TextBlock Height="18"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Bottom"
+                                           FontSize="12"
                                            FontWeight="Bold"
                                            Foreground="#84603D"
                                            Text="{Binding Name}" />
@@ -743,6 +747,7 @@
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Bottom"
                                            FontWeight="Bold"
+                                           FontSize="12"
                                            Foreground="#84603d"
                                            Text="{Binding Name}" />
                                 <Border Height="20"

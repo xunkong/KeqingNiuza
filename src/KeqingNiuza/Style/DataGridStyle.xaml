@@ -25,6 +25,7 @@
                                             <TextBlock Width="{Binding RowHeaderWidth, RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                                        HorizontalAlignment="Center"
                                                        VerticalAlignment="Center"
+                                                       FontSize="12"
                                                        Text="  No." />
                                             <DataGridColumnHeadersPresenter x:Name="PART_ColumnHeadersPresenter"
                                                                             Grid.Row="0"

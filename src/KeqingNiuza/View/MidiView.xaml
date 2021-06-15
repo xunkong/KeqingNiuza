@@ -11,6 +11,13 @@
              Background="{StaticResource ContentViewBackground}"
              Loaded="UserControl_Loaded"
              mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -112,6 +119,7 @@
                                       HorizontalAlignment="Left"
                                       DecimalPlaces="1"
                                       Increment="0.1"
+                                      FontSize="12"
                                       IsEnabled="{Binding MidiPlayer.IsPlaying, Converter={StaticResource Boolean2BooleanReConverter}}"
                                       Value="{Binding MidiPlayer.Speed, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3"
@@ -126,6 +134,7 @@
                                           HorizontalAlignment="Left"
                                           Maximum="48"
                                           Minimum="-39"
+                                          FontSize="12"
                                           ShowClearButton="True"
                                           Value="{Binding MidiPlayer.NoteLevel, UpdateSourceTrigger=PropertyChanged}" />
                         <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding MidiPlayer.NoteLevel, Converter={StaticResource IntToNoteStringConverter}}" />

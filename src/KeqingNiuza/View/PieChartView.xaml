@@ -18,6 +18,7 @@
             <UniformGrid Columns="5" />
             <lc:PieChart x:Name="PieChart"
                          Height="200"
+                         FontSize="12"
                          LegendLocation="Top"
                          Series="{Binding Series}" />
 
@@ -55,10 +56,10 @@
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel Margin="0,0,10,0" Orientation="Horizontal">
-                                <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                <TextBlock Foreground="{Binding Brush}" Text="[" />
-                                <TextBlock Foreground="{Binding Brush}" Text="{Binding Num}" />
-                                <TextBlock Foreground="{Binding Brush}" Text="]" />
+                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Name}" />
+                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="[" />
+                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Num}" />
+                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="]" />
                                 <StackPanel.ToolTip>
                                     <ToolTip>
                                         <TextBlock Text="{Binding Time}" />

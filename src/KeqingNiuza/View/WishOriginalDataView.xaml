@@ -12,6 +12,14 @@
              Loaded="UserControl_Loaded"
              mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+        <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxBaseStyle}">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
 
     <Grid>
 
@@ -32,6 +40,7 @@
                 <Button Name="Buton_Reset"
                         Width="50"
                         Margin="5,0,0,0"
+                        FontSize="12"
                         Click="Buton_Reset_Click"
                         Content="重置" />
                 <hc:Divider LineStroke="Gray" Orientation="Vertical" />
@@ -75,6 +84,14 @@
                   RowHeaderWidth="40"
                   RowHeight="30"
                   VerticalGridLinesBrush="Transparent">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCellsPresenter">
+                    <Setter Property="FontSize" Value="12"/>
+                </Style>
+                <Style TargetType="DataGridColumnHeadersPresenter">
+                    <Setter Property="FontSize" Value="12"/>
+                </Style>
+            </DataGrid.Resources>
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="名称">
                     <DataGridTemplateColumn.CellTemplate>

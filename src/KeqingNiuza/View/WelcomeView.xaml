@@ -11,6 +11,13 @@
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
              Loaded="UserControl_Loaded"
              mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
+
     <Grid Margin="40">
         <StackPanel>
             <TextBlock Margin="0,5,0,5" Text="旅行者你好，欢迎来到刻记牛杂店，我是店长刻晴。" />
@@ -60,7 +67,6 @@
                                   DotDiameter="3"
                                   Foreground="Gray" />
             </StackPanel>
-            <TextBlock Margin="0 10 0 0" Text="上面那个下载完成有问题，请务必等待进度条走完"/>
         </StackPanel>
         <Image Width="256"
                Margin="0,0,20,0"

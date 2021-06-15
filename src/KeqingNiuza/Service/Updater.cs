@@ -78,21 +78,16 @@ namespace KeqingNiuza.Service
         }
 
 
-        public async Task<(bool IsNeedUpdate, bool IsAutoUpdate)> GetUpdateInfo()
+        public async Task<bool> GetUpdateInfo()
         {
-            (bool IsNeedUpdate, bool IsAutoUpdate) result = (false, false);
+            bool result = false;
             await Task.Run(async () =>
             {
                 var fileListContent = await HttpClient.GetStringAsync(_FileListUrl);
                 _FileList = JsonSerializer.Deserialize<UpdateFileList>(fileListContent, JsonOptions);
                 if (_FileList.Version > Const.Version)
                 {
-                    result.IsNeedUpdate = true;
-                    // 主次内版本号相同，修订号不同，则自动更新
-                    if (_FileList.Version.ToString(3) == Const.Version.ToString(3))
-                    {
-                        result.IsAutoUpdate = true;
-                    }
+                    result = true;
                 }
             });
             return result;
@@ -120,7 +115,7 @@ namespace KeqingNiuza.Service
                        downloadedFilesCount = 0;
                        AllFilesCount = downloadFiles.Count;
                        DownloadStarted?.Invoke(this, null);
-                       Parallel.ForEach(downloadFiles, async file =>
+                       foreach (var file in downloadFiles)
                        {
                            byte[] bytes = null;
                            try
@@ -143,7 +138,7 @@ namespace KeqingNiuza.Service
                            {
                                DownloadedFilesCount++;
                            }
-                       });
+                       }
                    }
                    else
                    {
@@ -182,13 +177,24 @@ namespace KeqingNiuza.Service
 
         public void CallUpdateWhenExit()
         {
-            Application.Current.Dispatcher.Invoke(() => Application.Current.Exit += CallUpdate);
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                Application.Current.Exit -= CallUpdate;
+                Application.Current.Exit += CallUpdate;
+            });
         }
 
 
         private void CallUpdate(object sender, EventArgs e)
         {
-            Process.Start("update\\Update.exe", "KeqingNiuza.Update");
+            if (Properties.Settings.Default.IsUpdateShowResult)
+            {
+                Process.Start("update\\Update.exe", "KeqingNiuza.Update.ShowResult");
+            }
+            else
+            {
+                Process.Start("update\\Update.exe", "KeqingNiuza.Update");
+            }
             Log.OutputLog(LogType.Info, "Has called Update.exe");
         }
 

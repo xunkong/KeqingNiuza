@@ -127,34 +127,5 @@ namespace KeqingNiuza.View
             LoadingCircle_UpdateContent.Visibility = Visibility.Collapsed;
         }
 
-        private async void Button_TestUpdate_Click(object sender, RoutedEventArgs e)
-        {
-            Button_TestUpdate.IsEnabled = false;
-            LoadingCircle_TestUpdate.Visibility = Visibility.Visible;
-            try
-            {
-                var updater = new Updater();
-                var info = await updater.GetUpdateInfo();
-                if (info.IsNeedUpdate)
-                {
-                    await updater.PrepareUpdateFiles();
-                    updater.CallUpdateWhenExit();
-                    Log.OutputLog(LogType.Info, "Update files prepare finished");
-                    Growl.Success("更新文件准备完毕");
-                }
-                else
-                {
-                    Growl.Info("已是最新版本");
-                }
-            }
-            catch (Exception ex)
-            {
-                Growl.Warning(ex.Message);
-                Log.OutputLog(LogType.Warning, "TestUpdate", ex);
-            }
-
-            LoadingCircle_TestUpdate.Visibility = Visibility.Hidden;
-            Button_TestUpdate.IsEnabled = true;
-        }
     }
 }

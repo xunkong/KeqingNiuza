@@ -238,7 +238,7 @@ namespace KeqingNiuza.Wish
             var events = WishEventList.FindAll(x => x.Name == "赤团开时");
             foreach (var item in events)
             {
-                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime).Select(x => x);
+                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime && x.WishType == WishType.CharacterEvent).Select(x => x);
                 list = list.Where(x => x.Name == "胡桃").Select(x => x);
                 if (list.Count() >= 3)
                 {
@@ -267,7 +267,7 @@ namespace KeqingNiuza.Wish
             var events = WishEventList.FindAll(x => x.Name == "浮生孰来");
             foreach (var item in events)
             {
-                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime);
+                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime && x.WishType == WishType.CharacterEvent);
                 list = list.Where(x => x.Name == "甘雨" || x.Name == "七七").Select(x => x);
                 bool hasGanyu = false, hasQiqi = false;
                 foreach (var data in list)
@@ -332,7 +332,7 @@ namespace KeqingNiuza.Wish
             var events = WishEventList.Where(x => x.UpStar5.Contains("护摩之杖"));
             foreach (var item in events)
             {
-                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime).Where(x => x.Name == "狼的末路" || x.Name == "护摩之杖");
+                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime && x.WishType == WishType.WeaponEvent).Where(x => x.Name == "狼的末路" || x.Name == "护摩之杖");
                 int langmo = 0;
                 DateTime time = DateTime.Now;
                 foreach (var data in list)
@@ -385,7 +385,7 @@ namespace KeqingNiuza.Wish
             var events = WishEventList.FindAll(x => x.Name == "浮生孰来");
             foreach (var item in events)
             {
-                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime);
+                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime && x.WishType == WishType.CharacterEvent);
                 list = list.Where(x => x.Name == "甘雨" || x.Name == "刻晴").Select(x => x);
                 bool hasGanyu = false, hasKeqing = false;
                 foreach (var data in list)
@@ -425,7 +425,7 @@ namespace KeqingNiuza.Wish
             var events = WishEventList.FindAll(x => x.Name == "深秘之息");
             foreach (var item in events)
             {
-                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime);
+                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime && x.WishType == WishType.CharacterEvent);
                 list = list.Where(x => x.Name == "阿贝多" || x.Name == "砂糖");
                 bool hasAlbedo = false, hasSucrose = false;
                 foreach (var data in list)
@@ -489,7 +489,7 @@ namespace KeqingNiuza.Wish
             var events = WishEventList.Where(x => x.UpStar5.Contains("松籁响起之时"));
             foreach (var item in events)
             {
-                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime).Where(x => x.Name == "风鹰剑" || x.Name == "松籁响起之时");
+                var list = datas.Where(x => x.Time >= item.StartTime && x.Time <= item.EndTime && x.WishType == WishType.WeaponEvent).Where(x => x.Name == "风鹰剑" || x.Name == "松籁响起之时");
                 int fengying = 0;
                 DateTime time = DateTime.Now;
                 foreach (var data in list)

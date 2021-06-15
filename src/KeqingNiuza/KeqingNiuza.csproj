@@ -92,7 +92,9 @@
     <Compile Include="Converter\TimeSpanToSliderValueConverter.cs" />
     <Compile Include="Converter\UidConverter.cs" />
     <Compile Include="Converter\WishTypeConverter.cs" />
+    <Compile Include="Model\ScheduleInfo.cs" />
     <Compile Include="Service\Native.cs" />
+    <Compile Include="Service\ScheduleTask.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\MidiViewModel.cs" />
     <Compile Include="View\ErrorView.xaml.cs">
@@ -132,6 +134,9 @@
     </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScheduleTaskView.xaml.cs">
+      <DependentUpon>ScheduleTaskView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
@@ -234,6 +239,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\ScheduleTaskView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\SettingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -277,8 +286,14 @@
     <PackageReference Include="LiveCharts.Wpf">
       <Version>0.9.7</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
+      <Version>7.0.2</Version>
+    </PackageReference>
     <PackageReference Include="System.Text.Json">
       <Version>5.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="TaskScheduler">
+      <Version>2.9.1</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -322,14 +337,18 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>rd /s /q ca-ES
+rd /s /q de
 rd /s /q en
+rd /s /q es
 rd /s /q fa
 rd /s /q fr
+rd /s /q it
 rd /s /q ko-KR
 rd /s /q pl
 rd /s /q pt-BR
 rd /s /q ru
 rd /s /q tr
+rd /s /q zh-CN
 
 del *.pdb *.xml *.dll.config Update.exe.config
 mkdir dll

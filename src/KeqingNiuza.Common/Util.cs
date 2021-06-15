@@ -103,6 +103,7 @@ namespace KeqingNiuza.Common
             };
             filelist.AllFiles = zipFileList.ToList().ConvertAll(x => new UpdateFileInfo(x));
             File.WriteAllText("..\\UpdateFileList.json", JsonSerializer.Serialize(filelist, JsonOptions));
+            File.Copy("..\\UpdateFileList.json", $"..\\UpdateFileList{Const.Version}.json", true);
         }
 
 

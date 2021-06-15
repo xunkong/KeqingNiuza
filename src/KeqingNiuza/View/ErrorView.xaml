@@ -8,6 +8,13 @@
              d:DesignWidth="800"
              Background="{StaticResource ContentViewBackground}"
              mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
+    
     <Grid>
         <ScrollViewer>
             <StackPanel Margin="30">

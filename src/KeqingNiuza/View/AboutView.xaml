@@ -12,6 +12,12 @@
              Initialized="UserControl_Initialized"
              mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
+    
     <hc:ScrollViewer IsInertiaEnabled="True">
 
         <Grid>
@@ -36,21 +42,7 @@
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Margin="0,0,0,0" VerticalAlignment="Center" Text="自动更新" />
-                    <ToggleButton Margin="10,0,0,0" IsChecked="{Binding IsAutoUpdate}" Style="{StaticResource ToggleButtonSwitch}" />
-                    <hc:LoadingCircle Name="LoadingCircle_TestUpdate"
-                                      Width="20"
-                                      Height="20"
-                                      Margin="10,0,0,0"
-                                      DotDiameter="3"
-                                      Foreground="Gray"
-                                      Visibility="Hidden" />
-                    <Button x:Name="Button_TestUpdate"
-                            Margin="4,0,0,0"
-                            Click="Button_TestUpdate_Click"
-                            Content="检查更新" />
-                </StackPanel>
+
                 <!--  常见问题  -->
                 <TextBlock Margin="0,20,0,0" FontSize="20" Text="常见问题" />
                 <TextBlock Margin="0,10,0,10" FontSize="16" Text="如何加载祈愿数据" />

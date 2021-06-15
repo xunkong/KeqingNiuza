@@ -12,7 +12,12 @@
              DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
              Loaded="UserControl_WishAchievement_Loaded"
              mc:Ignorable="d">
-
+    
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -81,6 +86,7 @@
                                                HorizontalAlignment="Center"
                                                VerticalAlignment="Center"
                                                FontWeight="Bold"
+                                               FontSize="12"
                                                Foreground="#BCA896"
                                                Text="{Binding FinishTime, StringFormat='yyyy/MM/dd'}"
                                                Visibility="{Binding IsFinished, Converter={StaticResource Boolean2VisibilityConverter}}" />

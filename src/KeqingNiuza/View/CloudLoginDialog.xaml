@@ -9,6 +9,12 @@
              Height="240"
              mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+    </UserControl.Resources>
+
     <Border Background="White"
             BorderBrush="Gray"
             BorderThickness="1"
@@ -35,6 +41,7 @@
                     <TextBox x:Name="InputUserName"
                              Grid.Row="0"
                              Grid.Column="1"
+                             FontSize="12"
                              InputMethod.IsInputMethodEnabled="False" />
 
                     <TextBlock Grid.Row="2"
@@ -44,6 +51,7 @@
                     <PasswordBox x:Name="InputPassword"
                                  Grid.Row="2"
                                  Grid.Column="1"
+                                 FontSize="12"
                                  InputMethod.IsInputMethodEnabled="False" />
                     <TextBlock x:Name="TextBlock_Info"
                                Grid.Row="3"
