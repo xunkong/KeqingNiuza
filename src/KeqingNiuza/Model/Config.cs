@@ -8,7 +8,7 @@ namespace KeqingNiuza.Model
 
         public int LatestUid { get; set; }
 
-        public List<UserData> UserDataList { get; set; }
+        public ObservableCollection<UserData> UserDataList { get; set; }
 
 
     }

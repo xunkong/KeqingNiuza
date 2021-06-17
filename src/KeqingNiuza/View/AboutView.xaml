@@ -14,10 +14,10 @@
 
     <UserControl.Resources>
         <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="12" />
         </Style>
     </UserControl.Resources>
-    
+
     <hc:ScrollViewer IsInertiaEnabled="True">
 
         <Grid>
@@ -42,13 +42,33 @@
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>
-
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                    <Button Name="Button_TestUpdate" Click="Button_TestUpdate_Click" Content="检查更新" />
+                    <hc:LoadingCircle Name="LoadingCircle_TestUpdate"
+                                      Width="20"
+                                      Height="20"
+                                      Margin="10,0,0,0"
+                                      DotDiameter="3"
+                                      Foreground="Gray"
+                                      Visibility="Hidden" />
+                    <Button Name="Button_TestResource"
+                            Margin="10,0,0,0"
+                            Click="Button_TestResource_Click"
+                            Content="校验资源文件" />
+                    <hc:LoadingCircle Name="LoadingCircle_TestResource"
+                                      Width="20"
+                                      Height="20"
+                                      Margin="10,0,0,0"
+                                      DotDiameter="3"
+                                      Foreground="Gray"
+                                      Visibility="Hidden" />
+                </StackPanel>
                 <!--  常见问题  -->
                 <TextBlock Margin="0,20,0,0" FontSize="20" Text="常见问题" />
                 <TextBlock Margin="0,10,0,10" FontSize="16" Text="如何加载祈愿数据" />
                 <TextBlock Margin="0,5,0,5" Text="● 在游戏中打开任意祈愿历史记录" />
                 <TextBlock Margin="0,5,0,5" Text="● 点击软件右上角加载数据" />
-                <TextBlock Margin="0,5,0,5" Text="● 短时间添加多个Uid：个人信息->更换Uid->添加Uid->加载数据" />
+                <TextBlock Margin="0,5,0,5" Text="● 短时间添加多个Uid：个人信息-&gt;更换Uid-&gt;添加Uid-&gt;加载数据" />
                 <TextBlock Margin="0,10,0,10" FontSize="16" Text="如何进行云备份" />
                 <TextBlock Margin="0,5,0,5" Text="● 注册坚果云账户" />
                 <StackPanel Margin="0,5,0,5" Orientation="Horizontal">

@@ -16,32 +16,18 @@ using System.Threading;
 
 namespace KeqingNiuza.Midi
 {
-    public class MidiPlayer : INotifyPropertyChanged, IDisposable
+    public class MidiPlayer : IDisposable
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
 
 
         public MidiFileInfo MidiFileInfo { get; private set; }
 
 
-        private string _Name;
         /// <summary>
         /// Midi文件名
         /// </summary>
-        public string Name
-        {
-            get { return _Name; }
-            set
-            {
-                _Name = value;
-                OnPropertyChanged();
-            }
-        }
+        public string Name { get; set; }
 
 
         /// <summary>
@@ -50,20 +36,19 @@ namespace KeqingNiuza.Midi
         public bool CanPlay { get; private set; }
 
 
-        private bool _IsPlaying;
         /// <summary>
         /// 演奏状态
         /// </summary>
         public bool IsPlaying
         {
-            get { return _IsPlaying; }
+            get { return _playback.IsRunning; }
             set
             {
                 if (_playback == null)
                 {
                     return;
                 }
-                if (_IsPlaying == value)
+                if (IsPlaying == value)
                 {
                     return;
                 }
@@ -80,83 +65,46 @@ namespace KeqingNiuza.Midi
                 {
                     _playback.Stop();
                 }
-                _IsPlaying = value;
-                OnPropertyChanged();
             }
         }
 
 
-        private TimeSpan _TotalTime;
         /// <summary>
-        /// Midi文件总时间，以秒为单位
+        /// Midi文件总时间
         /// </summary>
-        public TimeSpan TotalTime
-        {
-            get { return _TotalTime; }
-            set
-            {
-                _TotalTime = value;
-                OnPropertyChanged();
-            }
-        }
+        public TimeSpan TotalTime { get; private set; }
 
 
-        private TimeSpan _CurrentTime;
         /// <summary>
-        /// Midi文件正在演奏的时间点，以秒单位
+        /// Midi文件正在演奏的时间点
         /// </summary>
         public TimeSpan CurrentTime
         {
-            get { return _CurrentTime; }
-            set
-            {
-                _CurrentTime = value;
-                _playback?.MoveToTime(new MetricTimeSpan(value));
-                OnPropertyChanged();
-            }
+            get { return _playback.GetCurrentTime<MetricTimeSpan>(); }
+            set { _playback.MoveToTime(new MetricTimeSpan(value)); }
         }
 
 
-        private bool _AllowPlayBackground;
         /// <summary>
         /// 后台播放
         /// </summary>
-        public bool AllowPlayBackground
-        {
-            get { return _AllowPlayBackground; }
-            set
-            {
-                _AllowPlayBackground = value;
-                OnPropertyChanged();
-            }
-        }
+        public bool PlayBackground { get; set; }
 
 
-        private bool _AutoSwitchToGenshinWindow = true;
         /// <summary>
         /// 自动跳转到游戏窗口
         /// </summary>
-        public bool AutoSwitchToGenshinWindow
-        {
-            get { return _AutoSwitchToGenshinWindow; }
-            set
-            {
-                _AutoSwitchToGenshinWindow = value;
-                OnPropertyChanged();
-            }
-        }
+        public bool AutoSwitchToGenshinWindow { get; set; } = true;
 
 
 
 
-
-        private double _Speed = 1;
         /// <summary>
         /// 速度
         /// </summary>
         public double Speed
         {
-            get { return _Speed; }
+            get { return _playback.Speed; }
             set
             {
                 if (_playback == null || IsPlaying)
@@ -166,58 +114,57 @@ namespace KeqingNiuza.Midi
                 if (value > 0)
                 {
                     _playback.Speed = value;
-                    _timer.Interval = 1000 / value;
-                    _Speed = value;
-                    OnPropertyChanged();
                 }
             }
         }
 
-        private int _NoteLevel = 0;
         /// <summary>
         /// 升降调
         /// </summary>
-        public int NoteLevel
+        public int NoteLevel { get; set; }
+
+
+
+        public event EventHandler Started;
+
+        public event EventHandler Stopped;
+
+        public event EventHandler Finished;
+
+        private void _playback_Started(object sender, EventArgs e)
         {
-            get { return _NoteLevel; }
-            set
-            {
-                _NoteLevel = value;
-                OnPropertyChanged();
-            }
+            Started?.Invoke(this, e);
         }
 
+        private void _playback_Stopped(object sender, EventArgs e)
+        {
+            Stopped?.Invoke(this, e);
+        }
 
-        private bool disposed = false;
+        private void _playback_Finished(object sender, EventArgs e)
+        {
+            Finished?.Invoke(this, e);
+        }
 
         private Playback _playback;
 
-        private readonly Process _process;
-
         private readonly IntPtr _hWnd;
 
-        private readonly System.Timers.Timer _timer;
 
         public MidiPlayer(string processName)
         {
             var pros = Process.GetProcessesByName(processName);
             if (pros.Any())
             {
-                _process = pros[0];
+                _hWnd = pros[0].MainWindowHandle;
                 CanPlay = true;
-                _process.Exited += GenshinExited;
-                _hWnd = _process.MainWindowHandle;
             }
-            _timer = new System.Timers.Timer();
-            _timer.AutoReset = true;
-            _timer.Elapsed += _timer_Elapsed;
         }
 
 
-        private void _timer_Elapsed(object sender, ElapsedEventArgs e)
-        {
-            CurrentTime = _playback.GetCurrentTime<MetricTimeSpan>();
-        }
+        #region IDispose
+
+        private bool disposed = false;
 
         ~MidiPlayer()
         {
@@ -240,55 +187,43 @@ namespace KeqingNiuza.Midi
             if (disposing)
             {
                 _playback?.Dispose();
-                _timer?.Dispose();
             }
             disposed = true;
         }
 
+        #endregion
 
 
-
-        private void GenshinExited(object sender, EventArgs e)
+        
+        public void ChangeFileInfo(MidiFileInfo info, bool autoPlay = true)
         {
-            CanPlay = false;
-            _playback?.Dispose();
-        }
-
-        public void Play()
-        {
-            _playback?.Start();
-        }
-
-        public void MoveToTime(int milliSeconds)
-        {
-            var time = new MetricTimeSpan(0, 0, 0, milliSeconds);
-            _playback?.MoveToTime(time);
-        }
-
-
-
-        private void _playback_Stopped(object sender, EventArgs e)
-        {
-            IsPlaying = false;
-            _timer.Stop();
-        }
-
-        private void _playback_Started(object sender, EventArgs e)
-        {
-            IsPlaying = true;
-            _timer.Start();
-        }
-
-        public void ChangeFile(MidiFileInfo info)
-        {
-            MidiFileInfo = info;
             Name = info.Name;
-            CurrentTime = new TimeSpan();
+            MidiFileInfo = info;
+            ChangeFileInfo();
+            if (autoPlay)
+            {
+                IsPlaying = true;
+            }
+        }
+
+        public void ChangeFileInfo(bool autoPlay = true)
+        {
+            ChangeFileInfo();
+            if (autoPlay)
+            {
+                IsPlaying = true;
+            }
+        }
+
+        private void ChangeFileInfo()
+        {
+            var speed = _playback?.Speed;
             _playback?.Dispose();
-            _timer.Stop();
-            TotalTime = info.MidiFile.GetDuration<MetricTimeSpan>();
-            _playback = info.MidiFile.GetPlayback();
-            _playback.Speed = Speed;
+            MidiFileInfo.MidiFile.Chunks.Clear();
+            MidiFileInfo.MidiFile.Chunks.AddRange(MidiFileInfo.MidiTracks.Where(x => x.IsCheck).Select(x => x.Track));
+            _playback = MidiFileInfo.MidiFile.GetPlayback();
+            TotalTime = MidiFileInfo.MidiFile.GetDuration<MetricTimeSpan>();
+            _playback.Speed = speed ?? 1;
             _playback.InterruptNotesOnStop = true;
             _playback.EventPlayed += NoteEventPlayed;
             _playback.Started += _playback_Started;
@@ -296,25 +231,12 @@ namespace KeqingNiuza.Midi
             _playback.Finished += _playback_Finished;
         }
 
-        public void ChangeFileAndPlay(MidiFileInfo info)
-        {
-            ChangeFile(info);
-            IsPlaying = true;
-        }
-
-        private void _playback_Finished(object sender, EventArgs e)
-        {
-            IsPlaying = false;
-            _timer.Stop();
-            CurrentTime = new TimeSpan();
-        }
-
         private void NoteEventPlayed(object sender, MidiEventPlayedEventArgs e)
         {
             if (e.Event.EventType == MidiEventType.NoteOn)
             {
                 var note = e.Event as NoteOnEvent;
-                var num = (int)note.NoteNumber + NoteLevel;
+                var num = note.NoteNumber + NoteLevel;
                 while (true)
                 {
                     if (num < 48)
@@ -332,7 +254,7 @@ namespace KeqingNiuza.Midi
                 }
                 if (Const.NoteToVisualKeyDictionary.ContainsKey(num))
                 {
-                    Util.Postkey(_hWnd, num, AllowPlayBackground);
+                    Util.Postkey(_hWnd, num, PlayBackground);
                 }
             }
         }

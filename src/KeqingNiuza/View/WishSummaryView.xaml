@@ -100,7 +100,7 @@
                         <!--  总计  -->
                         <StackPanel Grid.Column="0">
                             <TextBlock Foreground="Gray" Text="角色祈愿" />
-                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                            <StackPanel Margin="0,18,0,0" Orientation="Horizontal">
                                 <TextBlock Margin="0,0,0,2"
                                            VerticalAlignment="Bottom"
                                            Foreground="Gray"
@@ -160,7 +160,19 @@
                             </Grid>
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="平均5星次数" />
-                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding Average5, StringFormat=F2}" />
+                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding Average5, StringFormat=F2}">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="截止到最后一次5星" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="平均Up5星次数" />
+                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding AverageUp5, StringFormat=F2}">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="截止到最后一次Up5星" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="小保底" />
@@ -269,7 +281,7 @@
                         <!--  总计  -->
                         <StackPanel Grid.Column="0">
                             <TextBlock Foreground="Gray" Text="武器祈愿" />
-                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                            <StackPanel Margin="0,18,0,0" Orientation="Horizontal">
                                 <TextBlock Margin="0,0,0,2"
                                            VerticalAlignment="Bottom"
                                            Foreground="Gray"
@@ -329,7 +341,19 @@
                             </Grid>
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="平均5星次数" />
-                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding Average5, StringFormat=F2}" />
+                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding Average5, StringFormat=F2}">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="截止到最后一次5星" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="平均Up5星次数" />
+                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding AverageUp5, StringFormat=F2}">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="截止到最后一次Up5星" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="小保底" />
@@ -498,7 +522,11 @@
                             </Grid>
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="平均5星次数" />
-                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding Average5, StringFormat=F2}" />
+                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding Average5, StringFormat=F2}">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="截止到最后一次5星" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="小保底" />
@@ -746,8 +774,8 @@
                                 <TextBlock Height="18"
                                            HorizontalAlignment="Center"
                                            VerticalAlignment="Bottom"
-                                           FontWeight="Bold"
                                            FontSize="12"
+                                           FontWeight="Bold"
                                            Foreground="#84603d"
                                            Text="{Binding Name}" />
                                 <Border Height="20"

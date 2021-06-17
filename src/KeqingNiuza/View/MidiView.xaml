@@ -14,10 +14,10 @@
 
     <UserControl.Resources>
         <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="12" />
         </Style>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -29,6 +29,7 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
+        <!--  播放列表  -->
         <Grid Grid.Row="0" Grid.Column="0" Margin="10,10,10,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -46,7 +47,8 @@
                      Margin="20,10,0,0"
                      Background="Transparent"
                      ItemsSource="{Binding MidiFileInfoList}"
-                     MouseDoubleClick="ListBox_MidiFileInfo_MouseDoubleClick">
+                     MouseDoubleClick="ListBox_MidiFileInfo_MouseDoubleClick"
+                     SelectedItem="{Binding SelectedMidiFile}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Name}" />
@@ -60,7 +62,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-
+            <!--  设置  -->
             <StackPanel Grid.Row="0">
                 <TextBlock Margin="0,0,0,10"
                            VerticalAlignment="Center"
@@ -98,7 +100,7 @@
                     <ToggleButton Grid.Row="0"
                                   Grid.Column="1"
                                   HorizontalAlignment="Left"
-                                  IsChecked="{Binding MidiPlayer.AutoSwitchToGenshinWindow}"
+                                  IsChecked="{Binding AutoSwitchToGenshinWindow}"
                                   Style="{StaticResource ToggleButtonSwitch}" />
                     <TextBlock Grid.Row="1"
                                Grid.Column="0"
@@ -107,7 +109,7 @@
                     <ToggleButton Grid.Row="1"
                                   Grid.Column="1"
                                   HorizontalAlignment="Left"
-                                  IsChecked="{Binding MidiPlayer.AllowPlayBackground}"
+                                  IsChecked="{Binding PlayBackground}"
                                   Style="{StaticResource ToggleButtonSwitch}" />
                     <TextBlock Grid.Row="2"
                                Grid.Column="0"
@@ -118,10 +120,10 @@
                                       Width="70"
                                       HorizontalAlignment="Left"
                                       DecimalPlaces="1"
-                                      Increment="0.1"
                                       FontSize="12"
-                                      IsEnabled="{Binding MidiPlayer.IsPlaying, Converter={StaticResource Boolean2BooleanReConverter}}"
-                                      Value="{Binding MidiPlayer.Speed, UpdateSourceTrigger=PropertyChanged}" />
+                                      Increment="0.1"
+                                      IsEnabled="{Binding IsPlaying, Converter={StaticResource Boolean2BooleanReConverter}}"
+                                      Value="{Binding Speed, UpdateSourceTrigger=PropertyChanged}" />
                     <TextBlock Grid.Row="3"
                                Grid.Column="0"
                                VerticalAlignment="Center"
@@ -132,27 +134,69 @@
                                 Orientation="Horizontal">
                         <hc:NumericUpDown Width="70"
                                           HorizontalAlignment="Left"
+                                          FontSize="12"
                                           Maximum="48"
                                           Minimum="-39"
-                                          FontSize="12"
                                           ShowClearButton="True"
-                                          Value="{Binding MidiPlayer.NoteLevel, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding MidiPlayer.NoteLevel, Converter={StaticResource IntToNoteStringConverter}}" />
+                                          Value="{Binding NoteLevel, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding NoteLevel, Converter={StaticResource IntToNoteStringConverter}}" />
                     </StackPanel>
 
                 </Grid>
+            </StackPanel>
 
+            <!--  文件信息  -->
+            <StackPanel Grid.Row="1">
+                <TextBlock FontSize="20" Text="文件信息" />
+                <TextBlock Text="{Binding SelectedMidiFile.Name}" />
+                <TextBlock Text="{Binding SelectedMidiFile.MidiFile.TimeDivision}" />
+                <hc:ScrollViewer Margin="-10,10,0,0" Background="Transparent" BorderThickness="0">
+                    <ItemsControl ItemsSource="{Binding SelectedMidiFile.CanPlayedTracks}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Expander Margin="0,10,0,0" Background="Transparent" BorderThickness="0">
+                                    <Expander.Header>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Width="150" VerticalAlignment="Center" Text="{Binding Name}" />
+                                            <TextBlock VerticalAlignment="Center" Text="命中率：" />
+                                            <TextBlock Width="60" VerticalAlignment="Center" Text="{Binding CanPlayNoteRadio, StringFormat=P1}" />
+                                            <ToggleButton IsChecked="{Binding IsCheck}" Style="{StaticResource ToggleButtonSwitch}" />
+                                        </StackPanel>
+                                    </Expander.Header>
+                                    <Expander.Content>
+                                        <Border BorderBrush="LightGray" BorderThickness="1">
+                                            <StackPanel Margin="10,6,0,0">
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock Text="音符数：" />
+                                                    <TextBlock Text="{Binding NoteNumber}" />
+                                                    <TextBlock Margin="20,0,0,0" Text="可演奏音符数：" />
+                                                    <TextBlock Text="{Binding CanPlayNoteNumber}" />
+                                                </StackPanel>
+                                            </StackPanel>
+                                        </Border>
+                                    </Expander.Content>
+                                </Expander>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+
+                </hc:ScrollViewer>
             </StackPanel>
         </Grid>
 
 
 
-
+        <!--  进度条栏  -->
         <Grid Grid.Row="2" Grid.ColumnSpan="2" Height="100">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="AUto" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Orientation="Horizontal">
@@ -200,7 +244,7 @@
                               Margin="20"
                               FontFamily="{StaticResource IconFamily}"
                               FontSize="30"
-                              IsChecked="{Binding MidiPlayer.IsPlaying}" />
+                              IsChecked="{Binding IsPlaying}" />
                 <Button Name="Button_Forward"
                         Margin="20"
                         Click="Button_Forward_Click"
@@ -225,7 +269,7 @@
                         <TextBlock Text="{Binding Maximum, ElementName=Slider_Play, Converter={StaticResource MilliSecondToTimeConverter}}" />
                     </StackPanel>
 
-                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Bottom" Text="{Binding MidiPlayer.Name}" />
+                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Bottom" Text="{Binding Name}" />
                 </DockPanel>
 
                 <Slider Name="Slider_Play"
@@ -234,10 +278,9 @@
                         VerticalAlignment="Center"
                         Background="Gray"
                         IsMoveToPointEnabled="True"
-                        Maximum="{Binding MidiPlayer.TotalTime, Converter={StaticResource TimeSpanToSliderValueConverter}}"
-                        Thumb.DragCompleted="Slider_Play_DragCompleted"
+                        Maximum="{Binding TotalTime, Converter={StaticResource TimeSpanToSliderValueConverter}}"
                         UseLayoutRounding="False"
-                        Value="{Binding MidiPlayer.CurrentTime, Converter={StaticResource TimeSpanToSliderValueConverter}, Delay=100}" />
+                        Value="{Binding CurrentTime, Converter={StaticResource TimeSpanToSliderValueConverter}, Delay=500}" />
             </Grid>
 
             <StackPanel Grid.Column="2" Margin="20" VerticalAlignment="Center">

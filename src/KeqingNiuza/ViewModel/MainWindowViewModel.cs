@@ -8,6 +8,7 @@ using KeqingNiuza.Wish;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace KeqingNiuza.ViewModel
             }
             else
             {
-                UserDataList = new List<UserData>();
+                UserDataList = new ObservableCollection<UserData>();
                 ViewContent = new WelcomeView();
                 first = true;
             }
@@ -105,8 +106,8 @@ namespace KeqingNiuza.ViewModel
         }
 
 
-        private List<UserData> _UserDataList;
-        public List<UserData> UserDataList
+        private ObservableCollection<UserData> _UserDataList;
+        public ObservableCollection<UserData> UserDataList
         {
             get { return _UserDataList; }
             set
@@ -204,8 +205,8 @@ namespace KeqingNiuza.ViewModel
         private void LoadConfig()
         {
             var setting = JsonSerializer.Deserialize<Config>(File.ReadAllText("UserData\\Config.json"), JsonOptions);
-            UserDataList = setting.UserDataList ?? new List<UserData>();
-            SelectedUserData = UserDataList.Find(x => x.Uid == setting.LatestUid) ?? UserDataList.First();
+            UserDataList = setting.UserDataList ?? new ObservableCollection<UserData>();
+            SelectedUserData = UserDataList.First(x => x.Uid == setting.LatestUid) ?? UserDataList.First();
         }
 
 
@@ -218,7 +219,7 @@ namespace KeqingNiuza.ViewModel
             var setting = new Config()
             {
                 LatestUid = SelectedUserData.Uid,
-                UserDataList = UserDataList.Distinct().OrderBy(x => x.Uid).ToList(),
+                UserDataList = new ObservableCollection<UserData>(UserDataList.Distinct().OrderBy(x => x.Uid)),
             };
             File.WriteAllText("UserData\\Config.json", JsonSerializer.Serialize(setting, JsonOptions));
         }
@@ -264,14 +265,14 @@ namespace KeqingNiuza.ViewModel
                     {
                         if (await IsUrlTimeout(SelectedUserData.Url))
                         {
+                            Growl.Warning("原 Url 已过期");
+                        }
+                        else
+                        {
                             skipLoadGenshinLogFile = true;
                             await LoadDataFromUrl(SelectedUserData.Url);
                             ReloadViewContent();
                             ChangeViewContent("WishSummaryView");
-                        }
-                        else
-                        {
-                            Growl.Warning("原 Url 已过期");
                         }
                     }
                 }
@@ -304,13 +305,13 @@ namespace KeqingNiuza.ViewModel
             {
                 var exporter = new WishLogExporter(url);
                 var uid = await exporter.GetUidByUrl();
-                return true;
+                return false;
             }
             catch (Exception ex)
             {
                 if (ex.Message == "authkey timeout")
                 {
-                    return false;
+                    return true;
                 }
                 else
                 {
@@ -324,7 +325,7 @@ namespace KeqingNiuza.ViewModel
             var exporter = new WishLogExporter(url);
             exporter.ProgressChanged += WishLoadExporter_ProgressChanged;
             var uid = await exporter.GetUidByUrl();
-            var userData = UserDataList.Find(x => x.Uid == uid);
+            var userData = UserDataList.FirstOrDefault(x => x.Uid == uid);
             List<WishData> oldList, newList;
             if (userData == null)
             {

@@ -135,6 +135,11 @@ namespace KeqingNiuza.Wish
         public double Average5 => (double)(Count - Guarantee) / Star5Count;
 
         /// <summary>
+        /// Up5星平均出货次数
+        /// </summary>
+        public double AverageUp5 { get; set; }
+
+        /// <summary>
         /// 保底歪了的数量
         /// </summary>
         public int Count_BaoDiWai => Count_DaBaoDi;
@@ -144,20 +149,11 @@ namespace KeqingNiuza.Wish
         /// </summary>
         public int Count_BaoDiBuWai => Count_XiaoBaoDi - Count_DaBaoDi;
 
+
+        private List<StarDetail> _Star5List;
         ///// <summary>
         ///// 5星详细列表
         ///// </summary>
-        //public List<StarDetail> Star5List { get; set; }
-
-        ///// <summary>
-        ///// 4星详细列表
-        ///// </summary>
-        //public List<StarDetail> Star4List { get; set; }
-
-
-
-
-        private List<StarDetail> _Star5List;
         public List<StarDetail> Star5List
         {
             get { return _Star5List; }
@@ -169,6 +165,9 @@ namespace KeqingNiuza.Wish
         }
 
         private List<StarDetail> _Star4List;
+        ///// <summary>
+        ///// 4星详细列表
+        ///// </summary>
         public List<StarDetail> Star4List
         {
             get { return _Star4List; }

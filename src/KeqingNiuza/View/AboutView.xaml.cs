@@ -63,6 +63,65 @@ namespace KeqingNiuza.View
             Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
         }
 
+        private async void Button_TestUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            Button_TestUpdate.IsEnabled = false;
+            LoadingCircle_TestUpdate.Visibility = Visibility.Visible;
+            try
+            {
+                var updater = new Updater();
+                var info = await updater.GetUpdateInfo();
+                if (info)
+                {
+                    await updater.PrepareUpdateFiles();
+                    updater.CallUpdateWhenExit();
+                    Log.OutputLog(LogType.Info, "Update files prepare finished");
+                    Growl.Success("更新文件准备完毕，关闭窗口开始更新");
+                }
+                else
+                {
+                    Growl.Info("已是最新版本");
+                }
+            }
+            catch (Exception ex)
+            {
+                Growl.Warning(ex.Message);
+                Log.OutputLog(LogType.Warning, "TestUpdate", ex);
+            }
+
+            LoadingCircle_TestUpdate.Visibility = Visibility.Hidden;
+            Button_TestUpdate.IsEnabled = true;
+        }
+
+
+        private async void Button_TestResource_Click(object sender, RoutedEventArgs e)
+        {
+            Button_TestResource.IsEnabled = false;
+            LoadingCircle_TestResource.Visibility = Visibility.Visible;
+            try
+            {
+                var updater = new Updater();
+                var info = await updater.UpdateResourceFiles();
+                if (info)
+                {
+                    updater.CallUpdateWhenExit();
+                    Growl.Success("关闭窗口完成资源文件的替换");
+                }
+                else
+                {
+                    Growl.Info("资源文件已是最新");
+                }
+            }
+            catch (Exception ex)
+            {
+                Growl.Warning(ex.Message);
+                Log.OutputLog(LogType.Warning, "TestResource", ex);
+            }
+
+            LoadingCircle_TestResource.Visibility = Visibility.Hidden;
+            Button_TestResource.IsEnabled = true;
+        }
+
         private async void Button_ImportExcel_Click(object sender, RoutedEventArgs e)
         {
             var result = await Dialog.Show(new ExcelImportDialog()).GetResultAsync<(bool, UserData, List<WishData>)>();

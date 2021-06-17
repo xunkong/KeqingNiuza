@@ -30,6 +30,31 @@ namespace KeqingNiuza.Model
         }
 
 
+        private bool _IsEnable = true;
+        public bool IsEnable
+        {
+            get { return _IsEnable; }
+            set
+            {
+                _IsEnable = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private bool _IsCountdownType = true;
+        public bool IsCountdownType
+        {
+            get { return _IsCountdownType; }
+            set
+            {
+                _IsCountdownType = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
         private DateTime _LastTriggerTime;
         public DateTime LastTriggerTime
         {
@@ -64,7 +89,6 @@ namespace KeqingNiuza.Model
             {
                 LastTriggerTime = value - Interval;
                 OnPropertyChanged();
-                OnPropertyChanged("RemainingTime");
             }
         }
 
@@ -88,9 +112,77 @@ namespace KeqingNiuza.Model
             {
                 LastTriggerTime = DateTime.Now + value - Interval;
                 OnPropertyChanged();
-                OnPropertyChanged("NextTriggerTime");
             }
         }
+
+
+        private int _MaxValue;
+        public int MaxValue
+        {
+            get { return _MaxValue; }
+            set
+            {
+                _MaxValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private TimeSpan _TimePerValue;
+        [JsonConverter(typeof(IntervalJsonConverter))]
+        public TimeSpan TimePerValue
+        {
+            get { return _TimePerValue; }
+            set
+            {
+                _TimePerValue = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private DateTime _LastZeroValueTime;
+        public DateTime LastZeroValueTime
+        {
+            get { return _LastZeroValueTime; }
+            set
+            {
+                _LastZeroValueTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        [JsonIgnore]
+        public int CurrentValue
+        {
+            get
+            {
+                int current = (int)((DateTime.Now - LastZeroValueTime).TotalSeconds / TimePerValue.TotalSeconds);
+                return current > MaxValue ? MaxValue : current < 0 ? 0 : current;
+            }
+            set
+            {
+                // 值限制在最大最小范围内
+                int current = value > MaxValue ? MaxValue : value < 0 ? 0 : value;
+                LastZeroValueTime = DateTime.Now - new TimeSpan(TimePerValue.Ticks * current);
+                OnPropertyChanged();
+            }
+        }
+
+
+        [JsonIgnore]
+        public DateTime NextMaxValueTime
+        {
+            get { return LastZeroValueTime + new TimeSpan(TimePerValue.Ticks * MaxValue); }
+            set
+            {
+                LastZeroValueTime = value - new TimeSpan(TimePerValue.Ticks * MaxValue);
+                OnPropertyChanged();
+            }
+        }
+
+
 
         public void Refresh()
         {

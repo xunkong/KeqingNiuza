@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KeqingNiuza.Wish
 {
-    public class WishSummary:INotifyPropertyChanged
+    public class WishSummary : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -166,6 +166,15 @@ namespace KeqingNiuza.Wish
             {
                 ws.GuaranteeMax = ws.Count;
                 ws.GuaranteeMin = ws.Count;
+            }
+            var index = list.FindLastIndex(x => x.Rank == 5 && (x.IsUp ?? false));
+            if (index == -1)
+            {
+                ws.AverageUp5 = double.NaN;
+            }
+            else
+            {
+                ws.AverageUp5 = (double)(index + 1) / list.Count(x => x.Rank == 5 && (x.IsUp ?? false));
             }
             return ws;
         }

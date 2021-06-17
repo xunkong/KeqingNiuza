@@ -45,19 +45,6 @@ namespace KeqingNiuza.ViewModel
             set
             {
                 _SelectedMidiFile = value;
-                MidiPlayer.ChangeFile(_SelectedMidiFile);
-                OnPropertyChanged();
-            }
-        }
-
-
-        private static MidiPlayer _MidiPlayer;
-        public MidiPlayer MidiPlayer
-        {
-            get { return _MidiPlayer; }
-            set
-            {
-                _MidiPlayer = value;
                 OnPropertyChanged();
             }
         }
@@ -85,6 +72,8 @@ namespace KeqingNiuza.ViewModel
                 OnPropertyChanged();
             }
         }
+
+        #region ControlProperties
 
         private string _StateText;
         public string StateText
@@ -135,10 +124,85 @@ namespace KeqingNiuza.ViewModel
             }
         }
 
+        #endregion
+
+        public string Name => MidiPlayer.Name;
+
+
+        public bool IsPlaying
+        {
+            get { return MidiPlayer.IsPlaying; }
+            set
+            {
+                MidiPlayer.IsPlaying = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public bool AutoSwitchToGenshinWindow
+        {
+            get { return MidiPlayer.AutoSwitchToGenshinWindow; }
+            set
+            {
+                MidiPlayer.AutoSwitchToGenshinWindow = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public bool PlayBackground
+        {
+            get { return MidiPlayer.PlayBackground; }
+            set
+            {
+                MidiPlayer.PlayBackground = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double Speed
+        {
+            get { return MidiPlayer.Speed; }
+            set
+            {
+                MidiPlayer.Speed = value;
+                timer.Interval = 1000 / value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int NoteLevel
+        {
+            get { return MidiPlayer.NoteLevel; }
+            set
+            {
+                MidiPlayer.NoteLevel = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public TimeSpan TotalTime => MidiPlayer.TotalTime;
+
+
+        public TimeSpan CurrentTime
+        {
+            get { return MidiPlayer.CurrentTime; }
+            set
+            {
+                MidiPlayer.CurrentTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
         private bool hotkey;
         private bool disposedValue;
         private readonly IntPtr hWnd;
         private readonly HwndSource hwndSource;
+        private static MidiPlayer MidiPlayer;
+        private Timer timer;
 
         public MidiViewModel()
         {
@@ -146,13 +210,52 @@ namespace KeqingNiuza.ViewModel
             var infos = files.ConvertAll(x => new MidiFileInfo(x)).OrderBy(x => x.Name);
             MidiFileInfoList = new ObservableCollection<MidiFileInfo>(infos);
             MidiPlayer = new MidiPlayer("YuanShen");
+            MidiPlayer.Started += MidiPlayer_Started;
+            MidiPlayer.Stopped += MidiPlayer_Stopped;
+            MidiPlayer.Finished += MidiPlayer_Finished;
             SelectedMidiFile = MidiFileInfoList.First();
+            ChangePlayFile(SelectedMidiFile, false);
             hWnd = Process.GetCurrentProcess().MainWindowHandle;
             hotkey = Util.RegisterHotKey(hWnd);
             hwndSource = HwndSource.FromHwnd(hWnd);
             hwndSource.AddHook(HwndHook);
             RefreshState();
+            timer = new Timer(1000);
+            timer.AutoReset = true;
+            timer.Elapsed += Timer_Elapsed;
         }
+
+
+
+
+
+        private void MidiPlayer_Started(object sender, EventArgs e)
+        {
+            timer.Start();
+            OnPropertyChanged("IsPlaying");
+            OnPropertyChanged("CurrentTime");
+        }
+        private void MidiPlayer_Stopped(object sender, EventArgs e)
+        {
+            timer.Stop();
+            OnPropertyChanged("IsPlaying");
+            OnPropertyChanged("CurrentTime");
+        }
+
+        private void MidiPlayer_Finished(object sender, EventArgs e)
+        {
+            timer.Stop();
+            OnPropertyChanged("IsPlaying");
+            OnPropertyChanged("CurrentTime");
+        }
+
+        private void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            OnPropertyChanged("IsPlaying");
+            OnPropertyChanged("CurrentTime");
+        }
+
+        #region IDispose
 
         protected virtual void Dispose(bool disposing)
         {
@@ -160,7 +263,7 @@ namespace KeqingNiuza.ViewModel
             {
                 if (disposing)
                 {
-                    _MidiPlayer?.Dispose();
+                    MidiPlayer?.Dispose();
                 }
                 Util.UnregisterHotKey(hWnd);
                 hwndSource.RemoveHook(HwndHook);
@@ -180,10 +283,22 @@ namespace KeqingNiuza.ViewModel
             Dispose(false);
         }
 
+        #endregion
 
-        public void ChangeFileAndPlay(MidiFileInfo info)
+
+
+
+        public void ChangePlayFile(MidiFileInfo info, bool autoPlay = true)
         {
-            _MidiPlayer.ChangeFileAndPlay(info);
+            MidiPlayer.ChangeFileInfo(info, autoPlay);
+            OnPropertyChanged("Name");
+            OnPropertyChanged("IsPlaying");
+            OnPropertyChanged("AutoSwitchToGenshinWindow");
+            OnPropertyChanged("PlayBackground");
+            OnPropertyChanged("Speed");
+            OnPropertyChanged("NoteLevel");
+            OnPropertyChanged("TotalTime");
+            OnPropertyChanged("CurrentTime");
         }
 
 
@@ -256,28 +371,31 @@ namespace KeqingNiuza.ViewModel
             {
                 switch (wParam.ToInt32())
                 {
+                    // 播放/暂停
                     case 1000:
-                        if (MidiPlayer.IsPlaying)
+                        if (IsPlaying)
                         {
-                            MidiPlayer.IsPlaying = false;
+                            IsPlaying = false;
                         }
                         else
                         {
                             if (MidiPlayer.MidiFileInfo == null)
                             {
-                                MidiPlayer.ChangeFileAndPlay(MidiFileInfoList.First());
+                                ChangePlayFile(MidiFileInfoList.First());
                             }
                             else
                             {
-                                MidiPlayer.IsPlaying = true;
+                                IsPlaying = true;
                             }
                         }
                         handled = true;
                         break;
+                    // 上一首
                     case 1001:
                         PlayLast();
                         handled = true;
                         break;
+                    // 下一首
                     case 1002:
                         PlayNext();
                         handled = true;
@@ -292,18 +410,18 @@ namespace KeqingNiuza.ViewModel
         {
             if (MidiPlayer.MidiFileInfo == null)
             {
-                MidiPlayer.ChangeFileAndPlay(MidiFileInfoList.Last());
+                ChangePlayFile(MidiFileInfoList.Last());
             }
             else
             {
                 var index = MidiFileInfoList.IndexOf(MidiPlayer.MidiFileInfo);
                 if (index == 0)
                 {
-                    MidiPlayer.ChangeFileAndPlay(MidiFileInfoList.Last());
+                    ChangePlayFile(MidiFileInfoList.Last());
                 }
                 else
                 {
-                    MidiPlayer.ChangeFileAndPlay(MidiFileInfoList[index - 1]);
+                    ChangePlayFile(MidiFileInfoList[index - 1]);
                 }
             }
         }
@@ -313,27 +431,24 @@ namespace KeqingNiuza.ViewModel
         {
             if (MidiPlayer.MidiFileInfo == null)
             {
-                MidiPlayer.ChangeFileAndPlay(MidiFileInfoList.First());
+                ChangePlayFile(MidiFileInfoList.First());
             }
             else
             {
                 var index = MidiFileInfoList.IndexOf(MidiPlayer.MidiFileInfo);
                 if (index == MidiFileInfoList.Count - 1)
                 {
-                    MidiPlayer.ChangeFileAndPlay(MidiFileInfoList.First());
+                    ChangePlayFile(MidiFileInfoList.First());
                 }
                 else
                 {
-                    MidiPlayer.ChangeFileAndPlay(MidiFileInfoList[index + 1]);
+                    ChangePlayFile(MidiFileInfoList[index + 1]);
                 }
             }
         }
 
 
-        public void MoveToTime(int milliSeconds)
-        {
-            MidiPlayer?.MoveToTime(milliSeconds);
-        }
+
 
 
     }

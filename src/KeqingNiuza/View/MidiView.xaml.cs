@@ -43,7 +43,7 @@ namespace KeqingNiuza.View
         private void ListBox_MidiFileInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var item = ListBox_MidiFileInfo.SelectedItem as MidiFileInfo;
-            ViewModel.ChangeFileAndPlay(item);
+            ViewModel.ChangePlayFile(item);
         }
 
         private void Button_Restart_Click(object sender, RoutedEventArgs e)
@@ -61,9 +61,5 @@ namespace KeqingNiuza.View
             ViewModel.PlayNext();
         }
 
-        private void Slider_Play_DragCompleted(object sender, System.Windows.Controls.Primitives.DragCompletedEventArgs e)
-        {
-            ViewModel.MoveToTime((int)Slider_Play.Value);
-        }
     }
 }

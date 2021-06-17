@@ -47,14 +47,6 @@ namespace KeqingNiuza.Common
 
         public static void ExportUpdateFile()
         {
-            if (File.Exists("..\\UpdateFileList.json"))
-            {
-                var str = File.ReadAllText("..\\UpdateFileList.json");
-                var fileList = JsonSerializer.Deserialize<UpdateFileList>(str, JsonOptions);
-                var version = fileList.Version;
-                File.Copy("..\\UpdateFileList.json", $"..\\UpdateFileList_{version}.json", true);
-                File.Delete("..\\UpdateFileList.json");
-            }
             var filestrings = Directory.GetFiles(".\\", "*", SearchOption.AllDirectories);
             var zipFileList = filestrings.Where(x => !(x.Contains(".\\Log")
                                                         || x.Contains(".\\UserData")
@@ -103,7 +95,7 @@ namespace KeqingNiuza.Common
             };
             filelist.AllFiles = zipFileList.ToList().ConvertAll(x => new UpdateFileInfo(x));
             File.WriteAllText("..\\UpdateFileList.json", JsonSerializer.Serialize(filelist, JsonOptions));
-            File.Copy("..\\UpdateFileList.json", $"..\\UpdateFileList{Const.Version}.json", true);
+            File.Copy("..\\UpdateFileList.json", $"..\\UpdateFileList_{Const.Version}.json", true);
         }
 
 

@@ -48,10 +48,11 @@ Midi文件来源：[bilibili@恰空PurrLude](https://space.bilibili.com/2765893)
 
 - [.NET](https://github.com/dotnet/runtime)
 - [ControlzEx](https://github.com/ControlzEx/ControlzEx)
+- [DryWetMidi](https://github.com/melanchall/drywetmidi)
 - [EPPlus](https://github.com/JanKallman/EPPlus)
 - [HandyControl](https://github.com/HandyOrg/HandyControl)
 - [Live-Charts](https://github.com/Live-Charts/Live-Charts)
-- [DryWetMidi](https://github.com/melanchall/drywetmidi)
+- [TaskScheduler](https://github.com/dahall/taskscheduler)
 - [WebDavClient](https://github.com/skazantsev/WebDavClient)
 
 ## 截图

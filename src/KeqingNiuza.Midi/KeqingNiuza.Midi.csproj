@@ -44,6 +44,8 @@
     <Compile Include="Const.cs" />
     <Compile Include="MidiFileInfo.cs" />
     <Compile Include="MidiPlayer.cs" />
+    <Compile Include="MidiPlaySetting.cs" />
+    <Compile Include="MidiTrack.cs" />
     <Compile Include="Native\FsModifier.cs" />
     <Compile Include="Native\Msg.cs" />
     <Compile Include="Native\User32.cs" />

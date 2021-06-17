@@ -73,13 +73,27 @@ namespace KeqingNiuza.Service
                 var list = JsonSerializer.Deserialize<List<ScheduleInfo>>(json);
                 foreach (var info in list)
                 {
-                    if (DateTime.Now > info.NextTriggerTime)
+                    if (info.IsCountdownType)
                     {
-                        new ToastContentBuilder()
-                        .AddText("定时提醒")
-                        .AddText($"{info.Name}")
-                        .AddAttributionText(info.NextTriggerTime.ToString("G"))
-                        .Show();
+                        if (DateTime.Now > info.NextTriggerTime && info.IsEnable)
+                        {
+                            new ToastContentBuilder()
+                            .AddText("定时提醒")
+                            .AddText($"{info.Name}")
+                            .AddAttributionText(info.NextTriggerTime.ToString("G"))
+                            .Show();
+                        }
+                    }
+                    else
+                    {
+                        if (DateTime.Now > info.NextMaxValueTime && info.IsEnable)
+                        {
+                            new ToastContentBuilder()
+                            .AddText("定时提醒")
+                            .AddText($"{info.Name}")
+                            .AddAttributionText(info.NextMaxValueTime.ToString("G"))
+                            .Show();
+                        }
                     }
                 }
             }
@@ -93,17 +107,40 @@ namespace KeqingNiuza.Service
             {
                 notifer.RemoveFromSchedule(item);
             }
-            foreach (var item in list)
+            foreach (var info in list)
             {
-                if (item.NextTriggerTime > DateTime.Now)
+                if (info.IsCountdownType)
                 {
-                    new ToastContentBuilder()
-                        .AddText("定时提醒")
-                        .AddText($"{item.Name}")
-                        .AddAttributionText(item.NextTriggerTime.ToString("G"))
-                        .Schedule(item.NextTriggerTime);
+                    if (info.NextTriggerTime > DateTime.Now && info.IsEnable)
+                    {
+                        new ToastContentBuilder()
+                            .AddText("定时提醒")
+                            .AddText($"{info.Name}")
+                            .AddAttributionText(info.NextTriggerTime.ToString("G"))
+                            .Schedule(info.NextTriggerTime);
+                    }
+                }
+                else
+                {
+                    if (info.NextMaxValueTime > DateTime.Now && info.IsEnable)
+                    {
+                        new ToastContentBuilder()
+                            .AddText("定时提醒")
+                            .AddText($"{info.Name}")
+                            .AddAttributionText(info.NextMaxValueTime.ToString("G"))
+                            .Schedule(info.NextMaxValueTime);
+                    }
+
                 }
             }
+        }
+        public static void TestNotifacation()
+        {
+            new ToastContentBuilder()
+                .AddText("通知测试")
+                .AddText($"这是一条测试通知")
+                .AddAttributionText(DateTime.Now.ToString("G"))
+                .Show();
         }
     }
 
