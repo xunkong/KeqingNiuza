@@ -10,24 +10,10 @@ using System.Threading.Tasks;
 
 namespace KeqingNiuza.Midi
 {
-    public class MidiFileInfo:INotifyPropertyChanged
+    public class MidiFileInfo
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
-        private string _Name;
-        public string Name
-        {
-            get { return _Name; }
-            set
-            {
-                _Name = value;
-            }
-        }
-
+        public string Name { get; set; }
 
         public FileInfo FileInfo { get; private set; }
 
@@ -35,15 +21,38 @@ namespace KeqingNiuza.Midi
 
         public List<MidiTrack> MidiTracks { get; set; }
 
-        public List<MidiTrack> CanPlayedTracks { get; set; }
+        public List<MidiTrack> CanPlayTracks { get; set; }
+
+        public int NoteNumber { get; set; }
+
+        public int CanPlayNoteNumber { get; set; }
+
+        public double CanPlayNoteRadio => (double)CanPlayNoteNumber / NoteNumber;
+
+        public int MaxNoteLevel { get; set; }
+
+        public int MinNoteLevel { get; set; }
 
         public MidiFileInfo(string path)
         {
             MidiFile = MidiFile.Read(Path.GetFullPath(path));
             Name = Path.GetFileNameWithoutExtension(path);
             MidiTracks = MidiFile.GetTrackChunks().Select(x => new MidiTrack(x)).ToList();
-            CanPlayedTracks = MidiTracks.Where(x => x.CanBeChecked).ToList();
-            CanPlayedTracks.ForEach(x => x.IsCheck = true);
+            CanPlayTracks = MidiTracks.Where(x => x.CanBeChecked).ToList();
+            CanPlayTracks.ForEach(x => x.IsCheck = true);
+            NoteNumber = CanPlayTracks.Sum(x => x.NoteNumber);
+            CanPlayNoteNumber = CanPlayTracks.Sum(x => x.CanPlayNoteNumber);
+            MaxNoteLevel = CanPlayTracks.Max(x => x.MaxNoteLevel);
+            MinNoteLevel = CanPlayTracks.Min(x => x.MinNoteLevel);
+        }
+
+        public void RefreshTracksByNoteLevel(int noteLevel)
+        {
+            CanPlayTracks.ForEach(x => x.RefreshByNoteLevel(noteLevel));
+            NoteNumber = CanPlayTracks.Sum(x => x.NoteNumber);
+            CanPlayNoteNumber = CanPlayTracks.Sum(x => x.CanPlayNoteNumber);
+            MaxNoteLevel = CanPlayTracks.Max(x => x.MaxNoteLevel);
+            MinNoteLevel = CanPlayTracks.Min(x => x.MinNoteLevel);
         }
 
     }

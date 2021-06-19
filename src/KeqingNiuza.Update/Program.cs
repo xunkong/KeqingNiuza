@@ -27,6 +27,7 @@ namespace KeqingNiuza.Update
                 }
                 return;
             }
+
             if (args[0] == "KeqingNiuza.Update")
             {
                 Thread.Sleep(500);
@@ -37,7 +38,7 @@ namespace KeqingNiuza.Update
                 }
                 Log.OutputLog(LogType.Info, "Start update");
                 Directory.CreateDirectory(".\\dll");
-                Util.MoveAllFile();
+                var result = Util.MoveAllFile();
                 if (File.Exists("update\\ShowUpdateLog"))
                 {
                     File.Create("resource\\ShowUpdateLog");
@@ -48,8 +49,13 @@ namespace KeqingNiuza.Update
                     Directory.Delete(".\\update", true);
                 }
                 catch { }
+                if (!result)
+                {
+                    Util.MessageBox(0, "更新过程中遇到错误，详见日志", "刻记牛杂店", 0);
+                }
                 return;
             }
+
             if (args[0] == "KeqingNiuza.Update.ShowResult")
             {
                 Thread.Sleep(500);
@@ -60,7 +66,7 @@ namespace KeqingNiuza.Update
                 }
                 Log.OutputLog(LogType.Info, "Start update");
                 Directory.CreateDirectory(".\\dll");
-                Util.MoveAllFile();
+                var result = Util.MoveAllFile();
                 if (File.Exists("update\\ShowUpdateLog"))
                 {
                     File.Create("resource\\ShowUpdateLog");
@@ -71,7 +77,46 @@ namespace KeqingNiuza.Update
                     Directory.Delete(".\\update", true);
                 }
                 catch { }
-                Util.MessageBox(0, "更新完成", "刻记牛杂店", 0);
+                if (result)
+                {
+                    Util.MessageBox(0, "更新完成", "刻记牛杂店", 0);
+                }
+                else
+                {
+                    Util.MessageBox(0, "更新过程中遇到错误，详见日志", "刻记牛杂店", 0);
+                }
+                return;
+            }
+
+            if (args[0] == "KeqingNiuza.Update.Restart")
+            {
+                Thread.Sleep(500);
+                var proes = Process.GetProcessesByName("KeqingNiuza");
+                if (proes.Any())
+                {
+                    Array.ForEach(proes, x => x.Kill());
+                }
+                Log.OutputLog(LogType.Info, "Start update");
+                Directory.CreateDirectory(".\\dll");
+                var result = Util.MoveAllFile();
+                if (File.Exists("update\\ShowUpdateLog"))
+                {
+                    File.Create("resource\\ShowUpdateLog");
+                }
+                Log.OutputLog(LogType.Info, "Update finished");
+                try
+                {
+                    Directory.Delete(".\\update", true);
+                }
+                catch { }
+                if (result)
+                {
+                    Process.Start("KeqingNiuza.exe");
+                }
+                else
+                {
+                    Util.MessageBox(0, "更新过程中遇到错误，详见日志", "刻记牛杂店", 0);
+                }
                 return;
             }
         }

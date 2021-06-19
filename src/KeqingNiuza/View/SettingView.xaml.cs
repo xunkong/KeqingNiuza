@@ -60,6 +60,16 @@ namespace KeqingNiuza.View
             }
         }
 
+        public bool IsUpdateRestart
+        {
+            get => Properties.Settings.Default.IsUpdateRestart;
+            set
+            {
+                Properties.Settings.Default.IsUpdateRestart = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool IsLogonTrigger
         {
             get => Properties.Settings.Default.IsLogonTrigger;
@@ -122,6 +132,6 @@ namespace KeqingNiuza.View
             }
         }
 
-       
+
     }
 }

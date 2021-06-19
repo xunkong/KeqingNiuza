@@ -52,6 +52,17 @@ namespace KeqingNiuza.Wish
         }
 
 
+        public void AddWishData(List<WishData> list)
+        {
+            var groups = list.GroupBy(x => x.WishType);
+            foreach (var group in groups)
+            {
+                var datas = group.OrderByDescending(x => x.Id).ToList();
+                AddWishDataToSheet(datas);
+            }
+        }
+
+
         public void SaveAs(string path)
         {
             for (int i = 1; i < 5; i++)
@@ -69,13 +80,13 @@ namespace KeqingNiuza.Wish
             ExcelPackage.SaveAs(fileInfo);
         }
 
-        public void AddGachaData(List<WishData> datas)
+        private void AddWishDataToSheet(List<WishData> datas)
         {
             if (!datas.Any())
             {
                 return;
             }
-            int sheetNum = 0, guarantee = 0;
+            int sheetNum = 0, count = datas.Count;
             switch (datas[0].WishType)
             {
                 case WishType.Novice:
@@ -94,14 +105,14 @@ namespace KeqingNiuza.Wish
             var cells = ExcelPackage.Workbook.Worksheets[sheetNum].Cells;
             for (int i = 0; i < datas.Count; i++)
             {
-                guarantee++;
                 var chinaTime = TimeZoneInfo.ConvertTime(datas[i].Time, TimeZoneInfo.FindSystemTimeZoneById("China Standard Time"));
                 cells[i + 2, 1].Value = chinaTime.ToString("yyyy-MM-dd  HH:mm:ss");
                 cells[i + 2, 2].Value = datas[i].Name;
                 cells[i + 2, 3].Value = datas[i].ItemType;
                 cells[i + 2, 4].Value = datas[i].Rank;
-                cells[i + 2, 5].Value = i + 1;
-                cells[i + 2, 6].Value = guarantee;
+                cells[i + 2, 5].Value = count;
+                count--;
+                cells[i + 2, 6].Value = datas[i].Guarantee;
                 cells[i + 2, 7].Value = datas[i].Id.ToString();
                 cells[i + 2, 1, i + 2, 7].Style.Font.Color.SetColor(Color.Gray);
                 if (datas[i].Rank == 4)
@@ -111,7 +122,6 @@ namespace KeqingNiuza.Wish
                 if (datas[i].Rank == 5)
                 {
                     cells[i + 2, 1, i + 2, 7].Style.Font.Color.SetColor(Star5Color);
-                    guarantee = 0;
                 }
             }
         }

@@ -202,7 +202,7 @@
                     Orientation="Horizontal">
             <TextBlock Foreground="Red" Text="实验性功能，请先阅读" />
             <TextBlock>
-                <Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/Scighost/KeqingNiuza" TextDecorations="None">
+                <Hyperlink Click="Hyperlink_Click" NavigateUri="https://www.bilibili.com/read/cv11787661" TextDecorations="None">
                     设置教程
                 </Hyperlink>
             </TextBlock>

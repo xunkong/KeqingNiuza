@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static KeqingNiuza.Wish.Const;
 
 namespace KeqingNiuza.Wish
 {
@@ -12,6 +11,13 @@ namespace KeqingNiuza.Wish
     /// </summary>
     static class AchievementComputeMethod
     {
+
+        private static List<WishEvent> WishEventList;
+
+        static AchievementComputeMethod()
+        {
+            WishEventList = Const.WishEventList;
+        }
 
         #region 欧非
 

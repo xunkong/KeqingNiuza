@@ -79,7 +79,7 @@ namespace KeqingNiuza.Service
                         {
                             new ToastContentBuilder()
                             .AddText("定时提醒")
-                            .AddText($"{info.Name}")
+                            .AddText($"{info.Name}  倒计时已结束")
                             .AddAttributionText(info.NextTriggerTime.ToString("G"))
                             .Show();
                         }
@@ -90,7 +90,7 @@ namespace KeqingNiuza.Service
                         {
                             new ToastContentBuilder()
                             .AddText("定时提醒")
-                            .AddText($"{info.Name}")
+                            .AddText($"{info.Name} {info.MaxValue}/{info.MaxValue}")
                             .AddAttributionText(info.NextMaxValueTime.ToString("G"))
                             .Show();
                         }
@@ -115,7 +115,7 @@ namespace KeqingNiuza.Service
                     {
                         new ToastContentBuilder()
                             .AddText("定时提醒")
-                            .AddText($"{info.Name}")
+                            .AddText($"{info.Name} 倒计时已结束")
                             .AddAttributionText(info.NextTriggerTime.ToString("G"))
                             .Schedule(info.NextTriggerTime);
                     }
@@ -126,7 +126,7 @@ namespace KeqingNiuza.Service
                     {
                         new ToastContentBuilder()
                             .AddText("定时提醒")
-                            .AddText($"{info.Name}")
+                            .AddText($"{info.Name} {info.MaxValue}/{info.MaxValue}")
                             .AddAttributionText(info.NextMaxValueTime.ToString("G"))
                             .Schedule(info.NextMaxValueTime);
                     }

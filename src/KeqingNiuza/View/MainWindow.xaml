@@ -154,22 +154,6 @@
                         <TextBlock Margin="10,0,0,0" FontSize="12" Text="成就" />
                     </StackPanel>
                 </RadioButton>
-                <RadioButton x:Name="SideMenu_GachaAnalysisView"
-                             Click="RadioButton_SideMenu_Click"
-                             GroupName="SideMenu"
-                             Style="{StaticResource SideMenuRadioButton}"
-                             Tag="GachaAnalysisView"
-                             Visibility="Collapsed">
-                    <StackPanel Orientation="Horizontal">
-                        <Path Width="18"
-                              Height="18"
-                              VerticalAlignment="Center"
-                              Data="{StaticResource PieChart}"
-                              Fill="Purple"
-                              Stretch="Uniform" />
-                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="饼图" />
-                    </StackPanel>
-                </RadioButton>
                 <Polyline Width="140"
                           Margin="0,2,0,2"
                           Points="0 0 140 0"

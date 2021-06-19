@@ -73,6 +73,18 @@ namespace KeqingNiuza.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool IsUpdateRestart {
+            get {
+                return ((bool)(this["IsUpdateRestart"]));
+            }
+            set {
+                this["IsUpdateRestart"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool IsLogonTrigger {
             get {

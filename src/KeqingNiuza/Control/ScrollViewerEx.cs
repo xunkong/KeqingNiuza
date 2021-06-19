@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace KeqingNiuza.Control
 {
-   public class ScrollViewerEx:ScrollViewer
+    public class ScrollViewerEx : ScrollViewer
     {
         protected override void OnMouseWheel(MouseWheelEventArgs e)
         {

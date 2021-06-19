@@ -10,8 +10,9 @@ namespace KeqingNiuza.Update
 {
     public static class Util
     {
-        internal static void MoveAllFile()
+        internal static bool MoveAllFile()
         {
+            var result = true;
             var dir = "update\\KeqingNiuza\\";
             var list = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories);
             foreach (var file in list)
@@ -22,9 +23,11 @@ namespace KeqingNiuza.Update
                 }
                 catch (Exception ex)
                 {
+                    result = false;
                     Log.OutputLog(LogType.Fault, "UpdateMove", ex);
                 }
             }
+            return result;
         }
 
         [DllImport("user32.dll", SetLastError = true, CharSet = CharSet.Auto)]

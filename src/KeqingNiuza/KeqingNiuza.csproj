@@ -84,9 +84,10 @@
     </Compile>
     <Compile Include="Control\ScrollViewerEx.cs" />
     <Compile Include="Converter\ImageConverter.cs" />
-    <Compile Include="Converter\IntToNoteStringConverter.cs" />
+    <Compile Include="Converter\NoteLevelToNoteStringConverter.cs" />
     <Compile Include="Converter\ItemDetailRankConverter.cs" />
     <Compile Include="Converter\MilliSecondToTimeConverter.cs" />
+    <Compile Include="Converter\NoteNumberToNoteStringConverter.cs" />
     <Compile Include="Converter\ProbabilityConverter.cs" />
     <Compile Include="Converter\ReVisibilityConverter.cs" />
     <Compile Include="Converter\TimeSpanToSliderValueConverter.cs" />
@@ -100,16 +101,9 @@
     <Compile Include="View\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\GachaAnalysisView.xaml.cs">
-      <DependentUpon>GachaAnalysisView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\MidiView.xaml.cs">
       <DependentUpon>MidiView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\PieChartView.xaml.cs">
-      <DependentUpon>PieChartView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ViewModel\PieChartViewModel.cs" />
     <Compile Include="Model\Config.cs" />
     <Compile Include="Model\UserData.cs" />
     <Compile Include="Service\Log.cs" />
@@ -195,17 +189,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\GachaAnalysisView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\MidiView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\PieChartView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Style\DataGridStyle.xaml">
       <SubType>Designer</SubType>

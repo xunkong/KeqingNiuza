@@ -61,7 +61,8 @@ namespace KeqingNiuza.ViewModel
             _timer = new System.Timers.Timer(1000);
             _timer.AutoReset = false;
             _timer.Elapsed += LoadCloudAccount;
-#if !DEBUG||TestCDN
+#if !DEBUG || TestCDN
+            // 首次打开时会自动下载最新文件，忽略后台更新
             if (!first)
             {
                 _timer.Elapsed += TestUpdate;
@@ -381,9 +382,9 @@ namespace KeqingNiuza.ViewModel
                 Growl.Warning("祈愿记录文件不存在");
                 return;
             }
-            var json = File.ReadAllText(SelectedUserData.WishLogFile);
-            var data = JsonSerializer.Deserialize<List<WishData>>(json, JsonOptions);
-            var analyzer = new PieChartAnalyzer(data);
+            var data = LocalWishLogLoader.Load(SelectedUserData.WishLogFile);
+            var exporter = new ExcelExpoter();
+            exporter.AddWishData(data);
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
                 FileName = $"原神祈愿记录_{SelectedUserData.Uid}.xlsx",
@@ -394,13 +395,13 @@ namespace KeqingNiuza.ViewModel
             {
                 try
                 {
-                    analyzer.ExportExcelFile(saveFileDialog.FileName);
+                    exporter.SaveAs(saveFileDialog.FileName);
                     Growl.Success("导出成功");
                 }
                 catch (Exception ex)
                 {
-                    Growl.Error(ex.Message);
-                    Log.OutputLog(LogType.Error, "ExportExcelFile", ex);
+                    Growl.Warning(ex.Message);
+                    Log.OutputLog(LogType.Warning, "ExportExcelFile", ex);
                 }
             }
         }
@@ -481,15 +482,16 @@ namespace KeqingNiuza.ViewModel
             var type = ViewContent.GetType();
             try
             {
-                ViewContent = type.Assembly.CreateInstance(type.FullName);
-                foreach (var content in _viewContentList)
+                if (ViewContent is ErrorView)
                 {
-                    var d = content as MidiView;
-                    d?.ViewModel?.Dispose();
+                    ViewContent = type.Assembly.CreateInstance("KeqingNiuza.View.WishSummaryView");
+                }
+                else
+                {
+                    ViewContent = type.Assembly.CreateInstance(type.FullName);
                 }
                 _viewContentList.Clear();
                 _viewContentList.Add(ViewContent);
-
             }
             catch (Exception ex)
             {

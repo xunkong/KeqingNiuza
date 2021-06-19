@@ -61,5 +61,9 @@ namespace KeqingNiuza.View
             ViewModel.PlayNext();
         }
 
+        private void ToggleButton_CheckTrack_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.ChangeMidiTrack();
+        }
     }
 }

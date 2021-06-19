@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 
@@ -95,6 +96,11 @@ namespace KeqingNiuza.Wish
         [JsonIgnore]
         public string GuaranteeType { get; set; }
 
+        [JsonIgnore]
+        private static List<CharacterInfo> CharacterInfoList = Const.CharacterInfoList;
+
+        [JsonIgnore]
+        private static List<WeaponInfo> WeaponInfoList = Const.WeaponInfoList;
 
 
         [JsonIgnore]
@@ -104,11 +110,11 @@ namespace KeqingNiuza.Wish
             {
                 if (ItemType == "角色")
                 {
-                    return Const.CharacterInfoList.Where(x => x.Name == Name).Select(x => x.Thumb).First();
+                    return CharacterInfoList.Where(x => x.Name == Name).Select(x => x.Thumb).First();
                 }
                 if (ItemType == "武器")
                 {
-                    return Const.WeaponInfoList.Where(x => x.Name == Name).Select(x => x.Thumb).First();
+                    return WeaponInfoList.Where(x => x.Name == Name).Select(x => x.Thumb).First();
                 }
                 return null;
             }
@@ -122,11 +128,11 @@ namespace KeqingNiuza.Wish
             {
                 if (ItemType == "角色")
                 {
-                    return Const.CharacterInfoList.Where(x => x.Name == Name).Select(x => x.Portrait).First();
+                    return CharacterInfoList.Where(x => x.Name == Name).Select(x => x.Portrait).First();
                 }
                 if (ItemType == "武器")
                 {
-                    return Const.WeaponInfoList.Where(x => x.Name == Name).Select(x => x.Portrait).First();
+                    return WeaponInfoList.Where(x => x.Name == Name).Select(x => x.Portrait).First();
                 }
                 return null;
             }

@@ -26,6 +26,8 @@ namespace KeqingNiuza.View
 
         public event EventHandler BackEvent;
 
+        private List<WishEvent> WishEventList = Const.WishEventList;
+
         public WishItemDetailView(List<ItemInfo> list)
         {
             InitializeComponent();
@@ -285,7 +287,7 @@ namespace KeqingNiuza.View
                 };
                 eventList.Add(relativeEvent);
             }
-            foreach (var @event in Const.WishEventList)
+            foreach (var @event in WishEventList)
             {
                 var infolist = info.WishDataList.Where(x => x.WishType == @event.WishType && x.Time >= @event.StartTime && x.Time <= @event.EndTime).ToList();
                 if (infolist.Any())

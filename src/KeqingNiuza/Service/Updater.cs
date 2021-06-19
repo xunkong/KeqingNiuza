@@ -105,6 +105,7 @@ namespace KeqingNiuza.Service
                {
                    var resourceContent = await HttpClient.GetStringAsync(_ResourceListUrl);
                    _ResourceList = JsonSerializer.Deserialize<ResourceFileList>(resourceContent, JsonOptions);
+                   Directory.CreateDirectory(".\\resource");
                    var dir = new DirectoryInfo(".\\resource");
                    var files = dir.GetFiles("*.*", SearchOption.AllDirectories).ToList();
                    var localFiles = files.ConvertAll(x => new ResourceFileInfo(x));
@@ -187,7 +188,11 @@ namespace KeqingNiuza.Service
 
         private void CallUpdate(object sender, EventArgs e)
         {
-            if (Properties.Settings.Default.IsUpdateShowResult)
+            if (Properties.Settings.Default.IsUpdateRestart)
+            {
+                Process.Start("update\\Update.exe", "KeqingNiuza.Update.Restart");
+            }
+            else if (Properties.Settings.Default.IsUpdateShowResult)
             {
                 Process.Start("update\\Update.exe", "KeqingNiuza.Update.ShowResult");
             }

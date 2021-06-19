@@ -33,13 +33,17 @@ namespace KeqingNiuza.Midi
             Track = track;
             Name = track.Events.OfType<SequenceTrackNameEvent>().FirstOrDefault()?.Text;
             NoteNumber = track.Events.Count(x => x.EventType == MidiEventType.NoteOn);
-            CanPlayNoteNumber = track.Events.Where(x => x.EventType == MidiEventType.NoteOn).Count(x => Const.NoteToVisualKeyDictionary.ContainsKey((x as NoteOnEvent).NoteNumber));
+            RefreshByNoteLevel(0);
+        }
+
+        public void RefreshByNoteLevel(int noteLevel)
+        {
+            CanPlayNoteNumber = Track.Events.Where(x => x.EventType == MidiEventType.NoteOn).Count(x => Const.NoteToVisualKeyDictionary.ContainsKey((x as NoteOnEvent).NoteNumber + noteLevel));
             if (CanBeChecked)
             {
-                MaxNoteLevel = track.Events.Where(x => x.EventType == MidiEventType.NoteOn).Max(x => (x as NoteOnEvent).NoteNumber);
-                MinNoteLevel = track.Events.Where(x => x.EventType == MidiEventType.NoteOn).Min(x => (x as NoteOnEvent).NoteNumber);
+                MaxNoteLevel = Track.Events.Where(x => x.EventType == MidiEventType.NoteOn).Max(x => (x as NoteOnEvent).NoteNumber + noteLevel);
+                MinNoteLevel = Track.Events.Where(x => x.EventType == MidiEventType.NoteOn).Min(x => (x as NoteOnEvent).NoteNumber + noteLevel);
             }
-
         }
     }
 }

@@ -17,7 +17,7 @@ using System.Windows.Interop;
 
 namespace KeqingNiuza.ViewModel
 {
-    public class MidiViewModel : INotifyPropertyChanged, IDisposable
+    public class MidiViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")
@@ -178,6 +178,7 @@ namespace KeqingNiuza.ViewModel
             set
             {
                 MidiPlayer.NoteLevel = value;
+                RefreshMidiFileInfoByNoteLevel(value);
                 OnPropertyChanged();
             }
         }
@@ -198,7 +199,6 @@ namespace KeqingNiuza.ViewModel
 
 
         private bool hotkey;
-        private bool disposedValue;
         private readonly IntPtr hWnd;
         private readonly HwndSource hwndSource;
         private static MidiPlayer MidiPlayer;
@@ -226,7 +226,16 @@ namespace KeqingNiuza.ViewModel
         }
 
 
-
+        public void RefreshMidiFileInfoByNoteLevel(int noteLevel)
+        {
+            foreach (var item in MidiFileInfoList)
+            {
+                item.RefreshTracksByNoteLevel(noteLevel);
+            }
+            var info = SelectedMidiFile;
+            SelectedMidiFile = null;
+            SelectedMidiFile = info;
+        }
 
 
         private void MidiPlayer_Started(object sender, EventArgs e)
@@ -255,38 +264,6 @@ namespace KeqingNiuza.ViewModel
             OnPropertyChanged("CurrentTime");
         }
 
-        #region IDispose
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposedValue)
-            {
-                if (disposing)
-                {
-                    MidiPlayer?.Dispose();
-                }
-                Util.UnregisterHotKey(hWnd);
-                hwndSource.RemoveHook(HwndHook);
-                MidiFileInfoList = null;
-                disposedValue = true;
-            }
-        }
-
-        public void Dispose()
-        {
-            Dispose(disposing: true);
-            GC.SuppressFinalize(this);
-        }
-
-        ~MidiViewModel()
-        {
-            Dispose(false);
-        }
-
-        #endregion
-
-
-
 
         public void ChangePlayFile(MidiFileInfo info, bool autoPlay = true)
         {
@@ -299,6 +276,19 @@ namespace KeqingNiuza.ViewModel
             OnPropertyChanged("NoteLevel");
             OnPropertyChanged("TotalTime");
             OnPropertyChanged("CurrentTime");
+        }
+
+        public void ChangeMidiTrack()
+        {
+            timer.Stop();
+            MidiPlayer.Started -= MidiPlayer_Started;
+            MidiPlayer.Stopped -= MidiPlayer_Stopped;
+            MidiPlayer.Finished -= MidiPlayer_Finished;
+            MidiPlayer.ChangeFileInfo();
+            MidiPlayer.Started += MidiPlayer_Started;
+            MidiPlayer.Stopped += MidiPlayer_Stopped;
+            MidiPlayer.Finished += MidiPlayer_Finished;
+            timer.Start();
         }
 
 
@@ -350,7 +340,6 @@ namespace KeqingNiuza.ViewModel
             }
             if (!CanPlay)
             {
-                MidiPlayer?.Dispose();
                 MidiPlayer = new MidiPlayer("YuanShen");
                 SelectedMidiFile = MidiFileInfoList.First();
                 RefreshState();

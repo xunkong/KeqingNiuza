@@ -8,35 +8,50 @@ namespace KeqingNiuza.Wish
 {
     public static class Const
     {
-        public static List<WishEvent> WishEventList { get; set; }
-        public static List<CharacterInfo> CharacterInfoList { get; set; }
-        public static List<WeaponInfo> WeaponInfoList { get; set; }
+        public static List<WishEvent> WishEventList => LoadWishEventList();
+        public static List<CharacterInfo> CharacterInfoList => LoadCharacterInfoList();
+        public static List<WeaponInfo> WeaponInfoList => LoadWeaponInfoList();
         public static JsonSerializerOptions JsonOptions { get; set; }
         static Const()
         {
             JsonOptions = new JsonSerializerOptions() { Encoder = JavaScriptEncoder.Create(UnicodeRanges.All) };
-            var json = File.ReadAllText("resource\\list\\WishEventList.json");
-            WishEventList = JsonSerializer.Deserialize<List<WishEvent>>(json, JsonOptions);
-            json = File.ReadAllText("resource\\list\\CharacterInfoList.json");
-            CharacterInfoList = JsonSerializer.Deserialize<List<CharacterInfo>>(json, JsonOptions);
-            json = File.ReadAllText("resource\\list\\WeaponInfoList.json");
-            WeaponInfoList = JsonSerializer.Deserialize<List<WeaponInfo>>(json, JsonOptions);
         }
 
         public static readonly List<string> BrushList = new List<string>
         {
-            "#0000FF",
-            "#A52A2A",
-            "#FF7F50",
-            "#DC143C",
-            "#008B8B",
-            "#8B008B",
-            "#FF1493",
-            "#B22222",
-            "#228B22",
-            "#800080",
             "#FF0000",
+            "#FF1493",
+            "#FF7F50",
+            "#FFB61E",
+            "#402E4C",
+            "#8C531B",
+            "#a88462",
+            "#008B8B",
+            "#228B22",
+            "#789262",
+            "#7BBFEA",
             "#4169E1",
+            "#0000FF",
+            "#B0A4E3",
+            "#800080",
         };
+
+        public static List<WishEvent> LoadWishEventList()
+        {
+            var json = File.ReadAllText("resource\\list\\WishEventList.json");
+            return JsonSerializer.Deserialize<List<WishEvent>>(json, JsonOptions);
+        }
+
+        public static List<CharacterInfo> LoadCharacterInfoList()
+        {
+            var json = File.ReadAllText("resource\\list\\CharacterInfoList.json");
+            return JsonSerializer.Deserialize<List<CharacterInfo>>(json, JsonOptions);
+        }
+
+        public static List<WeaponInfo> LoadWeaponInfoList()
+        {
+            var json = File.ReadAllText("resource\\list\\WeaponInfoList.json");
+            return JsonSerializer.Deserialize<List<WeaponInfo>>(json, JsonOptions);
+        }
     }
 }

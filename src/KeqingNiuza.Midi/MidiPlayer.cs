@@ -16,7 +16,7 @@ using System.Threading;
 
 namespace KeqingNiuza.Midi
 {
-    public class MidiPlayer : IDisposable
+    public class MidiPlayer
     {
 
 
@@ -161,40 +161,13 @@ namespace KeqingNiuza.Midi
             }
         }
 
-
-        #region IDispose
-
-        private bool disposed = false;
-
         ~MidiPlayer()
         {
-            Dispose(false);
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
+            _playback?.Dispose();
         }
 
 
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposed)
-            {
-                return;
-            }
-            if (disposing)
-            {
-                _playback?.Dispose();
-            }
-            disposed = true;
-        }
 
-        #endregion
-
-
-        
         public void ChangeFileInfo(MidiFileInfo info, bool autoPlay = true)
         {
             Name = info.Name;
@@ -208,11 +181,13 @@ namespace KeqingNiuza.Midi
 
         public void ChangeFileInfo(bool autoPlay = true)
         {
+            var time = CurrentTime;
             ChangeFileInfo();
             if (autoPlay)
             {
                 IsPlaying = true;
             }
+            CurrentTime = time;
         }
 
         private void ChangeFileInfo()

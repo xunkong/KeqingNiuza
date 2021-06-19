@@ -16,6 +16,9 @@
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="12" />
         </Style>
+        <Style TargetType="hc:RangeThumb">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -57,8 +60,9 @@
             </ListBox>
         </Grid>
 
-        <Grid Grid.Row="0" Grid.Column="1" Margin="20,10,10,10">
+        <Grid Grid.Row="0" Grid.Column="1" Margin="20,10,10,0">
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
@@ -139,7 +143,7 @@
                                           Minimum="-39"
                                           ShowClearButton="True"
                                           Value="{Binding NoteLevel, UpdateSourceTrigger=PropertyChanged}" />
-                        <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding NoteLevel, Converter={StaticResource IntToNoteStringConverter}}" />
+                        <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding NoteLevel, Converter={StaticResource NoteLevelToNoteStringConverter}}" />
                     </StackPanel>
 
                 </Grid>
@@ -148,45 +152,86 @@
             <!--  文件信息  -->
             <StackPanel Grid.Row="1">
                 <TextBlock FontSize="20" Text="文件信息" />
-                <TextBlock Text="{Binding SelectedMidiFile.Name}" />
-                <TextBlock Text="{Binding SelectedMidiFile.MidiFile.TimeDivision}" />
-                <hc:ScrollViewer Margin="-10,10,0,0" Background="Transparent" BorderThickness="0">
-                    <ItemsControl ItemsSource="{Binding SelectedMidiFile.CanPlayedTracks}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <StackPanel />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Expander Margin="0,10,0,0" Background="Transparent" BorderThickness="0">
-                                    <Expander.Header>
-                                        <StackPanel Orientation="Horizontal">
-                                            <TextBlock Width="150" VerticalAlignment="Center" Text="{Binding Name}" />
-                                            <TextBlock VerticalAlignment="Center" Text="命中率：" />
-                                            <TextBlock Width="60" VerticalAlignment="Center" Text="{Binding CanPlayNoteRadio, StringFormat=P1}" />
-                                            <ToggleButton IsChecked="{Binding IsCheck}" Style="{StaticResource ToggleButtonSwitch}" />
-                                        </StackPanel>
-                                    </Expander.Header>
-                                    <Expander.Content>
-                                        <Border BorderBrush="LightGray" BorderThickness="1">
-                                            <StackPanel Margin="10,6,0,0">
-                                                <StackPanel Orientation="Horizontal">
-                                                    <TextBlock Text="音符数：" />
-                                                    <TextBlock Text="{Binding NoteNumber}" />
-                                                    <TextBlock Margin="20,0,0,0" Text="可演奏音符数：" />
-                                                    <TextBlock Text="{Binding CanPlayNoteNumber}" />
-                                                </StackPanel>
-                                            </StackPanel>
-                                        </Border>
-                                    </Expander.Content>
-                                </Expander>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-
-                </hc:ScrollViewer>
+                <TextBlock Margin="0,4,0,0" Text="{Binding SelectedMidiFile.Name}" />
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <TextBlock Text="总音符数：" />
+                    <TextBlock Width="50" Text="{Binding SelectedMidiFile.NoteNumber}" />
+                    <TextBlock Text="总可演奏音符数：" />
+                    <TextBlock Width="50" Text="{Binding SelectedMidiFile.CanPlayNoteNumber}" />
+                    <TextBlock Text="总命中率：" />
+                    <TextBlock Text="{Binding SelectedMidiFile.CanPlayNoteRadio, StringFormat=P1}" />
+                </StackPanel>
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <TextBlock Text="音域范围：" />
+                    <TextBlock Text="{Binding SelectedMidiFile.MinNoteLevel, Converter={StaticResource NoteNumberToNoteStringConverter}}" />
+                    <hc:RangeSlider Width="100"
+                                    VerticalAlignment="Center"
+                                    Background="LightGray"
+                                    Maximum="108"
+                                    Minimum="21"
+                                    ValueEnd="{Binding SelectedMidiFile.MaxNoteLevel}"
+                                    ValueStart="{Binding SelectedMidiFile.MinNoteLevel}" />
+                    <TextBlock Text="{Binding SelectedMidiFile.MaxNoteLevel, Converter={StaticResource NoteNumberToNoteStringConverter}}" />
+                </StackPanel>
+                <TextBlock Margin="0,10,0,0" FontSize="16" Text="音轨信息" />
             </StackPanel>
+
+            <hc:ScrollViewer Grid.Row="2"
+                             Margin="0,10,0,0"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             IsInertiaEnabled="True"
+                             VerticalScrollBarVisibility="Visible">
+                <ItemsControl ItemsSource="{Binding SelectedMidiFile.CanPlayTracks}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,0,20,10" Background="White" CornerRadius="6">
+                                <StackPanel Margin="4" Orientation="Horizontal">
+                                    <ToggleButton x:Name="ToggleButton_CheckTrack"
+                                                  Width="60"
+                                                  Click="ToggleButton_CheckTrack_Click"
+                                                  IsChecked="{Binding IsCheck}"
+                                                  Style="{StaticResource ToggleButtonSwitch}" />
+                                    <StackPanel Margin="10,0,0,0">
+
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                                        <StackPanel Margin="0,4,0,0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="音符数：" />
+                                                <TextBlock Width="50" Text="{Binding NoteNumber}" />
+                                                <TextBlock Text="可演奏音符数：" />
+                                                <TextBlock Width="50" Text="{Binding CanPlayNoteNumber}" />
+                                                <TextBlock VerticalAlignment="Center" Text="命中率：" />
+                                                <TextBlock VerticalAlignment="Center" Text="{Binding CanPlayNoteRadio, StringFormat=P1}" />
+                                            </StackPanel>
+                                            <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                                                <TextBlock Text="音域范围：" />
+                                                <TextBlock Text="{Binding MinNoteLevel, Converter={StaticResource NoteNumberToNoteStringConverter}}" />
+                                                <hc:RangeSlider Width="100"
+                                                                VerticalAlignment="Center"
+                                                                Background="LightGray"
+                                                                Maximum="108"
+                                                                Minimum="21"
+                                                                ValueEnd="{Binding MaxNoteLevel}"
+                                                                ValueStart="{Binding MinNoteLevel}" />
+                                                <TextBlock Text="{Binding MaxNoteLevel, Converter={StaticResource NoteNumberToNoteStringConverter}}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </Border>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </hc:ScrollViewer>
         </Grid>
 
 

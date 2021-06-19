@@ -49,18 +49,6 @@ namespace KeqingNiuza.Model
         }
 
 
-#warning 以后记得删除
-        private bool _HiddenNoviceWish;
-        public bool HiddenNoviceWish
-        {
-            get { return _HiddenNoviceWish; }
-            set
-            {
-                _HiddenNoviceWish = value;
-                OnPropertyChanged();
-            }
-        }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")

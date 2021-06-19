@@ -17,6 +17,9 @@ namespace KeqingNiuza.Wish
         /// <returns></returns>
         public static List<WishData> Load(string file)
         {
+            var WishEventList = Const.WishEventList;
+            var CharacterInfoList = Const.CharacterInfoList;
+            var WeaponInfoList = Const.WeaponInfoList;
             var json = File.ReadAllText(file);
             var originalList = JsonSerializer.Deserialize<List<WishData>>(json, Const.JsonOptions);
             if (originalList == null || originalList.Count == 0)
@@ -45,7 +48,7 @@ namespace KeqingNiuza.Wish
                         tmp = i;
                         if (data.WishType == WishType.CharacterEvent || data.WishType == WishType.WeaponEvent)
                         {
-                            var wishevent = Const.WishEventList.Find(x =>
+                            var wishevent = WishEventList.Find(x =>
                                 x.WishType == data.WishType
                                 && x.StartTime <= data.Time
                                 && x.EndTime >= data.Time);
@@ -63,7 +66,7 @@ namespace KeqingNiuza.Wish
                     {
                         if (data.WishType == WishType.CharacterEvent || data.WishType == WishType.WeaponEvent)
                         {
-                            var wishevent = Const.WishEventList.Find(x =>
+                            var wishevent = WishEventList.Find(x =>
                                 x.WishType == data.WishType
                                 && x.StartTime <= data.Time
                                 && x.EndTime >= data.Time);
