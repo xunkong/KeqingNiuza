@@ -19,12 +19,14 @@ namespace KeqingNiuza.Update
             {
                 try
                 {
+                    var info = new FileInfo(file.Replace(dir, ""));
+                    Directory.CreateDirectory(info.DirectoryName);
                     File.Copy(file, file.Replace(dir, ""), true);
                 }
                 catch (Exception ex)
                 {
                     result = false;
-                    Log.OutputLog(LogType.Fault, "UpdateMove", ex);
+                    Log.OutputLog(LogType.Fault, $"UpdateMove - {file.Replace(dir, "")}", ex);
                 }
             }
             return result;

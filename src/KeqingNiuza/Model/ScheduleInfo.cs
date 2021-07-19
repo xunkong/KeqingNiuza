@@ -187,6 +187,7 @@ namespace KeqingNiuza.Model
         public void Refresh()
         {
             OnPropertyChanged("RemainingTime");
+            OnPropertyChanged("CurrentValue");
         }
 
     }

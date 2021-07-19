@@ -10,6 +10,9 @@ using System.Windows;
 using HandyControl.Controls;
 using KeqingNiuza.Common;
 using KeqingNiuza.Service;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 using Microsoft.Toolkit.Uwp.Notifications;
 
 namespace KeqingNiuza
@@ -19,8 +22,11 @@ namespace KeqingNiuza
     /// </summary>
     public partial class App : Application
     {
-        private void Application_Startup(object sender, StartupEventArgs e)
+
+        protected override void OnStartup(StartupEventArgs e)
         {
+            base.OnStartup(e);
+
             if (e.Args.Length != 0)
             {
                 if (e.Args[0] == "Package")
@@ -35,6 +41,14 @@ namespace KeqingNiuza
                 }
                 Shutdown();
             }
+            else
+            {
+#if !DEBUG
+                AppCenter.Start("api token", typeof(Analytics), typeof(Crashes));
+#endif
+            }
+
         }
+
     }
 }

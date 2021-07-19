@@ -163,6 +163,7 @@ namespace KeqingNiuza.View
                 {
                     SelectedScheduleInfo.CurrentValue = (int)value;
                     OnPropertyChanged("SelectedInfoNextMaxValueTime");
+                    OnPropertyChanged();
                 }
             }
         }

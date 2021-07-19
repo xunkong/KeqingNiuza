@@ -51,7 +51,7 @@ namespace KeqingNiuza.Update
                 catch { }
                 if (!result)
                 {
-                    Util.MessageBox(0, "更新过程中遇到错误，详见日志", "刻记牛杂店", 0);
+                    Util.MessageBox(0, "更新过程中遇到错误，详见日志。\n运行update\\Update.exe直接下载最新版。", "刻记牛杂店", 0);
                 }
                 return;
             }
@@ -83,7 +83,7 @@ namespace KeqingNiuza.Update
                 }
                 else
                 {
-                    Util.MessageBox(0, "更新过程中遇到错误，详见日志", "刻记牛杂店", 0);
+                    Util.MessageBox(0, "更新过程中遇到错误，详见日志。\n运行update\\Update.exe直接下载最新版。", "刻记牛杂店", 0);
                 }
                 return;
             }
@@ -115,7 +115,7 @@ namespace KeqingNiuza.Update
                 }
                 else
                 {
-                    Util.MessageBox(0, "更新过程中遇到错误，详见日志", "刻记牛杂店", 0);
+                    Util.MessageBox(0, "更新过程中遇到错误，详见日志。\n运行update\\Update.exe直接下载最新版。", "刻记牛杂店", 0);
                 }
                 return;
             }

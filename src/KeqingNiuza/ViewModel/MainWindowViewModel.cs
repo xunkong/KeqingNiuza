@@ -5,6 +5,7 @@ using KeqingNiuza.Model;
 using KeqingNiuza.Service;
 using KeqingNiuza.View;
 using KeqingNiuza.Wish;
+using Microsoft.AppCenter.Analytics;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -471,6 +472,9 @@ namespace KeqingNiuza.ViewModel
                     }
                 }
             }
+#if !DEBUG
+            Analytics.TrackEvent(className);
+#endif
         }
 
 

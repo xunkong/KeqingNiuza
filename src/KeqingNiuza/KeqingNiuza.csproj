@@ -272,6 +272,12 @@
     <PackageReference Include="LiveCharts.Wpf">
       <Version>0.9.7</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Analytics">
+      <Version>4.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Crashes">
+      <Version>4.3.0</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>7.0.2</Version>
     </PackageReference>
@@ -339,6 +345,7 @@ rd /s /q zh-CN
 del *.pdb *.xml *.dll.config Update.exe.config
 mkdir dll
 move /Y *.dll .\dll
+move /y .\runtimes .\dll
 move /Y Update.exe ..\</PostBuildEvent>
   </PropertyGroup>
   <ProjectExtensions />
