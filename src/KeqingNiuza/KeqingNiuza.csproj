@@ -151,6 +151,9 @@
     <Compile Include="View\WishOriginalDataView.xaml.cs">
       <DependentUpon>WishOriginalDataView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\WishPredictionView.xaml.cs">
+      <DependentUpon>WishPredictionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\WishSummaryView.xaml.cs">
       <DependentUpon>WishSummaryView.xaml</DependentUpon>
     </Compile>
@@ -250,6 +253,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\WishOriginalDataView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\WishPredictionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

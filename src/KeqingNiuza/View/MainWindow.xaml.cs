@@ -19,6 +19,7 @@ using KeqingNiuza.View;
 using System.IO;
 using KeqingNiuza.Service;
 using System.Threading;
+using Microsoft.AppCenter.Analytics;
 
 namespace KeqingNiuza.View
 {
@@ -163,7 +164,11 @@ namespace KeqingNiuza.View
         private void RadioButton_SideMenu_Click(object sender, RoutedEventArgs e)
         {
             var radioButton = sender as RadioButton;
-            ViewModel.ChangeViewContent(radioButton.Tag as string);
+            var tag = radioButton.Tag as string;
+            ViewModel.ChangeViewContent(tag);
+#if !DEBUG
+            Analytics.TrackEvent(tag);
+#endif
         }
 
 

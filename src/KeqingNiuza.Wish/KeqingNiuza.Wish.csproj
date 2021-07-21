@@ -57,6 +57,7 @@
     <Compile Include="ItemInfo.cs" />
     <Compile Include="LocalWishLogLoader.cs" />
     <Compile Include="AchievementAnalyzer.cs" />
+    <Compile Include="Prediction.cs" />
     <Compile Include="RelativeEvent.cs" />
     <Compile Include="WeaponInfo.cs" />
     <Compile Include="WeaponType.cs" />

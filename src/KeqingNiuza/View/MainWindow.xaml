@@ -154,6 +154,21 @@
                         <TextBlock Margin="10,0,0,0" FontSize="12" Text="成就" />
                     </StackPanel>
                 </RadioButton>
+                <RadioButton x:Name="SideMenu_WishPredictionView"
+                             Click="RadioButton_SideMenu_Click"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}"
+                             Tag="WishPredictionView">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="18"
+                              Height="18"
+                              VerticalAlignment="Center"
+                              Data="{StaticResource Predicion}"
+                              Fill="Purple"
+                              Stretch="Uniform" />
+                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="预测" />
+                    </StackPanel>
+                </RadioButton>
                 <Polyline Width="140"
                           Margin="0,2,0,2"
                           Points="0 0 140 0"
