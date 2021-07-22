@@ -472,6 +472,9 @@ namespace KeqingNiuza.ViewModel
                     }
                 }
             }
+#if !DEBUG
+            Analytics.TrackEvent(className);
+#endif
         }
 
 

@@ -118,6 +118,9 @@ namespace KeqingNiuza.View
             {
                 Popup_Cloud.IsOpen = true;
             }
+#if !DEBUG
+            Analytics.TrackEvent("ClickCloud");
+#endif
         }
 
         private void Button_Logout_Click(object sender, RoutedEventArgs e)
@@ -166,9 +169,6 @@ namespace KeqingNiuza.View
             var radioButton = sender as RadioButton;
             var tag = radioButton.Tag as string;
             ViewModel.ChangeViewContent(tag);
-#if !DEBUG
-            Analytics.TrackEvent(tag);
-#endif
         }
 
 

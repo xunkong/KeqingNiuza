@@ -24,11 +24,13 @@
                 <TextBlock VerticalAlignment="Center" Text="个" />
                 <ComboBox Name="ComboBox" Margin="4,0,4,0" SelectedIndex="0">
                     <ComboBoxItem Content="5星UP角色" />
-                    <ComboBoxItem Content="定轨武器" />
+                    <ComboBoxItem Content="5星任意角色" />
+                    <ComboBoxItem Content="5星定轨武器" />
+                    <ComboBoxItem Content="5星任意武器" />
                 </ComboBox>
                 <Button Margin="12,0,0,0" Click="Button_Click" Content="预测" />
             </StackPanel>
-            <TextBlock Margin="0 4 0 0" Text="祈愿概率模型基于20万条数据拟合而得，与实际有偏差，结果仅供参考。"/>
+            <TextBlock Margin="0 4 0 0" Text="祈愿概率模型基于20万条数据拟合而得，与实际概率有偏差，预测结果仅供参考。"/>
         </StackPanel>
 
         <lc:CartesianChart Grid.Row="1"
@@ -42,12 +44,12 @@
                                Title="获取概率"
                                Fill="Transparent"
                                PointGeometry="{x:Null}"
-                               Stroke="Orange"
+                               Stroke="Red"
                                StrokeThickness="1"
                                Values="{Binding Value}" />
             </lc:CartesianChart.Series>
             <lc:CartesianChart.AxisX>
-                <lc:Axis Title="抽卡总数">
+                <lc:Axis Title="抽卡总数" Foreground="Black">
                     <lc:Axis.Sections>
                         <lc:AxisSection Panel.ZIndex="1"
                                         DataLabel="{Binding ShowSectionDataLabel}"
@@ -64,6 +66,7 @@
                 <lc:Axis Title="获取概率"
                          LabelFormatter="{Binding YSectionFormatter}"
                          MaxValue="1"
+                         Foreground="Black"
                          MinValue="0">
                     <lc:Axis.Sections>
                         <lc:AxisSection Panel.ZIndex="1"

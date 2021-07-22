@@ -105,13 +105,20 @@ namespace KeqingNiuza.View
             var index = ComboBox.SelectedIndex;
             await Task.Run(() =>
             {
-                if (index == 0)
+                switch (index)
                 {
-                    Value = new ChartValues<double>(Prediction.GetCharacterDensityAndDistributionWithUp(count).distribution.Prepend(0));
-                }
-                if (index == 1)
-                {
-                    Value = new ChartValues<double>(Prediction.GetSpecifiedWeaponDensityAndDistribution(count).distribution.Prepend(0));
+                    case 0:
+                        Value = new ChartValues<double>(Prediction.GetCharacterDensityAndDistributionWithUp(count).distribution.Prepend(0));
+                        break;
+                    case 1:
+                        Value = new ChartValues<double>(Prediction.GetCharacterDensityAndDistribution(count).distribution.Prepend(0));
+                        break;
+                    case 2:
+                        Value = new ChartValues<double>(Prediction.GetSpecifiedWeaponDensityAndDistribution(count).distribution.Prepend(0));
+                        break;
+                    case 3:
+                        Value = new ChartValues<double>(Prediction.GetWeaponDensityAndDistribution(count).distribution.Prepend(0));
+                        break;
                 }
             });
         }
