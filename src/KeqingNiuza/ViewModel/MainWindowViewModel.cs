@@ -139,6 +139,10 @@ namespace KeqingNiuza.ViewModel
 
         private void SelectedUserData_Changed()
         {
+            if (SelectedUserData == null)
+            {
+                return;
+            }
             try
             {
                 WishDataList = LocalWishLogLoader.Load(SelectedUserData.WishLogFile);
@@ -180,6 +184,7 @@ namespace KeqingNiuza.ViewModel
                         await updater.PrepareUpdateFiles();
                         updater.CallUpdateWhenExit();
                         Log.OutputLog(LogType.Info, "Update files prepare finished");
+                        await Task.Delay(1000);
                         Growl.Success("更新文件准备完毕，关闭窗口开始更新");
                     }
                 }
@@ -194,6 +199,7 @@ namespace KeqingNiuza.ViewModel
                 if (result)
                 {
                     updater.CallUpdateWhenExit();
+                    await Task.Delay(1000);
                     Growl.Success("关闭窗口完成资源文件的替换");
                 }
             }
@@ -229,7 +235,7 @@ namespace KeqingNiuza.ViewModel
 
         public async void LoadCloudAccount(object sender, System.Timers.ElapsedEventArgs e)
         {
-            await Task.Run(() =>
+            await Task.Run(async () =>
             {
                 if (File.Exists("UserData\\Account"))
                 {
@@ -240,6 +246,7 @@ namespace KeqingNiuza.ViewModel
                     catch (Exception ex)
                     {
                         File.Delete("UserData\\Account");
+                        await Task.Delay(1000);
                         Growl.Warning("无法解密云备份账户文件，已删除");
                         Log.OutputLog(LogType.Error, "DecrypeCloudClient", ex);
                     }
@@ -486,7 +493,11 @@ namespace KeqingNiuza.ViewModel
             var type = ViewContent.GetType();
             try
             {
-                if (ViewContent is ErrorView)
+                if (SelectedUserData == null)
+                {
+                    ViewContent = new WelcomeView();
+                }
+                else if (ViewContent is ErrorView)
                 {
                     ViewContent = type.Assembly.CreateInstance("KeqingNiuza.View.WishSummaryView");
                 }

@@ -20,6 +20,7 @@ using System.IO;
 using KeqingNiuza.Service;
 using System.Threading;
 using Microsoft.AppCenter.Analytics;
+using KeqingNiuza.Model;
 
 namespace KeqingNiuza.View
 {
@@ -203,6 +204,10 @@ namespace KeqingNiuza.View
 
         private void ListView_UserData_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (ListView_UserData.SelectedItem == null)
+            {
+                return;
+            }
             ViewModel.ChangeUid(ListView_UserData.SelectedItem);
             Popup_Uid.IsOpen = false;
         }
@@ -217,6 +222,44 @@ namespace KeqingNiuza.View
         {
             ViewModel.AddNewUid();
             Grid_UserData.Visibility = Visibility.Collapsed;
+        }
+
+        private async void Button_DeleteUid_Click(object sender, RoutedEventArgs e)
+        {
+            var userData = (sender as Button).DataContext as UserData;
+            if (userData == null)
+            {
+                return;
+            }
+            Popup_Uid.IsOpen = false;
+            var result = await Dialog.Show(new DeleteUidDialog(userData.Uid)).Initialize<DeleteUidDialog>(x => { }).GetResultAsync<bool>();
+            if (result)
+            {
+                ViewModel.UserDataList.Remove(userData);
+                if (ViewModel.SelectedUserData == userData)
+                {
+                    if (ViewModel.UserDataList.Any())
+                    {
+                        ViewModel.SelectedUserData = ViewModel.UserDataList.First();
+                    }
+                    else
+                    {
+                        ViewModel.SelectedUserData = null;
+                        if (File.Exists("UserData\\Config.json"))
+                        {
+                            File.Delete("UserData\\Config.json");
+                        }
+                    }
+                }
+                ViewModel.SaveConfig();
+                if (File.Exists(userData.WishLogFile))
+                {
+                    File.Delete(userData.WishLogFile);
+                }
+                ViewModel.ReloadViewContent();
+                await Task.Delay(1000);
+                Growl.Success($"Uid:{userData.Uid}已删除");
+            }
         }
     }
 }

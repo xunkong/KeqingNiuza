@@ -324,7 +324,10 @@
                     PlacementTarget="{Binding ElementName=Button_Uid}"
                     StaysOpen="False">
             <Border BorderBrush="LightGray" BorderThickness="1">
-                <Grid Width="315" Height="Auto" Background="White">
+                <Grid Width="315"
+                      Height="Auto"
+                      MaxHeight="400"
+                      Background="White">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40" />
                         <RowDefinition />
@@ -387,6 +390,20 @@
                           Grid.ColumnSpan="2"
                           Visibility="Collapsed">
                         <ListView x:Name="ListView_UserData" ItemsSource="{Binding UserDataList}" MouseDoubleClick="ListView_UserData_MouseDoubleClick">
+                            <ListView.Resources>
+                                <Style TargetType="Button">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="Button">
+                                                <Border Background="Transparent" BorderThickness="0">
+                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                    <Setter Property="Cursor" Value="Hand" />
+                                </Style>
+                            </ListView.Resources>
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn>
@@ -402,6 +419,21 @@
                                     </GridViewColumn>
                                     <GridViewColumn DisplayMemberBinding="{Binding Uid}" Header="Uid" />
                                     <GridViewColumn DisplayMemberBinding="{Binding LastUpdateTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" Header="最后更新时间" />
+                                    <GridViewColumn Width="28">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Button x:Name="Button_DeleteUid"
+                                                        HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Click="Button_DeleteUid_Click">
+                                                    <Path Data="{StaticResource Trashbin}" Fill="Black" Stretch="Uniform" />
+                                                    <Button.ToolTip>
+                                                        <TextBlock Text="删除该Uid的所有数据" />
+                                                    </Button.ToolTip>
+                                                </Button>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
                                 </GridView>
                             </ListView.View>
                         </ListView>
