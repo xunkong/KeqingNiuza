@@ -521,6 +521,7 @@ namespace KeqingNiuza.ViewModel
                     Growl.Info("请先加载数据");
                 }
             }
+            Analytics.TrackEvent("ChangeAvatar");
         }
 
         public void ChangeUid(object userData)

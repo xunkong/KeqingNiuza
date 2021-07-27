@@ -1,3 +1,4 @@
+using HandyControl.Controls;
 using KeqingNiuza.Midi;
 using KeqingNiuza.Model;
 using KeqingNiuza.Service;
@@ -33,37 +34,44 @@ namespace KeqingNiuza.View
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (ViewModel == null)
+            try
             {
-                ViewModel = new MidiViewModel();
-                DataContext = ViewModel;
+                if (ViewModel == null)
+                {
+                    ViewModel = new MidiViewModel();
+                    DataContext = ViewModel;
+                }
+            }
+            catch (Exception ex)
+            {
+                Growl.Warning(ex.Message);
             }
         }
 
         private void ListBox_MidiFileInfo_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var item = ListBox_MidiFileInfo.SelectedItem as MidiFileInfo;
-            ViewModel.ChangePlayFile(item);
+            ViewModel?.ChangePlayFile(item);
         }
 
         private void Button_Restart_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.RestartOrRefresh();
+            ViewModel?.RestartOrRefresh();
         }
 
         private void Button_Back_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.PlayLast();
+            ViewModel?.PlayLast();
         }
 
         private void Button_Forward_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.PlayNext();
+            ViewModel?.PlayNext();
         }
 
         private void ToggleButton_CheckTrack_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.ChangeMidiTrack();
+            ViewModel?.ChangeMidiTrack();
         }
     }
 }

@@ -1,6 +1,7 @@
 using HandyControl.Controls;
 using KeqingNiuza.Midi;
 using KeqingNiuza.Service;
+using Microsoft.AppCenter.Analytics;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -206,7 +207,19 @@ namespace KeqingNiuza.ViewModel
 
         public MidiViewModel()
         {
-            var files = Directory.GetFiles("resource\\midi").ToList();
+            List<string> files;
+            if (Directory.Exists("resource\\midi"))
+            {
+                files = Directory.GetFiles("resource\\midi").ToList();
+            }
+            else
+            {
+                throw new Exception("没有任何Midi文件，请等待资源下载完成");
+            }
+            if (files.Count == 0)
+            {
+                throw new Exception("没有任何Midi文件，请等待资源下载完成");
+            }
             var infos = files.ConvertAll(x => new MidiFileInfo(x)).OrderBy(x => x.Name);
             MidiFileInfoList = new ObservableCollection<MidiFileInfo>(infos);
             MidiPlayer = new MidiPlayer("YuanShen");
@@ -350,6 +363,7 @@ namespace KeqingNiuza.ViewModel
                 hotkey = Util.RegisterHotKey(hWnd);
                 RefreshState();
             }
+            Analytics.TrackEvent("StartMidiFeature");
         }
 
 

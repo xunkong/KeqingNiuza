@@ -137,66 +137,70 @@
 
         <StackPanel Grid.Column="1" Margin="20,10,10,10">
             <TextBlock FontSize="20" Text="任务详情" />
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                <TextBlock Width="100" VerticalAlignment="Center" Text="名称：" />
-                <TextBox Width="200" Text="{Binding SelectedScheduleInfo.Name}" />
-            </StackPanel>
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                <TextBlock Width="100" VerticalAlignment="Center" Text="类型：" />
-                <RadioButton Click="RadioButton_Type_Click"
+            
+            <StackPanel Visibility="{Binding SelectedScheduleInfo,Converter={StaticResource Object2VisibilityConverter}}">
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                    <TextBlock Width="100" VerticalAlignment="Center" Text="名称：" />
+                    <TextBox Width="200" Text="{Binding SelectedScheduleInfo.Name}" />
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                    <TextBlock Width="100" VerticalAlignment="Center" Text="类型：" />
+                    <RadioButton Click="RadioButton_Type_Click"
                              Content="计时 (如参量质变仪)"
                              IsChecked="{Binding SelectedScheduleInfo.IsCountdownType, Mode=OneWay}"
                              Tag="Countdown" />
-                <RadioButton Margin="10,0,0,0"
+                    <RadioButton Margin="10,0,0,0"
                              Click="RadioButton_Type_Click"
                              Content="恢复 (如原粹树脂)"
                              IsChecked="{Binding SelectedScheduleInfo.IsCountdownType, Mode=OneWay, Converter={StaticResource Boolean2BooleanReConverter}}"
                              Tag="Replenish" />
-            </StackPanel>
+                </StackPanel>
 
-            <StackPanel Visibility="{Binding SelectedScheduleInfo.IsCountdownType, Mode=OneWay, Converter={StaticResource Boolean2VisibilityConverter}}">
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Width="100" VerticalAlignment="Center" Text="触发间隔：" />
-                    <TextBox Width="200" Text="{Binding SelectedScheduleInfo.Interval, StringFormat='d\\.hh\\:mm\\:ss'}" />
+                <StackPanel Visibility="{Binding SelectedScheduleInfo.IsCountdownType, Mode=OneWay, Converter={StaticResource Boolean2VisibilityConverter}}">
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock Width="100" VerticalAlignment="Center" Text="触发间隔：" />
+                        <TextBox Width="200" Text="{Binding SelectedScheduleInfo.Interval, StringFormat='d\\.hh\\:mm\\:ss'}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock Width="100" VerticalAlignment="Center" Text="剩余时间：" />
+                        <TextBox Width="200" Text="{Binding SelectedInfoRemainingTime, StringFormat='d\\.hh\\:mm\\:ss'}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock Width="100" VerticalAlignment="Center" Text="下一次触发时间：" />
+                        <TextBox Width="200" Text="{Binding SelectedInfoNextTriggerTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Width="100" VerticalAlignment="Center" Text="剩余时间：" />
-                    <TextBox Width="200" Text="{Binding SelectedInfoRemainingTime, StringFormat='d\\.hh\\:mm\\:ss'}" />
-                </StackPanel>
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Width="100" VerticalAlignment="Center" Text="下一次触发时间：" />
-                    <TextBox Width="200" Text="{Binding SelectedInfoNextTriggerTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
-                </StackPanel>
-            </StackPanel>
 
-            <StackPanel Visibility="{Binding SelectedScheduleInfo.IsCountdownType, Mode=OneWay, Converter={StaticResource Boolean2VisibilityReConverter}}">
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Width="100" VerticalAlignment="Center" Text="最大值：" />
-                    <TextBox Width="200" Text="{Binding SelectedScheduleInfo.MaxValue}" />
-                </StackPanel>
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Width="100" VerticalAlignment="Center" Text="恢复间隔：" />
-                    <TextBox Width="200" Text="{Binding SelectedScheduleInfo.TimePerValue}" />
-                </StackPanel>
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Width="100" VerticalAlignment="Center" Text="当前值：" />
-                    <TextBox Width="200" Text="{Binding SelectedInfoCurrentValue}" />
-                </StackPanel>
-                <Slider Width="200"
+                <StackPanel Visibility="{Binding SelectedScheduleInfo.IsCountdownType, Mode=OneWay, Converter={StaticResource Boolean2VisibilityReConverter}}">
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock Width="100" VerticalAlignment="Center" Text="最大值：" />
+                        <TextBox Width="200" Text="{Binding SelectedScheduleInfo.MaxValue}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock Width="100" VerticalAlignment="Center" Text="恢复间隔：" />
+                        <TextBox Width="200" Text="{Binding SelectedScheduleInfo.TimePerValue}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock Width="100" VerticalAlignment="Center" Text="当前值：" />
+                        <TextBox Width="200" Text="{Binding SelectedInfoCurrentValue}" />
+                    </StackPanel>
+                    <Slider Width="200"
                         Margin="100,4,0,0"
                         HorizontalAlignment="Left"
                         Maximum="{Binding SelectedScheduleInfo.MaxValue}"
                         Value="{Binding SelectedInfoCurrentValue}" />
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Width="100" VerticalAlignment="Center" Text="恢复满时间：" />
-                    <TextBox Width="200" Text="{Binding SelectedInfoNextMaxValueTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock Width="100" VerticalAlignment="Center" Text="恢复满时间：" />
+                        <TextBox Width="200" Text="{Binding SelectedInfoNextMaxValueTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
+                    </StackPanel>
                 </StackPanel>
-            </StackPanel>
-            <Button Name="Button_Save"
+                
+                <Button Name="Button_Save"
                     Margin="0,10,0,0"
                     HorizontalAlignment="Left"
                     Click="Button_Save_Click"
                     Content="保存修改" />
+            </StackPanel>
             <TextBlock Margin="0,10,0,0" Foreground="Gray" Text="添加新任务：添加新任务-&gt;编辑-&gt;保存修改" />
             <TextBlock Margin="0,10,0,0" Foreground="Gray" Text="修改现有任务：任务列表选中-&gt;编辑-&gt;保存修改" />
             <Button x:Name="Button_TestNotifacation"
