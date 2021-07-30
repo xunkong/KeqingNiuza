@@ -1,4 +1,4 @@
-<img src="img/logo_nbg.png" alt="logo" style="zoom:50%;margin-left:0" />
+<img src="img/logo_nbg.png" width="400px" alt="logo" style="margin-left:0;" />
 
 # 刻记牛杂店
 
