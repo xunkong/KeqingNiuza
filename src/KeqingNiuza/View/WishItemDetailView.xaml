@@ -83,7 +83,8 @@
                                     Height="100"
                                     VerticalAlignment="Top"
                                     BorderThickness="0"
-                                    CornerRadius="0 0 20 0">
+                                    CornerRadius="0 0 20 0"
+                                    RenderOptions.BitmapScalingMode="HighQuality">
                                 <Border.Background>
                                     <ImageBrush ImageSource="{Binding Thumb, Converter={StaticResource ImageConverter}}" />
                                 </Border.Background>
@@ -126,7 +127,10 @@
                 <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
-            <Image Grid.Column="0" HorizontalAlignment="Left" Source="{Binding SelectedItemInfo.Portrait, Converter={StaticResource ImageConverter}}" />
+            <Image Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   Source="{Binding SelectedItemInfo.Portrait, Converter={StaticResource ImageConverter}}" />
 
             <hc:ScrollViewer Grid.Column="2" IsInertiaEnabled="True">
                 <StackPanel Margin="0,0,20,0">

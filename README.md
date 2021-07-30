@@ -1,4 +1,4 @@
-![logo](img/logo_nbg.png)
+<img src="img/logo_nbg.png" alt="logo" style="zoom:50%;margin-left:0" />
 
 # 刻记牛杂店
 
@@ -13,11 +13,10 @@
 
 ## 最近更新内容
 
-### 0.2.3.21072711
+### 0.2.3.21073017
 
-- 优化定时提醒任务设置流程
-- 修复首次打开流浪大地的乐团页面时可能会造成闪退的问题
-- 新增读写权限提醒
+- 新增删除指定Uid及数据功能
+- 优化图片渲染效果
 
 ## 其他
 
@@ -44,7 +43,7 @@
 
 Midi文件来源：[bilibili@恰空PurrLude](https://space.bilibili.com/2765893)、[Github@luern0313](https://github.com/luern0313/WindSong-Lyre-Genshin-Impact)、[Github@Misaka17032](https://github.com/Misaka17032/genshin-lyre-auto-play)
 
-### 开源项目
+### 相关开源项目
 
 - [.NET](https://github.com/dotnet/runtime)
 - [ControlzEx](https://github.com/ControlzEx/ControlzEx)

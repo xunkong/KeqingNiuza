@@ -676,7 +676,8 @@
                                         Height="100"
                                         VerticalAlignment="Top"
                                         BorderThickness="0"
-                                        CornerRadius="0 0 20 0">
+                                        CornerRadius="0 0 20 0"
+                                        RenderOptions.BitmapScalingMode="HighQuality">
                                     <Border.Background>
                                         <ImageBrush ImageSource="{Binding Thumb, Converter={StaticResource ImageConverter}}" />
                                     </Border.Background>
@@ -766,7 +767,8 @@
                                         Height="100"
                                         VerticalAlignment="Top"
                                         BorderThickness="0"
-                                        CornerRadius="0 0 20 0">
+                                        CornerRadius="0 0 20 0"
+                                        RenderOptions.BitmapScalingMode="HighQuality">
                                     <Border.Background>
                                         <ImageBrush ImageSource="{Binding Thumb, Converter={StaticResource ImageConverter}}" />
                                     </Border.Background>
