@@ -26,7 +26,7 @@ namespace KeqingNiuza
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-
+            Environment.CurrentDirectory = AppContext.BaseDirectory;
             if (e.Args.Length != 0)
             {
                 if (e.Args[0] == "Package")

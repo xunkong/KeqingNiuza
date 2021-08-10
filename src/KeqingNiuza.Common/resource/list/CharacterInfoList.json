@@ -243,5 +243,19 @@
     "Rank": 5,
     "ItemType": "角色",
     "ElementType": 6
+  },
+  {
+    "Name": "宵宫",
+    "NameEn": "Yoimiya",
+    "Rank": 5,
+    "ItemType": "角色",
+    "ElementType": 1
+  },
+  {
+    "Name": "早柚",
+    "NameEn": "Sayu",
+    "Rank": 4,
+    "ItemType": "角色",
+    "ElementType": 3
   }
 ]

@@ -789,5 +789,12 @@
     "Rank": 5,
     "ItemType": "武器",
     "WeaponType": 1
+  },
+  {
+    "Name": "飞雷之弦振",
+    "NameEn": "Thundering Pulse",
+    "Rank": 5,
+    "ItemType": "武器",
+    "WeaponType": 3
   }
 ]
