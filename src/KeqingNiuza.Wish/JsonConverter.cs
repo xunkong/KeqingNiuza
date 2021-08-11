@@ -51,14 +51,22 @@ namespace KeqingNiuza.Wish
     {
         public override DateTime Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
+#if INTERNAIONAL
+            var str = reader.GetString();
+#else
             var str = reader.GetString() + " +08:00";
+#endif
             return DateTime.Parse(str);
 
         }
 
         public override void Write(Utf8JsonWriter writer, DateTime value, JsonSerializerOptions options)
         {
+#if INTERNAIONAL
+            var time = value;
+#else
             var time = TimeZoneInfo.ConvertTime(value, TimeZoneInfo.FindSystemTimeZoneById("China Standard Time"));
+#endif
             writer.WriteStringValue(time.ToString("yyyy-MM-dd HH:mm:ss"));
         }
     }

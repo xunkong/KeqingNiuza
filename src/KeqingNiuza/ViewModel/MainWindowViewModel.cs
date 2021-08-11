@@ -214,7 +214,7 @@ namespace KeqingNiuza.ViewModel
         {
             var setting = JsonSerializer.Deserialize<Config>(File.ReadAllText("UserData\\Config.json"), JsonOptions);
             UserDataList = setting.UserDataList ?? new ObservableCollection<UserData>();
-            SelectedUserData = UserDataList.First(x => x.Uid == setting.LatestUid) ?? UserDataList.First();
+            SelectedUserData = UserDataList.FirstOrDefault(x => x.Uid == setting.LatestUid) ?? UserDataList.FirstOrDefault();
         }
 
 
@@ -287,7 +287,7 @@ namespace KeqingNiuza.ViewModel
                 }
                 if (!skipLoadGenshinLogFile)
                 {
-                    var url = GenshinLogLoader.FindUrlFromLogFile();
+                    var url = GenshinLogLoader.FindUrlFromLogFile(Properties.Settings.Default.IsOversea);
                     await LoadDataFromUrl(url);
                     ReloadViewContent();
                     ChangeViewContent("WishSummaryView");
@@ -312,7 +312,7 @@ namespace KeqingNiuza.ViewModel
         {
             try
             {
-                var exporter = new WishLogExporter(url);
+                var exporter = new WishLogExporter(url,Properties.Settings.Default.IsOversea);
                 var uid = await exporter.GetUidByUrl();
                 return false;
             }
@@ -331,7 +331,7 @@ namespace KeqingNiuza.ViewModel
 
         private async Task LoadDataFromUrl(string url)
         {
-            var exporter = new WishLogExporter(url);
+            var exporter = new WishLogExporter(url,Properties.Settings.Default.IsOversea);
             exporter.ProgressChanged += WishLoadExporter_ProgressChanged;
             var uid = await exporter.GetUidByUrl();
             var userData = UserDataList.FirstOrDefault(x => x.Uid == uid);

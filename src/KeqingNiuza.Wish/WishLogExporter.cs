@@ -17,12 +17,16 @@ namespace KeqingNiuza.Wish
 
         public event EventHandler<string> ProgressChanged;
 
-        public WishLogExporter(string url)
+        public WishLogExporter(string url, bool isOversea = false)
         {
             if (url.EndsWith("#/log"))
             {
                 authString = url.Substring(url.IndexOf('?')).Replace("#/log", "");
                 HttpClient = new HttpClient();
+                if (isOversea)
+                {
+                    baseRequestUrl = @"https://hk4e-api-os.mihoyo.com/event/gacha_info/api/getGachaLog";
+                }
             }
             else
             {

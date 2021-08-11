@@ -117,7 +117,11 @@ namespace KeqingNiuza.Wish
                 {
                     var data = new ImportedWishData
                     {
+#if INTERNAIONAL
+                        Time = DateTime.Parse(characterCells[i, 1].Value as string),
+#else
                         Time = DateTime.Parse(characterCells[i, 1].Value as string + " +08:00"),
+#endif
                         Name = characterCells[i, 2].Value as string,
                         ItemType = characterCells[i, 3].Value as string,
                         Rank = int.Parse(characterCells[i, 4].Value.ToString()),
@@ -154,7 +158,11 @@ namespace KeqingNiuza.Wish
                 {
                     var data = new ImportedWishData
                     {
+#if INTERNAIONAL
+                        Time = DateTime.Parse(weaponCells[i, 1].Value as string),
+#else
                         Time = DateTime.Parse(weaponCells[i, 1].Value as string + " +08:00"),
+#endif
                         Name = weaponCells[i, 2].Value as string,
                         ItemType = weaponCells[i, 3].Value as string,
                         Rank = int.Parse(weaponCells[i, 4].Value.ToString()),
@@ -190,7 +198,11 @@ namespace KeqingNiuza.Wish
                 {
                     var data = new ImportedWishData
                     {
+#if INTERNAIONAL
+                        Time = DateTime.Parse(permanentCells[i, 1].Value as string),
+#else
                         Time = DateTime.Parse(permanentCells[i, 1].Value as string + " +08:00"),
+#endif
                         Name = permanentCells[i, 2].Value as string,
                         ItemType = permanentCells[i, 3].Value as string,
                         Rank = int.Parse(permanentCells[i, 4].Value.ToString()),
@@ -226,7 +238,11 @@ namespace KeqingNiuza.Wish
                 {
                     var data = new ImportedWishData
                     {
+#if INTERNAIONAL
+                        Time = DateTime.Parse(noviceCells[i, 1].Value as string),
+#else
                         Time = DateTime.Parse(noviceCells[i, 1].Value as string + " +08:00"),
+#endif
                         Name = noviceCells[i, 2].Value as string,
                         ItemType = noviceCells[i, 3].Value as string,
                         Rank = int.Parse(noviceCells[i, 4].Value.ToString()),

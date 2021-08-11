@@ -105,8 +105,12 @@ namespace KeqingNiuza.Wish
             var cells = ExcelPackage.Workbook.Worksheets[sheetNum].Cells;
             for (int i = 0; i < datas.Count; i++)
             {
+#if INTERNAIONAL
+                cells[i + 2, 1].Value = datas[i].Time.ToString("yyyy-MM-dd  HH:mm:ss");
+#else
                 var chinaTime = TimeZoneInfo.ConvertTime(datas[i].Time, TimeZoneInfo.FindSystemTimeZoneById("China Standard Time"));
                 cells[i + 2, 1].Value = chinaTime.ToString("yyyy-MM-dd  HH:mm:ss");
+#endif
                 cells[i + 2, 2].Value = datas[i].Name;
                 cells[i + 2, 3].Value = datas[i].ItemType;
                 cells[i + 2, 4].Value = datas[i].Rank;

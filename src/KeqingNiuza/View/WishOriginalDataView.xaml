@@ -14,10 +14,10 @@
 
     <UserControl.Resources>
         <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="12" />
         </Style>
-        <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxBaseStyle}">
-            <Setter Property="FontSize" Value="12"/>
+        <Style BasedOn="{StaticResource ComboBoxBaseStyle}" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="12" />
         </Style>
     </UserControl.Resources>
 
@@ -40,9 +40,9 @@
                 <Button Name="Buton_Reset"
                         Width="50"
                         Margin="5,0,0,0"
-                        FontSize="12"
                         Click="Buton_Reset_Click"
-                        Content="重置" />
+                        Content="重置"
+                        FontSize="12" />
                 <hc:Divider LineStroke="Gray" Orientation="Vertical" />
                 <TextBlock VerticalAlignment="Center" Text="祈愿类型：" />
                 <ComboBox Width="120" ItemsSource="{Binding WishTypeList}" SelectedItem="{Binding SelectedWishType}" />
@@ -54,14 +54,12 @@
                 <ComboBox Width="60" ItemsSource="{Binding ItemRankList}" SelectedItem="{Binding SelectedItemRank}" />
                 <hc:Divider LineStroke="Gray" Orientation="Vertical" />
                 <TextBlock VerticalAlignment="Center" Text="祈愿活动：" />
-                <ComboBox MinWidth="170"
-                          ItemsSource="{Binding WishEventList}"
-                          SelectedItem="{Binding SelectedWishEvent}" >
+                <ComboBox MinWidth="170" ItemsSource="{Binding WishEventList}" SelectedItem="{Binding SelectedWishEvent}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding DisplayName}">
                                 <TextBlock.ToolTip>
-                                    <TextBlock Text="{Binding UpItems}"/>
+                                    <TextBlock Text="{Binding UpItems}" />
                                 </TextBlock.ToolTip>
                             </TextBlock>
                         </DataTemplate>
@@ -77,6 +75,7 @@
                   Grid.RowSpan="2"
                   AutoGenerateColumns="False"
                   ColumnHeaderHeight="30"
+                  EnableRowVirtualization="True"
                   HorizontalGridLinesBrush="LightGray"
                   IsReadOnly="True"
                   ItemsSource="{Binding FilteredWishData}"
@@ -86,10 +85,10 @@
                   VerticalGridLinesBrush="Transparent">
             <DataGrid.Resources>
                 <Style TargetType="DataGridCellsPresenter">
-                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="FontSize" Value="12" />
                 </Style>
                 <Style TargetType="DataGridColumnHeadersPresenter">
-                    <Setter Property="FontSize" Value="12"/>
+                    <Setter Property="FontSize" Value="12" />
                 </Style>
             </DataGrid.Resources>
             <DataGrid.Columns>
@@ -98,11 +97,11 @@
                         <DataTemplate>
                             <Border Width="140" Margin="20,0,20,0">
                                 <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                                    <Image Source="{Binding Thumb, Converter={StaticResource ImageConverter}}" />
+                                    <Image RenderOptions.BitmapScalingMode="Fant" Source="{Binding Thumb, Converter={StaticResource ImageConverter}}" />
                                     <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding Name}" />
                                 </StackPanel>
                                 <Border.ToolTip>
-                                    <Image Width="200" Source="{Binding Thumb, Converter={StaticResource ImageConverter}}" />
+                                    <Image Width="200" RenderOptions.BitmapScalingMode="Fant" Source="{Binding Thumb, Converter={StaticResource ImageConverter}}" />
                                 </Border.ToolTip>
                             </Border>
                         </DataTemplate>

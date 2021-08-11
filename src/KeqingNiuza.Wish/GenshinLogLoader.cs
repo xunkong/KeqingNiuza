@@ -13,10 +13,11 @@ namespace KeqingNiuza.Wish
         /// </summary>
         /// <exception cref="Exception">没有找到 Url</exception>
         /// <returns></returns>
-        public static string FindUrlFromLogFile()
+        public static string FindUrlFromLogFile(bool isOversea = false)
         {
+            string relativePath = isOversea ? @"AppData\LocalLow\miHoYo\Genshin Impact\output_log.txt"
+                                            : @"AppData\LocalLow\miHoYo\原神\output_log.txt";
             string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
-            string relativePath = @"AppData\LocalLow\miHoYo\原神\output_log.txt";
             string sourceFile = Path.Combine(userProfile, relativePath);
             var stream = File.Open(sourceFile, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
             var reader = new StreamReader(stream);

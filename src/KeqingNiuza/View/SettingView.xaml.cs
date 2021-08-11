@@ -96,6 +96,16 @@ namespace KeqingNiuza.View
             }
         }
 
+        public bool IsOversea
+        {
+            get => Properties.Settings.Default.IsOversea;
+            set
+            {
+                Properties.Settings.Default.IsOversea = value;
+                OnPropertyChanged();
+            }
+        }
+
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             var link = sender as Hyperlink;
