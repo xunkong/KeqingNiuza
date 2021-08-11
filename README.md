@@ -9,14 +9,13 @@
 ## 下载地址
 
 - [jsDelivr (最新)](https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/KeqingNiuza/KeqingNiuza.zip)
-- [Github Release (存档)](https://github.com/Scighost/KeqingNiuza/releases)
 
 ## 最近更新内容
 
-### 0.2.3.21073017
+### 0.2.4.21081109
 
-- 新增删除指定Uid及数据功能
-- 优化图片渲染效果
+- 新增了祈愿数据和弹琴功能对外服的支持
+- 优化数据页面的滚动性能
 
 ## 其他
 
