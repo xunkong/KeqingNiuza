@@ -50,7 +50,7 @@
     <Compile Include="CloudType.cs" />
     <Compile Include="Const.cs" />
     <Compile Include="Endecryption.cs" />
-    <Compile Include="JianguoClient.cs" />
+    <Compile Include="WebDavBackupClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

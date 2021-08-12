@@ -9,6 +9,7 @@
 ## 下载地址
 
 - [jsDelivr (最新)](https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/KeqingNiuza/KeqingNiuza.zip)
+- Github Releases 中的文件**不是**最新版本
 
 ## 最近更新内容
 
@@ -16,6 +17,10 @@
 
 - 新增了祈愿数据和弹琴功能对外服的支持
 - 优化数据页面的滚动性能
+
+### 0.2.5.21081211
+
+- 云备份支持自定义WebDav服务器地址
 
 ## 其他
 

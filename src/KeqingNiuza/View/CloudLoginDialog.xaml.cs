@@ -29,6 +29,7 @@ namespace KeqingNiuza.View
         {
             InitializeComponent();
             DataContext = this;
+            InputServerUrl.Text = "https://dav.jianguoyun.com/dav/";
         }
 
         public CloudClient Result { get; set; }
@@ -40,19 +41,19 @@ namespace KeqingNiuza.View
 
         }
 
-        public async Task<bool> CloudLogin(string userName, string password, CloudType cloudType)
+        public async Task<(bool isSuccessful, int code, string msg)> CloudLogin(string userName, string password, CloudType cloudType, string url = null)
         {
-            var client = CloudClient.Create(userName, password, cloudType);
+            var client = CloudClient.Create(userName, password, cloudType, url);
             var state = await client.ConfirmAccount();
-            if (state)
+            if (state.isSuccessful)
             {
                 Result = client;
                 client.SaveEncyptedAccount();
-                return true;
+                return state;
             }
             else
             {
-                return false;
+                return state;
             }
         }
 
@@ -60,6 +61,7 @@ namespace KeqingNiuza.View
         {
             var username = InputUserName.Text;
             var password = InputPassword.Password;
+            var server = InputServerUrl.Text;
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 TextBlock_Info.Text = "用户名或密码为空";
@@ -73,8 +75,8 @@ namespace KeqingNiuza.View
                 Button_Login.IsEnabled = false;
                 TextBlock_Info.Text = "正在登录";
                 TextBlock_Info.Foreground = new SolidColorBrush(Colors.Gray);
-                var result = await CloudLogin(username, password, CloudType.Jianguoyun);
-                if (result)
+                var result = await CloudLogin(username, password, CloudType.WebDav, server);
+                if (result.isSuccessful)
                 {
                     ControlCommands.Close.Execute(null, this);
                 }
@@ -83,7 +85,7 @@ namespace KeqingNiuza.View
                     InputUserName.IsEnabled = true;
                     InputPassword.IsEnabled = true;
                     Button_Login.IsEnabled = true;
-                    TextBlock_Info.Text = "登录失败";
+                    TextBlock_Info.Text = $"登录失败: {result.msg} ({result.code})";
                     TextBlock_Info.Foreground = new SolidColorBrush(Colors.Red);
                 }
             }

@@ -19,6 +19,9 @@ namespace KeqingNiuza.CloudBackup
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public bool IsJianguo { get; set; }
+
+        public string WebDavUrl { get; set; } 
 
         public string UserName { get; protected set; }
 
@@ -35,7 +38,7 @@ namespace KeqingNiuza.CloudBackup
             }
         }
 
-        public abstract Task<bool> ConfirmAccount();
+        public abstract Task<(bool isSuccessful, int code, string msg)> ConfirmAccount();
 
         [Obsolete("同步方法逻辑有问题，暂用完整备份代替", true)]
         public abstract Task SyncFiles();
@@ -49,13 +52,17 @@ namespace KeqingNiuza.CloudBackup
 
 
 
-        public static CloudClient Create(string userName, string password, CloudType cloudType)
+        public static CloudClient Create(string userName, string password, CloudType cloudType, string url = null)
         {
             CloudClient client = null;
             switch (cloudType)
             {
-                case CloudType.Jianguoyun:
-                    client = new JianguoClient(userName, password);
+                case CloudType.WebDav:
+                    if (string.IsNullOrWhiteSpace(url))
+                    {
+                        url = "https://dav.jianguoyun.com/dav/";
+                    }
+                    client = new WebDavBackupClient(userName, password, url);
                     break;
 
             }
@@ -68,7 +75,7 @@ namespace KeqingNiuza.CloudBackup
             var bytes = File.ReadAllBytes("UserData\\Account");
             var json = Endecryption.Decrypt(bytes);
             var account = JsonSerializer.Deserialize<AccountInfo>(json, JsonOptions);
-            var client = Create(account.UserName, account.Password, account.CloudType);
+            var client = Create(account.UserName, account.Password, account.CloudType, account.Url);
             client.LastSyncTime = account.LastSyncTime;
             return client;
         }

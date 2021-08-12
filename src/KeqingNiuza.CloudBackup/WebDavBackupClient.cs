@@ -14,34 +14,44 @@ using static KeqingNiuza.CloudBackup.Const;
 
 namespace KeqingNiuza.CloudBackup
 {
-    public class JianguoClient : CloudClient
+    public class WebDavBackupClient : CloudClient
     {
 
 
 
-        private static readonly string _BaseAddress = "https://dav.jianguoyun.com/dav/";
+        private readonly Uri _BaseAddress;
 
 
 
         private readonly WebDavClient _WebDevClient;
 
 
-        public JianguoClient(string username, string password)
+        public WebDavBackupClient(string username, string password, string url)
         {
             UserName = username;
             Password = password;
+            if (!url.EndsWith("/"))
+            {
+                url += "/";
+            }
+            _BaseAddress = new Uri(url);
+            if (url.Contains("jianguoyun"))
+            {
+                IsJianguo = true;
+            }
+            WebDavUrl = _BaseAddress.Host;
             _WebDevClient = new WebDavClient(new WebDavClientParams()
             {
-                BaseAddress = new Uri(_BaseAddress),
+                BaseAddress = _BaseAddress,
                 Credentials = new System.Net.NetworkCredential(username, password)
             });
         }
 
 
-        public override async Task<bool> ConfirmAccount()
+        public override async Task<(bool isSuccessful, int code, string msg)> ConfirmAccount()
         {
             var result = await _WebDevClient.Mkcol("KeqingNiuza");
-            return result.IsSuccessful;
+            return (result.IsSuccessful, result.StatusCode, result.Description);
         }
 
         [Obsolete("因为同步逻辑问题暂时不使用")]
@@ -186,7 +196,8 @@ namespace KeqingNiuza.CloudBackup
         {
             var account = new AccountInfo()
             {
-                CloudType = CloudType.Jianguoyun,
+                Url = _BaseAddress.OriginalString,
+                CloudType = CloudType.WebDav,
                 UserName = UserName,
                 Password = Password,
                 LastSyncTime = LastSyncTime

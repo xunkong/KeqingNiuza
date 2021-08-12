@@ -5,8 +5,8 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:local="clr-namespace:KeqingNiuza.View"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             Width="300"
-             Height="240"
+             Width="400"
+             Height="300"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -22,9 +22,13 @@
         <DockPanel Margin="10">
             <TextBlock DockPanel.Dock="Bottom" Foreground="Gray" Text="* 用户名和密码会被加密保存在本地" />
             <StackPanel>
-                <Image Height="25" HorizontalAlignment="Left" Source="{StaticResource Jianguoyun}" />
+                <TextBlock FontSize="16" Text="WebDav登录 " />
+                <TextBlock FontSize="12" Foreground="Gray" Text="默认使用坚果云 " />
+                <!--<Image Height="25" HorizontalAlignment="Left" Source="{StaticResource Jianguoyun}" />-->
                 <Grid Margin="0,20,0,20">
                     <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="10" />
                         <RowDefinition />
                         <RowDefinition Height="10" />
                         <RowDefinition />
@@ -32,13 +36,13 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0"
                                Grid.Column="0"
                                VerticalAlignment="Center"
-                               Text="用户名：" />
-                    <TextBox x:Name="InputUserName"
+                               Text="服务器地址：" />
+                    <TextBox x:Name="InputServerUrl"
                              Grid.Row="0"
                              Grid.Column="1"
                              FontSize="12"
@@ -47,14 +51,24 @@
                     <TextBlock Grid.Row="2"
                                Grid.Column="0"
                                VerticalAlignment="Center"
+                               Text="用户名：" />
+                    <TextBox x:Name="InputUserName"
+                             Grid.Row="2"
+                             Grid.Column="1"
+                             FontSize="12"
+                             InputMethod.IsInputMethodEnabled="False" />
+
+                    <TextBlock Grid.Row="4"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
                                Text="密码：" />
                     <PasswordBox x:Name="InputPassword"
-                                 Grid.Row="2"
+                                 Grid.Row="4"
                                  Grid.Column="1"
                                  FontSize="12"
                                  InputMethod.IsInputMethodEnabled="False" />
                     <TextBlock x:Name="TextBlock_Info"
-                               Grid.Row="3"
+                               Grid.Row="5"
                                Grid.Column="1"
                                Margin="5,10,0,0" />
                 </Grid>

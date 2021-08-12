@@ -473,10 +473,15 @@
                         <RowDefinition />
                         <RowDefinition Height="50" />
                     </Grid.RowDefinitions>
+                    <StackPanel Margin="10,10,0,0" Visibility="{Binding CloudClient.IsJianguo, Converter={StaticResource Boolean2VisibilityReConverter}}">
+                        <TextBlock Text="WebDav" />
+                        <TextBlock Text="{Binding CloudClient.WebDavUrl}" />
+                    </StackPanel>
                     <Image Grid.Row="0"
                            Margin="5"
                            HorizontalAlignment="Left"
-                           Source="{StaticResource Jianguoyun}" />
+                           Source="{StaticResource Jianguoyun}"
+                           Visibility="{Binding CloudClient.IsJianguo, Converter={StaticResource Boolean2VisibilityConverter}}" />
                     <Button Name="Button_Logout"
                             Grid.Row="0"
                             HorizontalAlignment="Right"
