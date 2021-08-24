@@ -187,7 +187,7 @@ namespace KeqingNiuza.Wish
         public static void 仓鼠(List<WishData> datas, List<AchievementInfo> infos)
         {
             var list = datas.Where(x => x.WishType == WishType.CharacterEvent || x.WishType == WishType.WeaponEvent).GroupBy(x => x.Time.Date).OrderBy(g => g.Key).ToList();
-            if (list.Count == 1)
+            if (list.Count <= 2)
             {
                 return;
             }

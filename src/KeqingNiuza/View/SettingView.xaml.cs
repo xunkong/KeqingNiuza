@@ -1,5 +1,6 @@
 ﻿using HandyControl.Controls;
 using KeqingNiuza.Service;
+using Microsoft.AppCenter;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -35,6 +36,7 @@ namespace KeqingNiuza.View
         public SettingView()
         {
             InitializeComponent();
+            GuidText.Text = AppCenter.GetInstallIdAsync().Result.ToString();
         }
 
         public bool IsAdmin => ScheduleTask.IsAdmin();
@@ -142,6 +144,10 @@ namespace KeqingNiuza.View
             }
         }
 
-
+        private void GuidText_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            Clipboard.SetText(GuidText.Text.ToString());
+            Growl.Success("复制成功");
+        }
     }
 }

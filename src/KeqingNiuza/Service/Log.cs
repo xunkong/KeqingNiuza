@@ -1,3 +1,4 @@
+using Microsoft.AppCenter.Crashes;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,10 +10,11 @@ namespace KeqingNiuza.Service
 {
     static class Log
     {
-        public static bool EnableLog { get; set; }
-        
+        public static bool EnableLog { get; set; } = true;
+
         internal static void OutputLog(LogType type, Exception ex)
         {
+            Crashes.TrackError(ex);
             if (EnableLog)
             {
                 Directory.CreateDirectory(".\\Log");
@@ -36,6 +38,7 @@ namespace KeqingNiuza.Service
 
         internal static void OutputLog(LogType type, string step, Exception ex)
         {
+            Crashes.TrackError(ex);
             if (EnableLog)
             {
                 Directory.CreateDirectory(".\\Log");
