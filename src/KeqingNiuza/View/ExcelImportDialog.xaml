@@ -89,7 +89,8 @@
                 <TextBlock Margin="0,5,0,5" Text="如果出现与现有数据不匹配的情况，可以检查一下该条记录的时间和名称是否完全一致" />
                 <TextBlock Margin="0,5,0,5" Text="出现大量记录不一致的情况，可以清空UserData文件夹重新加载" />
                 <TextBlock Margin="0,5,0,5" Text="v0.2.1新功能：可直接在本页面修改错误数据并刷新" />
-                <TextBlock Margin="0,5,0,5" FontWeight="Bold" Text="核对错误数据时注意：Excel文件内为UTC+8时区，软件内为系统时区" />
+                <TextBlock Margin="0,5,0,5" FontWeight="Bold" Text="导入Excel文件的模板可以通过右上角个人信息卡片中的导出数据获得" />
+                <TextBlock Margin="0,5,0,5" FontWeight="Bold" Text="导入时必需的数据列有：时间、名称、类别、星级，其他列可以忽略" />
             </StackPanel>
 
             <DataGrid x:Name="DataGrid_ImportedData"

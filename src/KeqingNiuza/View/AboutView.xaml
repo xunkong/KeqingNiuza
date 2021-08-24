@@ -89,7 +89,19 @@
                         Margin="0,5,0,5"
                         HorizontalAlignment="Left"
                         Click="Button_ImportExcel_Click"
-                        Content="导入数据" />
+                        Content="导入数据"
+                        FontSize="12" />
+                <TextBlock Margin="0,10,0,4" FontSize="16" Text="手动输入Url" />
+                <TextBlock Margin="0,4,0,5" Foreground="Gray" Text="以 https 开头、以 #log 结尾" />
+                <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+                    <TextBox x:Name="TextBox_InputUrl" Width="300" />
+                    <Button x:Name="Button_ImputUrl"
+                            Margin="8,0,0,0"
+                            Click="Button_ImputUrl_Click"
+                            Content="确认"
+                            FontSize="12" />
+                </StackPanel>
+
                 <!--  致谢  -->
                 <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
                     <TextBlock FontSize="20" Text="致谢" />

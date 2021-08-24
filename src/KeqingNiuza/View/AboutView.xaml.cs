@@ -186,5 +186,10 @@ namespace KeqingNiuza.View
             LoadingCircle_UpdateContent.Visibility = Visibility.Collapsed;
         }
 
+        private async void Button_ImputUrl_Click(object sender, RoutedEventArgs e)
+        {
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            await mainWindow.ViewModel.UpdateWishData(TextBox_InputUrl.Text);
+        }
     }
 }

@@ -303,6 +303,35 @@ namespace KeqingNiuza.ViewModel
         }
 
 
+        public async Task UpdateWishData(string url)
+        {
+            try
+            {
+                if (!string.IsNullOrEmpty(url))
+                {
+                    Growl.Info("正在加载");
+                    if (await IsUrlTimeout(url))
+                    {
+                        Growl.Warning("原 Url 已过期");
+                    }
+                    else
+                    {
+                        await LoadDataFromUrl(url);
+                        ReloadViewContent();
+                        ChangeViewContent("WishSummaryView");
+                    }
+                }
+                LoadWishDataProgress = "加载完成";
+            }
+            catch (Exception ex)
+            {
+                Growl.Warning(ex.Message);
+                LoadWishDataProgress = "加载过程中遇到错误";
+                Log.OutputLog(LogType.Error, "UpdateWishData", ex);
+            }
+        }
+
+
         /// <summary>
         /// 检测url是否过期
         /// </summary>
@@ -312,7 +341,7 @@ namespace KeqingNiuza.ViewModel
         {
             try
             {
-                var exporter = new WishLogExporter(url,Properties.Settings.Default.IsOversea);
+                var exporter = new WishLogExporter(url, Properties.Settings.Default.IsOversea);
                 var uid = await exporter.GetUidByUrl();
                 return false;
             }
@@ -331,7 +360,7 @@ namespace KeqingNiuza.ViewModel
 
         private async Task LoadDataFromUrl(string url)
         {
-            var exporter = new WishLogExporter(url,Properties.Settings.Default.IsOversea);
+            var exporter = new WishLogExporter(url, Properties.Settings.Default.IsOversea);
             exporter.ProgressChanged += WishLoadExporter_ProgressChanged;
             var uid = await exporter.GetUidByUrl();
             var userData = UserDataList.FirstOrDefault(x => x.Uid == uid);

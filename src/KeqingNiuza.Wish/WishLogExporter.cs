@@ -30,7 +30,7 @@ namespace KeqingNiuza.Wish
             }
             else
             {
-                throw new ArgumentException("Url does not meet the requirement!");
+                throw new ArgumentException("Url不符合要求");
             }
         }
 
