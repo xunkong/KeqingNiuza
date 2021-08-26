@@ -1,15 +1,13 @@
+using KeqingNiuza.Midi.Native;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
-using System.Threading.Tasks;
-using static KeqingNiuza.Midi.Native.User32;
-using static KeqingNiuza.Midi.Native.Msg;
-using static KeqingNiuza.Midi.Native.VirtualKey;
-using KeqingNiuza.Midi.Native;
 using static KeqingNiuza.Midi.Native.FsModifier;
+using static KeqingNiuza.Midi.Native.Msg;
+using static KeqingNiuza.Midi.Native.User32;
+using static KeqingNiuza.Midi.Native.VirtualKey;
 
 namespace KeqingNiuza.Midi
 {

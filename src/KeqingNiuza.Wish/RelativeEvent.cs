@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KeqingNiuza.Wish
 {
-   public class RelativeEvent
+    public class RelativeEvent
     {
         public WishEvent WishEvent { get; set; }
 

@@ -91,7 +91,7 @@
                         Click="Button_ImportExcel_Click"
                         Content="导入数据"
                         FontSize="12" />
-                <TextBlock Margin="0,10,0,4" FontSize="16" Text="手动输入Url" />
+                <TextBlock Margin="0,10,0,4" FontSize="16" Text="手动输入祈愿记录网址" />
                 <TextBlock Margin="0,4,0,5" Foreground="Gray" Text="以 https 开头、以 #log 结尾" />
                 <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
                     <TextBox x:Name="TextBox_InputUrl" Width="300" />

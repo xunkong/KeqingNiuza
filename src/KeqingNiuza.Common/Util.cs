@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using System.Reflection;
 using System.Security.Cryptography;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 using static KeqingNiuza.Common.Const;
 
 namespace KeqingNiuza.Common
@@ -47,6 +46,7 @@ namespace KeqingNiuza.Common
 
         public static void ExportUpdateFile()
         {
+            var version = Assembly.GetEntryAssembly().GetName().Version;
             var filestrings = Directory.GetFiles(".\\", "*", SearchOption.AllDirectories);
             var zipFileList = filestrings.Where(x => !(x.Contains(".\\Log")
                                                         || x.Contains(".\\UserData")
@@ -72,7 +72,7 @@ namespace KeqingNiuza.Common
             }
 
             // 自动更新版本压缩包
-            zipPath = $"..\\KeqingNiuza_{Const.Version}.zip";
+            zipPath = $"..\\KeqingNiuza_{version}.zip";
             if (File.Exists(zipPath))
             {
                 File.Delete(zipPath);
@@ -87,15 +87,15 @@ namespace KeqingNiuza.Common
             }
             var filelist = new UpdateFileList
             {
-                Version = Const.Version,
+                Version = version,
                 UpdateTime = DateTime.Now,
-                PackageUrl = $"{packageBaseUrl}KeqingNiuza_{Const.Version}.zip",
-                PackageName = $"KeqingNiuza_{Const.Version}.zip",
+                PackageUrl = $"{packageBaseUrl}KeqingNiuza_{version}.zip",
+                PackageName = $"KeqingNiuza_{version}.zip",
                 PackageSHA256 = GetFileHash(zipPath)
             };
             filelist.AllFiles = zipFileList.ToList().ConvertAll(x => new UpdateFileInfo(x));
             File.WriteAllText("..\\UpdateFileList.json", JsonSerializer.Serialize(filelist, JsonOptions));
-            File.Copy("..\\UpdateFileList.json", $"..\\UpdateFileList_{Const.Version}.json", true);
+            File.Copy("..\\UpdateFileList.json", $"..\\UpdateFileList_{version}.json", true);
         }
 
 

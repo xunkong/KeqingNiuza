@@ -1,16 +1,12 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KeqingNiuza.Update
 {
     static class Log
     {
         public static bool EnableLog { get; set; } = true;
-        
+
         internal static void OutputLog(LogType type, Exception ex)
         {
             if (EnableLog)

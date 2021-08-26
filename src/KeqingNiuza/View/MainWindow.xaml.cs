@@ -1,26 +1,15 @@
+using HandyControl.Controls;
+using HandyControl.Tools.Extension;
+using KeqingNiuza.Model;
+using KeqingNiuza.Service;
+using KeqingNiuza.ViewModel;
 using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using KeqingNiuza.ViewModel;
-using HandyControl.Controls;
-using HandyControl.Tools.Extension;
-using HandyControl.Data;
-using KeqingNiuza.View;
-using System.IO;
-using KeqingNiuza.Service;
-using System.Threading;
-using Microsoft.AppCenter.Analytics;
-using KeqingNiuza.Model;
 
 namespace KeqingNiuza.View
 {

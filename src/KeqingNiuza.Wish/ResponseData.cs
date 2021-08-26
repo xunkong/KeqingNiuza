@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
-namespace KeqingNiuza.Wish { 
+namespace KeqingNiuza.Wish
+{
     class ResponseData
     {
         [JsonPropertyName("retcode")]
@@ -15,13 +16,13 @@ namespace KeqingNiuza.Wish {
 
         public class DataItem
         {
-            [JsonPropertyName("page"),JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+            [JsonPropertyName("page"), JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
             public int Page { get; set; }
 
             [JsonPropertyName("size"), JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
             public int Size { get; set; }
 
-            [JsonPropertyName("total"),JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
+            [JsonPropertyName("total"), JsonNumberHandling(JsonNumberHandling.AllowReadingFromString)]
             public int Total { get; set; }
 
             [JsonPropertyName("list")]

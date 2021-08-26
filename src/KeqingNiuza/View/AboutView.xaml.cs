@@ -1,30 +1,20 @@
-using KeqingNiuza.Common;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using HandyControl.Controls;
 using HandyControl.Tools.Extension;
-using KeqingNiuza.Wish;
-using System.Text.Json;
 using KeqingNiuza.Model;
-using System.IO;
 using KeqingNiuza.Service;
-using Const = KeqingNiuza.Common.Const;
-using System.Net.Http;
+using KeqingNiuza.Wish;
+using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
+using System.IO;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
+using System.Text.Json;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Documents;
+using Const = KeqingNiuza.Common.Const;
 
 namespace KeqingNiuza.View
 {
@@ -43,8 +33,9 @@ namespace KeqingNiuza.View
         public AboutView()
         {
             InitializeComponent();
-            TextBlock_Version.Text = "版本：" + Const.Version.ToString(3);
-            TextBlock_Version_All.Text = Const.Version.ToString();
+            var version = typeof(AboutView).Assembly.GetName().Version;
+            TextBlock_Version.Text = "版本：" + version.ToString(3);
+            TextBlock_Version_All.Text = version.ToString();
         }
 
         public bool IsAutoUpdate

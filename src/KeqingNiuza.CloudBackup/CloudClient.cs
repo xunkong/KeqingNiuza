@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using static KeqingNiuza.CloudBackup.Const;
@@ -21,7 +18,7 @@ namespace KeqingNiuza.CloudBackup
 
         public bool IsJianguo { get; set; }
 
-        public string WebDavUrl { get; set; } 
+        public string WebDavUrl { get; set; }
 
         public string UserName { get; protected set; }
 

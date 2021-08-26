@@ -1,10 +1,6 @@
 using KeqingNiuza.Model;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KeqingNiuza.Converter
 {
@@ -12,7 +8,7 @@ namespace KeqingNiuza.Converter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value==null)
+            if (value == null)
             {
                 return "点此加载数据";
             }
@@ -21,7 +17,7 @@ namespace KeqingNiuza.Converter
                 var userdata = value as UserData;
                 return $"*****{userdata.Uid % 1000}";
             }
-            
+
 
         }
 

@@ -1,20 +1,11 @@
+using KeqingNiuza.Model;
+using KeqingNiuza.View;
+using KeqingNiuza.Wish;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using KeqingNiuza.Wish;
-using KeqingNiuza.Model;
-using System.Text.Json;
-using static KeqingNiuza.Common.Const;
-using System.IO;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
-using LiveCharts;
-using LiveCharts.Wpf;
-using System.Windows.Media;
-using System.Threading;
-using KeqingNiuza.View;
 
 namespace KeqingNiuza.ViewModel
 {

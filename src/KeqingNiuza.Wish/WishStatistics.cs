@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 namespace KeqingNiuza.Wish
 {
 
-    public class WishStatistics:INotifyPropertyChanged
+    public class WishStatistics : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")

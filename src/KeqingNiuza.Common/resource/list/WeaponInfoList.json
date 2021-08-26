@@ -796,5 +796,19 @@
     "Rank": 5,
     "ItemType": "武器",
     "WeaponType": 3
+  },
+  {
+    "Name": "薙草之稻光",
+    "NameEn": "Engulfing Lightning",
+    "Rank": 5,
+    "ItemType": "武器",
+    "WeaponType": 4
+  },
+  {
+    "Name": "不灭月华",
+    "NameEn": "Everlasting Moonglow",
+    "Rank": 5,
+    "ItemType": "武器",
+    "WeaponType": 5
   }
 ]

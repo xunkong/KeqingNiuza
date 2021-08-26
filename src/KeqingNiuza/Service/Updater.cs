@@ -8,7 +8,6 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Threading;
 using static KeqingNiuza.Common.Const;
 
 namespace KeqingNiuza.Service
@@ -85,7 +84,7 @@ namespace KeqingNiuza.Service
             {
                 var fileListContent = await HttpClient.GetStringAsync(_FileListUrl);
                 _FileList = JsonSerializer.Deserialize<UpdateFileList>(fileListContent, JsonOptions);
-                if (_FileList.Version > Const.Version)
+                if (_FileList.Version > typeof(Updater).Assembly.GetName().Version)
                 {
                     result = true;
                 }

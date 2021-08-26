@@ -257,5 +257,26 @@
     "Rank": 4,
     "ItemType": "角色",
     "ElementType": 3
+  },
+  {
+    "Name": "雷电将军",
+    "NameEn": "Raiden Shogun",
+    "Rank": 5,
+    "ItemType": "角色",
+    "ElementType": 4
+  },
+  {
+    "Name": "九条裟罗",
+    "NameEn": "Kujou Sara",
+    "Rank": 4,
+    "ItemType": "角色",
+    "ElementType": 4
+  },
+  {
+    "Name": "珊瑚宫心海",
+    "NameEn": "Sangonomiya Kokomi",
+    "Rank": 5,
+    "ItemType": "角色",
+    "ElementType": 2
   }
 ]
