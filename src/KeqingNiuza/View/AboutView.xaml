@@ -26,7 +26,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <!--  项目及更新  -->
-            <StackPanel Margin="30,20,10,10">
+            <StackPanel Margin="30,10,10,10">
                 <TextBlock Margin="0,0,0,10" FontSize="20" Text="关于" />
                 <TextBlock x:Name="TextBlock_Version" Margin="0,5,0,5">
                     <TextBlock.ToolTip>
@@ -141,7 +141,7 @@
             </StackPanel>
 
             <!--  最近更新内容  -->
-            <StackPanel Grid.Column="1" Margin="10,20,30,10">
+            <StackPanel Grid.Column="1" Margin="10,10,30,10">
                 <StackPanel x:Name="StackPanel_UpdateConent" Grid.Column="1">
                     <TextBlock FontSize="20" Text="最近更新内容" />
                     <TextBlock Name="TextBlock_UpdateContent"

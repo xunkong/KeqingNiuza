@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="KeqingNiuza.View.DialyCheckView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:KeqingNiuza.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="{StaticResource ContentViewBackground}"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="20,20,20,12">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+
+
+        <StackPanel Margin="0,0,0,20"
+                    VerticalAlignment="Top"
+                    Orientation="Horizontal">
+            <Button x:Name="Button_CheckIn"
+                    Margin="0,0,12,0"
+                    Click="Button_CheckIn_Click"
+                    Content="开始签到" />
+            <Button x:Name="Button_UpdateCookie"
+                    Margin="0,0,12,0"
+                    Click="Button_UpdateCookie_Click"
+                    Content="更新Cookie" />
+            <Button x:Name="Button_SaveCookie"
+                    Margin="0,0,12,0"
+                    HorizontalAlignment="Left"
+                    Click="Button_SaveCookie_Click"
+                    Content="保存"
+                    Visibility="Collapsed" />
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
+                <TextBlock Foreground="Gray" Text="初次使用请查看" />
+                <TextBlock>
+                    <Hyperlink Click="Hyperlink_Click"
+                               NavigateUri="https://bbs.nga.cn/read.php?tid=28283801%26_ff=650"
+                               TextDecorations="None">
+                        使用教程
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock VerticalAlignment="Center"
+                           Foreground="Gray"
+                           Text="，自动化签到在设置界面中" />
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel x:Name="Panel_Cookie"
+                    Grid.Row="1"
+                    Margin="0,0,0,20"
+                    Visibility="Collapsed">
+            <TextBlock Margin="0,0,0,4" Text="Cookie" />
+            <TextBlock Margin="0,0,0,4"
+                       Foreground="Gray"
+                       Text="若有多个Cookie，请用#分割" />
+            <TextBox x:Name="TextBox_Cookie"
+                     Height="200"
+                     VerticalContentAlignment="Top"
+                     TextWrapping="WrapWithOverflow" />
+
+        </StackPanel>
+
+
+        <TextBlock Grid.Row="2"
+                   Margin="0,0,0,8"
+                   FontSize="16"
+                   Text="日志" />
+        <TextBox x:Name="TextBox_Log"
+                 Grid.Row="3"
+                 VerticalContentAlignment="Top"
+                 IsReadOnly="True" />
+
+        <StackPanel Grid.Row="4"
+                    Margin="0,12,0,0"
+                    Orientation="Horizontal">
+
+            <TextBlock Foreground="Gray" Text="感谢" />
+            <TextBlock>
+                <Hyperlink Click="Hyperlink_Click"
+                           NavigateUri="https://github.com/yinghualuowu/GenshinDailyHelper"
+                           TextDecorations="None">
+                    Github@yinghualuowu
+                </Hyperlink>
+            </TextBlock>
+            <TextBlock Foreground="Gray" Text="对本功能提供的代码支持" />
+        </StackPanel>
+    </Grid>
+</UserControl>

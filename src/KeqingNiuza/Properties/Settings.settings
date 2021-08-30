@@ -26,5 +26,17 @@
     <Setting Name="IsOversea" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="DialyCheck_AlwaysShowResult" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DailyCheck_IsAutoCheckIn" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="DailyCheck_StartTime" Type="System.DateTime" Scope="User">
+      <Value Profile="(Default)">01/01/1970 06:00:00</Value>
+    </Setting>
+    <Setting Name="DailyCheck_RandomDelay" Type="System.TimeSpan" Scope="User">
+      <Value Profile="(Default)">02:00:00</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

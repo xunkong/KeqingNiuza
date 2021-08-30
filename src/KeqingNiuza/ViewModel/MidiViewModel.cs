@@ -1,7 +1,3 @@
-using HandyControl.Controls;
-using KeqingNiuza.Midi;
-using KeqingNiuza.Service;
-using Microsoft.AppCenter.Analytics;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +8,10 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Timers;
 using System.Windows.Interop;
+using HandyControl.Controls;
+using KeqingNiuza.Midi;
+using KeqingNiuza.Service;
+using Microsoft.AppCenter.Analytics;
 
 namespace KeqingNiuza.ViewModel
 {

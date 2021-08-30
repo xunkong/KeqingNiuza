@@ -1,5 +1,5 @@
-using KeqingNiuza.Midi.Native;
 using System.Collections.Generic;
+using KeqingNiuza.Midi.Native;
 
 namespace KeqingNiuza.Midi
 {

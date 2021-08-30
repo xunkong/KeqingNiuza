@@ -1,8 +1,3 @@
-using HandyControl.Controls;
-using HandyControl.Tools.Extension;
-using KeqingNiuza.Model;
-using KeqingNiuza.Service;
-using KeqingNiuza.ViewModel;
 using System;
 using System.IO;
 using System.Linq;
@@ -10,6 +5,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using HandyControl.Controls;
+using HandyControl.Tools.Extension;
+using KeqingNiuza.Model;
+using KeqingNiuza.Service;
+using KeqingNiuza.ViewModel;
+using Microsoft.AppCenter.Analytics;
 
 namespace KeqingNiuza.View
 {

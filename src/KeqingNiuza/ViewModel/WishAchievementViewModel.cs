@@ -1,8 +1,8 @@
-using KeqingNiuza.Model;
-using KeqingNiuza.Wish;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using KeqingNiuza.Model;
+using KeqingNiuza.Wish;
 
 namespace KeqingNiuza.ViewModel
 {

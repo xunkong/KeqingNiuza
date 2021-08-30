@@ -1,12 +1,12 @@
-using HandyControl.Tools.Extension;
-using KeqingNiuza.Model;
-using KeqingNiuza.Service;
-using KeqingNiuza.Wish;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Data;
+using HandyControl.Tools.Extension;
+using KeqingNiuza.Model;
+using KeqingNiuza.Service;
+using KeqingNiuza.Wish;
 
 namespace KeqingNiuza.ViewModel
 {

@@ -1,12 +1,3 @@
-using HandyControl.Controls;
-using HandyControl.Tools.Extension;
-using KeqingNiuza.CloudBackup;
-using KeqingNiuza.Model;
-using KeqingNiuza.Service;
-using KeqingNiuza.View;
-using KeqingNiuza.Wish;
-using Microsoft.AppCenter.Analytics;
-using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,6 +8,15 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading.Tasks;
+using HandyControl.Controls;
+using HandyControl.Tools.Extension;
+using KeqingNiuza.CloudBackup;
+using KeqingNiuza.Model;
+using KeqingNiuza.Service;
+using KeqingNiuza.View;
+using KeqingNiuza.Wish;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.Win32;
 using static KeqingNiuza.Common.Const;
 
 namespace KeqingNiuza.ViewModel

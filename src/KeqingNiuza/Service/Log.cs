@@ -1,6 +1,6 @@
-using Microsoft.AppCenter.Crashes;
 using System;
 using System.IO;
+using Microsoft.AppCenter.Crashes;
 
 namespace KeqingNiuza.Service
 {

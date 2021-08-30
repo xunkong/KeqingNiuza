@@ -1,5 +1,5 @@
-﻿using Melanchall.DryWetMidi.Core;
-using System.Linq;
+﻿using System.Linq;
+using Melanchall.DryWetMidi.Core;
 
 namespace KeqingNiuza.Midi
 {

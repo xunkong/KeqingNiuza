@@ -1,6 +1,6 @@
-using KeqingNiuza.Model;
 using System;
 using System.Globalization;
+using KeqingNiuza.Model;
 
 namespace KeqingNiuza.Converter
 {

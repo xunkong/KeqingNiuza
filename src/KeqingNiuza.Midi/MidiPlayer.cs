@@ -1,11 +1,11 @@
-using KeqingNiuza.Midi.Native;
-using Melanchall.DryWetMidi.Core;
-using Melanchall.DryWetMidi.Devices;
-using Melanchall.DryWetMidi.Interaction;
 using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using KeqingNiuza.Midi.Native;
+using Melanchall.DryWetMidi.Core;
+using Melanchall.DryWetMidi.Devices;
+using Melanchall.DryWetMidi.Interaction;
 
 namespace KeqingNiuza.Midi
 {

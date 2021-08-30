@@ -1,9 +1,11 @@
-using KeqingNiuza.Common;
-using KeqingNiuza.Service;
-using Microsoft.AppCenter;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
+using KeqingNiuza.Common;
+using KeqingNiuza.Service;
+using Microsoft.AppCenter;
+using Microsoft.AppCenter.Analytics;
+using Microsoft.AppCenter.Crashes;
 
 namespace KeqingNiuza
 {
@@ -30,6 +32,10 @@ namespace KeqingNiuza
                     Task.Delay(2000);
                     ScheduleTask.SendNotification();
                 }
+                if (e.Args[0] == "DialyCheckTask")
+                {
+                    DialyCheckTask.CheckIn();
+                }
                 Shutdown();
             }
             else
@@ -53,7 +59,7 @@ namespace KeqingNiuza
             var id = AppCenter.GetInstallIdAsync().Result;
             Clipboard.SetText(id.ToString());
             var msg = $"发生了未处理的错误，如有疑问请联系开发者：\n{ex.Message}\nDeviceId已复制到剪贴板：{id}";
-            System.Windows.MessageBox.Show(msg, "KeqingNiuza");
+            MessageBox.Show(msg, "KeqingNiuza");
         }
     }
 }

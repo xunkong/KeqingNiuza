@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KeqingNiuza.Tool", "src\Keq
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeqingNiuza.Update", "src\KeqingNiuza.Update\KeqingNiuza.Update.csproj", "{B9DA058F-D207-4C56-BC2F-CD32E8211D52}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeqingNiuza.DailyCheck", "src\KeqingNiuza.DailyCheck\KeqingNiuza.DailyCheck.csproj", "{4C3A97B0-C0C2-4237-AF86-8BD47675AEE7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{B9DA058F-D207-4C56-BC2F-CD32E8211D52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9DA058F-D207-4C56-BC2F-CD32E8211D52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9DA058F-D207-4C56-BC2F-CD32E8211D52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4C3A97B0-C0C2-4237-AF86-8BD47675AEE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C3A97B0-C0C2-4237-AF86-8BD47675AEE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C3A97B0-C0C2-4237-AF86-8BD47675AEE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C3A97B0-C0C2-4237-AF86-8BD47675AEE7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

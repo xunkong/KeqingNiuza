@@ -1,12 +1,12 @@
-using HandyControl.Controls;
-using HandyControl.Interactivity;
-using KeqingNiuza.Service;
-using KeqingNiuza.ViewModel;
 using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
+using HandyControl.Controls;
+using HandyControl.Interactivity;
+using KeqingNiuza.Service;
+using KeqingNiuza.ViewModel;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace KeqingNiuza.View

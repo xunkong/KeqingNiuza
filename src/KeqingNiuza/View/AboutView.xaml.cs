@@ -1,8 +1,3 @@
-using HandyControl.Controls;
-using HandyControl.Tools.Extension;
-using KeqingNiuza.Model;
-using KeqingNiuza.Service;
-using KeqingNiuza.Wish;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +9,11 @@ using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using HandyControl.Controls;
+using HandyControl.Tools.Extension;
+using KeqingNiuza.Model;
+using KeqingNiuza.Service;
+using KeqingNiuza.Wish;
 using Const = KeqingNiuza.Common.Const;
 
 namespace KeqingNiuza.View

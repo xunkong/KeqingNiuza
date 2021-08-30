@@ -204,6 +204,21 @@
                         <TextBlock Margin="10,0,0,0" FontSize="12" Text="流浪大地的乐团" />
                     </StackPanel>
                 </RadioButton>
+                <RadioButton x:Name="SideMenu_DialyCheckView"
+                             Click="RadioButton_SideMenu_Click"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}"
+                             Tag="DialyCheckView">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="18"
+                              Height="18"
+                              VerticalAlignment="Center"
+                              Data="{StaticResource CheckIn}"
+                              Fill="Purple"
+                              Stretch="Uniform" />
+                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="米游社签到" />
+                    </StackPanel>
+                </RadioButton>
             </StackPanel>
 
         </DockPanel>

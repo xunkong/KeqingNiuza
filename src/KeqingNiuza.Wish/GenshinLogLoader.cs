@@ -23,7 +23,7 @@ namespace KeqingNiuza.Wish
             var matches = Regex.Matches(log, @"OnGetWebViewPageFinish:.+#/log");
             if (matches.Count == 0)
             {
-                throw new Exception("没有找到 Url");
+                throw new Exception("没有找到祈愿记录网址");
             }
             else
             {

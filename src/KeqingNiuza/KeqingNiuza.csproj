@@ -84,6 +84,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Control\ScrollViewerEx.cs" />
+    <Compile Include="Converter\DailyCheckStartTimeConverter.cs" />
     <Compile Include="Converter\ImageConverter.cs" />
     <Compile Include="Converter\NoteLevelToNoteStringConverter.cs" />
     <Compile Include="Converter\ItemDetailRankConverter.cs" />
@@ -95,12 +96,16 @@
     <Compile Include="Converter\UidConverter.cs" />
     <Compile Include="Converter\WishTypeConverter.cs" />
     <Compile Include="Model\ScheduleInfo.cs" />
+    <Compile Include="Service\DialyCheckTask.cs" />
     <Compile Include="Service\Native.cs" />
     <Compile Include="Service\ScheduleTask.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="ViewModel\MidiViewModel.cs" />
     <Compile Include="View\DeleteUidDialog.xaml.cs">
       <DependentUpon>DeleteUidDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DialyCheckView.xaml.cs">
+      <DependentUpon>DialyCheckView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
@@ -193,6 +198,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="View\DeleteUidDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\DialyCheckView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -312,6 +321,10 @@
       <Project>{5e43d4c2-cb39-4487-9367-3e9290dd4b89}</Project>
       <Name>KeqingNiuza.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KeqingNiuza.DailyCheck\KeqingNiuza.DailyCheck.csproj">
+      <Project>{4c3a97b0-c0c2-4237-af86-8bd47675aee7}</Project>
+      <Name>KeqingNiuza.DailyCheck</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KeqingNiuza.Midi\KeqingNiuza.Midi.csproj">
       <Project>{7900f043-750b-4603-bcaf-8fdc54a86a00}</Project>
       <Name>KeqingNiuza.Midi</Name>
@@ -366,6 +379,10 @@ mkdir dll
 move /Y *.dll .\dll
 move /y .\runtimes .\dll
 move /Y Update.exe ..\</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>:: 适用于文件被“Visual Studio Standard Collector Service 150”锁定的情况，需要管理员权限
+:: taskkill /F /FI "IMAGENAME eq StandardCollector.Service.exe"</PreBuildEvent>
   </PropertyGroup>
   <ProjectExtensions />
 </Project>

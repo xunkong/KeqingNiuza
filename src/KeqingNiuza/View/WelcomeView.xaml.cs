@@ -1,5 +1,3 @@
-using HandyControl.Controls;
-using KeqingNiuza.Service;
 using System;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -7,6 +5,8 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using HandyControl.Controls;
+using KeqingNiuza.Service;
 
 namespace KeqingNiuza.View
 {

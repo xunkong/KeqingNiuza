@@ -6,7 +6,7 @@ using System.Text;
 
 namespace KeqingNiuza.CloudBackup
 {
-    static class Endecryption
+    public static class Endecryption
     {
 
         private static readonly byte[] Key;

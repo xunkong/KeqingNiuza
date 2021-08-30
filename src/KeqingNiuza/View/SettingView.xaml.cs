@@ -1,7 +1,4 @@
-﻿using HandyControl.Controls;
-using KeqingNiuza.Service;
-using Microsoft.AppCenter;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -9,6 +6,9 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using System.Windows.Input;
+using HandyControl.Controls;
+using KeqingNiuza.Service;
+using Microsoft.AppCenter;
 
 namespace KeqingNiuza.View
 {
@@ -99,6 +99,58 @@ namespace KeqingNiuza.View
             }
         }
 
+
+
+        private bool _DailyCheck_IsAutoCheckIn = Properties.Settings.Default.DailyCheck_IsAutoCheckIn;
+        public bool DailyCheck_IsAutoCheckIn
+        {
+            get { return _DailyCheck_IsAutoCheckIn; }
+            set
+            {
+                _DailyCheck_IsAutoCheckIn = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private DateTime _DailyCheck_StartTime = Properties.Settings.Default.DailyCheck_StartTime;
+        public DateTime DailyCheck_StartTime
+        {
+            get { return _DailyCheck_StartTime; }
+            set
+            {
+                _DailyCheck_StartTime = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private TimeSpan _DailyCheck_RandomDelay = Properties.Settings.Default.DailyCheck_RandomDelay;
+        public TimeSpan DailyCheck_RandomDelay
+        {
+            get { return _DailyCheck_RandomDelay; }
+            set
+            {
+                _DailyCheck_RandomDelay = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        private bool _DialyCheck_AlwaysShowResult = Properties.Settings.Default.DialyCheck_AlwaysShowResult;
+        public bool DialyCheck_AlwaysShowResult
+        {
+            get { return _DialyCheck_AlwaysShowResult; }
+            set
+            {
+                _DialyCheck_AlwaysShowResult = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             var link = sender as Hyperlink;
@@ -131,6 +183,7 @@ namespace KeqingNiuza.View
             catch (Exception ex)
             {
                 Growl.Warning(ex.Message);
+                Log.OutputLog(LogType.Warning, "ChangeScheduleTask", ex);
                 return false;
             }
         }
@@ -139,6 +192,24 @@ namespace KeqingNiuza.View
         {
             Clipboard.SetText(GuidText.Text.ToString());
             Growl.Success("复制成功");
+        }
+
+        private void Button_DailyCheckSave_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                DialyCheckTask.AddTask(DailyCheck_IsAutoCheckIn, DailyCheck_StartTime, DailyCheck_RandomDelay);
+                Properties.Settings.Default.DailyCheck_IsAutoCheckIn = DailyCheck_IsAutoCheckIn;
+                Properties.Settings.Default.DailyCheck_StartTime = DailyCheck_StartTime;
+                Properties.Settings.Default.DailyCheck_RandomDelay = DailyCheck_RandomDelay;
+                Properties.Settings.Default.DialyCheck_AlwaysShowResult = DialyCheck_AlwaysShowResult;
+                Growl.Success("保存成功");
+            }
+            catch (Exception ex)
+            {
+                Growl.Warning(ex.Message);
+                Log.OutputLog(LogType.Warning, "DailyCheckSettingSave", ex);
+            }
         }
     }
 }

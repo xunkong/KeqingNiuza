@@ -1,9 +1,9 @@
-using KeqingNiuza.Midi.Native;
 using System;
 using System.Diagnostics;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
+using KeqingNiuza.Midi.Native;
 using static KeqingNiuza.Midi.Native.FsModifier;
 using static KeqingNiuza.Midi.Native.Msg;
 using static KeqingNiuza.Midi.Native.User32;

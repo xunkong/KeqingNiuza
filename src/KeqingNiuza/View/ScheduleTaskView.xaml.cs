@@ -1,7 +1,4 @@
-﻿using KeqingNiuza.Common;
-using KeqingNiuza.Model;
-using KeqingNiuza.Service;
-using System;
+﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -13,6 +10,9 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using KeqingNiuza.Common;
+using KeqingNiuza.Model;
+using KeqingNiuza.Service;
 
 namespace KeqingNiuza.View
 {
