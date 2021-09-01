@@ -8,7 +8,7 @@ using Microsoft.Win32.TaskScheduler;
 
 namespace KeqingNiuza.Service
 {
-    public static class DialyCheckTask
+    public static class DailyCheckTask
     {
         public static bool IsAdmin()
         {
@@ -34,13 +34,13 @@ namespace KeqingNiuza.Service
                 }
                 t.Settings.StartWhenAvailable = true;
                 var exePath = Process.GetCurrentProcess().MainModule.FileName;
-                t.Actions.Add(new ExecAction(exePath, "DialyCheckTask"));
+                t.Actions.Add(new ExecAction(exePath, "DailyCheckTask"));
                 TaskService.Instance.RootFolder.RegisterTaskDefinition("KeqingNiuza DailyCheck", t);
             }
         }
 
 
-        public static async void CheckIn()
+        public static async System.Threading.Tasks.Task CheckIn()
         {
             string checkLog = null;
             GenshinDailyHelper.Program.PrintLog = (log) => checkLog += $"[{DateTime.Now:HH:mm:ss}]{log}";
@@ -63,7 +63,8 @@ namespace KeqingNiuza.Service
                 new ToastContentBuilder().AddText("签到失败").AddText(ex.Message).Show();
                 Log.OutputLog(LogType.Warning, "DailyCheckIn", ex);
                 var errorLog = $"[{DateTime.Now}]\n{checkLog}\n\n";
-                File.AppendAllText(@".\UserData\DailyCheck_ErrorLog.txt", errorLog);
+                Directory.CreateDirectory(".\\Log");
+                File.AppendAllText(@".\Log\DailyCheck_ErrorLog.txt", errorLog);
             }
         }
     }

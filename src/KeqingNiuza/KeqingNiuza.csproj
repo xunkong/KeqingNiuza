@@ -96,7 +96,7 @@
     <Compile Include="Converter\UidConverter.cs" />
     <Compile Include="Converter\WishTypeConverter.cs" />
     <Compile Include="Model\ScheduleInfo.cs" />
-    <Compile Include="Service\DialyCheckTask.cs" />
+    <Compile Include="Service\DailyCheckTask.cs" />
     <Compile Include="Service\Native.cs" />
     <Compile Include="Service\ScheduleTask.cs" />
     <Compile Include="Settings.cs" />
@@ -104,8 +104,8 @@
     <Compile Include="View\DeleteUidDialog.xaml.cs">
       <DependentUpon>DeleteUidDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\DialyCheckView.xaml.cs">
-      <DependentUpon>DialyCheckView.xaml</DependentUpon>
+    <Compile Include="View\DailyCheckView.xaml.cs">
+      <DependentUpon>DailyCheckView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ErrorView.xaml.cs">
       <DependentUpon>ErrorView.xaml</DependentUpon>
@@ -201,7 +201,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\DialyCheckView.xaml">
+    <Page Include="View\DailyCheckView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

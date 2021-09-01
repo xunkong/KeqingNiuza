@@ -204,11 +204,11 @@
                         <TextBlock Margin="10,0,0,0" FontSize="12" Text="流浪大地的乐团" />
                     </StackPanel>
                 </RadioButton>
-                <RadioButton x:Name="SideMenu_DialyCheckView"
+                <RadioButton x:Name="SideMenu_DailyCheckView"
                              Click="RadioButton_SideMenu_Click"
                              GroupName="SideMenu"
                              Style="{StaticResource SideMenuRadioButton}"
-                             Tag="DialyCheckView">
+                             Tag="DailyCheckView">
                     <StackPanel Orientation="Horizontal">
                         <Path Width="18"
                               Height="18"

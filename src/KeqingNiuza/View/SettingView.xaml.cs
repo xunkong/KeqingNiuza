@@ -198,7 +198,7 @@ namespace KeqingNiuza.View
         {
             try
             {
-                DialyCheckTask.AddTask(DailyCheck_IsAutoCheckIn, DailyCheck_StartTime, DailyCheck_RandomDelay);
+                DailyCheckTask.AddTask(DailyCheck_IsAutoCheckIn, DailyCheck_StartTime, DailyCheck_RandomDelay);
                 Properties.Settings.Default.DailyCheck_IsAutoCheckIn = DailyCheck_IsAutoCheckIn;
                 Properties.Settings.Default.DailyCheck_StartTime = DailyCheck_StartTime;
                 Properties.Settings.Default.DailyCheck_RandomDelay = DailyCheck_RandomDelay;

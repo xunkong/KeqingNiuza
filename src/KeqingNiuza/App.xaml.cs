@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using KeqingNiuza.Common;
 using KeqingNiuza.Service;
+using KeqingNiuza.View;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
@@ -15,7 +16,7 @@ namespace KeqingNiuza
     public partial class App : Application
     {
 
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
             Environment.CurrentDirectory = AppContext.BaseDirectory;
@@ -29,12 +30,12 @@ namespace KeqingNiuza
                 }
                 if (e.Args[0] == "ScheduleTask")
                 {
-                    Task.Delay(2000);
+                    await Task.Delay(2000);
                     ScheduleTask.SendNotification();
                 }
-                if (e.Args[0] == "DialyCheckTask")
+                if (e.Args[0] == "DailyCheckTask")
                 {
-                    DialyCheckTask.CheckIn();
+                    await DailyCheckTask.CheckIn();
                 }
                 Shutdown();
             }
@@ -44,6 +45,8 @@ namespace KeqingNiuza
                 AppCenter.Start("67db8a8a-9f6e-4f36-bf69-aa61bb78245d", typeof(Analytics), typeof(Crashes));
                 AppCenter.SetUserId(AppCenter.GetInstallIdAsync().Result.ToString());
 #endif
+                MainWindow = new MainWindow();
+                MainWindow.Show();
             }
 
         }

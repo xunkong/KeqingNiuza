@@ -142,7 +142,7 @@
 
             <!--  最近更新内容  -->
             <StackPanel Grid.Column="1" Margin="10,10,30,10">
-                <StackPanel x:Name="StackPanel_UpdateConent" Grid.Column="1">
+                <StackPanel x:Name="StackPanel_UpdateConent" Grid.Column="1" Visibility="Collapsed">
                     <TextBlock FontSize="20" Text="最近更新内容" />
                     <TextBlock Name="TextBlock_UpdateContent"
                                Margin="0,10,0,0"

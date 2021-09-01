@@ -13,9 +13,9 @@ namespace KeqingNiuza.View
     /// <summary>
     /// DialyCheckView.xaml 的交互逻辑
     /// </summary>
-    public partial class DialyCheckView : UserControl
+    public partial class DailyCheckView : UserControl
     {
-        public DialyCheckView()
+        public DailyCheckView()
         {
             InitializeComponent();
             Loaded += DialyCheckView_Loaded;
@@ -92,7 +92,8 @@ namespace KeqingNiuza.View
                 PrintLog(ex.Message);
                 Log.OutputLog(LogType.Warning, "DailyCheckIn", ex);
                 var errorLog = $"[{DateTime.Now}]\n{TextBox_Log.Text}\n\n";
-                File.AppendAllText(@".\UserData\DailyCheck_ErrorLog.txt", errorLog);
+                Directory.CreateDirectory(".\\Log");
+                File.AppendAllText(@".\Log\DailyCheck_ErrorLog.txt", errorLog);
             }
             finally
             {
