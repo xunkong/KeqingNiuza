@@ -1,14 +1,14 @@
 {
-  "Version": "2.0.0-preview",
-  "LastUpdateTime": "2021-09-16T08:44:55.1329389+00:00",
+  "Version": "2.0.0",
+  "LastUpdateTime": "2021-09-16T08:49:52.3747029+00:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "KeqingNiuza Launcher.exe",
       "Path": ".\\KeqingNiuza Launcher.exe",
       "Size": 1459200,
-      "CompressedSize": 1052003,
-      "SHA256": "E07ABF061F0CE7CBA73EB23CA095426D6690B7FE1E7A45553E12D77A6E78073B",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E07ABF061F0CE7CBA73EB23CA095426D6690B7FE1E7A45553E12D77A6E78073B",
+      "CompressedSize": 1051962,
+      "SHA256": "E2E320B3E197AA3DBF4CF9B06B803A7B41FB54F49F8DA1172D8FD14CBCB7BD8C",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E2E320B3E197AA3DBF4CF9B06B803A7B41FB54F49F8DA1172D8FD14CBCB7BD8C",
       "ContentEncoding": "Deflate"
     },
     {
@@ -140,10 +140,10 @@
     {
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
-      "Size": 785408,
-      "CompressedSize": 250926,
-      "SHA256": "199C7610E9C3F5E04AFC9AD1CA5CB9B318BC9ECED5C8023C97DB98681AD25864",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/199C7610E9C3F5E04AFC9AD1CA5CB9B318BC9ECED5C8023C97DB98681AD25864",
+      "Size": 784896,
+      "CompressedSize": 250879,
+      "SHA256": "CF652AAC5838383189A9FC4826329B684A8A223C8F8A8FF7805C3AA50F31D3B4",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CF652AAC5838383189A9FC4826329B684A8A223C8F8A8FF7805C3AA50F31D3B4",
       "ContentEncoding": "Deflate"
     },
     {
@@ -177,9 +177,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 400896,
-      "CompressedSize": 80566,
-      "SHA256": "9110AE22FF2A545826D540346715054807CDD3CB79E3155D78DB7A4B9AEA424D",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/9110AE22FF2A545826D540346715054807CDD3CB79E3155D78DB7A4B9AEA424D",
+      "CompressedSize": 80572,
+      "SHA256": "EF726944CED0D092EAE54F2B290D35EB950A65C021486E8EB60B5788BA636A6D",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/EF726944CED0D092EAE54F2B290D35EB950A65C021486E8EB60B5788BA636A6D",
       "ContentEncoding": "Deflate"
     },
     {
