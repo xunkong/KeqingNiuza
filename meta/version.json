@@ -1,14 +1,14 @@
 {
   "Version": "2.0.0-preview",
-  "LastUpdateTime": "2021-09-16T07:59:47.158774+00:00",
+  "LastUpdateTime": "2021-09-16T08:44:55.1329389+00:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "KeqingNiuza Launcher.exe",
       "Path": ".\\KeqingNiuza Launcher.exe",
-      "Size": 1458688,
-      "CompressedSize": 1051631,
-      "SHA256": "D1142B9C7C9CC005C58D715F9AD3C9F6F11F125D99BAA96165816714A266D330",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/D1142B9C7C9CC005C58D715F9AD3C9F6F11F125D99BAA96165816714A266D330",
+      "Size": 1459200,
+      "CompressedSize": 1052003,
+      "SHA256": "E07ABF061F0CE7CBA73EB23CA095426D6690B7FE1E7A45553E12D77A6E78073B",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E07ABF061F0CE7CBA73EB23CA095426D6690B7FE1E7A45553E12D77A6E78073B",
       "ContentEncoding": "Deflate"
     },
     {
@@ -142,8 +142,8 @@
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 785408,
       "CompressedSize": 250926,
-      "SHA256": "0DCD62A8A85198BDF3DFE83E2A3456B6C0B6E7AEDE304E98F56E590FD404411F",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/0/0DCD62A8A85198BDF3DFE83E2A3456B6C0B6E7AEDE304E98F56E590FD404411F",
+      "SHA256": "199C7610E9C3F5E04AFC9AD1CA5CB9B318BC9ECED5C8023C97DB98681AD25864",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/199C7610E9C3F5E04AFC9AD1CA5CB9B318BC9ECED5C8023C97DB98681AD25864",
       "ContentEncoding": "Deflate"
     },
     {
@@ -177,9 +177,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 400896,
-      "CompressedSize": 80568,
-      "SHA256": "B930406E1FB086C54DC6AEFC4BAE7CFED548A3CAB6EDA937195B5B03DF8BB80E",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B930406E1FB086C54DC6AEFC4BAE7CFED548A3CAB6EDA937195B5B03DF8BB80E",
+      "CompressedSize": 80566,
+      "SHA256": "9110AE22FF2A545826D540346715054807CDD3CB79E3155D78DB7A4B9AEA424D",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/9110AE22FF2A545826D540346715054807CDD3CB79E3155D78DB7A4B9AEA424D",
       "ContentEncoding": "Deflate"
     },
     {
@@ -477,15 +477,6 @@
       "CompressedSize": 10101,
       "SHA256": "82473870158822C46C4775903B5C94D832F1342C1EB7D7EB7688C7F2A9A43091",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/82473870158822C46C4775903B5C94D832F1342C1EB7D7EB7688C7F2A9A43091",
-      "ContentEncoding": "Deflate"
-    },
-    {
-      "Name": "权限提醒.txt",
-      "Path": ".\\bin\\权限提醒.txt",
-      "Size": 349,
-      "CompressedSize": 279,
-      "SHA256": "4D2D305072E57E5F6008E074B0F42EFDF0A84E82E936CD5E5C7268D62136C124",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/4D2D305072E57E5F6008E074B0F42EFDF0A84E82E936CD5E5C7268D62136C124",
       "ContentEncoding": "Deflate"
     },
     {
