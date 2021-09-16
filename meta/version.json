@@ -1,14 +1,14 @@
 {
   "Version": "2.0.0",
-  "LastUpdateTime": "2021-09-16T11:47:54.9964514+00:00",
+  "LastUpdateTime": "2021-09-16T23:42:35.7937923+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "KeqingNiuza Launcher.exe",
       "Path": ".\\KeqingNiuza Launcher.exe",
-      "Size": 1459200,
-      "CompressedSize": 1052115,
-      "SHA256": "AF82D25FF4ECC3C551B6CCA990DF45D56395832437D5267BF2D4D2DBBE1E75AF",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/AF82D25FF4ECC3C551B6CCA990DF45D56395832437D5267BF2D4D2DBBE1E75AF",
+      "Size": 1458176,
+      "CompressedSize": 1051678,
+      "SHA256": "3E03EBECC7A41BFAE23B507A210B3B7B8D03146B061BD89B695F1AD5F3DB2223",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/3E03EBECC7A41BFAE23B507A210B3B7B8D03146B061BD89B695F1AD5F3DB2223",
       "ContentEncoding": "Deflate"
     },
     {
@@ -87,27 +87,27 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 3628544,
-      "CompressedSize": 2832642,
-      "SHA256": "8332C10C8FB704652E64078DED1907B3EB6A0C66E973A718E26D9C3C43949EF9",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/8332C10C8FB704652E64078DED1907B3EB6A0C66E973A718E26D9C3C43949EF9",
+      "CompressedSize": 2832637,
+      "SHA256": "524B44B8A11415AE3A51A4D72A14E018C1488A69D6155883292D1C591B2DD4EA",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/524B44B8A11415AE3A51A4D72A14E018C1488A69D6155883292D1C591B2DD4EA",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "KeqingNiuza.exe.config",
       "Path": ".\\bin\\KeqingNiuza.exe.config",
-      "Size": 2958,
-      "CompressedSize": 766,
-      "SHA256": "5CFB3EEE20D4800A3E9BA4243DE3198DF7F29DB55714969843366E7F33B77FD0",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5CFB3EEE20D4800A3E9BA4243DE3198DF7F29DB55714969843366E7F33B77FD0",
+      "Size": 2833,
+      "CompressedSize": 748,
+      "SHA256": "16B6CA4960FBBA7DB3757D08D55D34262FAC7A64054B2D727E45C03F6F0B39DC",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/16B6CA4960FBBA7DB3757D08D55D34262FAC7A64054B2D727E45C03F6F0B39DC",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 382464,
-      "CompressedSize": 76152,
-      "SHA256": "5829877549E6467AA7CBD3CF9EE10E86D201076CED7DE71D7FF2E1B17434A4DB",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5829877549E6467AA7CBD3CF9EE10E86D201076CED7DE71D7FF2E1B17434A4DB",
+      "CompressedSize": 76151,
+      "SHA256": "013A93E26FE37B024AACE406A8A22C00559969F1BF7E34DC2E45D6ADE4C57F3A",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/0/013A93E26FE37B024AACE406A8A22C00559969F1BF7E34DC2E45D6ADE4C57F3A",
       "ContentEncoding": "Deflate"
     },
     {
@@ -2208,6 +2208,15 @@
       "ContentEncoding": "Deflate"
     },
     {
+      "Name": "Weapon_Everlasting_Moonglow.png",
+      "Path": ".\\bin\\resource\\weapon\\Weapon_Everlasting_Moonglow.png",
+      "Size": 73749,
+      "CompressedSize": 73774,
+      "SHA256": "3AA08E0025F6D197A9F54E679BD84F2159093EDC807CCB0254CCA5449979E9F7",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/3AA08E0025F6D197A9F54E679BD84F2159093EDC807CCB0254CCA5449979E9F7",
+      "ContentEncoding": "Deflate"
+    },
+    {
       "Name": "Weapon_Eye_of_Perception.png",
       "Path": ".\\bin\\resource\\weapon\\Weapon_Eye_of_Perception.png",
       "Size": 36856,
@@ -2903,10 +2912,10 @@
     {
       "Name": "Weapon_Thundering_Pulse.png",
       "Path": ".\\bin\\resource\\weapon\\Weapon_Thundering_Pulse.png",
-      "Size": 278592,
-      "CompressedSize": 277109,
-      "SHA256": "0F3772A23BFA1BCA293B1B1C64A5FADAF0625353BF09B662290F4E2820DC7254",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/0/0F3772A23BFA1BCA293B1B1C64A5FADAF0625353BF09B662290F4E2820DC7254",
+      "Size": 41436,
+      "CompressedSize": 41107,
+      "SHA256": "B120DDEB4FBEA91E06BDAC36AB092C08D235A481076876F763C4BF746112E8A7",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B120DDEB4FBEA91E06BDAC36AB092C08D235A481076876F763C4BF746112E8A7",
       "ContentEncoding": "Deflate"
     },
     {
@@ -3027,21 +3036,30 @@
       "ContentEncoding": "Deflate"
     },
     {
-      "Name": "2.0.jpg",
-      "Path": ".\\splash\\2.0.jpg",
-      "Size": 392316,
-      "CompressedSize": 391958,
-      "SHA256": "4B97688956DE49AABDBB16D9E6DCE9468ED486B606B7E8C5382B30C16629D898",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/4B97688956DE49AABDBB16D9E6DCE9468ED486B606B7E8C5382B30C16629D898",
+      "Name": "2.0.png",
+      "Path": ".\\splash\\2.0.png",
+      "Size": 9588419,
+      "CompressedSize": 9433075,
+      "SHA256": "F673ECC642DD7CE2E89A521949F71D9DB060254D630B570D9381FF40253DF7A9",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F673ECC642DD7CE2E89A521949F71D9DB060254D630B570D9381FF40253DF7A9",
       "ContentEncoding": "Deflate"
     },
     {
-      "Name": "2.1.jpg",
-      "Path": ".\\splash\\2.1.jpg",
-      "Size": 1344034,
-      "CompressedSize": 1342918,
-      "SHA256": "91E7693D6BB3972C1A2F4E72D3C95FD2598BD9659B9B2374369F09A8D391F840",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/91E7693D6BB3972C1A2F4E72D3C95FD2598BD9659B9B2374369F09A8D391F840",
+      "Name": "2.1.png",
+      "Path": ".\\splash\\2.1.png",
+      "Size": 8596343,
+      "CompressedSize": 8467317,
+      "SHA256": "E819D99E46AAE571832F98A8B500AFF087BA96414C31FDBE11B247DC34E92E7D",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E819D99E46AAE571832F98A8B500AFF087BA96414C31FDBE11B247DC34E92E7D",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Moon over Monstadt.png",
+      "Path": ".\\splash\\Moon over Monstadt.png",
+      "Size": 6863206,
+      "CompressedSize": 6750350,
+      "SHA256": "3AF6CED5C82EB7841F1213AC7DA0D707B93B68745CFF6A8BF259309A1264356A",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/3AF6CED5C82EB7841F1213AC7DA0D707B93B68745CFF6A8BF259309A1264356A",
       "ContentEncoding": "Deflate"
     }
   ]
