@@ -1,0 +1,298 @@
+﻿<UserControl x:Class="KeqingNiuza.View.WishItemDetailView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:KeqingNiuza.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="{StaticResource ContentViewBackground}"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style x:Key="FilterRadioButton" TargetType="RadioButton">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="FontWeight" Value="Bold" />
+                                <Setter Property="Foreground" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+
+    <Grid Margin="20,10,0,10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Button x:Name="Button_Back"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    Click="Button_Back_Click"
+                    Content="{StaticResource Back}"
+                    FontFamily="{StaticResource IconFamily}"
+                    FontSize="20" />
+            <TextBlock Margin="10,0,0,0"
+                       VerticalAlignment="Center"
+                       FontSize="20"
+                       Foreground="Gray"
+                       Text="详细信息" />
+        </StackPanel>
+
+        <hc:ScrollViewer Grid.Row="1"
+                         Margin="0,10,0,0"
+                         HorizontalScrollBarVisibility="Visible"
+                         IsInertiaEnabled="True"
+                         Orientation="Horizontal">
+            <ItemsControl x:Name="ItemsControl_ItemList">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="4,4,4,8" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
+                            <Image Width="100" Style="{StaticResource RarityBackground}" />
+                            <Border x:Name="ImageBorder"
+                                    Width="100"
+                                    Height="100"
+                                    VerticalAlignment="Top"
+                                    BorderThickness="0"
+                                    CornerRadius="0 0 20 0"
+                                    RenderOptions.BitmapScalingMode="HighQuality">
+                                <Border.Background>
+                                    <ImageBrush ImageSource="{Binding Thumb, Converter={StaticResource ImageConverter}}" />
+                                </Border.Background>
+                            </Border>
+                            <TextBlock Height="18"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Bottom"
+                                       FontSize="12"
+                                       FontWeight="Bold"
+                                       Foreground="#84603D"
+                                       Text="{Binding Name}" />
+                            <Border Height="20"
+                                    MinWidth="20"
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Top"
+                                    Background="#80000000"
+                                    CornerRadius="0 4 0 4">
+                                <TextBlock HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontSize="12"
+                                           Foreground="White"
+                                           Text="{Binding Count}" />
+                            </Border>
+                            <Image Width="20"
+                                   Margin="2,2,0,0"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Top"
+                                   Style="{StaticResource ElementIcon}" />
+                        </Grid>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </hc:ScrollViewer>
+
+        <hc:Divider Grid.Row="2" />
+
+        <Grid Name="Grid_ItemDetail" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0"
+                   HorizontalAlignment="Left"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   Source="{Binding SelectedItemInfo.Portrait, Converter={StaticResource ImageConverter}}" />
+
+            <hc:ScrollViewer Grid.Column="2" IsInertiaEnabled="True">
+                <StackPanel Margin="0,0,20,0">
+                    <TextBlock Grid.Column="1" FontSize="20" Text="{Binding SelectedItemInfo.Name}" />
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock Foreground="Gray" Text="{Binding StartTime, StringFormat=yyyy/MM/dd}" />
+                        <TextBlock Foreground="Gray" Text=" - " />
+                        <TextBlock Foreground="Gray" Text="{Binding EndTime, StringFormat=yyyy/MM/dd}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Visibility="{Binding SelectedItemInfo.Rank, Converter={StaticResource ItemDetailRank5Converter}}">
+                        <TextBlock Text="总计：" />
+                        <TextBlock Text="{Binding SelectedItemInfo.Count}" />
+                        <TextBlock Margin="20,0,0,0" Text="小保底：" />
+                        <TextBlock Text="{Binding Count_XiaoBaoDi}" />
+                        <TextBlock Margin="20,0,0,0" Text="大保底：" />
+                        <TextBlock Text="{Binding Count_DaBaoDi}" />
+                        <TextBlock Margin="20,0,0,0" Text="常驻/新手：" />
+                        <TextBlock Text="{Binding Count_BaoDiNei}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Visibility="{Binding SelectedItemInfo.Rank, Converter={StaticResource ItemDetailRank4Converter}}">
+                        <TextBlock Text="总计：" />
+                        <TextBlock Text="{Binding SelectedItemInfo.Count}" />
+                        <TextBlock Margin="20,0,0,0" Text="Up池：" />
+                        <TextBlock Text="{Binding Count_Up}" />
+                        <TextBlock Margin="20,0,0,0" Text="非Up池：" />
+                        <TextBlock Text="{Binding Count_NotUp}" />
+                        <TextBlock Margin="20,0,0,0" Text="常驻/新手：" />
+                        <TextBlock Text="{Binding Count_BaoDiNei}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal" Visibility="{Binding SelectedItemInfo.Rank, Converter={StaticResource ItemDetailRank3Converter}}">
+                        <TextBlock Text="总计：" />
+                        <TextBlock Text="{Binding SelectedItemInfo.Count}" />
+                    </StackPanel>
+
+                    <TextBlock Margin="0,20,0,0" FontSize="16" Text="获得来源" />
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <RadioButton x:Name="RadioButton_Character"
+                                     Click="RadioButton_Click"
+                                     Content="角色池："
+                                     GroupName="Source"
+                                     IsChecked="True"
+                                     Style="{StaticResource FilterRadioButton}"
+                                     Tag="Character" />
+                        <TextBlock Text="{Binding Count_Character}" />
+                        <RadioButton Margin="20,0,0,0"
+                                     Click="RadioButton_Click"
+                                     Content="武器池："
+                                     GroupName="Source"
+                                     Style="{StaticResource FilterRadioButton}"
+                                     Tag="Weapon" />
+                        <TextBlock Text="{Binding Count_Weapon}" />
+                        <RadioButton Margin="20,0,0,0"
+                                     Click="RadioButton_Click"
+                                     Content="常驻池："
+                                     GroupName="Source"
+                                     Style="{StaticResource FilterRadioButton}"
+                                     Tag="Permanent" />
+                        <TextBlock Text="{Binding Count_Permanent}" />
+                        <RadioButton Margin="20,0,0,0"
+                                     Click="RadioButton_Click"
+                                     Content="新手池："
+                                     GroupName="Source"
+                                     Style="{StaticResource FilterRadioButton}"
+                                     Tag="Novice" />
+                        <TextBlock Text="{Binding Count_Novice}" />
+                    </StackPanel>
+
+                    <Expander Width="360"
+                              Margin="0,10,0,0"
+                              HorizontalAlignment="Left"
+                              Background="White"
+                              BorderThickness="0"
+                              FontSize="12">
+                        <Expander.Header>
+                            <StackPanel Orientation="Horizontal">
+                                <StackPanel.Resources>
+                                    <Style x:Key="Expand" TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType=Expander}}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                    <Style x:Key="UnExpand" TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Visible" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsExpanded, RelativeSource={RelativeSource AncestorType=Expander}}" Value="True">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </StackPanel.Resources>
+                                <TextBlock Style="{StaticResource UnExpand}" Text="展开显示列表" />
+                                <TextBlock Width="140" Style="{StaticResource Expand}" Text="时间" />
+                                <TextBlock Width="70" Style="{StaticResource Expand}" Text="保底类型" />
+                                <TextBlock Width="50" Style="{StaticResource Expand}" Text="保底内" />
+                                <TextBlock Width="50" Style="{StaticResource Expand}" Text="是否Up" />
+                            </StackPanel>
+                        </Expander.Header>
+                        <Expander.Content>
+                            <ListBox BorderThickness="0" IsHitTestVisible="False" ItemsSource="{Binding SourceList}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Width="140" Text="{Binding Time, StringFormat=yyyy/MM/dd HH:mm:ss}" />
+                                            <TextBlock Width="70" Text="{Binding GuaranteeType}" />
+                                            <TextBlock Width="50" Text="{Binding Guarantee}" />
+                                            <TextBlock Width="50" Text="{Binding IsUp}" />
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                        </Expander.Content>
+                    </Expander>
+
+
+                    <TextBlock Margin="0,20,0,0" FontSize="16" Text="相关卡池" />
+                    <TextBlock Margin="2,10,0,0" Foreground="Gray" Text="对于非5星，保底数没有意义" />
+                    <StackPanel Height="30"
+                                Margin="0,10,0,0"
+                                Background="White"
+                                Orientation="Horizontal">
+                        <TextBlock Width="100"
+                                   Margin="10,0,0,0"
+                                   VerticalAlignment="Center"
+                                   Text="名称" />
+                        <TextBlock Width="50" VerticalAlignment="Center" Text="总次数" />
+                        <TextBlock Width="60" VerticalAlignment="Center" Text="获得数量" />
+                        <TextBlock Width="50" VerticalAlignment="Center" Text="小保底" />
+                        <TextBlock Width="50" VerticalAlignment="Center" Text="大保底" />
+                        <TextBlock VerticalAlignment="Center" Text="Up角色或武器" />
+                    </StackPanel>
+                    <ListBox x:Name="ListBox_RelativeEvent"
+                             Grid.Row="1"
+                             BorderThickness="0"
+                             IsHitTestVisible="False"
+                             ItemsSource="{Binding RelativeEventList}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <StackPanel Width="{Binding Width, ElementName=ListBox_RelativeEvent}" Orientation="Horizontal">
+                                        <TextBlock Width="100" VerticalAlignment="Center" Text="{Binding EventName}" />
+                                        <TextBlock Width="50" VerticalAlignment="Center" Text="{Binding TotalCount}" />
+                                        <TextBlock Width="60" VerticalAlignment="Center" Text="{Binding ThisCount}" />
+                                        <TextBlock Width="50" VerticalAlignment="Center" Text="{Binding Count_XiaoBaoDi}" />
+                                        <TextBlock Width="50" VerticalAlignment="Center" Text="{Binding Count_DaBaoDi}" />
+                                    </StackPanel>
+                                    <TextBlock Grid.Column="1" Text="{Binding UpItems}" TextWrapping="Wrap" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </StackPanel>
+            </hc:ScrollViewer>
+
+        </Grid>
+
+
+    </Grid>
+</UserControl>
