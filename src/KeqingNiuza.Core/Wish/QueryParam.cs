@@ -1,24 +1,24 @@
-namespace KeqingNiuza.Wish
+ï»¿namespace KeqingNiuza.Wish
 {
     public struct QueryParam
     {
         /// <summary>
-        /// ÆíÔ¸ÀàĞÍ
+        /// ç¥ˆæ„¿ç±»å‹
         /// </summary>
         public WishType WishType { get; set; }
 
         /// <summary>
-        /// Ò³Âë
+        /// é¡µç 
         /// </summary>
         public int Page { get; set; }
 
         /// <summary>
-        /// ÇëÇóÊı¾İÁ¿
+        /// è¯·æ±‚æ•°æ®é‡
         /// </summary>
         public int Size { get; set; }
 
         /// <summary>
-        /// ÉÏÒ»Ò³×îºóÒ»ÌõµÄid
+        /// ä¸Šä¸€é¡µæœ€åä¸€æ¡çš„id
         /// </summary>
         public long EndId { get; set; }
 

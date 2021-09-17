@@ -1,4 +1,4 @@
-namespace KeqingNiuza.Wish
+﻿namespace KeqingNiuza.Wish
 {
     public class StarDetail
     {

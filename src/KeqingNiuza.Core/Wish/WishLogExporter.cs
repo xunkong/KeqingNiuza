@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -30,15 +30,15 @@ namespace KeqingNiuza.Wish
             }
             else
             {
-                throw new ArgumentException("Url²»·ûºÏÒªÇó");
+                throw new ArgumentException("Urlä¸ç¬¦åˆè¦æ±‚");
             }
         }
 
         /// <summary>
-        /// »ñÈ¡ÆíÔ¸¼ÇÂ¼Êı¾İ
+        /// è·å–ç¥ˆæ„¿è®°å½•æ•°æ®
         /// </summary>
-        /// <param name="size">Ã¿´ÎApiÇëÇó»ñÈ¡¼¸ÌõÊı¾İ£¬Ä¬ÈÏ6Ìõ£¬×î¶à20Ìõ</param>
-        /// <param name="lastId">±¾µØ×îĞÂµÄid£¬»ñÈ¡µÄÆíÔ¸idĞ¡ÓÚ×îĞÂid¼´Í£Ö¹</param>
+        /// <param name="size">æ¯æ¬¡Apiè¯·æ±‚è·å–å‡ æ¡æ•°æ®ï¼Œé»˜è®¤6æ¡ï¼Œæœ€å¤š20æ¡</param>
+        /// <param name="lastId">æœ¬åœ°æœ€æ–°çš„idï¼Œè·å–çš„ç¥ˆæ„¿idå°äºæœ€æ–°idå³åœæ­¢</param>
         /// <returns></returns>
         public async Task<List<WishData>> GetAllLog(int size = 6, long lastId = 0)
         {
@@ -66,9 +66,9 @@ namespace KeqingNiuza.Wish
 
 
         /// <summary>
-        /// »ñÈ¡UrlËùÊôµÄUid
+        /// è·å–Urlæ‰€å±çš„Uid
         /// </summary>
-        /// <exception cref="Exception">Ã»ÓĞÆíÔ¸¼ÇÂ¼</exception>
+        /// <exception cref="Exception">æ²¡æœ‰ç¥ˆæ„¿è®°å½•</exception>
         /// <returns></returns>
         public async Task<int> GetUidByUrl()
         {
@@ -90,16 +90,16 @@ namespace KeqingNiuza.Wish
             }
             else
             {
-                throw new Exception("Ã»ÓĞÆíÔ¸¼ÇÂ¼");
+                throw new Exception("æ²¡æœ‰ç¥ˆæ„¿è®°å½•");
             }
         }
 
 
         /// <summary>
-        /// »ñÈ¡Ö¸¶¨ÀàĞÍµÄËùÓĞÆíÔ¸¼ÇÂ¼£¬»ò½ØÖ¹µ½Ö¸¶¨id
+        /// è·å–æŒ‡å®šç±»å‹çš„æ‰€æœ‰ç¥ˆæ„¿è®°å½•ï¼Œæˆ–æˆªæ­¢åˆ°æŒ‡å®šid
         /// </summary>
-        /// <param name="param">ÆíÔ¸ÀàĞÍ</param>
-        /// <param name="lastId">½ØÖ¹µ½µÄÆíÔ¸id</param>
+        /// <param name="param">ç¥ˆæ„¿ç±»å‹</param>
+        /// <param name="lastId">æˆªæ­¢åˆ°çš„ç¥ˆæ„¿id</param>
         /// <returns></returns>
         private List<WishData> GetWishLogList(QueryParam param, long lastId = 0)
         {
@@ -132,9 +132,9 @@ namespace KeqingNiuza.Wish
         }
 
         /// <summary>
-        /// »ñÈ¡Ò»Ò³ÆíÔ¸Êı¾İ
+        /// è·å–ä¸€é¡µç¥ˆæ„¿æ•°æ®
         /// </summary>
-        /// <param name="param">ÇëÇó²ÎÊı</param>
+        /// <param name="param">è¯·æ±‚å‚æ•°</param>
         /// <returns></returns>
         private List<WishData> GetWishLog(QueryParam param)
         {
@@ -160,19 +160,19 @@ namespace KeqingNiuza.Wish
             switch (param.WishType)
             {
                 case WishType.Novice:
-                    type = "ĞÂÊÖ";
+                    type = "æ–°æ‰‹";
                     break;
                 case WishType.Permanent:
-                    type = "³£×¤";
+                    type = "å¸¸é©»";
                     break;
                 case WishType.CharacterEvent:
-                    type = "½ÇÉ«";
+                    type = "è§’è‰²";
                     break;
                 case WishType.WeaponEvent:
-                    type = "ÎäÆ÷";
+                    type = "æ­¦å™¨";
                     break;
             }
-            ProgressChanged?.Invoke(this, $"ÕıÔÚ»ñÈ¡ {type}ÆíÔ¸ µÚ {param.Page} Ò³");
+            ProgressChanged?.Invoke(this, $"æ­£åœ¨è·å– {type}ç¥ˆæ„¿ ç¬¬ {param.Page} é¡µ");
         }
     }
 }
