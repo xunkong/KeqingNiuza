@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -22,8 +22,8 @@ namespace KeqingNiuza.ViewModel
             UserData = userData;
             WishDataList = LocalWishLogLoader.Load(userData.WishLogFile);
             WishSummary = WishSummary.Create(userData.WishLogFile);
-            CharacterOrder("ÐÇ¼¶");
-            WeaponOrder("ÐÇ¼¶");
+            CharacterOrder("æ˜Ÿçº§");
+            WeaponOrder("æ˜Ÿçº§");
             if (!IsCorrectOrder)
             {
                 WishSummary.CharacterStatistics.Star5List.Reverse();
@@ -39,8 +39,8 @@ namespace KeqingNiuza.ViewModel
         {
             WishDataList = MainWindowViewModel.WishDataList;
             WishSummary = WishSummary.Create(WishDataList);
-            CharacterOrder("ÐÇ¼¶");
-            WeaponOrder("ÐÇ¼¶");
+            CharacterOrder("æ˜Ÿçº§");
+            WeaponOrder("æ˜Ÿçº§");
             if (!IsCorrectOrder)
             {
                 WishSummary.CharacterStatistics.Star5List.Reverse();
@@ -137,13 +137,13 @@ namespace KeqingNiuza.ViewModel
         {
             switch (order)
             {
-                case "×î½ü»ñµÃ":
+                case "æœ€è¿‘èŽ·å¾—":
                     CharacterInfoList = WishSummary.CharacterInfoList.OrderByDescending(x => x.LastGetTime).ThenByDescending(x => x.Count).ToList();
                     break;
-                case "ÊýÁ¿":
+                case "æ•°é‡":
                     CharacterInfoList = WishSummary.CharacterInfoList.OrderByDescending(x => x.Count).ThenByDescending(x => x.Rank).ThenByDescending(x => x.LastGetTime).ToList();
                     break;
-                case "ÐÇ¼¶":
+                case "æ˜Ÿçº§":
                     CharacterInfoList = WishSummary.CharacterInfoList.OrderByDescending(x => x.Rank).ThenByDescending(x => x.Count).ThenByDescending(x => x.LastGetTime).ToList();
                     break;
             }
@@ -153,13 +153,13 @@ namespace KeqingNiuza.ViewModel
         {
             switch (order)
             {
-                case "×î½ü»ñµÃ":
+                case "æœ€è¿‘èŽ·å¾—":
                     WeaponInfoList = WishSummary.WeaponInfoList.OrderByDescending(x => x.LastGetTime).ThenByDescending(x => x.Count).ToList();
                     break;
-                case "ÊýÁ¿":
+                case "æ•°é‡":
                     WeaponInfoList = WishSummary.WeaponInfoList.OrderByDescending(x => x.Count).ThenByDescending(x => x.Rank).ThenByDescending(x => x.LastGetTime).ToList();
                     break;
-                case "ÐÇ¼¶":
+                case "æ˜Ÿçº§":
                     WeaponInfoList = WishSummary.WeaponInfoList.OrderByDescending(x => x.Rank).ThenByDescending(x => x.Count).ThenByDescending(x => x.LastGetTime).ToList();
                     break;
             }
@@ -185,13 +185,13 @@ namespace KeqingNiuza.ViewModel
         public void ShowDetailView(object dataContext)
         {
             var info = dataContext as ItemInfo;
-            if (info.ItemType == "½ÇÉ«")
+            if (info.ItemType == "è§’è‰²")
             {
                 var view = new WishItemDetailView(CharacterInfoList, info);
                 view.BackEvent += DetailContent_BackEvent;
                 DetailContent = view;
             }
-            if (info.ItemType == "ÎäÆ÷")
+            if (info.ItemType == "æ­¦å™¨")
             {
                 var view = new WishItemDetailView(WeaponInfoList, info);
                 view.BackEvent += DetailContent_BackEvent;

@@ -2,13 +2,11 @@
 
 # 刻记牛杂店
 
-出类拔萃为牛，包罗万象为杂。
-
-旅行者你好，欢迎来到**刻记牛杂店**，我是店长刻晴。
+**已更新到v2版本，需要重新下载。**
 
 ## 下载地址
 
-- [jsDelivr (最新)](https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/KeqingNiuza/KeqingNiuza.zip)
+- [传送门](https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/KeqingNiuza.zip)
 - Github Releases 中的文件**不是**最新版本
 
 ## 其他
@@ -42,8 +40,10 @@ Midi文件来源：[bilibili@恰空PurrLude](https://space.bilibili.com/2765893)
 - [ControlzEx](https://github.com/ControlzEx/ControlzEx)
 - [DryWetMidi](https://github.com/melanchall/drywetmidi)
 - [EPPlus](https://github.com/JanKallman/EPPlus)
+- [GenshinDailyHelper](https://github.com/yinghualuowu/GenshinDailyHelper)
 - [HandyControl](https://github.com/HandyOrg/HandyControl)
 - [Live-Charts](https://github.com/Live-Charts/Live-Charts)
+- [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
 - [TaskScheduler](https://github.com/dahall/taskscheduler)
 - [WebDavClient](https://github.com/skazantsev/WebDavClient)
 
