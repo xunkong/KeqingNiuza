@@ -106,7 +106,7 @@ namespace KeqingNiuza.Launcher
                 }
             }
             var rootFiles = Directory.GetFiles(".\\", "*", SearchOption.TopDirectoryOnly);
-            using (var fs = File.Create(".\\cdn2\\KeqingNiuza.zip"))
+            using (var fs = File.Create(".\\cdn2\\meta\\KeqingNiuza.zip"))
             {
                 using (var zip = new ZipArchive(fs, ZipArchiveMode.Create))
                 {
