@@ -195,10 +195,9 @@ namespace KeqingNiuza.Launcher
         private async Task<List<KeqingNiuzaFileInfo>> TestUpdate()
         {
             var client = new HttpClient();
-            var byteTask = client.GetByteArrayAsync("https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version");
+            var bytes = await client.GetByteArrayAsync("https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version");
             var fs = Directory.GetFiles(".\\", "*", SearchOption.AllDirectories);
             var files = fs.Select(x => new KeqingNiuzaFileInfo(x)).ToList();
-            var bytes = await byteTask;
             var ms = new MemoryStream();
             using (var dcs = new DeflateStream(new MemoryStream(bytes), CompressionMode.Decompress))
             {
