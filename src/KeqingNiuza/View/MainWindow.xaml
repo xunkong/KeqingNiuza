@@ -74,6 +74,23 @@
                           Points="0 0 140 0"
                           Stroke="Purple"
                           StrokeThickness="0.6" />
+                <RadioButton x:Name="SideMenu_UpdateLogView"
+                             Click="RadioButton_SideMenu_Click"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}"
+                             Tag="UpdateLogView">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center"
+                                   FontFamily="{StaticResource IconFamily}"
+                                   FontSize="16"
+                                   Text="{StaticResource Setting}"
+                                   Visibility="Hidden" />
+                        <TextBlock Margin="10,0,0,0"
+                                   FontSize="12"
+                                   Foreground="Red"
+                                   Text="下一个版本v2" />
+                    </StackPanel>
+                </RadioButton>
                 <RadioButton x:Name="SideMenu_SettingView"
                              Click="RadioButton_SideMenu_Click"
                              GroupName="SideMenu"
@@ -84,7 +101,9 @@
                                    FontFamily="{StaticResource IconFamily}"
                                    FontSize="16"
                                    Text="{StaticResource Setting}" />
-                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="设置" />
+                        <TextBlock Margin="10,0,0,0"
+                                   FontSize="12"
+                                   Text="设置" />
                     </StackPanel>
                 </RadioButton>
                 <RadioButton x:Name="SideMenu_AboutView"
@@ -97,7 +116,9 @@
                                    FontFamily="{StaticResource IconFamily}"
                                    FontSize="16"
                                    Text="{StaticResource Info}" />
-                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="关于" />
+                        <TextBlock Margin="10,0,0,0"
+                                   FontSize="12"
+                                   Text="关于" />
                     </StackPanel>
                 </RadioButton>
             </StackPanel>
@@ -121,7 +142,9 @@
                               Data="{StaticResource Summary}"
                               Fill="Purple"
                               Stretch="Uniform" />
-                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="统计" />
+                        <TextBlock Margin="10,0,0,0"
+                                   FontSize="12"
+                                   Text="统计" />
                     </StackPanel>
                 </RadioButton>
                 <RadioButton x:Name="SideMenu_WishOriginalDataView"
@@ -136,7 +159,9 @@
                               Data="{StaticResource Sheet}"
                               Fill="Purple"
                               Stretch="Uniform" />
-                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="数据" />
+                        <TextBlock Margin="10,0,0,0"
+                                   FontSize="12"
+                                   Text="数据" />
                     </StackPanel>
                 </RadioButton>
                 <RadioButton x:Name="SideMenu_WishAchievementView"
@@ -151,7 +176,9 @@
                               Data="{StaticResource Achievement}"
                               Fill="Purple"
                               Stretch="Uniform" />
-                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="成就" />
+                        <TextBlock Margin="10,0,0,0"
+                                   FontSize="12"
+                                   Text="成就" />
                     </StackPanel>
                 </RadioButton>
                 <RadioButton x:Name="SideMenu_WishPredictionView"
@@ -166,7 +193,9 @@
                               Data="{StaticResource Predicion}"
                               Fill="Purple"
                               Stretch="Uniform" />
-                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="预测" />
+                        <TextBlock Margin="10,0,0,0"
+                                   FontSize="12"
+                                   Text="预测" />
                     </StackPanel>
                 </RadioButton>
                 <Polyline Width="140"
@@ -186,7 +215,9 @@
                               Data="{StaticResource clock}"
                               Fill="Purple"
                               Stretch="Uniform" />
-                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="定时提醒" />
+                        <TextBlock Margin="10,0,0,0"
+                                   FontSize="12"
+                                   Text="定时提醒" />
                     </StackPanel>
                 </RadioButton>
                 <RadioButton x:Name="SideMenu_MidiView"
@@ -201,7 +232,9 @@
                               Data="{StaticResource Music}"
                               Fill="Purple"
                               Stretch="Uniform" />
-                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="流浪大地的乐团" />
+                        <TextBlock Margin="10,0,0,0"
+                                   FontSize="12"
+                                   Text="流浪大地的乐团" />
                     </StackPanel>
                 </RadioButton>
                 <RadioButton x:Name="SideMenu_DailyCheckView"
@@ -216,7 +249,9 @@
                               Data="{StaticResource CheckIn}"
                               Fill="Purple"
                               Stretch="Uniform" />
-                        <TextBlock Margin="10,0,0,0" FontSize="12" Text="米游社签到" />
+                        <TextBlock Margin="10,0,0,0"
+                                   FontSize="12"
+                                   Text="米游社签到" />
                     </StackPanel>
                 </RadioButton>
             </StackPanel>
@@ -246,7 +281,9 @@
                                    FontFamily="微软雅黑"
                                    FontSize="14"
                                    Text="{Binding SelectedUserData, Converter={StaticResource UidConverter}}" />
-                        <Ellipse Width="28" Height="28" Margin="5,0,15,0">
+                        <Ellipse Width="28"
+                                 Height="28"
+                                 Margin="5,0,15,0">
                             <Ellipse.Fill>
                                 <ImageBrush ImageSource="{Binding SelectedUserData.Avatar, Converter={StaticResource ImageConverter}}" />
                             </Ellipse.Fill>
@@ -328,7 +365,9 @@
                       HorizontalAlignment="Right"
                       VerticalAlignment="Bottom"
                       VerticalScrollBarVisibility="Hidden">
-            <StackPanel Margin="0,10,10,10" hc:Growl.GrowlParent="True" Orientation="Horizontal" />
+            <StackPanel Margin="0,10,10,10"
+                        hc:Growl.GrowlParent="True"
+                        Orientation="Horizontal" />
         </ScrollViewer>
 
         <!--  个人信息详情  -->
@@ -377,11 +416,19 @@
                             <ImageBrush ImageSource="{Binding SelectedUserData.Avatar, Converter={StaticResource ImageConverter}}" />
                         </Ellipse.Fill>
                     </Ellipse>
-                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="20,10,0,0">
-                        <TextBlock Margin="0,0,0,0" FontSize="20" Text="{Binding SelectedUserData.Uid}" />
-                        <TextBlock Margin="0,5,0,0" Foreground="Gray" Text="最后更新数据的时间" />
+                    <StackPanel Grid.Row="1"
+                                Grid.Column="1"
+                                Margin="20,10,0,0">
+                        <TextBlock Margin="0,0,0,0"
+                                   FontSize="20"
+                                   Text="{Binding SelectedUserData.Uid}" />
+                        <TextBlock Margin="0,5,0,0"
+                                   Foreground="Gray"
+                                   Text="最后更新数据的时间" />
                         <TextBlock Margin="0,5,0,0" Text="{Binding SelectedUserData.LastUpdateTime, StringFormat='yyyy-MM-dd HH:mm:ss'}" />
-                        <TextBlock Margin="0,5,0,0" Foreground="Gray" Text="{Binding LoadWishDataProgress}" />
+                        <TextBlock Margin="0,5,0,0"
+                                   Foreground="Gray"
+                                   Text="{Binding LoadWishDataProgress}" />
                     </StackPanel>
                     <UniformGrid Grid.Row="3"
                                  Grid.Column="0"
@@ -404,14 +451,18 @@
                           Grid.RowSpan="4"
                           Grid.ColumnSpan="2"
                           Visibility="Collapsed">
-                        <ListView x:Name="ListView_UserData" ItemsSource="{Binding UserDataList}" MouseDoubleClick="ListView_UserData_MouseDoubleClick">
+                        <ListView x:Name="ListView_UserData"
+                                  ItemsSource="{Binding UserDataList}"
+                                  MouseDoubleClick="ListView_UserData_MouseDoubleClick">
                             <ListView.Resources>
                                 <Style TargetType="Button">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="Button">
                                                 <Border Background="Transparent" BorderThickness="0">
-                                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+                                                    <ContentPresenter HorizontalAlignment="Center"
+                                                                      VerticalAlignment="Center"
+                                                                      RecognizesAccessKey="True" />
                                                 </Border>
                                             </ControlTemplate>
                                         </Setter.Value>
@@ -424,7 +475,9 @@
                                     <GridViewColumn>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Ellipse Width="30" Height="30" Stroke="Gray">
+                                                <Ellipse Width="30"
+                                                         Height="30"
+                                                         Stroke="Gray">
                                                     <Ellipse.Fill>
                                                         <ImageBrush ImageSource="{Binding Avatar, Converter={StaticResource ImageConverter}}" />
                                                     </Ellipse.Fill>
@@ -441,7 +494,9 @@
                                                         HorizontalAlignment="Center"
                                                         VerticalAlignment="Center"
                                                         Click="Button_DeleteUid_Click">
-                                                    <Path Data="{StaticResource Trashbin}" Fill="Black" Stretch="Uniform" />
+                                                    <Path Data="{StaticResource Trashbin}"
+                                                          Fill="Black"
+                                                          Stretch="Uniform" />
                                                     <Button.ToolTip>
                                                         <TextBlock Text="删除该Uid的所有数据" />
                                                     </Button.ToolTip>
@@ -505,7 +560,9 @@
                         <TextBlock Margin="10,0,10,0" Text="注销" />
                     </Button>
                     <StackPanel Grid.Row="1" Margin="10">
-                        <TextBlock HorizontalAlignment="Left" Foreground="Gray" Text="账户" />
+                        <TextBlock HorizontalAlignment="Left"
+                                   Foreground="Gray"
+                                   Text="账户" />
                         <TextBlock Margin="0,0,0,5"
                                    HorizontalAlignment="Left"
                                    FontSize="16"

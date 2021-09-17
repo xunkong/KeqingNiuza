@@ -11,17 +11,24 @@
 
     <UserControl.Resources>
         <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="12" />
         </Style>
     </UserControl.Resources>
 
     <Grid>
         <StackPanel Margin="20">
-            <TextBlock Margin="0,10,0,10" FontSize="20" Text="v0.2.1.21061012更新内容" />
-            <TextBlock Margin="0,5,0,5" FontSize="16" Text="修复了非UTC+8时区可能出现的各种问题，修复后软件内的时间都基于系统时区的设置" />
-            <TextBlock Margin="0,5,0,5" FontSize="16" Text="修复了5星历史记录的时间显示错误" />
-            <TextBlock Margin="0,5,0,5" FontSize="16" Text="修复了Excel导入时的数据错误" />
-            <TextBlock Margin="0,5,0,5" FontSize="16" Foreground="Red" Text="需要清空UserData文件夹，重新导入6个月前的数据" />
+            <TextBlock Margin="0,10,0,10"
+                       FontSize="16"
+                       Text="v2已发布，v1及v0即将停止支持" />
+            <TextBlock Margin="0,5,0,5"
+                       FontSize="12"
+                       Text="v2需重新下载，v0.2和v1可平滑过渡到v2" />
+            <TextBlock Margin="0,5,0,5"
+                       FontSize="12"
+                       Text="v0和v1将会在原神2.1版本结束时停止支持" />
+            <TextBlock Margin="0,5,0,5" FontSize="12">
+                v2下载及更多信息请<Hyperlink Click="Hyperlink_Click" NavigateUri="https://bbs.nga.cn/read.php?tid=28546319&amp;_ff=650">查看此网页</Hyperlink>
+            </TextBlock>
         </StackPanel>
     </Grid>
 </UserControl>

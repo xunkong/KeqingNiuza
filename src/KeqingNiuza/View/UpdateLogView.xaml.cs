@@ -1,4 +1,7 @@
+using System.Diagnostics;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace KeqingNiuza.View
 {
@@ -12,6 +15,12 @@ namespace KeqingNiuza.View
             InitializeComponent();
         }
 
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            var link = sender as Hyperlink;
+            Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
+        }
 
 
     }
