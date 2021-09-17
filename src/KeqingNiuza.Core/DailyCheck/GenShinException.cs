@@ -1,4 +1,4 @@
-﻿namespace GenshinDailyHelper.Exception
+﻿namespace KeqingNiuza.Core.DailyCheck
 {
     public class GenShinException : System.Exception
     {

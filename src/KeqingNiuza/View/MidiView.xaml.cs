@@ -3,7 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using HandyControl.Controls;
-using KeqingNiuza.Midi;
+using KeqingNiuza.Core.Midi;
 using KeqingNiuza.ViewModel;
 
 namespace KeqingNiuza.View

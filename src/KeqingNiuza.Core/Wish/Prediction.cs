@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace KeqingNiuza.Wish
+namespace KeqingNiuza.Core.Wish
 {
     public class Prediction
     {

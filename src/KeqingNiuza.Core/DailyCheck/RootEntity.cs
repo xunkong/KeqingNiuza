@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GenshinDailyHelper.Exception;
 using Newtonsoft.Json;
 
-namespace GenshinDailyHelper.Entities
+namespace KeqingNiuza.Core.DailyCheck
 {
     /// <summary>
     /// 返回头部信息

@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.IO;
 using System.Security.Principal;
-using KeqingNiuza.CloudBackup;
+using KeqingNiuza.Core.CloudBackup;
 using Microsoft.Toolkit.Uwp.Notifications;
 using Microsoft.Win32.TaskScheduler;
 using static KeqingNiuza.Service.Const;
@@ -44,7 +44,7 @@ namespace KeqingNiuza.Service
         public static async System.Threading.Tasks.Task CheckIn()
         {
             string checkLog = null;
-            GenshinDailyHelper.Program.PrintLog = (log) => checkLog += $"[{DateTime.Now:HH:mm:ss}]{log}";
+            KeqingNiuza.Core.DailyCheck.Program.PrintLog = (log) => checkLog += $"[{DateTime.Now:HH:mm:ss}]{log}";
             if (!File.Exists($@"{UserDataPath}\DailyCheckCookies"))
             {
                 return;
@@ -53,7 +53,7 @@ namespace KeqingNiuza.Service
             {
                 var bytes = File.ReadAllBytes($@"{UserDataPath}\DailyCheckCookies");
                 var cookies = Endecryption.Decrypt(bytes);
-                await GenshinDailyHelper.Program.Checkin(new string[] { cookies });
+                await KeqingNiuza.Core.DailyCheck.Program.Checkin(new string[] { cookies });
                 if (Properties.Settings.Default.DialyCheck_AlwaysShowResult)
                 {
                     new ToastContentBuilder().AddText("签到已完成").Show();

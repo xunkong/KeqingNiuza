@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using HandyControl.Interactivity;
 using HandyControl.Tools.Extension;
-using KeqingNiuza.CloudBackup;
+using KeqingNiuza.Core.CloudBackup;
 
 namespace KeqingNiuza.View
 {

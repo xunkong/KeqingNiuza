@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace KeqingNiuza.Wish
+namespace KeqingNiuza.Core.Wish
 {
     public class RelativeEvent
     {

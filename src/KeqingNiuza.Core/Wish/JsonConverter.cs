@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-namespace KeqingNiuza.Wish
+namespace KeqingNiuza.Core.Wish
 {
     class GachaTypeJsonConverter : JsonConverter<WishType>
     {

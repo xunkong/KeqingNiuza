@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Timers;
 using System.Windows.Interop;
 using HandyControl.Controls;
-using KeqingNiuza.Midi;
+using KeqingNiuza.Core.Midi;
 using KeqingNiuza.Service;
 using Microsoft.AppCenter.Analytics;
 

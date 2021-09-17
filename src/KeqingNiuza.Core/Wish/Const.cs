@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text.Json;
 
-namespace KeqingNiuza.Wish
+namespace KeqingNiuza.Core.Wish
 {
     public static class Const
     {

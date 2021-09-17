@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text.RegularExpressions;
 
-namespace KeqingNiuza.Wish
+namespace KeqingNiuza.Core.Wish
 {
     public class GenshinLogLoader
     {

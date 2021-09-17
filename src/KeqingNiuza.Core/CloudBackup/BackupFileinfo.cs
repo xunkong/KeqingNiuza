@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace KeqingNiuza.CloudBackup
+namespace KeqingNiuza.Core.CloudBackup
 {
     class BackupFileinfo
     {

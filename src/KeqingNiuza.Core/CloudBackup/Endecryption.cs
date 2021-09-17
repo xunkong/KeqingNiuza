@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace KeqingNiuza.CloudBackup
+namespace KeqingNiuza.Core.CloudBackup
 {
     public static class Endecryption
     {

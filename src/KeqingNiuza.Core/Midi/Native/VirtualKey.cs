@@ -3,7 +3,7 @@
 
 using System;
 
-namespace KeqingNiuza.Midi.Native
+namespace KeqingNiuza.Core.Midi.Native
 {
     /// <summary>Virtual-key codes.</summary>
     /// <remarks>Defined in winuser.h from Windows SDK v6.1.</remarks>

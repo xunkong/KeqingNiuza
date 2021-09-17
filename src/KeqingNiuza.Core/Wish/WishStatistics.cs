@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace KeqingNiuza.Wish
+namespace KeqingNiuza.Core.Wish
 {
 
     public class WishStatistics : INotifyPropertyChanged

@@ -3,7 +3,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using Newtonsoft.Json;
 
-namespace GenshinDailyHelper.Client
+namespace KeqingNiuza.Core.DailyCheck
 {
     /// <summary>
     /// 创建Json实体到Post的JsonBody

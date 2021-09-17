@@ -4,9 +4,9 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Data;
 using HandyControl.Tools.Extension;
+using KeqingNiuza.Core.Wish;
 using KeqingNiuza.Model;
 using KeqingNiuza.Service;
-using KeqingNiuza.Wish;
 
 namespace KeqingNiuza.ViewModel
 {

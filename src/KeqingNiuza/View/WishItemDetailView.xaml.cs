@@ -6,8 +6,8 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using KeqingNiuza.Core.Wish;
 using KeqingNiuza.ViewModel;
-using KeqingNiuza.Wish;
 
 namespace KeqingNiuza.View
 {

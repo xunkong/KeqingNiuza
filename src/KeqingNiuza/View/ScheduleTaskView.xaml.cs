@@ -12,7 +12,6 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using KeqingNiuza.Model;
 using KeqingNiuza.Service;
-using Windows.Storage;
 
 namespace KeqingNiuza.View
 {

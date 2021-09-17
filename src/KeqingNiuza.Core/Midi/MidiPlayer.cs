@@ -2,12 +2,12 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
-using KeqingNiuza.Midi.Native;
+using KeqingNiuza.Core.Midi.Native;
 using Melanchall.DryWetMidi.Core;
 using Melanchall.DryWetMidi.Devices;
 using Melanchall.DryWetMidi.Interaction;
 
-namespace KeqingNiuza.Midi
+namespace KeqingNiuza.Core.Midi
 {
     public class MidiPlayer
     {

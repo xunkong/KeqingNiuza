@@ -1,6 +1,4 @@
-﻿using GenshinDailyHelper.Util;
-
-namespace GenshinDailyHelper.Constant
+﻿namespace KeqingNiuza.Core.DailyCheck
 {
     /// <summary>
     /// 常量设定

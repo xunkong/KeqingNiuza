@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GenshinDailyHelper
+namespace KeqingNiuza.Core.DailyCheck
 {
     /// <summary>
     /// 输出格式化

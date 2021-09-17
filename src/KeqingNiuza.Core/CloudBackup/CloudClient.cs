@@ -4,9 +4,9 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading.Tasks;
-using static KeqingNiuza.CloudBackup.Const;
+using static KeqingNiuza.Core.CloudBackup.Const;
 
-namespace KeqingNiuza.CloudBackup
+namespace KeqingNiuza.Core.CloudBackup
 {
     public abstract class CloudClient : INotifyPropertyChanged
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using KeqingNiuza.Core.Wish;
 using KeqingNiuza.Model;
 using KeqingNiuza.View;
-using KeqingNiuza.Wish;
 
 namespace KeqingNiuza.ViewModel
 {

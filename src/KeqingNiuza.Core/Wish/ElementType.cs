@@ -1,4 +1,4 @@
-﻿namespace KeqingNiuza.Wish
+﻿namespace KeqingNiuza.Core.Wish
 {
     /// <summary>
     /// 元素类型

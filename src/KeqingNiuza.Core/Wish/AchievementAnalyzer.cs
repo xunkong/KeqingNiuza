@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reflection;
 
-namespace KeqingNiuza.Wish
+namespace KeqingNiuza.Core.Wish
 {
     public class AchievementAnalyzer
     {

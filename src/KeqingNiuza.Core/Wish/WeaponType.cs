@@ -1,4 +1,4 @@
-﻿namespace KeqingNiuza.Wish
+﻿namespace KeqingNiuza.Core.Wish
 {
     public enum WeaponType
     {

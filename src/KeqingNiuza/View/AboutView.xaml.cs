@@ -10,9 +10,9 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using HandyControl.Controls;
 using HandyControl.Tools.Extension;
+using KeqingNiuza.Core.Wish;
 using KeqingNiuza.Model;
 using KeqingNiuza.Service;
-using KeqingNiuza.Wish;
 
 namespace KeqingNiuza.View
 {

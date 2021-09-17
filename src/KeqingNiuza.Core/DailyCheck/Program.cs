@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using GenshinDailyHelper.Client;
-using GenshinDailyHelper.Constant;
-using GenshinDailyHelper.Entities;
-using GenshinDailyHelper.Exception;
 
-namespace GenshinDailyHelper
+namespace KeqingNiuza.Core.DailyCheck
 {
     public class Program
     {

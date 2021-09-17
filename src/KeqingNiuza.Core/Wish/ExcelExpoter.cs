@@ -5,7 +5,7 @@ using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 
-namespace KeqingNiuza.Wish
+namespace KeqingNiuza.Core.Wish
 {
     public class ExcelExpoter
     {

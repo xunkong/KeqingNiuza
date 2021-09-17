@@ -2,7 +2,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace GenshinDailyHelper.Util
+namespace KeqingNiuza.Core.DailyCheck
 {
     public static class SafeUtil
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KeqingNiuza.CloudBackup
+namespace KeqingNiuza.Core.CloudBackup
 {
     class AccountInfo
     {

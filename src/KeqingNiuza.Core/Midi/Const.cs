@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using KeqingNiuza.Midi.Native;
+using KeqingNiuza.Core.Midi.Native;
 
-namespace KeqingNiuza.Midi
+namespace KeqingNiuza.Core.Midi
 {
     static class Const
     {

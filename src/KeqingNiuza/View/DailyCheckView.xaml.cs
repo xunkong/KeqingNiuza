@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
 using HandyControl.Controls;
-using KeqingNiuza.CloudBackup;
+using KeqingNiuza.Core.CloudBackup;
 using KeqingNiuza.Service;
 using static KeqingNiuza.Service.Const;
 
@@ -20,7 +20,7 @@ namespace KeqingNiuza.View
         {
             InitializeComponent();
             Loaded += DialyCheckView_Loaded;
-            GenshinDailyHelper.Program.PrintLog = PrintLog;
+            KeqingNiuza.Core.DailyCheck.Program.PrintLog = PrintLog;
         }
 
 
@@ -86,7 +86,7 @@ namespace KeqingNiuza.View
             Button_CheckIn.IsEnabled = false;
             try
             {
-                await GenshinDailyHelper.Program.Checkin(new string[] { cookies });
+                await KeqingNiuza.Core.DailyCheck.Program.Checkin(new string[] { cookies });
             }
             catch (Exception ex)
             {

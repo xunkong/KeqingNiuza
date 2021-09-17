@@ -2,7 +2,7 @@
 using System.Text.Json;
 using System.Text.Unicode;
 
-namespace KeqingNiuza.CloudBackup
+namespace KeqingNiuza.Core.CloudBackup
 {
     class Const
     {

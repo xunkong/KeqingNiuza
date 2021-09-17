@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace KeqingNiuza.Midi.Native
+namespace KeqingNiuza.Core.Midi.Native
 {
     internal static class User32
     {

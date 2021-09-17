@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Net.Http;
-using GenshinDailyHelper.Constant;
 
-namespace GenshinDailyHelper.Client
+namespace KeqingNiuza.Core.DailyCheck
 {
     /// <summary>
     /// 原神请求Request

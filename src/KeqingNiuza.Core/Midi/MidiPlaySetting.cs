@@ -1,4 +1,4 @@
-﻿namespace KeqingNiuza.Midi
+﻿namespace KeqingNiuza.Core.Midi
 {
     public class MidiPlaySetting
     {

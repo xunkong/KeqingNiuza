@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Melanchall.DryWetMidi.Core;
 
-namespace KeqingNiuza.Midi
+namespace KeqingNiuza.Core.Midi
 {
     public class MidiTrack
     {

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace KeqingNiuza.Wish
+namespace KeqingNiuza.Core.Wish
 {
     public class CharacterInfo : ItemInfo
     {

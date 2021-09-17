@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using GenshinDailyHelper.Client;
 using Newtonsoft.Json;
 
-namespace GenshinDailyHelper
+namespace KeqingNiuza.Core.DailyCheck
 {
     public class GenShinClient
     {

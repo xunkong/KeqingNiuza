@@ -7,10 +7,10 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using WebDav;
-using static KeqingNiuza.CloudBackup.Const;
+using static KeqingNiuza.Core.CloudBackup.Const;
 
 
-namespace KeqingNiuza.CloudBackup
+namespace KeqingNiuza.Core.CloudBackup
 {
     public class WebDavBackupClient : CloudClient
     {

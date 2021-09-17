@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
+using KeqingNiuza.Core.Wish;
 using KeqingNiuza.Model;
-using KeqingNiuza.Wish;
 
 namespace KeqingNiuza.ViewModel
 {
@@ -134,7 +133,7 @@ namespace KeqingNiuza.ViewModel
             WishTypeList = new List<string> { "---", "新手祈愿", "常驻祈愿", "角色活动祈愿", "武器活动祈愿" };
             ItemTypeList = new List<string> { "-", "角色", "武器" };
             ItemRankList = new List<string> { "-", "3", "4", "5" };
-            var eventlist = Wish.Const.WishEventList;
+            var eventlist = KeqingNiuza.Core.Wish.Const.WishEventList;
             var zeroWishEvent = new WishEvent
             {
                 Name = "---",
@@ -156,7 +155,7 @@ namespace KeqingNiuza.ViewModel
             WishTypeList = new List<string> { "---", "新手祈愿", "常驻祈愿", "角色活动祈愿", "武器活动祈愿" };
             ItemTypeList = new List<string> { "-", "角色", "武器" };
             ItemRankList = new List<string> { "-", "3", "4", "5" };
-            var eventlist = Wish.Const.WishEventList;
+            var eventlist = KeqingNiuza.Core.Wish.Const.WishEventList;
             var zeroWishEvent = new WishEvent
             {
                 Name = "---",

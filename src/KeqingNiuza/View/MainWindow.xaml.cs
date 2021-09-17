@@ -98,7 +98,7 @@ namespace KeqingNiuza.View
         {
             if (ViewModel.CloudClient == null)
             {
-                var client = await Dialog.Show(new CloudLoginDialog()).Initialize<CloudLoginDialog>(x => { }).GetResultAsync<CloudBackup.CloudClient>();
+                var client = await Dialog.Show(new CloudLoginDialog()).Initialize<CloudLoginDialog>(x => { }).GetResultAsync<KeqingNiuza.Core.CloudBackup.CloudClient>();
                 if (client != null)
                 {
                     ViewModel.CloudClient = client;

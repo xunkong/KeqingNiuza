@@ -3,13 +3,13 @@ using System.Diagnostics;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
-using KeqingNiuza.Midi.Native;
-using static KeqingNiuza.Midi.Native.FsModifier;
-using static KeqingNiuza.Midi.Native.Msg;
-using static KeqingNiuza.Midi.Native.User32;
-using static KeqingNiuza.Midi.Native.VirtualKey;
+using KeqingNiuza.Core.Midi.Native;
+using static KeqingNiuza.Core.Midi.Native.FsModifier;
+using static KeqingNiuza.Core.Midi.Native.Msg;
+using static KeqingNiuza.Core.Midi.Native.User32;
+using static KeqingNiuza.Core.Midi.Native.VirtualKey;
 
-namespace KeqingNiuza.Midi
+namespace KeqingNiuza.Core.Midi
 {
     public static class Util
     {

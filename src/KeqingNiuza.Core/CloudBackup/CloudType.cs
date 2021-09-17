@@ -1,4 +1,4 @@
-﻿namespace KeqingNiuza.CloudBackup
+﻿namespace KeqingNiuza.Core.CloudBackup
 {
     public enum CloudType
     {

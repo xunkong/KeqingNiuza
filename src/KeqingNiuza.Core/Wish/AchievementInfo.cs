@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KeqingNiuza.Wish
+namespace KeqingNiuza.Core.Wish
 {
     /// <summary>
     /// 单条成就信息

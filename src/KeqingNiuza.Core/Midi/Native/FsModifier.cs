@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace KeqingNiuza.Midi.Native
+namespace KeqingNiuza.Core.Midi.Native
 {
     [Flags]
     enum FsModifier : uint

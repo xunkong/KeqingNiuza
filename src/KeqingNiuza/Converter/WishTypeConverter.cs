@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using KeqingNiuza.Wish;
+using KeqingNiuza.Core.Wish;
 
 namespace KeqingNiuza.Converter
 {

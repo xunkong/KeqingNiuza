@@ -8,7 +8,6 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using HandyControl.Controls;
 using KeqingNiuza.Service;
-using Microsoft.AppCenter;
 
 namespace KeqingNiuza.View
 {

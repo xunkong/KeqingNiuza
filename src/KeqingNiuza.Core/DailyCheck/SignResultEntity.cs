@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace GenshinDailyHelper.Entities
+namespace KeqingNiuza.Core.DailyCheck
 {
     /// <summary>
     /// 最后签到结果

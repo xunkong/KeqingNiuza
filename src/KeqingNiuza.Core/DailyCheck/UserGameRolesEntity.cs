@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace GenshinDailyHelper.Entities
+namespace KeqingNiuza.Core.DailyCheck
 {
     /// <summary>
     /// 游戏角色信息
