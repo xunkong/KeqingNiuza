@@ -97,7 +97,6 @@ namespace KeqingNiuza.Launcher
                         bitmap.StreamSource = s;
                         bitmap.EndInit();
                     }
-                    //bitmap = new BitmapImage(new Uri(Path.GetFullPath(file)));
                 }
                 else
                 {
@@ -166,7 +165,7 @@ namespace KeqingNiuza.Launcher
         private async Task<List<KeqingNiuzaFileInfo>> TestUpdate()
         {
             var client = new HttpClient();
-            var byteTask = client.GetByteArrayAsync("https://xw6dp97kei-1306705684.cos.ap-shanghai.myqcloud.com/keqingniuza/meta/version");
+            var byteTask = client.GetByteArrayAsync("https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version");
             var fs = Directory.GetFiles(".\\", "*", SearchOption.AllDirectories);
             var files = fs.Select(x => new KeqingNiuzaFileInfo(x)).ToList();
             var bytes = await byteTask;
