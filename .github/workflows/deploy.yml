@@ -2,9 +2,9 @@ name: Deploy
 
 on:
   push:
-    branches: [ v2.0-dev ]
+    branches: [ main ]
   pull_request:
-    branches: [ v2.0-dev ]
+    branches: [ main ]
 
 jobs:
 
@@ -21,7 +21,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
       with:
-        ref: v2.0-dev
+        ref: main
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     - name: Setup MSBuild.exe
