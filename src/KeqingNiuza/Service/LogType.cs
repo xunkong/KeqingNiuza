@@ -1,4 +1,4 @@
-namespace KeqingNiuza.Service
+﻿namespace KeqingNiuza.Service
 {
     enum LogType
     {

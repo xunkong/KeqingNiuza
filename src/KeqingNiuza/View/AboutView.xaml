@@ -1,4 +1,4 @@
-<UserControl x:Class="KeqingNiuza.View.AboutView"
+﻿<UserControl x:Class="KeqingNiuza.View.AboutView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -41,27 +41,6 @@
                         </Hyperlink>
                     </TextBlock>
                 </StackPanel>
-                <!--<StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <Button Name="Button_TestUpdate" Click="Button_TestUpdate_Click" Content="检查更新" />
-                    <hc:LoadingCircle Name="LoadingCircle_TestUpdate"
-                                      Width="20"
-                                      Height="20"
-                                      Margin="10,0,0,0"
-                                      DotDiameter="3"
-                                      Foreground="Gray"
-                                      Visibility="Hidden" />
-                    <Button Name="Button_TestResource"
-                            Margin="10,0,0,0"
-                            Click="Button_TestResource_Click"
-                            Content="校验资源文件" />
-                    <hc:LoadingCircle Name="LoadingCircle_TestResource"
-                                      Width="20"
-                                      Height="20"
-                                      Margin="10,0,0,0"
-                                      DotDiameter="3"
-                                      Foreground="Gray"
-                                      Visibility="Hidden" />
-                </StackPanel>-->
                 <!--  常见问题  -->
                 <TextBlock Margin="0,20,0,0"
                            FontSize="20"
