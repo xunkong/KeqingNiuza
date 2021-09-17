@@ -43,7 +43,6 @@ jobs:
       # You may pin to the exact commit or the version.
       # uses: peaceiris/actions-gh-pages@bbdfb200618d235585ad98e965f4aafc39b4c501
       uses: peaceiris/actions-gh-pages@v3.7.3
-      if: ${{ contains( github.event.head_commit.message, '-d' ) }}
       with:
         # Set a generated GITHUB_TOKEN for pushing to the remote branch.
         github_token: ${{secrets.DEPLOY_TOKEN}}
@@ -61,7 +60,6 @@ jobs:
       run: pip install coscmd
 
     - name: Deploy to qcloud
-      if: ${{ contains( github.event.head_commit.message, '-d' ) }}
       shell: cmd
       run: |
         coscmd config -a ${{secrets.QCLOUD_SECRET_ID}} -s ${{ secrets.QCLOUD_SECRET_KEY }} -b ${{ secrets.QCLOUD_COS_BUCKET }} -r ${{secrets.QCLOUD_COS_REGION}}
