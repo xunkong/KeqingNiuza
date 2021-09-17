@@ -39,6 +39,8 @@ namespace KeqingNiuza.Launcher
 
         private Downloader _downloader;
 
+        private bool _canceled;
+
 
         private string _InfoTest;
         public string InfoTest
@@ -71,6 +73,18 @@ namespace KeqingNiuza.Launcher
             set
             {
                 _SpeedTest = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private bool _CanCancel = true;
+        public bool CanCancel
+        {
+            get { return _CanCancel; }
+            set
+            {
+                _CanCancel = value;
                 OnPropertyChanged();
             }
         }
@@ -142,6 +156,17 @@ namespace KeqingNiuza.Launcher
             Close();
         }
 
+        private void Button_Skip_Click(object sender, RoutedEventArgs e)
+        {
+            if (CanCancel)
+            {
+                _canceled = true;
+                Process.Start(".\\bin\\KeqingNiuza.exe");
+                Environment.Exit(0);
+            }
+        }
+
+
         private async void Window_Loaded(object sender, RoutedEventArgs _)
         {
             await UpdateTask();
@@ -153,8 +178,13 @@ namespace KeqingNiuza.Launcher
             InfoTest = "正在检查更新";
             await Task.Delay(100);
             var list = await TestUpdate();
+            if (_canceled)
+            {
+                return;
+            }
             if ((bool)list?.Any())
             {
+                CanCancel = false;
                 await DownladFiles(list);
             }
             Process.Start(".\\bin\\KeqingNiuza.exe");

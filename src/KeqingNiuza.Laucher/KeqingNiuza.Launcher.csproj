@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BoolToVisibilityConverter.cs" />
     <Compile Include="Downloader.cs" />
     <Compile Include="KeqingNiuzaFileInfo.cs" />
     <Compile Include="KeqingNiuzaProgressLoading.xaml.cs">

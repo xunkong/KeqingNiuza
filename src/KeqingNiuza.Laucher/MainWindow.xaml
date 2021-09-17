@@ -26,6 +26,8 @@
             <s:String x:Key="WindowMaximize">&#xE922;</s:String>
             <s:String x:Key="WindowRestore">&#xE923;</s:String>
             <s:String x:Key="WindowClose">&#xE8BB;</s:String>
+            <s:String x:Key="Skip">&#xE893;</s:String>
+            <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
             <Style x:Key="WindowBaseButton" TargetType="Button">
                 <Setter Property="Background" Value="Transparent" />
@@ -53,7 +55,7 @@
                                         <Storyboard>
                                             <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
                                                             From="Transparent"
-                                                            To="#30000000"
+                                                            To="#50FFFFFF"
                                                             Duration="0:0:0.1" />
                                         </Storyboard>
                                     </BeginStoryboard>
@@ -62,7 +64,7 @@
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
-                                                            From="#30000000"
+                                                            From="#50FFFFFF"
                                                             To="Transparent"
                                                             Duration="0:0:0.1" />
                                         </Storyboard>
@@ -93,7 +95,7 @@
                                         <Storyboard>
                                             <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
                                                             From="Transparent"
-                                                            To="#50FF0000"
+                                                            To="#50FFFFFF"
                                                             Duration="0:0:0.1" />
                                         </Storyboard>
                                     </BeginStoryboard>
@@ -102,7 +104,7 @@
                                     <BeginStoryboard>
                                         <Storyboard>
                                             <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
-                                                            From="#50FF0000"
+                                                            From="#50FFFFFF"
                                                             To="Transparent"
                                                             Duration="0:0:0.1" />
                                         </Storyboard>
@@ -129,7 +131,7 @@
                VerticalAlignment="Top"
                RenderOptions.BitmapScalingMode="Fant"
                Stretch="UniformToFill" />
-        <Border Background="#10000000" IsHitTestVisible="False" />
+        <Border Background="#20000000" IsHitTestVisible="False" />
         <Border Height="30"
                 VerticalAlignment="Top"
                 Background="Transparent"
@@ -140,14 +142,16 @@
                     VerticalAlignment="Top"
                     Orientation="Horizontal"
                     Visibility="Visible">
-            <Button Name="Button_WindowMinimize"
-                    Click="Button_WindowMinimize_Click"
-                    Content="{StaticResource WindowMinimize}"
+            <Button Name="Button_Skip"
+                    Click="Button_Skip_Click"
+                    Content="{StaticResource Skip}"
+                    FontSize="14"
                     Style="{StaticResource WindowMinimizeButton}"
-                    Visibility="Collapsed" />
+                    Visibility="{Binding CanCancel, Converter={StaticResource BoolToVisibilityConverter}}" />
             <Button Name="Button_WindowClose"
                     Click="Button_WindowClose_Click"
                     Content="{StaticResource WindowClose}"
+                    FontSize="10"
                     Style="{StaticResource WindowCloseButton}" />
 
         </StackPanel>
