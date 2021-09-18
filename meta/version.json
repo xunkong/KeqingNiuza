@@ -1,6 +1,6 @@
 {
   "Version": "2.0.2",
-  "LastUpdateTime": "2021-09-18T15:21:37.8281604+08:00",
+  "LastUpdateTime": "2021-09-18T23:16:03.123707+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "KeqingNiuza Launcher.exe",
@@ -87,9 +87,9 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1679872,
-      "CompressedSize": 1144327,
-      "SHA256": "BAC138CBEDC6F5D0961FC1844CD7716C3C393BE09DBAD7F1730A9B6472BF22A1",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/BAC138CBEDC6F5D0961FC1844CD7716C3C393BE09DBAD7F1730A9B6472BF22A1",
+      "CompressedSize": 1144500,
+      "SHA256": "291F80AEB081BABE0128821D7F835A07745BAD0C1FFD380ACABECF2FB3663AB6",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/291F80AEB081BABE0128821D7F835A07745BAD0C1FFD380ACABECF2FB3663AB6",
       "ContentEncoding": "Deflate"
     },
     {
@@ -105,9 +105,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 382464,
-      "CompressedSize": 76406,
-      "SHA256": "5FC9488BB7A50A0330A8BBD25015E9E9D7F0DB5734AB1948A36A649ABBFA31C7",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5FC9488BB7A50A0330A8BBD25015E9E9D7F0DB5734AB1948A36A649ABBFA31C7",
+      "CompressedSize": 76379,
+      "SHA256": "98EFF4D744DDCB6A6A73468DB1909A39BE230A0B2BFE187A5C82B270505EB9B4",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/98EFF4D744DDCB6A6A73468DB1909A39BE230A0B2BFE187A5C82B270505EB9B4",
       "ContentEncoding": "Deflate"
     },
     {
@@ -2205,6 +2205,15 @@
       "CompressedSize": 34458,
       "SHA256": "CBE51FD790D9020446CED6317093E3129B7F31634CC34D74376F246AD48338DF",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CBE51FD790D9020446CED6317093E3129B7F31634CC34D74376F246AD48338DF",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Weapon_Engulfing_Lightning.png",
+      "Path": ".\\bin\\resource\\weapon\\Weapon_Engulfing_Lightning.png",
+      "Size": 24613,
+      "CompressedSize": 24292,
+      "SHA256": "E10AFB78EE9E0E8CD7DEA08FD4F114ABFBBAA714FA6E1B62E865478BAB44EE87",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E10AFB78EE9E0E8CD7DEA08FD4F114ABFBBAA714FA6E1B62E865478BAB44EE87",
       "ContentEncoding": "Deflate"
     },
     {
