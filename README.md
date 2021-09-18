@@ -47,6 +47,10 @@ Midi文件来源：[bilibili@恰空PurrLude](https://space.bilibili.com/2765893)
 - [TaskScheduler](https://github.com/dahall/taskscheduler)
 - [WebDavClient](https://github.com/skazantsev/WebDavClient)
 
+### 支持一下
+
+支持一下，让我更有动力：[支付宝](https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/alipay.jpg)、[微信支付](https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/wechatpay.png)
+
 ## 截图
 
 ![ScreenShot1](img/Snipaste_2021-06-19_10-46-43.png)
