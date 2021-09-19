@@ -213,6 +213,7 @@ namespace KeqingNiuza.ViewModel
 
         public async Task UpdateWishData()
         {
+            bool timeout = false;
             try
             {
                 bool skipLoadGenshinLogFile = false;
@@ -222,7 +223,7 @@ namespace KeqingNiuza.ViewModel
                     {
                         if (await IsUrlTimeout(SelectedUserData.Url))
                         {
-                            Growl.Warning("原 Url 已过期");
+                            timeout = true;
                         }
                         else
                         {
@@ -244,7 +245,14 @@ namespace KeqingNiuza.ViewModel
             }
             catch (Exception ex)
             {
-                Growl.Warning(ex.Message);
+                if (timeout && ex.Message == "没有找到祈愿记录网址" || ex.Message == "authkey timeout")
+                {
+                    Growl.Warning("祈愿记录网址已过期，请在游戏中打开历史记录");
+                }
+                else
+                {
+                    Growl.Warning(ex.Message);
+                }
                 LoadWishDataProgress = "加载过程中遇到错误";
                 Log.OutputLog(LogType.Error, "UpdateWishData", ex);
             }
@@ -260,7 +268,7 @@ namespace KeqingNiuza.ViewModel
                     Growl.Info("正在加载");
                     if (await IsUrlTimeout(url))
                     {
-                        Growl.Warning("原 Url 已过期");
+                        Growl.Warning("祈愿记录网址已过期");
                     }
                     else
                     {
@@ -435,7 +443,7 @@ namespace KeqingNiuza.ViewModel
         public void ChangeViewContent(string className)
         {
             var assembly = Assembly.GetAssembly(GetType());
-            var type = assembly.GetType("KeqingNiuza.View." + className);
+            var type = assembly.GetType($"KeqingNiuza.View.{className}");
             if (ViewContent?.GetType().Name != type.Name)
             {
                 if (_viewContentList.Any(x => x.GetType().Name == type.Name))

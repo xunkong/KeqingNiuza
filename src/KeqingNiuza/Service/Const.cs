@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Encodings.Web;
@@ -15,22 +16,40 @@ namespace KeqingNiuza.Service
 
         public static string LogPath { get; } = "..\\Log";
 
-        private static string _userId;
+        private static string userId;
 
         public static string UserId
         {
             get
             {
-                if (_userId != null)
+                if (userId != null)
                 {
-                    return _userId;
+                    return userId;
                 }
                 var UserName = Environment.UserName;
                 var MachineGuid = Microsoft.Win32.Registry.GetValue(@"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Cryptography\", "MachineGuid", UserName);
                 var bytes = Encoding.UTF8.GetBytes(UserName + MachineGuid);
                 var hash = MD5.Create().ComputeHash(bytes);
-                _userId = BitConverter.ToString(hash).Replace("-", "");
-                return _userId;
+                userId = BitConverter.ToString(hash).Replace("-", "");
+                return userId;
+            }
+        }
+
+
+        private static string fileVersion;
+
+        public static string FileVersion
+        {
+            get
+            {
+                if (fileVersion != null)
+                {
+                    return fileVersion;
+                }
+                var name = typeof(Const).Assembly.Location;
+                var v = FileVersionInfo.GetVersionInfo(name);
+                fileVersion = v.FileVersion;
+                return fileVersion;
             }
         }
     }

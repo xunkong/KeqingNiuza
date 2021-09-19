@@ -104,7 +104,7 @@ namespace KeqingNiuza.Launcher
             try
             {
                 Directory.CreateDirectory(".\\Log");
-                var str = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff}]\n{ex}\n\n";
+                var str = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} | Launcher {MetaData.FileVersion}]\n{ex}\n\n";
                 var name = $".\\Log\\Error-{DateTime.Now:yyMMdd}.txt";
                 File.AppendAllText(name, str);
             }

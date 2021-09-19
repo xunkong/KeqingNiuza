@@ -31,9 +31,7 @@ namespace KeqingNiuza.View
         public AboutView()
         {
             InitializeComponent();
-            var name = typeof(MainWindow).Assembly.Location;
-            var v = FileVersionInfo.GetVersionInfo(name);
-            TextBlock_Version.Text = "版本：" + v.FileVersion;
+            TextBlock_Version.Text = "版本：" + Service.Const.FileVersion;
         }
 
 

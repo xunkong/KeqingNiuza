@@ -70,6 +70,7 @@
     <Compile Include="KeqingNiuzaProgressLoading.xaml.cs">
       <DependentUpon>KeqingNiuzaProgressLoading.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MetaData.cs" />
     <Compile Include="ProgressChangedEventArgs.cs" />
     <Compile Include="Util.cs" />
     <Compile Include="VersionInfo.cs" />

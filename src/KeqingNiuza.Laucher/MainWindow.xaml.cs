@@ -31,9 +31,7 @@ namespace KeqingNiuza.Launcher
             Initialized += Window_Initialized;
             Loaded += Window_Loaded;
             InitializeComponent();
-            var name = typeof(MainWindow).Assembly.Location;
-            var v = FileVersionInfo.GetVersionInfo(name);
-            VersionText.Text = v.FileVersion;
+            VersionText.Text = MetaData.FileVersion;
         }
 
 
@@ -214,6 +212,14 @@ namespace KeqingNiuza.Launcher
                 {
                     return;
                 }
+                try
+                {
+                    Directory.CreateDirectory(".\\Log");
+                    var str = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} | Launcher {MetaData.FileVersion}]\n{ex}\n\n";
+                    var name = $".\\Log\\Error-{DateTime.Now:yyMMdd}.txt";
+                    File.AppendAllText(name, str);
+                }
+                catch { }
                 InfoTest = ex.Message;
                 CanRefresh = true;
                 return;

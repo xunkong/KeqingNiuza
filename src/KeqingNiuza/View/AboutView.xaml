@@ -121,7 +121,7 @@
                 <TextBlock Margin="0,20,0,0"
                            FontSize="20"
                            Foreground="Purple"
-                           Text="支持一下" />
+                           Text="来份牛杂" />
                 <TextBlock Margin="0,6,0,0">
                     支持一下开发者，让我更有动力：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/alipay.jpg">支付宝</Hyperlink>
                     、<Hyperlink Click="Hyperlink_Click" NavigateUri="https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/wechatpay.png">微信支付</Hyperlink>

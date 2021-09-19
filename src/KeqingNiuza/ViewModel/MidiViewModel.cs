@@ -129,7 +129,7 @@ namespace KeqingNiuza.ViewModel
 
         public bool IsPlaying
         {
-            get { return MidiPlayer.IsPlaying; }
+            get { return MidiPlayer?.IsPlaying ?? false; }
             set
             {
                 MidiPlayer.IsPlaying = value;
@@ -301,7 +301,7 @@ namespace KeqingNiuza.ViewModel
             MidiPlayer.Started -= MidiPlayer_Started;
             MidiPlayer.Stopped -= MidiPlayer_Stopped;
             MidiPlayer.Finished -= MidiPlayer_Finished;
-            MidiPlayer.ChangeFileInfo();
+            MidiPlayer?.ChangeFileInfo();
             MidiPlayer.Started += MidiPlayer_Started;
             MidiPlayer.Stopped += MidiPlayer_Stopped;
             MidiPlayer.Finished += MidiPlayer_Finished;
@@ -393,7 +393,7 @@ namespace KeqingNiuza.ViewModel
                         }
                         else
                         {
-                            if (MidiPlayer.MidiFileInfo == null)
+                            if (MidiPlayer?.MidiFileInfo == null)
                             {
                                 ChangePlayFile(MidiFileInfoList.First());
                             }
