@@ -1,14 +1,14 @@
 {
-  "Version": "2.0.2.1",
-  "LastUpdateTime": "2021-09-19T09:48:06.8487193+08:00",
+  "Version": "2.0.3",
+  "LastUpdateTime": "2021-09-19T22:17:00.2387152+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "KeqingNiuza Launcher.exe",
       "Path": ".\\KeqingNiuza Launcher.exe",
-      "Size": 1461760,
-      "CompressedSize": 1053373,
-      "SHA256": "CA1FA7EB8D2495BFF5000CB79EBCEECB5D2192E74FF15DC11C9DF7F0B0F592A3",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CA1FA7EB8D2495BFF5000CB79EBCEECB5D2192E74FF15DC11C9DF7F0B0F592A3",
+      "Size": 1462272,
+      "CompressedSize": 1053798,
+      "SHA256": "5F4A898E182605C78AC6BBB5F30C2F56A6AB3E5ED4F0E4CEED6AE834F10B7F9E",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5F4A898E182605C78AC6BBB5F30C2F56A6AB3E5ED4F0E4CEED6AE834F10B7F9E",
       "ContentEncoding": "Deflate"
     },
     {
@@ -86,10 +86,10 @@
     {
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
-      "Size": 1679872,
-      "CompressedSize": 1144503,
-      "SHA256": "2B00641182C4278B18426CB7C85C8F14FE62B511C56871D2A42F2AC5BD2B6065",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2B00641182C4278B18426CB7C85C8F14FE62B511C56871D2A42F2AC5BD2B6065",
+      "Size": 1680384,
+      "CompressedSize": 1144699,
+      "SHA256": "9E81994FEF9185BC91D344CB97E49AFCDE61DCEEFDCD5EB52EB868B8E7215031",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/9E81994FEF9185BC91D344CB97E49AFCDE61DCEEFDCD5EB52EB868B8E7215031",
       "ContentEncoding": "Deflate"
     },
     {
@@ -105,9 +105,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 382464,
-      "CompressedSize": 76380,
-      "SHA256": "99E038A7A8C9186A3EB22C62EB2000522702C33151719CCA8DC9A78FB35859AF",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/99E038A7A8C9186A3EB22C62EB2000522702C33151719CCA8DC9A78FB35859AF",
+      "CompressedSize": 76475,
+      "SHA256": "AD216A5AA86F9E713D7FB5A7DDA77D923E9C9429A0DC6ECC8D8085903EE0667D",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/AD216A5AA86F9E713D7FB5A7DDA77D923E9C9429A0DC6ECC8D8085903EE0667D",
       "ContentEncoding": "Deflate"
     },
     {
@@ -639,6 +639,15 @@
       "CompressedSize": 78111,
       "SHA256": "A13F97E0A1C85C3551771499F1C2C2ED163B7ED028066D5A6A96525DCF06B40C",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/A13F97E0A1C85C3551771499F1C2C2ED163B7ED028066D5A6A96525DCF06B40C",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Sangonomiya Kokomi.png",
+      "Path": ".\\bin\\resource\\avatar\\Sangonomiya Kokomi.png",
+      "Size": 19803,
+      "CompressedSize": 19666,
+      "SHA256": "9F55B1AF675EB550865E6B2101CAEE1E685814BC9D3AC40C3B3A488916F845F3",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/9F55B1AF675EB550865E6B2101CAEE1E685814BC9D3AC40C3B3A488916F845F3",
       "ContentEncoding": "Deflate"
     },
     {
@@ -1490,10 +1499,10 @@
     {
       "Name": "WishEventList.json",
       "Path": ".\\bin\\resource\\list\\WishEventList.json",
-      "Size": 11372,
-      "CompressedSize": 1626,
-      "SHA256": "C09E8D4DD6F9910EAA2FE06CC271C254491E88AD2896A323DCE728F615AFFB80",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C09E8D4DD6F9910EAA2FE06CC271C254491E88AD2896A323DCE728F615AFFB80",
+      "Size": 12028,
+      "CompressedSize": 1700,
+      "SHA256": "C7BF641EF2CFA07975E2746F754208E849502E67E229DA66C34B0B062613A2C1",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C7BF641EF2CFA07975E2746F754208E849502E67E229DA66C34B0B062613A2C1",
       "ContentEncoding": "Deflate"
     },
     {
