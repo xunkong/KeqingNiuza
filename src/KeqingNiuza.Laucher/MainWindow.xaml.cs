@@ -37,6 +37,9 @@ namespace KeqingNiuza.Launcher
         }
 
 
+        private readonly string versionUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version";
+
+
         private Downloader _downloader;
 
         private bool _canceled;
@@ -85,6 +88,18 @@ namespace KeqingNiuza.Launcher
             set
             {
                 _CanCancel = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private bool _CanRefresh;
+        public bool CanRefresh
+        {
+            get { return _CanRefresh; }
+            set
+            {
+                _CanRefresh = value;
                 OnPropertyChanged();
             }
         }
@@ -156,13 +171,24 @@ namespace KeqingNiuza.Launcher
             Close();
         }
 
+
         private void Button_Skip_Click(object sender, RoutedEventArgs e)
         {
             if (CanCancel)
             {
                 _canceled = true;
                 Process.Start(".\\bin\\KeqingNiuza.exe");
-                Environment.Exit(0);
+                Close();
+            }
+        }
+
+
+        private async void Button_Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            if (CanRefresh)
+            {
+                CanRefresh = false;
+                await UpdateTask();
             }
         }
 
@@ -177,27 +203,40 @@ namespace KeqingNiuza.Launcher
         {
             InfoTest = "正在检查更新";
             await Task.Delay(100);
-            var list = await TestUpdate();
+            List<KeqingNiuzaFileInfo> list = null;
+            try
+            {
+                list = await TestUpdate();
+            }
+            catch (HttpRequestException ex)
+            {
+                if (_canceled)
+                {
+                    return;
+                }
+                InfoTest = ex.Message;
+                CanRefresh = true;
+                return;
+            }
+            await Task.Delay(100);
             if (_canceled)
             {
                 return;
             }
-            if ((bool)list?.Any())
+            if (list?.Any() ?? false)
             {
                 CanCancel = false;
                 await DownladFiles(list);
             }
             Process.Start(".\\bin\\KeqingNiuza.exe");
-            Environment.Exit(0);
+            Close();
         }
 
 
         private async Task<List<KeqingNiuzaFileInfo>> TestUpdate()
         {
             var client = new HttpClient();
-            var bytes = await client.GetByteArrayAsync("https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version");
-            var fs = Directory.GetFiles(".\\", "*", SearchOption.AllDirectories);
-            var files = fs.Select(x => new KeqingNiuzaFileInfo(x)).ToList();
+            var bytes = await client.GetByteArrayAsync(versionUrl);
             var ms = new MemoryStream();
             using (var dcs = new DeflateStream(new MemoryStream(bytes), CompressionMode.Decompress))
             {
@@ -209,6 +248,8 @@ namespace KeqingNiuza.Launcher
             {
                 VersionText.Text += $" -> {versionInfo.Version}";
             }
+            var fs = await Task.Run(() => Directory.GetFiles(".\\", "*", SearchOption.AllDirectories));
+            var files = fs.Select(x => new KeqingNiuzaFileInfo(x)).ToList();
             versionInfo.KeqingNiuzaFiles.ForEach(x => x.Path = Path.GetFullPath(x.Path));
             return versionInfo.KeqingNiuzaFiles.Except(files).ToList();
         }
@@ -267,6 +308,7 @@ namespace KeqingNiuza.Launcher
                 return $"{(double)current / (2 << 20):F2}/{(double)total / (2 << 20):F2} MB";
             }
         }
+
 
     }
 }

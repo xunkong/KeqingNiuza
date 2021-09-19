@@ -27,6 +27,7 @@
             <s:String x:Key="WindowRestore">&#xE923;</s:String>
             <s:String x:Key="WindowClose">&#xE8BB;</s:String>
             <s:String x:Key="Skip">&#xE893;</s:String>
+            <s:String x:Key="Refresh">&#xE72C;</s:String>
             <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
 
             <Style x:Key="WindowBaseButton" TargetType="Button">
@@ -142,6 +143,12 @@
                     VerticalAlignment="Top"
                     Orientation="Horizontal"
                     Visibility="Visible">
+            <Button Name="Button_Refresh"
+                    Click="Button_Refresh_Click"
+                    Content="{StaticResource Refresh}"
+                    FontSize="14"
+                    Style="{StaticResource WindowMinimizeButton}"
+                    Visibility="{Binding CanRefresh, Converter={StaticResource BoolToVisibilityConverter}}" />
             <Button Name="Button_Skip"
                     Click="Button_Skip_Click"
                     Content="{StaticResource Skip}"
