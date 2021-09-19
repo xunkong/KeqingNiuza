@@ -1,14 +1,14 @@
 {
-  "Version": "2.0.2",
-  "LastUpdateTime": "2021-09-18T23:16:03.123707+08:00",
+  "Version": "2.0.2.1",
+  "LastUpdateTime": "2021-09-19T09:48:06.8487193+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "KeqingNiuza Launcher.exe",
       "Path": ".\\KeqingNiuza Launcher.exe",
-      "Size": 1459712,
-      "CompressedSize": 1052716,
-      "SHA256": "F76B789DF3CC03AAADA7146F16456B4A23E71A193C7B35AFCA146217CC5C80FB",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F76B789DF3CC03AAADA7146F16456B4A23E71A193C7B35AFCA146217CC5C80FB",
+      "Size": 1461760,
+      "CompressedSize": 1053373,
+      "SHA256": "CA1FA7EB8D2495BFF5000CB79EBCEECB5D2192E74FF15DC11C9DF7F0B0F592A3",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CA1FA7EB8D2495BFF5000CB79EBCEECB5D2192E74FF15DC11C9DF7F0B0F592A3",
       "ContentEncoding": "Deflate"
     },
     {
@@ -87,9 +87,9 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1679872,
-      "CompressedSize": 1144500,
-      "SHA256": "291F80AEB081BABE0128821D7F835A07745BAD0C1FFD380ACABECF2FB3663AB6",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/291F80AEB081BABE0128821D7F835A07745BAD0C1FFD380ACABECF2FB3663AB6",
+      "CompressedSize": 1144503,
+      "SHA256": "2B00641182C4278B18426CB7C85C8F14FE62B511C56871D2A42F2AC5BD2B6065",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2B00641182C4278B18426CB7C85C8F14FE62B511C56871D2A42F2AC5BD2B6065",
       "ContentEncoding": "Deflate"
     },
     {
@@ -105,9 +105,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 382464,
-      "CompressedSize": 76379,
-      "SHA256": "98EFF4D744DDCB6A6A73468DB1909A39BE230A0B2BFE187A5C82B270505EB9B4",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/98EFF4D744DDCB6A6A73468DB1909A39BE230A0B2BFE187A5C82B270505EB9B4",
+      "CompressedSize": 76380,
+      "SHA256": "99E038A7A8C9186A3EB22C62EB2000522702C33151719CCA8DC9A78FB35859AF",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/99E038A7A8C9186A3EB22C62EB2000522702C33151719CCA8DC9A78FB35859AF",
       "ContentEncoding": "Deflate"
     },
     {
