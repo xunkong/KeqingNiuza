@@ -1,6 +1,6 @@
 {
   "Version": "2.0.3",
-  "LastUpdateTime": "2021-09-19T22:17:00.2387152+08:00",
+  "LastUpdateTime": "2021-09-21T19:26:40.6396459+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "KeqingNiuza Launcher.exe",
@@ -87,9 +87,9 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1680384,
-      "CompressedSize": 1144699,
-      "SHA256": "9E81994FEF9185BC91D344CB97E49AFCDE61DCEEFDCD5EB52EB868B8E7215031",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/9E81994FEF9185BC91D344CB97E49AFCDE61DCEEFDCD5EB52EB868B8E7215031",
+      "CompressedSize": 1144698,
+      "SHA256": "C07F640FF3ABB04B59C093DA4C01807C3EF5EAF11757809AA9B6B9BE4A918319",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C07F640FF3ABB04B59C093DA4C01807C3EF5EAF11757809AA9B6B9BE4A918319",
       "ContentEncoding": "Deflate"
     },
     {
@@ -105,9 +105,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 382464,
-      "CompressedSize": 76475,
-      "SHA256": "AD216A5AA86F9E713D7FB5A7DDA77D923E9C9429A0DC6ECC8D8085903EE0667D",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/AD216A5AA86F9E713D7FB5A7DDA77D923E9C9429A0DC6ECC8D8085903EE0667D",
+      "CompressedSize": 76477,
+      "SHA256": "C7EE0D3E19335D71E5A7C5FA612D90EA3454708A4178AE0E20E7C0888B033753",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C7EE0D3E19335D71E5A7C5FA612D90EA3454708A4178AE0E20E7C0888B033753",
       "ContentEncoding": "Deflate"
     },
     {
@@ -1247,10 +1247,10 @@
     {
       "Name": "Character_Sangonomiya_Kokomi_Thumb.png",
       "Path": ".\\bin\\resource\\character\\Character_Sangonomiya_Kokomi_Thumb.png",
-      "Size": 54518,
-      "CompressedSize": 54516,
-      "SHA256": "B527965D504C400285419843B569EEA5F418A51E67B7F706DA0E2584E6BE0201",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B527965D504C400285419843B569EEA5F418A51E67B7F706DA0E2584E6BE0201",
+      "Size": 70606,
+      "CompressedSize": 70030,
+      "SHA256": "C3DAD0F6FD8748E85F32B2B1EE3E22D4712D1D33EBAA2C72CED22C0CDC368EEB",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C3DAD0F6FD8748E85F32B2B1EE3E22D4712D1D33EBAA2C72CED22C0CDC368EEB",
       "ContentEncoding": "Deflate"
     },
     {
@@ -2228,10 +2228,10 @@
     {
       "Name": "Weapon_Everlasting_Moonglow.png",
       "Path": ".\\bin\\resource\\weapon\\Weapon_Everlasting_Moonglow.png",
-      "Size": 73749,
-      "CompressedSize": 73774,
-      "SHA256": "3AA08E0025F6D197A9F54E679BD84F2159093EDC807CCB0254CCA5449979E9F7",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/3AA08E0025F6D197A9F54E679BD84F2159093EDC807CCB0254CCA5449979E9F7",
+      "Size": 59224,
+      "CompressedSize": 58528,
+      "SHA256": "9EF768AD87C8E39502549D24349B990719559E211B0E0BCCD3D43A71BE47AFFD",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/9EF768AD87C8E39502549D24349B990719559E211B0E0BCCD3D43A71BE47AFFD",
       "ContentEncoding": "Deflate"
     },
     {
