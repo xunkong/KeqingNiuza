@@ -1,6 +1,6 @@
 {
   "Version": "2.0.3",
-  "LastUpdateTime": "2021-09-21T19:26:40.6396459+08:00",
+  "LastUpdateTime": "2021-09-21T19:30:14.3335952+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "KeqingNiuza Launcher.exe",
@@ -87,9 +87,9 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1680384,
-      "CompressedSize": 1144698,
-      "SHA256": "C07F640FF3ABB04B59C093DA4C01807C3EF5EAF11757809AA9B6B9BE4A918319",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C07F640FF3ABB04B59C093DA4C01807C3EF5EAF11757809AA9B6B9BE4A918319",
+      "CompressedSize": 1144700,
+      "SHA256": "B802D111E127AF2D0431EEEFCD0BE97F95154E751D31D1E1E3D5042F5D5A6624",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B802D111E127AF2D0431EEEFCD0BE97F95154E751D31D1E1E3D5042F5D5A6624",
       "ContentEncoding": "Deflate"
     },
     {
@@ -105,9 +105,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 382464,
-      "CompressedSize": 76477,
-      "SHA256": "C7EE0D3E19335D71E5A7C5FA612D90EA3454708A4178AE0E20E7C0888B033753",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C7EE0D3E19335D71E5A7C5FA612D90EA3454708A4178AE0E20E7C0888B033753",
+      "CompressedSize": 76474,
+      "SHA256": "240C14633DA52036DDCDD9BA42F7F3945D0C8B987A7805F669A6EEE41048FB87",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/240C14633DA52036DDCDD9BA42F7F3945D0C8B987A7805F669A6EEE41048FB87",
       "ContentEncoding": "Deflate"
     },
     {
@@ -3069,6 +3069,15 @@
       "CompressedSize": 8467317,
       "SHA256": "E819D99E46AAE571832F98A8B500AFF087BA96414C31FDBE11B247DC34E92E7D",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E819D99E46AAE571832F98A8B500AFF087BA96414C31FDBE11B247DC34E92E7D",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Genshin Concert.png",
+      "Path": ".\\splash\\Genshin Concert.png",
+      "Size": 7555752,
+      "CompressedSize": 7555846,
+      "SHA256": "81A55CF30DE532EB608BCE0189B8CCF64DD099FA29E4C4D78761C160111733AB",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/81A55CF30DE532EB608BCE0189B8CCF64DD099FA29E4C4D78761C160111733AB",
       "ContentEncoding": "Deflate"
     },
     {
