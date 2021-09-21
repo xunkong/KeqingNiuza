@@ -6,10 +6,9 @@
 
 ## 下载地址
 
-- [传送门](https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/KeqingNiuza.zip)
-- Github Releases 中的文件**不是**最新版本
+[Github Releases](https://github.com/Scighost/KeqingNiuza/releases)
 
-## 其他
+## 常见问题
 
 ### 如何加载祈愿数据
 
