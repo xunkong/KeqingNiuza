@@ -6,6 +6,7 @@ using System.Windows.Media;
 using HandyControl.Interactivity;
 using HandyControl.Tools.Extension;
 using KeqingNiuza.Core.CloudBackup;
+using KeqingNiuza.Service;
 
 namespace KeqingNiuza.View
 {
@@ -64,7 +65,20 @@ namespace KeqingNiuza.View
                 Button_Login.IsEnabled = false;
                 TextBlock_Info.Text = "正在登录";
                 TextBlock_Info.Foreground = new SolidColorBrush(Colors.Gray);
-                var result = await CloudLogin(username, password, CloudType.WebDav, server);
+                (bool isSuccessful, int code, string msg) result = (false, 0, null);
+                try
+                {
+                    result = await CloudLogin(username, password, CloudType.WebDav, server);
+                }
+                catch (Exception ex)
+                {
+                    InputUserName.IsEnabled = true;
+                    InputPassword.IsEnabled = true;
+                    Button_Login.IsEnabled = true;
+                    TextBlock_Info.Text = $"登录失败: {ex.Message}";
+                    TextBlock_Info.Foreground = new SolidColorBrush(Colors.Red);
+                    Log.OutputLog(LogType.Warning, "BackupCloudLogin", ex);
+                }
                 if (result.isSuccessful)
                 {
                     ControlCommands.Close.Execute(null, this);

@@ -43,6 +43,7 @@ namespace KeqingNiuza.ViewModel
                 catch (Exception ex)
                 {
                     ViewContent = new ErrorView(ex);
+                    UserDataList = new ObservableCollection<UserData>();
                     Log.OutputLog(LogType.Warning, "MainWindowViewModel constructor", ex);
                 }
             }
@@ -167,7 +168,7 @@ namespace KeqingNiuza.ViewModel
 
         public void SaveConfig()
         {
-            if (SelectedUserData == null)
+            if (SelectedUserData == null|| UserDataList==null)
             {
                 return;
             }
@@ -176,6 +177,7 @@ namespace KeqingNiuza.ViewModel
                 LatestUid = SelectedUserData.Uid,
                 UserDataList = new ObservableCollection<UserData>(UserDataList.Distinct().OrderBy(x => x.Uid)),
             };
+            Directory.CreateDirectory(UserDataPath);
             File.WriteAllText($"{UserDataPath}\\Config.json", JsonSerializer.Serialize(setting, JsonOptions));
         }
 
