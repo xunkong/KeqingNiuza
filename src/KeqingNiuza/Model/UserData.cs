@@ -50,6 +50,14 @@ namespace KeqingNiuza.Model
         }
 
 
+        public bool IgnoreFirstStar5Character { get; set; }
+
+
+        public bool IgnoreFirstStar5Weapon { get; set; }
+
+
+        public bool IgnoreFirstStar5Permanent { get; set; }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyName = "")

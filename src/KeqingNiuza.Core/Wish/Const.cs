@@ -17,7 +17,6 @@ namespace KeqingNiuza.Core.Wish
             "#FF1493",
             "#FF7F50",
             "#FFB61E",
-            "#402E4C",
             "#8C531B",
             "#a88462",
             "#008B8B",

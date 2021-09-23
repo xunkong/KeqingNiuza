@@ -32,7 +32,7 @@ namespace KeqingNiuza.View
         {
             if (ViewModel == null)
             {
-                await Task.Run(() => ViewModel = new WishSummaryViewModel());
+                await Task.Run(() => ViewModel = new WishSummaryViewModel(UserData));
                 DataContext = ViewModel;
             }
         }
@@ -61,6 +61,11 @@ namespace KeqingNiuza.View
         {
             var grid = sender as Grid;
             ViewModel.ShowDetailView(grid.DataContext);
+        }
+
+        private void ContentPresenter_Error(object sender, ValidationErrorEventArgs e)
+        {
+
         }
     }
 }

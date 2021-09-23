@@ -20,8 +20,8 @@ namespace KeqingNiuza.ViewModel
         public WishSummaryViewModel(UserData userData)
         {
             UserData = userData;
-            WishDataList = LocalWishLogLoader.Load(userData.WishLogFile);
-            WishSummary = WishSummary.Create(userData.WishLogFile);
+            WishDataList = MainWindowViewModel.WishDataList;
+            WishSummary = WishSummary.Create(WishDataList, IgnoreFirstStar5Character, IgnoreFirstStar5Weapon, IgnoreFirstStar5Permanent);
             CharacterOrder("星级");
             WeaponOrder("星级");
             if (!IsCorrectOrder)
@@ -82,6 +82,45 @@ namespace KeqingNiuza.ViewModel
                 }
             }
         }
+
+
+
+        public bool IgnoreFirstStar5Character
+        {
+            get { return UserData.IgnoreFirstStar5Character; }
+            set
+            {
+                UserData.IgnoreFirstStar5Character = value;
+                WishSummary.CharacterStatistics = WishSummary.GetStatistics(WishDataList.Where(x => x.WishType == WishType.CharacterEvent).ToList(), value);
+                OnPropertyChanged();
+            }
+        }
+
+
+        public bool IgnoreFirstStar5Weapon
+        {
+            get { return UserData.IgnoreFirstStar5Weapon; }
+            set
+            {
+                UserData.IgnoreFirstStar5Weapon = value;
+                WishSummary.WeaponStatistics = WishSummary.GetStatistics(WishDataList.Where(x => x.WishType == WishType.WeaponEvent).ToList(), value);
+                OnPropertyChanged();
+            }
+        }
+
+
+        public bool IgnoreFirstStar5Permanent
+        {
+            get { return UserData.IgnoreFirstStar5Permanent; }
+            set
+            {
+                UserData.IgnoreFirstStar5Permanent = value;
+                WishSummary.PermanentStatistics = WishSummary.GetStatistics(WishDataList.Where(x => x.WishType == WishType.Permanent).ToList(), value);
+                OnPropertyChanged();
+            }
+        }
+
+
 
 
         private WishSummary _WishSummary;

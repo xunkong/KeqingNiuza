@@ -86,7 +86,8 @@ namespace KeqingNiuza.Core.Wish
             return summary;
         }
 
-        public static WishSummary Create(List<WishData> list)
+
+        public static WishSummary Create(List<WishData> list, bool ignoreFirstStar5Character = false, bool ignoreFirstStar5Weapon = false, bool ignoreFirstStar5Permanent = false)
         {
             WishSummary summary = new WishSummary
             {
@@ -99,13 +100,13 @@ namespace KeqingNiuza.Core.Wish
                 switch (group.Key)
                 {
                     case WishType.Permanent:
-                        summary.PermanentStatistics = GetStatistics(sublist.ToList());
+                        summary.PermanentStatistics = GetStatistics(sublist.ToList(), ignoreFirstStar5Permanent);
                         break;
                     case WishType.CharacterEvent:
-                        summary.CharacterStatistics = GetStatistics(sublist.ToList());
+                        summary.CharacterStatistics = GetStatistics(sublist.ToList(), ignoreFirstStar5Character);
                         break;
                     case WishType.WeaponEvent:
-                        summary.WeaponStatistics = GetStatistics(sublist.ToList());
+                        summary.WeaponStatistics = GetStatistics(sublist.ToList(), ignoreFirstStar5Weapon);
                         break;
                 }
             }
@@ -115,8 +116,13 @@ namespace KeqingNiuza.Core.Wish
         }
 
 
-        private static WishStatistics GetStatistics(List<WishData> list)
+        public static WishStatistics GetStatistics(List<WishData> list, bool ignoreFirstStar5 = false)
         {
+            if (ignoreFirstStar5)
+            {
+                var i = list.FindIndex(x => x.Rank == 5);
+                list = list.Skip(i + 1).ToList();
+            }
             if (list.Count == 0)
             {
                 return null;
@@ -183,6 +189,37 @@ namespace KeqingNiuza.Core.Wish
             var brushList = Const.BrushList.OrderBy(x => Random.Next()).ToList();
             int brushIndex = 0;
             var groups = list.GroupBy(x => x.Name);
+            foreach (var group in groups)
+            {
+                if (brushIndex >= brushList.Count)
+                {
+                    brushIndex = 0;
+                    brushList = Const.BrushList.OrderBy(x => Random.Next()).ToList();
+                }
+                group.ToList().ForEach(x => x.Brush = brushList[brushIndex]);
+                brushIndex++;
+            }
+        }
+
+
+        private static void DefineColor(List<StarDetail> list, bool ignoreFirstStar5)
+        {
+            var brushList = Const.BrushList.OrderBy(x => Random.Next()).ToList();
+            if (list.Count == 0)
+            {
+                return;
+            }
+            if (list.Count == 1 && ignoreFirstStar5)
+            {
+                list[0].Brush = "LightGray";
+                return;
+            }
+            if (ignoreFirstStar5)
+            {
+                list[0].Brush = "LightGray";
+            }
+            int brushIndex = 0;
+            var groups = list.SkipWhile(x => x.Brush != null).GroupBy(x => x.Name);
             foreach (var group in groups)
             {
                 if (brushIndex >= brushList.Count)

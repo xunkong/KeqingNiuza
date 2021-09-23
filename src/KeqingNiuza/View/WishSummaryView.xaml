@@ -36,7 +36,31 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Background="{TemplateBinding Background}" BorderThickness="0">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="WishCheckBox" TargetType="CheckBox">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              RecognizesAccessKey="True"
+                                              Validation.Error="ContentPresenter_Error" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
@@ -55,7 +79,9 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Background="{TemplateBinding Background}" BorderThickness="0">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
@@ -76,6 +102,25 @@
                                FontWeight="Bold"
                                Foreground="Gray"
                                Text="统计" />
+                    <TextBlock Margin="20,0,0,0"
+                               VerticalAlignment="Bottom"
+                               Foreground="Gray"
+                               Text="忽略第一个5星：" />
+                    <CheckBox Margin="0,0,10,0"
+                              VerticalAlignment="Bottom"
+                              Content="角色祈愿"
+                              IsChecked="{Binding IgnoreFirstStar5Character}"
+                              Style="{StaticResource WishCheckBox}" />
+                    <CheckBox Margin="0,0,10,0"
+                              VerticalAlignment="Bottom"
+                              Content="武器祈愿"
+                              IsChecked="{Binding IgnoreFirstStar5Weapon}"
+                              Style="{StaticResource WishCheckBox}" />
+                    <CheckBox Margin="0,0,10,0"
+                              VerticalAlignment="Bottom"
+                              Content="常驻祈愿"
+                              IsChecked="{Binding IgnoreFirstStar5Permanent}"
+                              Style="{StaticResource WishCheckBox}" />
                     <Button x:Name="Button_TypeDetail"
                             Margin="20,0,0,0"
                             VerticalAlignment="Bottom"
@@ -112,7 +157,9 @@
                             </StackPanel>
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="已垫" />
-                                <TextBlock Margin="4,0,0,0" Style="{StaticResource GuaranteeText}" Text="{Binding GuaranteeType}" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Style="{StaticResource GuaranteeText}"
+                                           Text="{Binding GuaranteeType}" />
                                 <TextBlock Style="{StaticResource GuaranteeText}" Text="{Binding Guarantee, StringFormat=' {0} '}" />
                                 <TextBlock Style="{StaticResource GuaranteeText}" Text="抽" />
                             </StackPanel>
@@ -125,7 +172,9 @@
                                          Value="{Binding Guarantee}" />
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="下一次出5星的概率" />
-                                <TextBlock Margin="4,0,0,0" Foreground="CornflowerBlue" Text="{Binding ., Converter={StaticResource ProbabilityConverter}}" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="CornflowerBlue"
+                                           Text="{Binding ., Converter={StaticResource ProbabilityConverter}}" />
                             </StackPanel>
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="{Binding StartTime, StringFormat=yyyy/MM/dd}" />
@@ -160,7 +209,9 @@
                             </Grid>
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="平均5星次数" />
-                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding Average5, StringFormat=F2}">
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="ForestGreen"
+                                           Text="{Binding Average5, StringFormat=F2}">
                                     <TextBlock.ToolTip>
                                         <TextBlock Text="截止到最后一次5星" />
                                     </TextBlock.ToolTip>
@@ -168,7 +219,9 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="平均Up5星次数" />
-                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding AverageUp5, StringFormat=F2}">
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="ForestGreen"
+                                           Text="{Binding AverageUp5, StringFormat=F2}">
                                     <TextBlock.ToolTip>
                                         <TextBlock Text="截止到最后一次Up5星" />
                                     </TextBlock.ToolTip>
@@ -176,13 +229,21 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="小保底" />
-                                <TextBlock Margin="4,0,0,0" Foreground="OrangeRed" Text="{Binding Count_XiaoBaoDi}" />
-                                <TextBlock Margin="10,0,0,0" Foreground="Gray" Text="大保底" />
-                                <TextBlock Margin="4,0,0,0" Foreground="Purple" Text="{Binding Count_DaBaoDi}" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="OrangeRed"
+                                           Text="{Binding Count_XiaoBaoDi}" />
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="大保底" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="Purple"
+                                           Text="{Binding Count_DaBaoDi}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="最欧" />
-                                <TextBlock Margin="4,0,0,0" Foreground="OrangeRed" Text="{Binding GuaranteeMin}">
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="OrangeRed"
+                                           Text="{Binding GuaranteeMin}">
                                     <TextBlock.ToolTip>
                                         <ItemsControl ItemsSource="{Binding GuaranteeMinItems}">
                                             <ItemsControl.ItemsPanel>
@@ -194,15 +255,21 @@
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                                        <TextBlock Margin="6,0,0,0" Foreground="{Binding Brush}" Text="{Binding Time}" />
+                                                        <TextBlock Margin="6,0,0,0"
+                                                                   Foreground="{Binding Brush}"
+                                                                   Text="{Binding Time}" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
                                     </TextBlock.ToolTip>
                                 </TextBlock>
-                                <TextBlock Margin="10,0,0,0" Foreground="Gray" Text="最非" />
-                                <TextBlock Margin="4,0,0,0" Foreground="Purple" Text="{Binding GuaranteeMax}">
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="最非" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="Purple"
+                                           Text="{Binding GuaranteeMax}">
                                     <TextBlock.ToolTip>
                                         <ItemsControl ItemsSource="{Binding GuaranteeMaxItems}">
                                             <ItemsControl.ItemsPanel>
@@ -214,7 +281,9 @@
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                                        <TextBlock Margin="6,0,0,0" Foreground="{Binding Brush}" Text="{Binding Time}" />
+                                                        <TextBlock Margin="6,0,0,0"
+                                                                   Foreground="{Binding Brush}"
+                                                                   Text="{Binding Time}" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
@@ -227,7 +296,9 @@
                         <StackPanel Grid.Column="2" Margin="50,0,0,0">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="5星记录" />
-                                <TextBlock Margin="10,0,0,0" Foreground="Gray" Text="排序：" />
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="排序：" />
                                 <RadioButton Margin="0,0,10,0"
                                              Content="正序"
                                              IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -250,10 +321,18 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Margin="0,0,6,0" Orientation="Horizontal">
-                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="[" />
-                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Num}" />
-                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="]" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="{Binding Name}" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="[" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="{Binding Num}" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="]" />
                                                 <StackPanel.ToolTip>
                                                     <TextBlock Text="{Binding Time}" />
                                                 </StackPanel.ToolTip>
@@ -293,7 +372,9 @@
                             </StackPanel>
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="已垫" />
-                                <TextBlock Margin="4,0,0,0" Style="{StaticResource GuaranteeText}" Text="{Binding GuaranteeType}" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Style="{StaticResource GuaranteeText}"
+                                           Text="{Binding GuaranteeType}" />
                                 <TextBlock Style="{StaticResource GuaranteeText}" Text="{Binding Guarantee, StringFormat=' {0} '}" />
                                 <TextBlock Style="{StaticResource GuaranteeText}" Text="抽" />
                             </StackPanel>
@@ -306,7 +387,9 @@
                                          Value="{Binding Guarantee}" />
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="下一次出5星的概率" />
-                                <TextBlock Margin="4,0,0,0" Foreground="CornflowerBlue" Text="{Binding ., Converter={StaticResource ProbabilityConverter}}" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="CornflowerBlue"
+                                           Text="{Binding ., Converter={StaticResource ProbabilityConverter}}" />
                             </StackPanel>
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="{Binding StartTime, StringFormat=yyyy/MM/dd}" />
@@ -341,7 +424,9 @@
                             </Grid>
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="平均5星次数" />
-                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding Average5, StringFormat=F2}">
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="ForestGreen"
+                                           Text="{Binding Average5, StringFormat=F2}">
                                     <TextBlock.ToolTip>
                                         <TextBlock Text="截止到最后一次5星" />
                                     </TextBlock.ToolTip>
@@ -349,7 +434,9 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="平均Up5星次数" />
-                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding AverageUp5, StringFormat=F2}">
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="ForestGreen"
+                                           Text="{Binding AverageUp5, StringFormat=F2}">
                                     <TextBlock.ToolTip>
                                         <TextBlock Text="截止到最后一次Up5星" />
                                     </TextBlock.ToolTip>
@@ -357,13 +444,21 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="小保底" />
-                                <TextBlock Margin="4,0,0,0" Foreground="OrangeRed" Text="{Binding Count_XiaoBaoDi}" />
-                                <TextBlock Margin="10,0,0,0" Foreground="Gray" Text="大保底" />
-                                <TextBlock Margin="4,0,0,0" Foreground="Purple" Text="{Binding Count_DaBaoDi}" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="OrangeRed"
+                                           Text="{Binding Count_XiaoBaoDi}" />
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="大保底" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="Purple"
+                                           Text="{Binding Count_DaBaoDi}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="最欧" />
-                                <TextBlock Margin="4,0,0,0" Foreground="OrangeRed" Text="{Binding GuaranteeMin}">
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="OrangeRed"
+                                           Text="{Binding GuaranteeMin}">
                                     <TextBlock.ToolTip>
                                         <ItemsControl ItemsSource="{Binding GuaranteeMinItems}">
                                             <ItemsControl.ItemsPanel>
@@ -375,15 +470,21 @@
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                                        <TextBlock Margin="6,0,0,0" Foreground="{Binding Brush}" Text="{Binding Time}" />
+                                                        <TextBlock Margin="6,0,0,0"
+                                                                   Foreground="{Binding Brush}"
+                                                                   Text="{Binding Time}" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
                                     </TextBlock.ToolTip>
                                 </TextBlock>
-                                <TextBlock Margin="10,0,0,0" Foreground="Gray" Text="最非" />
-                                <TextBlock Margin="4,0,0,0" Foreground="Purple" Text="{Binding GuaranteeMax}">
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="最非" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="Purple"
+                                           Text="{Binding GuaranteeMax}">
                                     <TextBlock.ToolTip>
                                         <ItemsControl ItemsSource="{Binding GuaranteeMaxItems}">
                                             <ItemsControl.ItemsPanel>
@@ -395,7 +496,9 @@
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                                        <TextBlock Margin="6,0,0,0" Foreground="{Binding Brush}" Text="{Binding Time}" />
+                                                        <TextBlock Margin="6,0,0,0"
+                                                                   Foreground="{Binding Brush}"
+                                                                   Text="{Binding Time}" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
@@ -408,7 +511,9 @@
                         <StackPanel Grid.Column="2" Margin="50,0,0,0">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="5星记录" />
-                                <TextBlock Margin="10,0,0,0" Foreground="Gray" Text="排序：" />
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="排序：" />
                                 <RadioButton Margin="0,0,10,0"
                                              Content="正序"
                                              IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -431,10 +536,18 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Margin="0,0,6,0" Orientation="Horizontal">
-                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="[" />
-                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Num}" />
-                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="]" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="{Binding Name}" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="[" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="{Binding Num}" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="]" />
                                                 <StackPanel.ToolTip>
                                                     <TextBlock Text="{Binding Time}" />
                                                 </StackPanel.ToolTip>
@@ -474,7 +587,9 @@
                             </StackPanel>
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="已垫" />
-                                <TextBlock Margin="4,0,0,0" Style="{StaticResource GuaranteeText}" Text="{Binding GuaranteeType}" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Style="{StaticResource GuaranteeText}"
+                                           Text="{Binding GuaranteeType}" />
                                 <TextBlock Style="{StaticResource GuaranteeText}" Text="{Binding Guarantee, StringFormat=' {0} '}" />
                                 <TextBlock Style="{StaticResource GuaranteeText}" Text="抽" />
                             </StackPanel>
@@ -487,7 +602,9 @@
                                          Value="{Binding Guarantee}" />
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="下一次出5星的概率" />
-                                <TextBlock Margin="4,0,0,0" Foreground="CornflowerBlue" Text="{Binding ., Converter={StaticResource ProbabilityConverter}}" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="CornflowerBlue"
+                                           Text="{Binding ., Converter={StaticResource ProbabilityConverter}}" />
                             </StackPanel>
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="{Binding StartTime, StringFormat=yyyy/MM/dd}" />
@@ -522,7 +639,9 @@
                             </Grid>
                             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="平均5星次数" />
-                                <TextBlock Margin="4,0,0,0" Foreground="ForestGreen" Text="{Binding Average5, StringFormat=F2}">
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="ForestGreen"
+                                           Text="{Binding Average5, StringFormat=F2}">
                                     <TextBlock.ToolTip>
                                         <TextBlock Text="截止到最后一次5星" />
                                     </TextBlock.ToolTip>
@@ -530,13 +649,21 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="小保底" />
-                                <TextBlock Margin="4,0,0,0" Foreground="OrangeRed" Text="{Binding Count_XiaoBaoDi}" />
-                                <TextBlock Margin="10,0,0,0" Foreground="Gray" Text="大保底" />
-                                <TextBlock Margin="4,0,0,0" Foreground="Purple" Text="{Binding Count_DaBaoDi}" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="OrangeRed"
+                                           Text="{Binding Count_XiaoBaoDi}" />
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="大保底" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="Purple"
+                                           Text="{Binding Count_DaBaoDi}" />
                             </StackPanel>
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="最欧" />
-                                <TextBlock Margin="4,0,0,0" Foreground="OrangeRed" Text="{Binding GuaranteeMin}">
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="OrangeRed"
+                                           Text="{Binding GuaranteeMin}">
                                     <TextBlock.ToolTip>
                                         <ItemsControl ItemsSource="{Binding GuaranteeMinItems}">
                                             <ItemsControl.ItemsPanel>
@@ -548,15 +675,21 @@
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                                        <TextBlock Margin="6,0,0,0" Foreground="{Binding Brush}" Text="{Binding Time}" />
+                                                        <TextBlock Margin="6,0,0,0"
+                                                                   Foreground="{Binding Brush}"
+                                                                   Text="{Binding Time}" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
                                         </ItemsControl>
                                     </TextBlock.ToolTip>
                                 </TextBlock>
-                                <TextBlock Margin="10,0,0,0" Foreground="Gray" Text="最非" />
-                                <TextBlock Margin="4,0,0,0" Foreground="Purple" Text="{Binding GuaranteeMax}">
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="最非" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="Purple"
+                                           Text="{Binding GuaranteeMax}">
                                     <TextBlock.ToolTip>
                                         <ItemsControl ItemsSource="{Binding GuaranteeMaxItems}">
                                             <ItemsControl.ItemsPanel>
@@ -568,7 +701,9 @@
                                                 <DataTemplate>
                                                     <StackPanel Orientation="Horizontal">
                                                         <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                                        <TextBlock Margin="6,0,0,0" Foreground="{Binding Brush}" Text="{Binding Time}" />
+                                                        <TextBlock Margin="6,0,0,0"
+                                                                   Foreground="{Binding Brush}"
+                                                                   Text="{Binding Time}" />
                                                     </StackPanel>
                                                 </DataTemplate>
                                             </ItemsControl.ItemTemplate>
@@ -581,7 +716,9 @@
                         <StackPanel Grid.Column="2" Margin="50,0,0,0">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Foreground="Gray" Text="5星记录" />
-                                <TextBlock Margin="10,0,0,0" Foreground="Gray" Text="排序：" />
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="排序：" />
                                 <RadioButton Margin="0,0,10,0"
                                              Content="正序"
                                              IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}}"
@@ -604,10 +741,18 @@
                                     <ItemsControl.ItemTemplate>
                                         <DataTemplate>
                                             <StackPanel Margin="0,0,6,0" Orientation="Horizontal">
-                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Name}" />
-                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="[" />
-                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="{Binding Num}" />
-                                                <TextBlock FontSize="12" Foreground="{Binding Brush}" Text="]" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="{Binding Name}" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="[" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="{Binding Num}" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="]" />
                                                 <StackPanel.ToolTip>
                                                     <TextBlock Text="{Binding Time}" />
                                                 </StackPanel.ToolTip>
