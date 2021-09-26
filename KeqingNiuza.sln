@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeqingNiuza", "src\KeqingNi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeqingNiuza.Core", "src\KeqingNiuza.Core\KeqingNiuza.Core.csproj", "{6576E103-18EE-4118-ADE4-CC031D574E07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeqingNiuza.Launcher", "src\KeqingNiuza.Laucher\KeqingNiuza.Launcher.csproj", "{F8C7A8A6-D05E-430B-9B33-DFAF76EA848F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeqingNiuza.Launcher", "src\KeqingNiuza.Launcher\KeqingNiuza.Launcher.csproj", "{F8C7A8A6-D05E-430B-9B33-DFAF76EA848F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
