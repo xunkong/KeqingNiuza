@@ -138,6 +138,24 @@
                         Content="保存" />
             </StackPanel>
 
+
+            <StackPanel>
+                <TextBlock Margin="0,20,0,0"
+                           FontSize="20"
+                           Text="其他" />
+                <StackPanel Margin="0,6,0,0" Orientation="Horizontal">
+                    <TextBlock Width="120"
+                               FontSize="16"
+                               Text="下载推荐壁纸" />
+                    <ToggleButton HorizontalAlignment="Left"
+                                  IsChecked="{Binding IsDownloadWallpaper}"
+                                  Style="{StaticResource ToggleButtonSwitch}" />
+                </StackPanel>
+                <TextBlock Margin="0,4,0,0"
+                           Foreground="Gray"
+                           Text="壁纸保存在wallpaper文件夹中，内容仅代表个人喜好" />
+
+            </StackPanel>
         </StackPanel>
 
         <StackPanel Margin="12,0,12,8"

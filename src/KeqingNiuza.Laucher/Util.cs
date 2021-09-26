@@ -78,14 +78,13 @@ namespace KeqingNiuza.Launcher
                 {
                     using (var dfs = File.Create(path))
                     {
-                        using (var cs = new DeflateStream(dfs, CompressionMode.Compress))
+                        using (var cs = new DeflateStream(dfs, CompressionMode.Compress, true))
                         {
                             fs.CopyTo(cs);
                         }
+                        info.CompressedSize = dfs.Length;
                     }
                 }
-                var fileInfo = new FileInfo(path);
-                info.CompressedSize = fileInfo.Length;
             }
             var ver = FileVersionInfo.GetVersionInfo(".\\KeqingNiuza Launcher.exe");
             var version = new VersionInfo
@@ -116,6 +115,37 @@ namespace KeqingNiuza.Launcher
                     }
                 }
             }
+        }
+
+
+        public static void DeployWallpaper()
+        {
+            if (Directory.Exists(".\\cdn"))
+            {
+                Directory.Delete(".\\cdn", true);
+            }
+            Directory.CreateDirectory(".\\cdn2");
+            var files = Directory.GetFiles(".\\wallpaper", "*", SearchOption.AllDirectories);
+            var infos = files.Select(x => KeqingNiuzaFileInfo.Create(x)).ToList();
+            foreach (var info in infos)
+            {
+                var path = $@"cdn/wallpaper/{info.SHA256}";
+                Directory.CreateDirectory(Path.GetDirectoryName(path));
+                info.Url = $"https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/{path.Substring(4)}";
+                using (var fs = File.OpenRead(info.Path))
+                {
+                    using (var dfs = File.Create(path))
+                    {
+                        using (var cs = new DeflateStream(dfs, CompressionMode.Compress, true))
+                        {
+                            fs.CopyTo(cs);
+                        }
+                        info.CompressedSize = dfs.Length;
+                    }
+                }
+            }
+            var json = JsonConvert.SerializeObject(infos, Formatting.Indented);
+            File.WriteAllText(".\\cdn\\wallpaper.json", json);
         }
 
 

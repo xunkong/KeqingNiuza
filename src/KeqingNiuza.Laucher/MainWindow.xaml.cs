@@ -37,6 +37,8 @@ namespace KeqingNiuza.Launcher
 
         private readonly string versionUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version";
 
+        private readonly string wallpaperUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/wallpaper.json";
+
 
         private Downloader _downloader;
 
@@ -109,11 +111,13 @@ namespace KeqingNiuza.Launcher
             BitmapImage bitmap = null;
             try
             {
-                string[] files = Directory.GetFiles(".\\splash");
+                string[] files = Directory.GetFiles(".\\wallpaper");
                 if (files.Any())
                 {
                     Random random = new Random((int)DateTime.Now.Ticks);
-                    string file = files[random.Next(files.Length)];
+                    var index = (int)(files.Length * Math.Log(1 + (Math.E - 1) * random.NextDouble()));
+                    Console.WriteLine(files.Length + " " + index);
+                    string file = files[index];
                     using (var s = File.OpenRead(file))
                     {
                         bitmap = new BitmapImage();
@@ -124,6 +128,7 @@ namespace KeqingNiuza.Launcher
                         bitmap.StreamSource = s;
                         bitmap.EndInit();
                     }
+                    Width = Height * bitmap.PixelWidth / bitmap.PixelHeight;
                 }
                 else
                 {
@@ -193,6 +198,14 @@ namespace KeqingNiuza.Launcher
 
         private async void Window_Loaded(object sender, RoutedEventArgs _)
         {
+            try
+            {
+                if (Directory.Exists(".\\splash"))
+                {
+                    Directory.Delete(".\\splash", true);
+                }
+            }
+            catch { }
             await UpdateTask();
         }
 
@@ -251,13 +264,19 @@ namespace KeqingNiuza.Launcher
             }
             var json = System.Text.Encoding.UTF8.GetString(ms.ToArray());
             var versionInfo = JsonConvert.DeserializeObject<VersionInfo>(json);
+            if (File.Exists(".\\UserData\\setting_wallpaper"))
+            {
+                var str = await client.GetStringAsync(wallpaperUrl);
+                var wallpapers = JsonConvert.DeserializeObject<List<KeqingNiuzaFileInfo>>(str);
+                versionInfo.KeqingNiuzaFiles.AddRange(wallpapers);
+            }
+            var fs = Directory.GetFiles(".\\", "*", SearchOption.AllDirectories);
+            var files = await Task.Run(() => fs.Select(x => new KeqingNiuzaFileInfo(x)).ToList());
+            versionInfo.KeqingNiuzaFiles.ForEach(x => x.Path = Path.GetFullPath(x.Path));
             if (versionInfo.Version != VersionText.Text)
             {
                 VersionText.Text += $" -> {versionInfo.Version}";
             }
-            var fs = await Task.Run(() => Directory.GetFiles(".\\", "*", SearchOption.AllDirectories));
-            var files = fs.Select(x => new KeqingNiuzaFileInfo(x)).ToList();
-            versionInfo.KeqingNiuzaFiles.ForEach(x => x.Path = Path.GetFullPath(x.Path));
             return versionInfo.KeqingNiuzaFiles.Except(files).ToList();
         }
 

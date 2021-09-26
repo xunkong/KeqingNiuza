@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -114,6 +115,31 @@ namespace KeqingNiuza.View
             set
             {
                 _DialyCheck_AlwaysShowResult = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public bool IsDownloadWallpaper
+        {
+            get
+            {
+                return File.Exists($"{Const.UserDataPath}\\setting_wallpaper");
+            }
+            set
+            {
+                if (value)
+                {
+                    Directory.CreateDirectory(Const.UserDataPath);
+                    File.Create($"{Const.UserDataPath}\\setting_wallpaper").Dispose();
+                }
+                else
+                {
+                    if (File.Exists($"{Const.UserDataPath}\\setting_wallpaper"))
+                    {
+                        File.Delete($"{Const.UserDataPath}\\setting_wallpaper");
+                    }
+                }
                 OnPropertyChanged();
             }
         }

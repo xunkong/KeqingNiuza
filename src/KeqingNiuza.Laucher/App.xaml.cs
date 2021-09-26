@@ -92,6 +92,12 @@ namespace KeqingNiuza.Launcher
                     Environment.Exit(0);
                 }
 
+                if (e.Args[0] == "--deploy-wallpaper")
+                {
+                    Util.DeployWallpaper();
+                    Environment.Exit(0);
+                }
+
                 Environment.Exit(0);
 
             }
