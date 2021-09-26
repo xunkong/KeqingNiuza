@@ -242,6 +242,7 @@ namespace KeqingNiuza.Launcher
         private async Task<List<KeqingNiuzaFileInfo>> TestUpdate()
         {
             var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", $"KeqingNiuza Launcher {MetaData.FileVersion}");
             var bytes = await client.GetByteArrayAsync(versionUrl);
             var ms = new MemoryStream();
             using (var dcs = new DeflateStream(new MemoryStream(bytes), CompressionMode.Decompress))
