@@ -7,6 +7,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Net.Http;
 using System.Runtime.CompilerServices;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -127,6 +128,13 @@ namespace KeqingNiuza.Launcher
                         bitmap.UriSource = null;
                         bitmap.StreamSource = s;
                         bitmap.EndInit();
+                    }
+                    var name = Path.GetFileNameWithoutExtension(file);
+                    var t1 = Regex.Match(name, @"\[([^\]]+)\]").Groups[1].Value;
+                    var t2 = Regex.Match(name, @"\]([^\[]+)").Groups[1].Value;
+                    if (!string.IsNullOrWhiteSpace(t1) && !string.IsNullOrWhiteSpace(t2))
+                    {
+                        WallpperInfoText.Text = $"{t1.Trim()} - {t2.Trim()}";
                     }
                     Width = Height * bitmap.PixelWidth / bitmap.PixelHeight;
                 }

@@ -204,5 +204,12 @@
                    FontSize="12"
                    Foreground="White" />
 
+        <TextBlock x:Name="WallpperInfoText"
+                   Margin="12,0,12,8"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Bottom"
+                   FontSize="12"
+                   Foreground="White" />
+
     </Grid>
 </Window>

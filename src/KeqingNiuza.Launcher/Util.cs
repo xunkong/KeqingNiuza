@@ -124,7 +124,7 @@ namespace KeqingNiuza.Launcher
             {
                 Directory.Delete(".\\cdn", true);
             }
-            Directory.CreateDirectory(".\\cdn2");
+            Directory.CreateDirectory(".\\cdn");
             var files = Directory.GetFiles(".\\wallpaper", "*", SearchOption.AllDirectories);
             var infos = files.Select(x => KeqingNiuzaFileInfo.Create(x)).ToList();
             foreach (var info in infos)
