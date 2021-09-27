@@ -27,8 +27,9 @@ namespace KeqingNiuza.Launcher
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public MainWindow()
+        public MainWindow(string arg = null)
         {
+            _arg = arg;
             Initialized += Window_Initialized;
             Loaded += Window_Loaded;
             InitializeComponent();
@@ -36,10 +37,12 @@ namespace KeqingNiuza.Launcher
         }
 
 
+
         private readonly string versionUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version";
 
         private readonly string wallpaperUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/wallpaper.json";
 
+        private string _arg;
 
         private Downloader _downloader;
 
@@ -116,6 +119,7 @@ namespace KeqingNiuza.Launcher
                 if (files.Any())
                 {
                     Random random = new Random((int)DateTime.Now.Ticks);
+                    // 文件越靠后，被选中的概率越大
                     var index = (int)(files.Length * Math.Log(1 + (Math.E - 1) * random.NextDouble()));
                     Console.WriteLine(files.Length + " " + index);
                     string file = files[index];
@@ -188,6 +192,11 @@ namespace KeqingNiuza.Launcher
             if (CanCancel)
             {
                 _canceled = true;
+                if (_arg == "--download-wallpaper")
+                {
+                    Close();
+                    return;
+                }
                 Process.Start(".\\bin\\KeqingNiuza.exe");
                 Close();
             }
@@ -199,6 +208,11 @@ namespace KeqingNiuza.Launcher
             if (CanRefresh)
             {
                 CanRefresh = false;
+                if (_arg == "--download-wallpaper")
+                {
+                    await DownloadWallpaper();
+                    return;
+                }
                 await UpdateTask();
             }
         }
@@ -214,7 +228,64 @@ namespace KeqingNiuza.Launcher
                 }
             }
             catch { }
+            if (_arg == "--download-wallpaper")
+            {
+                await DownloadWallpaper();
+                return;
+            }
             await UpdateTask();
+        }
+
+
+        private async Task DownloadWallpaper()
+        {
+            InfoTest = "正在检查更新";
+            await Task.Delay(100);
+            var client = new HttpClient();
+            client.DefaultRequestHeaders.Add("User-Agent", $"KeqingNiuza Launcher {MetaData.FileVersion}");
+            string json = null;
+            try
+            {
+                json = await client.GetStringAsync(wallpaperUrl);
+
+            }
+            catch (HttpRequestException ex)
+            {
+                if (_canceled)
+                {
+                    return;
+                }
+                try
+                {
+                    Util.OutputLog(ex);
+                }
+                catch { }
+                InfoTest = ex.Message;
+                CanRefresh = true;
+                return;
+            }
+            var remoteList = JsonConvert.DeserializeObject<List<KeqingNiuzaFileInfo>>(json);
+            remoteList.ForEach(x => x.Path = Path.GetFullPath(x.Path));
+            Directory.CreateDirectory(".\\wallpaper");
+            var fs = Directory.GetFiles(".\\wallpaper", "*");
+            var localFiles = await Task.Run(() => fs.Select(x => new KeqingNiuzaFileInfo(x)).ToList());
+            var downloadingFiles = remoteList.Except(localFiles).ToList();
+            await Task.Delay(100);
+            if (_canceled)
+            {
+                return;
+            }
+            if (downloadingFiles?.Any() ?? false)
+            {
+                CanCancel = false;
+                await DownloadFiles(downloadingFiles);
+            }
+            else
+            {
+                InfoTest = "已下载所有推荐壁纸";
+                await Task.Delay(1000);
+            }
+            Close();
         }
 
 
@@ -235,10 +306,7 @@ namespace KeqingNiuza.Launcher
                 }
                 try
                 {
-                    Directory.CreateDirectory(".\\Log");
-                    var str = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} | Launcher {MetaData.FileVersion}]\n{ex}\n\n";
-                    var name = $".\\Log\\Error-{DateTime.Now:yyMMdd}.txt";
-                    File.AppendAllText(name, str);
+                    Util.OutputLog(ex);
                 }
                 catch { }
                 InfoTest = ex.Message;
@@ -253,7 +321,7 @@ namespace KeqingNiuza.Launcher
             if (list?.Any() ?? false)
             {
                 CanCancel = false;
-                await DownladFiles(list);
+                await DownloadFiles(list);
             }
             Process.Start(".\\bin\\KeqingNiuza.exe");
             Close();
@@ -290,7 +358,7 @@ namespace KeqingNiuza.Launcher
 
 
 
-        private async Task DownladFiles(List<KeqingNiuzaFileInfo> list)
+        private async Task DownloadFiles(List<KeqingNiuzaFileInfo> list)
         {
             _progressLoading.SetAnimationState(AnimationState.IndicatorAppear);
             _progressLoading.SetAnimationState(AnimationState.ProgressExpand);
@@ -333,13 +401,13 @@ namespace KeqingNiuza.Launcher
 
         private string LengthToString(long current, long total)
         {
-            if (total <= 2 << 20)
+            if (total <= 1 << 20)
             {
-                return $"{(double)current / (2 << 10):F2}/{(double)total / (2 << 10):F2} KB";
+                return $"{(double)current / (1 << 10):F2}/{(double)total / (1 << 10):F2} KB";
             }
             else
             {
-                return $"{(double)current / (2 << 20):F2}/{(double)total / (2 << 20):F2} MB";
+                return $"{(double)current / (1 << 20):F2}/{(double)total / (1 << 20):F2} MB";
             }
         }
 

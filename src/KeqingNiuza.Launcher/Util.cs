@@ -59,6 +59,14 @@ namespace KeqingNiuza.Launcher
         }
 
 
+        public static void OutputLog(Exception ex)
+        {
+            Directory.CreateDirectory(".\\Log");
+            var str = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} | Launcher {MetaData.FileVersion}]\n{ex}\n\n";
+            var name = $".\\Log\\launcher-{DateTime.Now:yyMMdd}.txt";
+            File.AppendAllText(name, str);
+        }
+
 
         public static void Deploy()
         {

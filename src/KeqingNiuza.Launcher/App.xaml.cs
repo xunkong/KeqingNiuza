@@ -74,6 +74,14 @@ namespace KeqingNiuza.Launcher
                     return;
                 }
 
+                // 下载推荐壁纸
+                if (e.Args[0] == "--download-wallpaper")
+                {
+                    MainWindow = new MainWindow("--download-wallpaper");
+                    MainWindow.Show();
+                    return;
+                }
+
                 // 删除自己
                 // 此命令一定要带另外两个参数 path:待删除的文件夹 processId:调用进程的Id
                 if (e.Args[0] == "--delete-self")
@@ -109,10 +117,7 @@ namespace KeqingNiuza.Launcher
             var ex = e.ExceptionObject as Exception;
             try
             {
-                Directory.CreateDirectory(".\\Log");
-                var str = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} | Launcher {MetaData.FileVersion}]\n{ex}\n\n";
-                var name = $".\\Log\\Error-{DateTime.Now:yyMMdd}.txt";
-                File.AppendAllText(name, str);
+                Util.OutputLog(ex);
             }
             catch { }
             MessageBox.Show(ex.Message + "\n详细信息已保存在日志中。", "KeqingNiuza Launcher");
