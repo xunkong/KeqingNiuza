@@ -60,7 +60,7 @@ namespace KeqingNiuza.Service
                 }
                 var log = $"[{DateTime.Now}]\n{checkLog}\n\n";
                 Directory.CreateDirectory(LogPath);
-                File.AppendAllText($@"{LogPath}\DailyCheckLog.txt", log);
+                File.AppendAllText($@"{LogPath}\DailyCheck.txt", log);
             }
             catch (Exception ex)
             {
@@ -68,7 +68,7 @@ namespace KeqingNiuza.Service
                 Log.OutputLog(LogType.Warning, "DailyCheckIn", ex);
                 var errorLog = $"[{DateTime.Now}]\n{checkLog}\n\n";
                 Directory.CreateDirectory(LogPath);
-                File.AppendAllText($@"{LogPath}\DailyCheck_ErrorLog.txt", errorLog);
+                File.AppendAllText($@"{LogPath}\DailyCheck-Error.txt", errorLog);
             }
         }
     }

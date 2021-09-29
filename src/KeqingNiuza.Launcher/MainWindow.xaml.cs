@@ -113,6 +113,7 @@ namespace KeqingNiuza.Launcher
         private void Window_Initialized(object sender, EventArgs e)
         {
             BitmapImage bitmap = null;
+            WallpperInfoText.Text = "Reddit@Sevenix2 - Moon over Monstadt";
             try
             {
                 string[] files = Directory.GetFiles(".\\wallpaper");

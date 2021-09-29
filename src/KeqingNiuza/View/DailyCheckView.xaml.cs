@@ -94,7 +94,7 @@ namespace KeqingNiuza.View
                 Log.OutputLog(LogType.Warning, "DailyCheckIn", ex);
                 var errorLog = $"[{DateTime.Now}]\n{TextBox_Log.Text}\n\n";
                 Directory.CreateDirectory(LogPath);
-                File.AppendAllText($@"{LogPath}\DailyCheck_ErrorLog.txt", errorLog);
+                File.AppendAllText($@"{LogPath}\DailyCheck-Error.txt", errorLog);
             }
             finally
             {

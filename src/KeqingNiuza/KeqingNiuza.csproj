@@ -144,9 +144,6 @@
     <Compile Include="View\SettingView.xaml.cs">
       <DependentUpon>SettingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\UpdateLogView.xaml.cs">
-      <DependentUpon>UpdateLogView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
       <SubType>UserControl</SubType>
@@ -253,10 +250,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\UpdateLogView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\WelcomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -333,7 +326,7 @@
   <ItemGroup>
     <Resource Include="logo_256.ico" />
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
     <Resource Include="resource\embed\*" />
   </ItemGroup>
   <ItemGroup>

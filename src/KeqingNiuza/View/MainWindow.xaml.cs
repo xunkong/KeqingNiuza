@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -248,6 +249,19 @@ namespace KeqingNiuza.View
                 ViewModel.ReloadViewContent();
                 await Task.Delay(1000);
                 Growl.Success($"Uid:{userData.Uid}已删除");
+            }
+        }
+
+        private void SideMenu_Manual_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start(@"..\使用手册.pdf");
+            }
+            catch (Exception ex)
+            {
+                Log.OutputLog(LogType.Warning, "Open manual", ex);
+                Growl.Warning(ex.Message);
             }
         }
     }

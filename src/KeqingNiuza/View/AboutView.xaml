@@ -23,11 +23,8 @@
     <hc:ScrollViewer IsInertiaEnabled="True">
 
         <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <!--  项目及更新  -->
+
+            <!--  项目信息  -->
             <StackPanel Margin="30,0,10,10">
                 <TextBlock Margin="0,0,0,10"
                            FontSize="20"
@@ -40,31 +37,8 @@
                         <Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/Scighost/KeqingNiuza">Github@Scighost/KeqingNiuza</Hyperlink>
                     </TextBlock>
                 </StackPanel>
-                <!--  常见问题  -->
-                <TextBlock Margin="0,20,0,0"
-                           FontSize="20"
-                           Text="常见问题" />
-                <TextBlock Margin="0,10,0,10"
-                           FontSize="16"
-                           Text="如何加载祈愿数据" />
-                <TextBlock Margin="0,5,0,5" Text="● 在游戏中打开任意祈愿历史记录" />
-                <TextBlock Margin="0,5,0,5" Text="● 点击软件右上角加载数据" />
-                <TextBlock Margin="0,5,0,5" Text="● 短时间添加多个Uid：个人信息-&gt;更换Uid-&gt;添加Uid-&gt;加载数据" />
-                <TextBlock Margin="0,10,0,10"
-                           FontSize="16"
-                           Text="如何进行云备份" />
-                <TextBlock Margin="0,5,0,5" Text="● 注册坚果云账户" />
-                <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-                    <TextBlock Text="● 授权第三方应用，" />
-                    <TextBlock>
-                        <Hyperlink Click="Hyperlink_Click" NavigateUri="https://help.jianguoyun.com/?p=2064">授权教程</Hyperlink>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
-                    <TextBlock Text="● 点击软件右上角的云，填写账户和" />
-                    <TextBlock FontWeight="Bold" Text="应用密码" />
-                </StackPanel>
-                <TextBlock Margin="0,5,0,5" Text="● 坚果云账户和用户密码会加密保存在本地" />
+
+                <!--  导入6个月前的数据  -->
                 <TextBlock Margin="0,10,0,10"
                            FontSize="16"
                            Text="导入6个月之前的数据" />
@@ -74,6 +48,8 @@
                         Click="Button_ImportExcel_Click"
                         Content="导入数据"
                         FontSize="12" />
+
+                <!--  手动输入祈愿记录网址  -->
                 <TextBlock Margin="0,10,0,4"
                            FontSize="16"
                            Text="手动输入祈愿记录网址" />
@@ -89,78 +65,16 @@
                             FontSize="12" />
                 </StackPanel>
 
-                <!--  致谢  -->
-                <StackPanel Margin="0,20,0,0" Orientation="Horizontal">
-                    <TextBlock FontSize="20" Text="致谢" />
-                    <TextBlock Margin="4,0,0,0"
-                               VerticalAlignment="Bottom"
-                               Foreground="Gray"
-                               Text="（排名不分先后）" />
-                </StackPanel>
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Text="祈愿概率模型：" />
-                    <TextBlock>
-                        <Hyperlink Click="Hyperlink_Click" NavigateUri="https://www.bilibili.com/read/cv10468091">bilibili@一颗平衡树</Hyperlink>
-                    </TextBlock>
-                </StackPanel>
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Text="Midi文件来源：" />
-                    <TextBlock>
-                        <Hyperlink Click="Hyperlink_Click" NavigateUri="https://space.bilibili.com/2765893">bilibili@恰空PurrLude</Hyperlink>
-                    </TextBlock>
-                    <TextBlock Text="、" />
-                    <TextBlock>
-                        <Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/luern0313/WindSong-Lyre-Genshin-Impact">Github@luern0313</Hyperlink>
-                    </TextBlock>
-                    <TextBlock Text="、" />
-                    <TextBlock>
-                        <Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/Misaka17032/genshin-lyre-auto-play">Github@Misaka17032</Hyperlink>
-                    </TextBlock>
-                </StackPanel>
-
+                <!--  捐赠  -->
                 <TextBlock Margin="0,20,0,0"
                            FontSize="20"
-                           Foreground="Purple"
-                           Text="来份牛杂" />
+                           Text="捐赠" />
+                <TextBlock Margin="0,6,0,0" Text="如果觉得我写的软件还不错，欢迎推荐给朋友，也欢迎投喂。" />
                 <TextBlock Margin="0,6,0,0">
-                    支持一下开发者，让我更有动力：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/alipay.jpg">支付宝</Hyperlink>
+                    投喂途径：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/alipay.jpg">支付宝</Hyperlink>
                     、<Hyperlink Click="Hyperlink_Click" NavigateUri="https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/wechatpay.png">微信支付</Hyperlink>
                 </TextBlock>
             </StackPanel>
-
-            <!--  最近更新内容  -->
-            <!--<StackPanel Grid.Column="1" Margin="10,10,30,10">
-                <StackPanel x:Name="StackPanel_UpdateConent" Grid.Column="1" Visibility="Collapsed">
-                    <TextBlock FontSize="20" Text="最近更新内容" />
-                    <TextBlock Name="TextBlock_UpdateContent"
-                               Margin="0,10,0,0"
-                               TextWrapping="Wrap"
-                               Visibility="Collapsed" />
-                    <hc:LoadingCircle x:Name="LoadingCircle_UpdateContent"
-                                      Grid.Column="1"
-                                      Width="30"
-                                      Height="30"
-                                      Margin="0,10,0,10"
-                                      HorizontalAlignment="Left"
-                                      DotDiameter="4"
-                                      Foreground="Gray" />
-                    <TextBlock Margin="0,5,0,0">
-                        <Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/Scighost/KeqingNiuza/blob/main/ChangeLog.md" TextDecorations="None">
-                            更多
-                        </Hyperlink>
-                    </TextBlock>
-                </StackPanel>
-            -->
-            <!--  最新消息  -->
-            <!--
-                <StackPanel x:Name="StackPanel_News" Margin="0,20,0,0" Visibility="Collapsed">
-                    <TextBlock Margin="0,0,0,10" FontSize="20" Text="重要消息" />
-                    <TextBlock x:Name="TextBlock_News" TextWrapping="Wrap" />
-                </StackPanel>
-            </StackPanel>-->
-
-
-
 
         </Grid>
 

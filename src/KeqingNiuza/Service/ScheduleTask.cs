@@ -43,7 +43,7 @@ namespace KeqingNiuza.Service
         {
             using (var t = TaskService.Instance.NewTask())
             {
-                t.RegistrationInfo.Description = "刻记牛杂店-定时提醒";
+                t.RegistrationInfo.Description = "刻记牛杂店-任务提醒";
                 if ((trigger & TaskTrigger.Logon) == TaskTrigger.Logon)
                 {
                     var lt = new LogonTrigger();
@@ -76,7 +76,7 @@ namespace KeqingNiuza.Service
                         if (DateTime.Now > info.NextTriggerTime && info.IsEnable)
                         {
                             new ToastContentBuilder()
-                            .AddText("定时提醒")
+                            .AddText("任务提醒")
                             .AddText($"{info.Name}  倒计时已结束")
                             .AddAttributionText(info.NextTriggerTime.ToString("G"))
                             .Show();
@@ -87,7 +87,7 @@ namespace KeqingNiuza.Service
                         if (DateTime.Now > info.NextMaxValueTime && info.IsEnable)
                         {
                             new ToastContentBuilder()
-                            .AddText("定时提醒")
+                            .AddText("任务提醒")
                             .AddText($"{info.Name} {info.MaxValue}/{info.MaxValue}")
                             .AddAttributionText(info.NextMaxValueTime.ToString("G"))
                             .Show();
@@ -112,7 +112,7 @@ namespace KeqingNiuza.Service
                     if (info.NextTriggerTime > DateTime.Now && info.IsEnable)
                     {
                         new ToastContentBuilder()
-                            .AddText("定时提醒")
+                            .AddText("任务提醒")
                             .AddText($"{info.Name} 倒计时已结束")
                             .AddAttributionText(info.NextTriggerTime.ToString("G"))
                             .Schedule(info.NextTriggerTime);
@@ -123,7 +123,7 @@ namespace KeqingNiuza.Service
                     if (info.NextMaxValueTime > DateTime.Now && info.IsEnable)
                     {
                         new ToastContentBuilder()
-                            .AddText("定时提醒")
+                            .AddText("任务提醒")
                             .AddText($"{info.Name} {info.MaxValue}/{info.MaxValue}")
                             .AddAttributionText(info.NextMaxValueTime.ToString("G"))
                             .Schedule(info.NextMaxValueTime);

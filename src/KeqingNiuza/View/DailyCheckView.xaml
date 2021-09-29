@@ -43,19 +43,6 @@
                     Click="Button_SaveCookie_Click"
                     Content="保存"
                     Visibility="Collapsed" />
-            <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
-                <TextBlock Foreground="Gray" Text="初次使用请查看" />
-                <TextBlock>
-                    <Hyperlink Click="Hyperlink_Click"
-                               NavigateUri="https://www.cnblogs.com/yinghualuowu/p/13996133.html"
-                               TextDecorations="None">
-                        使用教程
-                    </Hyperlink>
-                </TextBlock>
-                <TextBlock VerticalAlignment="Center"
-                           Foreground="Gray"
-                           Text="，自动化签到在设置界面中。如果缺少&quot;cookie_token&quot;值，会出现尚未登陆的错误，请重新登陆米游社。" />
-            </StackPanel>
         </StackPanel>
 
         <StackPanel x:Name="Panel_Cookie"

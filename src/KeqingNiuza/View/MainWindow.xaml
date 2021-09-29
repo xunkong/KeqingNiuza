@@ -74,6 +74,21 @@
                           Points="0 0 140 0"
                           Stroke="Purple"
                           StrokeThickness="0.6" />
+                <Button x:Name="SideMenu_Manual"
+                        Click="SideMenu_Manual_Click"
+                        Style="{StaticResource SideMenuButton}">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="18"
+                              Height="18"
+                              VerticalAlignment="Center"
+                              Data="{StaticResource Manual1}"
+                              Fill="Purple"
+                              Stretch="Uniform" />
+                        <TextBlock Margin="10,0,0,0"
+                                   FontSize="12"
+                                   Text="使用手册" />
+                    </StackPanel>
+                </Button>
                 <RadioButton x:Name="SideMenu_SettingView"
                              Click="RadioButton_SideMenu_Click"
                              GroupName="SideMenu"
@@ -201,7 +216,7 @@
                               Stretch="Uniform" />
                         <TextBlock Margin="10,0,0,0"
                                    FontSize="12"
-                                   Text="定时提醒" />
+                                   Text="任务提醒" />
                     </StackPanel>
                 </RadioButton>
                 <RadioButton x:Name="SideMenu_MidiView"

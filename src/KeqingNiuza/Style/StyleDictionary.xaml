@@ -25,7 +25,9 @@
     </Style>
 
     <!--  最大化按钮  -->
-    <Style x:Key="MaxButtonStyle" BasedOn="{StaticResource ChromeButtonStyle}" TargetType="Button">
+    <Style x:Key="MaxButtonStyle"
+           BasedOn="{StaticResource ChromeButtonStyle}"
+           TargetType="Button">
         <Style.Triggers>
             <DataTrigger Binding="{Binding WindowState, ElementName=Window_Main}" Value="Normal">
                 <Setter Property="Content" Value="&#xE922;" />
@@ -37,7 +39,9 @@
     </Style>
 
     <!--  关闭按钮  -->
-    <Style x:Key="CloseButtonStyle" BasedOn="{StaticResource ChromeButtonStyle}" TargetType="Button">
+    <Style x:Key="CloseButtonStyle"
+           BasedOn="{StaticResource ChromeButtonStyle}"
+           TargetType="Button">
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#E81123" />
@@ -76,7 +80,7 @@
         </Setter>
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="Black" />
-        <Setter Property="FontSize" Value="12"/>
+        <Setter Property="FontSize" Value="12" />
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="Gray" />
@@ -86,7 +90,9 @@
     </Style>
 
     <!--  更换uid按钮  -->
-    <Style x:Key="ChangeUidButtonStyle" BasedOn="{StaticResource BrushButtonStyle}" TargetType="Button">
+    <Style x:Key="ChangeUidButtonStyle"
+           BasedOn="{StaticResource BrushButtonStyle}"
+           TargetType="Button">
         <Setter Property="Foreground" Value="Gray" />
         <Style.Triggers />
     </Style>
@@ -96,9 +102,13 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
-                    <Border Background="{TemplateBinding Background}" BorderThickness="0" CornerRadius="0 10 0 10">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderThickness="0"
+                            CornerRadius="0 10 0 10">
                         <StackPanel Orientation="Horizontal">
-                            <hc:LoadingCircle Name="Button_Loading" Foreground="Gray" Visibility="Collapsed">
+                            <hc:LoadingCircle Name="Button_Loading"
+                                              Foreground="Gray"
+                                              Visibility="Collapsed">
                                 <hc:LoadingCircle.Style>
                                     <Style BasedOn="{StaticResource LoadingCircleBaseStyle}" TargetType="hc:LoadingCircle">
                                         <Setter Property="Visibility" Value="Visible" />
@@ -147,7 +157,7 @@
         </Style.Triggers>
     </Style>
 
-    <!--  侧边栏按钮  -->
+    <!--  侧边栏多选一按钮  -->
     <Style x:Key="SideMenuRadioButton" TargetType="RadioButton">
         <Setter Property="Height" Value="60" />
         <Setter Property="Background" Value="{StaticResource MainColorFocus}" />
@@ -187,6 +197,42 @@
         </Setter>
     </Style>
 
+    <!--  侧边栏按钮  -->
+    <Style x:Key="SideMenuButton" TargetType="Button">
+        <Setter Property="Height" Value="60" />
+        <Setter Property="Background" Value="{StaticResource MainColorFocus}" />
+        <Setter Property="Foreground" Value="Purple" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Rectangle x:Name="Rectangle_State"
+                                       Width="2"
+                                       Height="30"
+                                       Margin="6,0,0,0"
+                                       VerticalAlignment="Center" />
+                            <ContentPresenter Grid.ColumnSpan="2"
+                                              Margin="30,0,0,0"
+                                              HorizontalAlignment="Left"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource MainColor}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <!--  确认按钮  -->
     <Style x:Key="YesButtonStyle" TargetType="Button">
         <Setter Property="Template">
@@ -196,7 +242,9 @@
                             BorderBrush="{TemplateBinding BorderBrush}"
                             BorderThickness="1"
                             CornerRadius="4">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          RecognizesAccessKey="True" />
                     </Border>
                 </ControlTemplate>
             </Setter.Value>

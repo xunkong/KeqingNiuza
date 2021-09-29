@@ -206,5 +206,18 @@ namespace KeqingNiuza.View
                 Log.OutputLog(LogType.Warning, "DailyCheckSettingSave", ex);
             }
         }
+
+        private void Button_DownloadWallpaper_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start(@"..\KeqingNiuza Launcher.exe", "--download-wallpaper");
+            }
+            catch (Exception ex)
+            {
+                Log.OutputLog(LogType.Warning, "Download wallpaper", ex);
+                Growl.Warning(ex.Message);
+            }
+        }
     }
 }

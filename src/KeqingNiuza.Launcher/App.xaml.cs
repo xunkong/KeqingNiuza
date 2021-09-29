@@ -31,14 +31,19 @@ namespace KeqingNiuza.Launcher
             }
             if (!e.Args.Any())
             {
-                //if (!Directory.Exists(".\\bin"))
-                //{
-                //    var result = MessageBox.Show("继续使用则代表同意开发者收集您在使用软件过程中的信息（不包含个人信息）用于优化软件。", "KeqingNiuza Launcher", MessageBoxButton.YesNo);
-                //    if (result != MessageBoxResult.Yes)
-                //    {
-                //        Shutdown();
-                //    }
-                //}
+                if (!File.Exists(".\\UserData\\allow_appcenter"))
+                {
+                    var result = MessageBox.Show("继续使用则代表同意主程序在运行过程中使用 MS App Center 收集非个人信息用于改善体验（主要是修Bug）。", "KeqingNiuza Launcher", MessageBoxButton.YesNo);
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        Directory.CreateDirectory(".\\UserData");
+                        File.Create(".\\UserData\\allow_appcenter").Dispose();
+                    }
+                    else
+                    {
+                        Environment.Exit(0);
+                    }
+                }
                 // 无命令行参数
                 if (ps_Launcher.Any())
                 {

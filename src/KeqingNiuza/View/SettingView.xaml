@@ -47,20 +47,13 @@
 
             <TextBlock Margin="0,0,0,0"
                        FontSize="20"
-                       Text="定时提醒" />
+                       Text="任务提醒" />
             <TextBlock Margin="0,6,0,0"
                        Foreground="Gray"
                        Text="更改此设置需要管理员权限" />
-            <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
-                <TextBlock Foreground="Gray" Text="开始游戏前提醒需要启用「审核进程跟踪」，阅读" />
-                <TextBlock>
-                    <Hyperlink Click="Hyperlink_Click"
-                               NavigateUri="https://www.bilibili.com/read/cv11787661"
-                               TextDecorations="None">
-                        设置教程
-                    </Hyperlink>
-                </TextBlock>
-            </StackPanel>
+            <TextBlock Margin="0,4,0,0"
+                       Foreground="Gray"
+                       Text="开始游戏前提醒需要启用「审核进程跟踪」" />
             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                 <TextBlock Width="120"
                            VerticalAlignment="Center"
@@ -153,7 +146,15 @@
                 </StackPanel>
                 <TextBlock Margin="0,4,0,0"
                            Foreground="Gray"
-                           Text="壁纸保存在wallpaper文件夹中，内容仅代表个人喜好" />
+                           Text="启动器运行时会下载推荐壁纸，作为其背景图片" />
+                <TextBlock Margin="0,4,0,0"
+                           Foreground="Gray"
+                           Text="壁纸保存在wallpaper文件夹中，内容仅代表开发者个人喜好" />
+                <Button x:Name="Button_DownloadWallpaper"
+                        Margin="0,8,0,0"
+                        HorizontalAlignment="Left"
+                        Click="Button_DownloadWallpaper_Click"
+                        Content="立即下载" />
 
             </StackPanel>
         </StackPanel>

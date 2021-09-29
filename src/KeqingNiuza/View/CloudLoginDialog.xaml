@@ -61,7 +61,7 @@
                     <TextBlock Grid.Row="4"
                                Grid.Column="0"
                                VerticalAlignment="Center"
-                               Text="密码：" />
+                               Text="应用密码：" />
                     <PasswordBox x:Name="InputPassword"
                                  Grid.Row="4"
                                  Grid.Column="1"

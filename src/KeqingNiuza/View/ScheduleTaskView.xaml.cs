@@ -54,13 +54,6 @@ namespace KeqingNiuza.View
             }
         }
 
-        private void Hyperlink_Click(object sender, RoutedEventArgs e)
-        {
-            var link = sender as Hyperlink;
-            Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
-        }
-
-
 
         private ObservableCollection<ScheduleInfo> _ScheduleTaskList;
         public ObservableCollection<ScheduleInfo> ScheduleTaskList

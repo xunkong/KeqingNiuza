@@ -15,7 +15,7 @@ namespace KeqingNiuza.Service
             if (EnableLog)
             {
                 Directory.CreateDirectory(LogPath);
-                var fileName = $@"{LogPath}\\log_{DateTime.Now:yyMMdd}.txt";
+                var fileName = $@"{LogPath}\\keqing-{DateTime.Now:yyMMdd}.txt";
                 var str = $"[{type}] [{DateTime.Now:yy-MM-dd HH:mm:ss.fff} | KeqingNiuza {FileVersion} | {UserId}]\n{ex}\n\n";
                 File.AppendAllText(fileName, str);
             }
@@ -27,7 +27,7 @@ namespace KeqingNiuza.Service
             if (EnableLog)
             {
                 Directory.CreateDirectory(LogPath);
-                var fileName = $@"{LogPath}\\log_{DateTime.Now:yyMMdd}.txt";
+                var fileName = $@"{LogPath}\\keqing-{DateTime.Now:yyMMdd}.txt";
                 var str = $"[{type}] [{DateTime.Now:yy-MM-dd HH:mm:ss.fff} | KeqingNiuza {FileVersion} | {UserId}]\n{content}\n\n";
                 File.AppendAllText(fileName, str);
             }
@@ -39,7 +39,7 @@ namespace KeqingNiuza.Service
             if (EnableLog)
             {
                 Directory.CreateDirectory(LogPath);
-                var fileName = $@"{LogPath}\\log_{DateTime.Now:yyMMdd}.txt";
+                var fileName = $@"{LogPath}\\keqing-{DateTime.Now:yyMMdd}.txt";
                 var str = $"[{type}] [{DateTime.Now:yy-MM-dd HH:mm:ss.fff} | KeqingNiuza {FileVersion} | {UserId}] [{step}]\n{ex}\n\n";
                 File.AppendAllText(fileName, str);
             }
