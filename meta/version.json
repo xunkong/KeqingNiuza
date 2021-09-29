@@ -1,14 +1,14 @@
 {
-  "Version": "2.0.4",
-  "LastUpdateTime": "2021-09-23T09:49:02.0975414+08:00",
+  "Version": "2.1.0",
+  "LastUpdateTime": "2021-09-29T10:19:14.4346026+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "KeqingNiuza Launcher.exe",
       "Path": ".\\KeqingNiuza Launcher.exe",
-      "Size": 1462272,
-      "CompressedSize": 1053809,
-      "SHA256": "2EB32B7FDF9BB1F43C706D0EC3F91318526A83668DDA20BA99B77D0398FAB526",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2EB32B7FDF9BB1F43C706D0EC3F91318526A83668DDA20BA99B77D0398FAB526",
+      "Size": 1468416,
+      "CompressedSize": 1056170,
+      "SHA256": "09D580ABE617232DFFBF15B5EF6C198DFF638BEC83CA8BABD11F2361894B796E",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/0/09D580ABE617232DFFBF15B5EF6C198DFF638BEC83CA8BABD11F2361894B796E",
       "ContentEncoding": "Deflate"
     },
     {
@@ -27,6 +27,15 @@
       "CompressedSize": 262616,
       "SHA256": "B624949DF8B0E3A6153FDFB730A7C6F4990B6592EE0D922E1788433D276610F3",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B624949DF8B0E3A6153FDFB730A7C6F4990B6592EE0D922E1788433D276610F3",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "使用手册.pdf",
+      "Path": ".\\使用手册.pdf",
+      "Size": 1803919,
+      "CompressedSize": 1756426,
+      "SHA256": "93CF5436A403DF9E18F6FC72820E74393A35DC10576763EE4B9BD8D45EC5FB4C",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/93CF5436A403DF9E18F6FC72820E74393A35DC10576763EE4B9BD8D45EC5FB4C",
       "ContentEncoding": "Deflate"
     },
     {
@@ -86,10 +95,10 @@
     {
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
-      "Size": 1683456,
-      "CompressedSize": 1145595,
-      "SHA256": "46650CC1566578FB5EFCC3834FD448B971E87AEECCA583251AA34CADC1FB0E50",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/46650CC1566578FB5EFCC3834FD448B971E87AEECCA583251AA34CADC1FB0E50",
+      "Size": 1681920,
+      "CompressedSize": 1145493,
+      "SHA256": "44A4C3DC6D32E757ABEE9F56B20D330427B323DF9353A2FA297958791617E4D5",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/44A4C3DC6D32E757ABEE9F56B20D330427B323DF9353A2FA297958791617E4D5",
       "ContentEncoding": "Deflate"
     },
     {
@@ -104,10 +113,10 @@
     {
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
-      "Size": 386560,
-      "CompressedSize": 77734,
-      "SHA256": "9B2BBF9466EFF18DB7AB2C3073F61629ABE173FA0AB798AD65CF1362BFE2DDBB",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/9B2BBF9466EFF18DB7AB2C3073F61629ABE173FA0AB798AD65CF1362BFE2DDBB",
+      "Size": 384512,
+      "CompressedSize": 77603,
+      "SHA256": "6215A32052F82D218CC893C56B56B8A428FEAAE8E1F393D2BA35EC5F110A30AF",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/6215A32052F82D218CC893C56B56B8A428FEAAE8E1F393D2BA35EC5F110A30AF",
       "ContentEncoding": "Deflate"
     },
     {
@@ -3051,42 +3060,6 @@
       "CompressedSize": 570705,
       "SHA256": "9877F703CE3FB9669D656D24726159B616B2DF25522225BF41BFAFE89954C58A",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/9877F703CE3FB9669D656D24726159B616B2DF25522225BF41BFAFE89954C58A",
-      "ContentEncoding": "Deflate"
-    },
-    {
-      "Name": "2.0.png",
-      "Path": ".\\splash\\2.0.png",
-      "Size": 9588419,
-      "CompressedSize": 9433075,
-      "SHA256": "F673ECC642DD7CE2E89A521949F71D9DB060254D630B570D9381FF40253DF7A9",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F673ECC642DD7CE2E89A521949F71D9DB060254D630B570D9381FF40253DF7A9",
-      "ContentEncoding": "Deflate"
-    },
-    {
-      "Name": "2.1.png",
-      "Path": ".\\splash\\2.1.png",
-      "Size": 8596343,
-      "CompressedSize": 8467317,
-      "SHA256": "E819D99E46AAE571832F98A8B500AFF087BA96414C31FDBE11B247DC34E92E7D",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E819D99E46AAE571832F98A8B500AFF087BA96414C31FDBE11B247DC34E92E7D",
-      "ContentEncoding": "Deflate"
-    },
-    {
-      "Name": "Genshin Concert.png",
-      "Path": ".\\splash\\Genshin Concert.png",
-      "Size": 7555752,
-      "CompressedSize": 7555846,
-      "SHA256": "81A55CF30DE532EB608BCE0189B8CCF64DD099FA29E4C4D78761C160111733AB",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/81A55CF30DE532EB608BCE0189B8CCF64DD099FA29E4C4D78761C160111733AB",
-      "ContentEncoding": "Deflate"
-    },
-    {
-      "Name": "Moon over Monstadt.png",
-      "Path": ".\\splash\\Moon over Monstadt.png",
-      "Size": 6863206,
-      "CompressedSize": 6750350,
-      "SHA256": "3AF6CED5C82EB7841F1213AC7DA0D707B93B68745CFF6A8BF259309A1264356A",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/3AF6CED5C82EB7841F1213AC7DA0D707B93B68745CFF6A8BF259309A1264356A",
       "ContentEncoding": "Deflate"
     }
   ]
