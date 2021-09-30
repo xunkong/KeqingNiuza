@@ -1,6 +1,6 @@
 {
   "Version": "2.1.0",
-  "LastUpdateTime": "2021-09-29T10:19:14.4346026+08:00",
+  "LastUpdateTime": "2021-09-30T08:57:17.0576003+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "KeqingNiuza Launcher.exe",
@@ -32,10 +32,10 @@
     {
       "Name": "使用手册.pdf",
       "Path": ".\\使用手册.pdf",
-      "Size": 1803919,
-      "CompressedSize": 1756426,
-      "SHA256": "93CF5436A403DF9E18F6FC72820E74393A35DC10576763EE4B9BD8D45EC5FB4C",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/93CF5436A403DF9E18F6FC72820E74393A35DC10576763EE4B9BD8D45EC5FB4C",
+      "Size": 1807384,
+      "CompressedSize": 1759782,
+      "SHA256": "E044407692EE97D3086ED403D91710783B9621F12E005358A36B7E1E4210546B",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E044407692EE97D3086ED403D91710783B9621F12E005358A36B7E1E4210546B",
       "ContentEncoding": "Deflate"
     },
     {
@@ -96,9 +96,9 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1681920,
-      "CompressedSize": 1145493,
-      "SHA256": "44A4C3DC6D32E757ABEE9F56B20D330427B323DF9353A2FA297958791617E4D5",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/44A4C3DC6D32E757ABEE9F56B20D330427B323DF9353A2FA297958791617E4D5",
+      "CompressedSize": 1145492,
+      "SHA256": "39F826910EE9760387B76A7027B4315CFCDCC9779CBE98A244D4B91085142DC5",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/39F826910EE9760387B76A7027B4315CFCDCC9779CBE98A244D4B91085142DC5",
       "ContentEncoding": "Deflate"
     },
     {
@@ -114,9 +114,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 384512,
-      "CompressedSize": 77603,
-      "SHA256": "6215A32052F82D218CC893C56B56B8A428FEAAE8E1F393D2BA35EC5F110A30AF",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/6215A32052F82D218CC893C56B56B8A428FEAAE8E1F393D2BA35EC5F110A30AF",
+      "CompressedSize": 77601,
+      "SHA256": "F1B122A9311CCE7F555625A1F408C9CA15352D42377234F30386AD3C813C3704",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F1B122A9311CCE7F555625A1F408C9CA15352D42377234F30386AD3C813C3704",
       "ContentEncoding": "Deflate"
     },
     {
