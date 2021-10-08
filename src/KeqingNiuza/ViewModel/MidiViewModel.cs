@@ -219,14 +219,7 @@ namespace KeqingNiuza.ViewModel
             }
             var infos = files.ConvertAll(x => new MidiFileInfo(x)).OrderBy(x => x.Name);
             MidiFileInfoList = new ObservableCollection<MidiFileInfo>(infos);
-            if (Properties.Settings.Default.IsOversea)
-            {
-                MidiPlayer = new MidiPlayer("Genshin Impact");
-            }
-            else
-            {
-                MidiPlayer = new MidiPlayer("YuanShen");
-            }
+            MidiPlayer = new MidiPlayer();
             MidiPlayer.Started += MidiPlayer_Started;
             MidiPlayer.Stopped += MidiPlayer_Stopped;
             MidiPlayer.Finished += MidiPlayer_Finished;
@@ -357,14 +350,7 @@ namespace KeqingNiuza.ViewModel
             }
             if (!CanPlay)
             {
-                if (Properties.Settings.Default.IsOversea)
-                {
-                    MidiPlayer = new MidiPlayer("Genshin Impact");
-                }
-                else
-                {
-                    MidiPlayer = new MidiPlayer("YuanShen");
-                }
+                MidiPlayer = new MidiPlayer();
                 SelectedMidiFile = MidiFileInfoList.First();
                 RefreshState();
             }

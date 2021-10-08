@@ -154,6 +154,17 @@ namespace KeqingNiuza.Core.Midi
             }
         }
 
+        public MidiPlayer()
+        {
+            var pros = Process.GetProcessesByName("YuanShen").ToList();
+            pros.AddRange(Process.GetProcessesByName("GenshinImpact"));
+            if (pros.Any())
+            {
+                _hWnd = pros[0].MainWindowHandle;
+                CanPlay = true;
+            }
+        }
+
         ~MidiPlayer()
         {
             _playback?.Dispose();
