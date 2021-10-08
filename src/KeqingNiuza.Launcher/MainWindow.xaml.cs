@@ -38,7 +38,7 @@ namespace KeqingNiuza.Launcher
 
 
 
-        private readonly string versionUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version";
+        private readonly string versionUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version.json";
 
         private readonly string wallpaperUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/wallpaper.json";
 
@@ -250,7 +250,7 @@ namespace KeqingNiuza.Launcher
                 json = await client.GetStringAsync(wallpaperUrl);
 
             }
-            catch (HttpRequestException ex)
+            catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
             {
                 if (_canceled)
                 {
@@ -299,7 +299,7 @@ namespace KeqingNiuza.Launcher
             {
                 list = await TestUpdate();
             }
-            catch (HttpRequestException ex)
+            catch (Exception ex) when (ex is HttpRequestException || ex is TaskCanceledException)
             {
                 if (_canceled)
                 {
@@ -331,24 +331,24 @@ namespace KeqingNiuza.Launcher
 
         private async Task<List<KeqingNiuzaFileInfo>> TestUpdate()
         {
-            var client = new HttpClient();
+            var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate });
             client.DefaultRequestHeaders.Add("User-Agent", $"KeqingNiuza Launcher {MetaData.FileVersion}");
-            var bytes = await client.GetByteArrayAsync(versionUrl);
-            var ms = new MemoryStream();
-            using (var dcs = new DeflateStream(new MemoryStream(bytes), CompressionMode.Decompress))
+            client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
+            var jsonTask = client.GetStringAsync(versionUrl);
+            var wallpaperExist = File.Exists(".\\UserData\\setting_wallpaper");
+            Task<string> wallpaperTask = null;
+            if (wallpaperExist)
             {
-                await dcs.CopyToAsync(ms);
+                wallpaperTask = client.GetStringAsync(wallpaperUrl);
             }
-            var json = System.Text.Encoding.UTF8.GetString(ms.ToArray());
-            var versionInfo = JsonConvert.DeserializeObject<VersionInfo>(json);
-            if (File.Exists(".\\UserData\\setting_wallpaper"))
+            var fs = await Task.Run(() => Directory.GetFiles(".\\", "*", SearchOption.AllDirectories));
+            var files = await Task.Run(() => fs.Select(x => new KeqingNiuzaFileInfo(x)).ToList());
+            var versionInfo = JsonConvert.DeserializeObject<VersionInfo>(await jsonTask);
+            if (wallpaperExist)
             {
-                var str = await client.GetStringAsync(wallpaperUrl);
-                var wallpapers = JsonConvert.DeserializeObject<List<KeqingNiuzaFileInfo>>(str);
+                var wallpapers = JsonConvert.DeserializeObject<List<KeqingNiuzaFileInfo>>(await wallpaperTask);
                 versionInfo.KeqingNiuzaFiles.AddRange(wallpapers);
             }
-            var fs = Directory.GetFiles(".\\", "*", SearchOption.AllDirectories);
-            var files = await Task.Run(() => fs.Select(x => new KeqingNiuzaFileInfo(x)).ToList());
             versionInfo.KeqingNiuzaFiles.ForEach(x => x.Path = Path.GetFullPath(x.Path));
             if (versionInfo.Version != VersionText.Text)
             {
