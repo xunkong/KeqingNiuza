@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading.Tasks;
+using System.Windows;
 using HandyControl.Controls;
 using HandyControl.Tools.Extension;
 using KeqingNiuza.Core.CloudBackup;
@@ -152,6 +153,8 @@ namespace KeqingNiuza.ViewModel
             }
         }
 
+        public Visibility DailyCheckVisibility => App.ExtensionSetting.EnableHoyolabCheckin ? Visibility.Visible : Visibility.Collapsed;
+
 
         #endregion
 
@@ -168,7 +171,7 @@ namespace KeqingNiuza.ViewModel
 
         public void SaveConfig()
         {
-            if (SelectedUserData == null|| UserDataList==null)
+            if (SelectedUserData == null || UserDataList == null)
             {
                 return;
             }

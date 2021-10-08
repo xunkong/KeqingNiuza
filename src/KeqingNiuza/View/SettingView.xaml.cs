@@ -70,6 +70,8 @@ namespace KeqingNiuza.View
         }
 
 
+        public Visibility DailyCheckVisibility => App.ExtensionSetting.EnableHoyolabCheckin ? Visibility.Visible : Visibility.Collapsed;
+
 
         private bool _DailyCheck_IsAutoCheckIn = Properties.Settings.Default.DailyCheck_IsAutoCheckIn;
         public bool DailyCheck_IsAutoCheckIn

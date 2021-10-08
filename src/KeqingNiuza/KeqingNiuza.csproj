@@ -95,6 +95,7 @@
     <Compile Include="Converter\TimeSpanToSliderValueConverter.cs" />
     <Compile Include="Converter\UidConverter.cs" />
     <Compile Include="Converter\WishTypeConverter.cs" />
+    <Compile Include="Model\ExtensionSetting.cs" />
     <Compile Include="Model\ScheduleInfo.cs" />
     <Compile Include="Service\Const.cs" />
     <Compile Include="Service\DailyCheckTask.cs" />

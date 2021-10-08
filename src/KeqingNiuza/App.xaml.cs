@@ -1,6 +1,9 @@
 ﻿using System;
+using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows;
+using KeqingNiuza.Model;
 using KeqingNiuza.Service;
 using KeqingNiuza.View;
 using Microsoft.AppCenter;
@@ -14,6 +17,8 @@ namespace KeqingNiuza
     /// </summary>
     public partial class App : Application
     {
+
+        internal static ExtensionSetting ExtensionSetting { get; private set; }
 
         protected override async void OnStartup(StartupEventArgs e)
         {
@@ -39,6 +44,17 @@ namespace KeqingNiuza
                 AppCenter.Start("67db8a8a-9f6e-4f36-bf69-aa61bb78245d", typeof(Analytics), typeof(Crashes));
                 AppCenter.SetUserId(Const.UserId);
 #endif
+                var extensionPath = $"{Const.UserDataPath}\\ExtensionSetting.json";
+                if (File.Exists(extensionPath))
+                {
+                    var json = File.ReadAllText(extensionPath);
+                    ExtensionSetting = JsonSerializer.Deserialize<ExtensionSetting>(json);
+                }
+                if (ExtensionSetting == null)
+                {
+                    ExtensionSetting = new ExtensionSetting();
+                }
+                File.WriteAllText(extensionPath, JsonSerializer.Serialize(ExtensionSetting));
                 MainWindow = new MainWindow();
                 MainWindow.Show();
             }

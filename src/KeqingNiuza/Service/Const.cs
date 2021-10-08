@@ -10,7 +10,7 @@ namespace KeqingNiuza.Service
 {
     internal class Const
     {
-        public static JsonSerializerOptions JsonOptions { get; } = new JsonSerializerOptions() { Encoder = JavaScriptEncoder.Create(UnicodeRanges.All), WriteIndented = true };
+        public static JsonSerializerOptions JsonOptions { get; } = new JsonSerializerOptions() { AllowTrailingCommas = true, Encoder = JavaScriptEncoder.Create(UnicodeRanges.All), WriteIndented = true };
 
         public static string UserDataPath { get; } = "..\\UserData";
 

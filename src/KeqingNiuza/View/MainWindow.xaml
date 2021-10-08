@@ -240,7 +240,8 @@
                              Click="RadioButton_SideMenu_Click"
                              GroupName="SideMenu"
                              Style="{StaticResource SideMenuRadioButton}"
-                             Tag="DailyCheckView">
+                             Tag="DailyCheckView"
+                             Visibility="{Binding DailyCheckVisibility}">
                     <StackPanel Orientation="Horizontal">
                         <Path Width="18"
                               Height="18"

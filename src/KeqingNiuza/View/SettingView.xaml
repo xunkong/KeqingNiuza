@@ -89,7 +89,7 @@
                               Style="{StaticResource ToggleButtonSwitch}" />
             </StackPanel>
 
-            <StackPanel>
+            <StackPanel Visibility="{Binding DailyCheckVisibility}">
                 <TextBlock Margin="0,20,0,0"
                            FontSize="20"
                            Text="米游社签到" />
