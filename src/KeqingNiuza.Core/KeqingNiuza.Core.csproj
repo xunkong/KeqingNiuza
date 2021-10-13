@@ -70,6 +70,10 @@
     <Compile Include="Midi\MidiPlaySetting.cs" />
     <Compile Include="Midi\MidiTrack.cs" />
     <Compile Include="Midi\Util.cs" />
+    <Compile Include="MusicGame\ButtonType.cs" />
+    <Compile Include="MusicGame\MusicGameUtil.cs" />
+    <Compile Include="MusicGame\NoteInfo.cs" />
+    <Compile Include="MusicGame\OperationType.cs" />
     <Compile Include="Native\FsModifier.cs" />
     <Compile Include="Native\Msg.cs" />
     <Compile Include="Native\User32.cs" />

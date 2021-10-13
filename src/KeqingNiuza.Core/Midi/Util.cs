@@ -3,11 +3,11 @@ using System.Diagnostics;
 using System.Linq;
 using System.Security.Principal;
 using System.Text;
-using KeqingNiuza.Core.Midi.Native;
-using static KeqingNiuza.Core.Midi.Native.FsModifier;
-using static KeqingNiuza.Core.Midi.Native.Msg;
-using static KeqingNiuza.Core.Midi.Native.User32;
-using static KeqingNiuza.Core.Midi.Native.VirtualKey;
+using KeqingNiuza.Core.Native;
+using static KeqingNiuza.Core.Native.FsModifier;
+using static KeqingNiuza.Core.Native.Msg;
+using static KeqingNiuza.Core.Native.User32;
+using static KeqingNiuza.Core.Native.VirtualKey;
 
 namespace KeqingNiuza.Core.Midi
 {

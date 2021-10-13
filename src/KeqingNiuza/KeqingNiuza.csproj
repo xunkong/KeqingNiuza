@@ -139,6 +139,9 @@
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\MusicGameView.xaml.cs">
+      <DependentUpon>MusicGameView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ScheduleTaskView.xaml.cs">
       <DependentUpon>ScheduleTaskView.xaml</DependentUpon>
     </Compile>
@@ -242,6 +245,10 @@
     <Page Include="View\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\MusicGameView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
     </Page>
     <Page Include="View\ScheduleTaskView.xaml">
       <SubType>Designer</SubType>

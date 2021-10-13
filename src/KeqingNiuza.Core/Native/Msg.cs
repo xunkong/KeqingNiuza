@@ -3,7 +3,7 @@
 
 using System;
 
-namespace KeqingNiuza.Core.Midi.Native
+namespace KeqingNiuza.Core.Native
 {
     /// <summary>
     /// Windows Messages

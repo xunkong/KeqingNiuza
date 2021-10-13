@@ -254,6 +254,24 @@
                                    Text="米游社签到" />
                     </StackPanel>
                 </RadioButton>
+                <RadioButton x:Name="SideMenu_MusicGameView"
+                             Click="RadioButton_SideMenu_Click"
+                             GroupName="SideMenu"
+                             Style="{StaticResource SideMenuRadioButton}"
+                             Tag="MusicGameView"
+                             Visibility="Collapsed">
+                    <StackPanel Orientation="Horizontal">
+                        <Path Width="18"
+                              Height="18"
+                              VerticalAlignment="Center"
+                              Data="{StaticResource Music}"
+                              Fill="Purple"
+                              Stretch="Uniform" />
+                        <TextBlock Margin="10,0,0,0"
+                                   FontSize="12"
+                                   Text="镜花听世" />
+                    </StackPanel>
+                </RadioButton>
             </StackPanel>
 
         </DockPanel>
