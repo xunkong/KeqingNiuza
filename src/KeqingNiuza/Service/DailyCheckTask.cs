@@ -44,7 +44,7 @@ namespace KeqingNiuza.Service
         public static async System.Threading.Tasks.Task CheckIn()
         {
             string checkLog = null;
-            KeqingNiuza.Core.DailyCheck.Program.PrintLog = (log) => checkLog += $"[{DateTime.Now:HH:mm:ss}]{log}";
+            KeqingNiuza.Core.DailyCheck.Program.PrintLog = (log) => checkLog += $"[{DateTime.Now:HH:mm:ss}]{log}\n";
             if (!File.Exists($@"{UserDataPath}\DailyCheckCookies"))
             {
                 return;
