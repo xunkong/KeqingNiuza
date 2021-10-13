@@ -52,12 +52,11 @@ jobs:
         publish_dir: bin/Release/cdn2
         # An alias for enable_jekyll to disable adding .nojekyll file to master or gh-pages branches
         disable_nojekyll: true
-
-    - name: Setup Python
-      uses: actions/setup-python@v2.2.2
       
     - name: Setup Tencent COSCMD
-      run: pip install coscmd
+      run: |
+        pip install cos-python-sdk-v5==1.9.8
+        pip install coscmd
 
     - name: Deploy to qcloud
       shell: cmd
