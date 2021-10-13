@@ -16,6 +16,7 @@ namespace KeqingNiuza.Service
     {
 
         private const string regepath = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\原神\";
+        private const string regepath_sea = @"HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\原神\";
 
         public static bool IsAdmin()
         {
@@ -27,6 +28,10 @@ namespace KeqingNiuza.Service
         private static string GetQueryXml()
         {
             var launcherPath = Registry.GetValue(regepath, "DisplayIcon", null) as string;
+            if (launcherPath == null)
+            {
+                launcherPath = Registry.GetValue(regepath_sea, "DisplayIcon", null) as string;
+            }
             var qtPath = launcherPath.Replace("launcher.exe", "QtWebEngineProcess.exe");
             return $@"<QueryList>
   <Query Id='0' Path='Security'>
