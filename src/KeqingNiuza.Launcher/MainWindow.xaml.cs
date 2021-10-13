@@ -113,7 +113,7 @@ namespace KeqingNiuza.Launcher
         private void Window_Initialized(object sender, EventArgs e)
         {
             BitmapImage bitmap = null;
-            WallpperInfoText.Text = "Reddit@Sevenix2 - Moon over Monstadt";
+            WallpperInfoText.Text = "Sevenix2 - Moon over Monstadt";
             try
             {
                 string[] files = Directory.GetFiles(".\\wallpaper");
@@ -190,17 +190,7 @@ namespace KeqingNiuza.Launcher
 
         private void Button_Skip_Click(object sender, RoutedEventArgs e)
         {
-            if (CanCancel)
-            {
-                _canceled = true;
-                if (_arg == "--download-wallpaper")
-                {
-                    Close();
-                    return;
-                }
-                Process.Start(".\\bin\\KeqingNiuza.exe");
-                Close();
-            }
+            CancelAndSkip();
         }
 
 
@@ -218,6 +208,47 @@ namespace KeqingNiuza.Launcher
             }
         }
 
+
+        private void Window_MouseButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed && e.ClickCount == 2)
+            {
+                CancelAndSkip();
+            }
+            if (e.RightButton == MouseButtonState.Pressed && e.ClickCount == 2)
+            {
+                Close();
+            }
+        }
+
+
+        private void Window_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Close();
+            }
+            if (e.Key == Key.Space || e.Key == Key.Enter)
+            {
+                CancelAndSkip();
+            }
+        }
+
+
+        private void CancelAndSkip()
+        {
+            if (CanCancel)
+            {
+                _canceled = true;
+                if (_arg == "--download-wallpaper")
+                {
+                    Close();
+                    return;
+                }
+                Process.Start(".\\bin\\KeqingNiuza.exe");
+                Close();
+            }
+        }
 
         private async void Window_Loaded(object sender, RoutedEventArgs _)
         {
