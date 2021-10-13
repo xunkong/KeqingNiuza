@@ -810,5 +810,19 @@
     "Rank": 5,
     "ItemType": "武器",
     "WeaponType": 5
+  },
+  {
+    "Name": "冬极白星",
+    "NameEn": "Polar Star",
+    "Rank": 5,
+    "ItemType": "武器",
+    "WeaponType": 3
+  },
+  {
+    "Name": "恶王丸",
+    "NameEn": "Akuoumaru",
+    "Rank": 4,
+    "ItemType": "武器",
+    "WeaponType": 2
   }
 ]
