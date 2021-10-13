@@ -11,7 +11,7 @@
 - 祈愿记录加载及分析
 - 每日/每周任务提醒
 - 自动演奏风物之诗琴
-- 下载推荐壁纸
+- 推荐壁纸
 
 ## 使用教程
 
@@ -19,7 +19,6 @@
 
 ## 相关开源项目
 
-- [.NET](https://github.com/dotnet/runtime)
 - [ControlzEx](https://github.com/ControlzEx/ControlzEx)
 - [DryWetMidi](https://github.com/melanchall/drywetmidi)
 - [EPPlus](https://github.com/JanKallman/EPPlus)
@@ -29,6 +28,7 @@
 - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
 - [TaskScheduler](https://github.com/dahall/taskscheduler)
 - [WebDavClient](https://github.com/skazantsev/WebDavClient)
+- [WindowsCommunityToolkit](https://github.com/CommunityToolkit/WindowsCommunityToolkit)
 
 ## 捐赠
 
