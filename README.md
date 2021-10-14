@@ -39,3 +39,8 @@
 ## 截图
 
 ![ScreenShot1](img/Snipaste_2021-06-19_10-46-43.png)
+
+---
+
+<img src="img/image-20211014080448738.png" alt="image-20211014080448738" width="400px" style="margin-left: 0;" />
+
