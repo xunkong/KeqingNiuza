@@ -1,6 +1,6 @@
 {
   "Version": "2.1.5",
-  "LastUpdateTime": "2021-10-17T21:36:50.8354164+08:00",
+  "LastUpdateTime": "2021-10-17T21:51:00.3113925+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "KeqingNiuza Launcher.exe",
@@ -96,9 +96,9 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1688064,
-      "CompressedSize": 1147685,
-      "SHA256": "0ACFB7BCBF8039051D03F490BA58EB153C4C6F8E85BFE9A244EF4E509FB457F2",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/0/0ACFB7BCBF8039051D03F490BA58EB153C4C6F8E85BFE9A244EF4E509FB457F2",
+      "CompressedSize": 1147688,
+      "SHA256": "48B944383BBBCA39DB626ECE8D09EB1A0E57B27DA34203A95CB2A6497FEE060B",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/48B944383BBBCA39DB626ECE8D09EB1A0E57B27DA34203A95CB2A6497FEE060B",
       "ContentEncoding": "Deflate"
     },
     {
@@ -114,9 +114,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 402944,
-      "CompressedSize": 81392,
-      "SHA256": "CF9A4B6D23FA3B9D3C4E8D7F7FD784A771A10724FDAEBDBD4A8EF6C391A9D759",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CF9A4B6D23FA3B9D3C4E8D7F7FD784A771A10724FDAEBDBD4A8EF6C391A9D759",
+      "CompressedSize": 81393,
+      "SHA256": "2D5E1550763C46478284BB9783D567FA7A79BB72A8F39CA62E56F4B3857E9378",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2D5E1550763C46478284BB9783D567FA7A79BB72A8F39CA62E56F4B3857E9378",
       "ContentEncoding": "Deflate"
     },
     {
