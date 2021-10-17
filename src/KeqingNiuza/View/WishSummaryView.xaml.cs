@@ -3,7 +3,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using HandyControl.Controls;
 using KeqingNiuza.Model;
+using KeqingNiuza.Service;
 using KeqingNiuza.ViewModel;
 
 namespace KeqingNiuza.View
@@ -22,19 +24,28 @@ namespace KeqingNiuza.View
         {
             InitializeComponent();
             UserData = MainWindowViewModel.GetSelectedUserData();
-            if (UserData == null || MainWindowViewModel.WishDataList == null)
+            if (UserData == null || MainWindowViewModel.WishDataList == null || MainWindowViewModel.WishDataList.Count == 0)
             {
-                throw new NullReferenceException("没有祈愿数据");
+                throw new NullReferenceException($"Uid{UserData.Uid}没有祈愿数据");
             }
         }
 
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            if (ViewModel == null)
+            try
             {
-                await Task.Run(() => ViewModel = new WishSummaryViewModel(UserData));
-                DataContext = ViewModel;
+                if (ViewModel == null)
+                {
+                    await Task.Run(() => ViewModel = new WishSummaryViewModel(UserData));
+                    DataContext = ViewModel;
+                }
             }
+            catch (Exception ex)
+            {
+                Growl.Warning(ex.Message);
+                Log.OutputLog(LogType.Warning, "SelectedUserData_Changed", ex);
+            }
+
         }
 
         private void CharacterOrderRadioButton_Click(object sender, RoutedEventArgs e)

@@ -49,13 +49,16 @@ namespace KeqingNiuza.Core.Wish
                                 x.WishType == data.WishType
                                 && x.StartTime <= data.Time
                                 && x.EndTime >= data.Time);
-                            if (wishevent.UpStar5.Contains(data.Name))
+                            if (wishevent != null)
                             {
-                                is_DaBaoDi = false;
-                            }
-                            else
-                            {
-                                is_DaBaoDi = true;
+                                if (wishevent.UpStar5.Contains(data.Name))
+                                {
+                                    is_DaBaoDi = false;
+                                }
+                                else
+                                {
+                                    is_DaBaoDi = true;
+                                }
                             }
                         }
                     }
@@ -67,13 +70,16 @@ namespace KeqingNiuza.Core.Wish
                                 x.WishType == data.WishType
                                 && x.StartTime <= data.Time
                                 && x.EndTime >= data.Time);
-                            if (wishevent.UpStar5.Contains(data.Name) || wishevent.UpStar4.Contains(data.Name))
+                            if (wishevent != null)
                             {
-                                data.IsUp = true;
-                            }
-                            else
-                            {
-                                data.IsUp = false;
+                                if (wishevent.UpStar5.Contains(data.Name) || wishevent.UpStar4.Contains(data.Name))
+                                {
+                                    data.IsUp = true;
+                                }
+                                else
+                                {
+                                    data.IsUp = false;
+                                }
                             }
                         }
                     }
