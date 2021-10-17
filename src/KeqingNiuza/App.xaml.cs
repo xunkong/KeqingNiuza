@@ -45,16 +45,27 @@ namespace KeqingNiuza
                 AppCenter.SetUserId(Const.UserId);
 #endif
                 var extensionPath = $"{Const.UserDataPath}\\ExtensionSetting.json";
-                if (File.Exists(extensionPath))
+                try
                 {
-                    var json = File.ReadAllText(extensionPath);
-                    ExtensionSetting = JsonSerializer.Deserialize<ExtensionSetting>(json);
+                    if (File.Exists(extensionPath))
+                    {
+                        var json = File.ReadAllText(extensionPath);
+                        ExtensionSetting = JsonSerializer.Deserialize<ExtensionSetting>(json);
+                    }
+                    if (ExtensionSetting == null)
+                    {
+                        ExtensionSetting = new ExtensionSetting();
+                    }
+                    File.WriteAllText(extensionPath, JsonSerializer.Serialize(ExtensionSetting));
                 }
-                if (ExtensionSetting == null)
+                catch (Exception ex)
                 {
-                    ExtensionSetting = new ExtensionSetting();
+                    if (ExtensionSetting is null)
+                    {
+                        ExtensionSetting = new ExtensionSetting();
+                    }
+                    Log.OutputLog(LogType.Fault, "Load and save ExtentionSetting", ex);
                 }
-                File.WriteAllText(extensionPath, JsonSerializer.Serialize(ExtensionSetting));
                 MainWindow = new MainWindow();
                 MainWindow.Show();
             }
