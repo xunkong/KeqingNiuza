@@ -198,7 +198,6 @@ namespace KeqingNiuza.View
                 if (item.Id == 0)
                 {
                     item.Id = id + i;
-                    item.IsLostId = true;
                 }
             }
             var fileName = $"{Service.Const.UserDataPath}\\WishLog_{ImportUid}.json";

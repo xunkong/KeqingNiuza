@@ -70,7 +70,7 @@ namespace KeqingNiuza.Core.Wish
         /// <summary>
         /// 是否丢失祈愿Id，对应从其他软件导出数据，如果丢失，则祈愿Id的值为本地生成，不是全服唯一
         /// </summary>
-        public bool IsLostId { get; set; }
+        //public bool IsLostId { get; set; }
 
         /// <summary>
         /// 在相应卡池中的序号
