@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using OfficeOpenXml;
 
 namespace KeqingNiuza.Core.Wish
@@ -25,96 +23,41 @@ namespace KeqingNiuza.Core.Wish
         private ExcelRange noviceCells;
 
 
-
-        /// <summary>
-        /// 导入数据与现有数据是否匹配
-        /// </summary>
-        public bool IsMatchOriginalData { get; set; }
-
-
-        private bool _CanExport;
-        /// <summary>
-        /// 能否导出合并数据
-        /// </summary>
-        public bool CanExport
-        {
-            get { return _CanExport; }
-            set
-            {
-                _CanExport = value;
-                OnPropertyChanged();
-            }
-        }
+        public List<WishData> ImportedWishDataList { get; set; }
 
 
 
-        public List<WishData> OriginalWishDataList { get; set; }
-
-        public List<ImportedWishData> ImportedWishDataList { get; set; }
-
-
-        private ObservableCollection<ImportedWishData> _ShownWishDataCollection;
-        public ObservableCollection<ImportedWishData> ShownWishDataCollection
-        {
-            get { return _ShownWishDataCollection; }
-            set
-            {
-                _ShownWishDataCollection = value;
-                OnPropertyChanged();
-            }
-        }
-
-
-        public ExcelImporter(List<WishData> originalWishDataList)
-        {
-            OriginalWishDataList = originalWishDataList.OrderBy(x => x.Id).ToList();
-        }
+        public ExcelImporter() { }
 
         /// <summary>
         /// 从Excel文件导入数据
         /// </summary>
         /// <param name="path"></param>
-        public void ImportFromExcel(string path)
+        public static List<WishData> ImportFromExcel(string path)
         {
-            ExcelPackage = new ExcelPackage(new System.IO.FileInfo(path));
-            characterCells = ExcelPackage.Workbook.Worksheets["角色活动祈愿"].Cells;
-            weaponCells = ExcelPackage.Workbook.Worksheets["武器活动祈愿"].Cells;
-            permanentCells = ExcelPackage.Workbook.Worksheets["常驻祈愿"].Cells;
-            noviceCells = ExcelPackage.Workbook.Worksheets["新手祈愿"].Cells;
-            SortImportedData();
-            ShownWishDataCollection = new ObservableCollection<ImportedWishData>(ImportedWishDataList);
-            MatchOriginalData();
+            var importer = new ExcelImporter();
+            var package = new ExcelPackage(new System.IO.FileInfo(path));
+            importer.characterCells = package.Workbook.Worksheets["角色活动祈愿"].Cells;
+            importer.weaponCells = package.Workbook.Worksheets["武器活动祈愿"].Cells;
+            importer.permanentCells = package.Workbook.Worksheets["常驻祈愿"].Cells;
+            importer.noviceCells = package.Workbook.Worksheets["新手祈愿"].Cells;
+            importer.SortImportedData();
+            return importer.ImportedWishDataList;
         }
 
-        /// <summary>
-        /// 当数据发生更改时重新校验
-        /// </summary>
 
-        private void OnCellChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            Task.Run(() =>
-            {
-                foreach (var item in ShownWishDataCollection)
-                {
-                    item.IsError = false;
-                    item.Comment = "";
-                }
-                MatchOriginalData();
-                CanExport = true;
-            });
-        }
 
         /// <summary>
         /// 以祈愿时间为为顺序给导入数据排序
         /// </summary>
         private void SortImportedData()
         {
-            var CharacterList = new List<ImportedWishData>();
+            var CharacterList = new List<WishData>();
             for (int i = 2; ; i++)
             {
                 try
                 {
-                    var data = new ImportedWishData
+                    var data = new WishData
                     {
 #if INTERNAIONAL
                         Time = DateTime.Parse(characterCells[i, 1].Value as string),
@@ -126,7 +69,6 @@ namespace KeqingNiuza.Core.Wish
                         Rank = int.Parse(characterCells[i, 4].Value.ToString()),
                         WishType = WishType.CharacterEvent,
                         Count = 1,
-                        IsLostId = true,
                         Language = "zh-cn"
                     };
                     var id = characterCells[i, 7].Value as string;
@@ -150,12 +92,12 @@ namespace KeqingNiuza.Core.Wish
                 }
             }
 
-            var WeaponList = new List<ImportedWishData>();
+            var WeaponList = new List<WishData>();
             for (int i = 2; ; i++)
             {
                 try
                 {
-                    var data = new ImportedWishData
+                    var data = new WishData
                     {
 #if INTERNAIONAL
                         Time = DateTime.Parse(weaponCells[i, 1].Value as string),
@@ -167,7 +109,6 @@ namespace KeqingNiuza.Core.Wish
                         Rank = int.Parse(weaponCells[i, 4].Value.ToString()),
                         WishType = WishType.WeaponEvent,
                         Count = 1,
-                        IsLostId = true,
                         Language = "zh-cn"
                     };
                     var id = weaponCells[i, 7].Value as string;
@@ -190,12 +131,12 @@ namespace KeqingNiuza.Core.Wish
                 }
             }
 
-            var PermanentList = new List<ImportedWishData>();
+            var PermanentList = new List<WishData>();
             for (int i = 2; ; i++)
             {
                 try
                 {
-                    var data = new ImportedWishData
+                    var data = new WishData
                     {
 #if INTERNAIONAL
                         Time = DateTime.Parse(permanentCells[i, 1].Value as string),
@@ -207,7 +148,6 @@ namespace KeqingNiuza.Core.Wish
                         Rank = int.Parse(permanentCells[i, 4].Value.ToString()),
                         WishType = WishType.Permanent,
                         Count = 1,
-                        IsLostId = true,
                         Language = "zh-cn"
                     };
                     var id = permanentCells[i, 7].Value as string;
@@ -230,12 +170,12 @@ namespace KeqingNiuza.Core.Wish
                 }
             }
 
-            var NoviceList = new List<ImportedWishData>();
+            var NoviceList = new List<WishData>();
             for (int i = 2; ; i++)
             {
                 try
                 {
-                    var data = new ImportedWishData
+                    var data = new WishData
                     {
 #if INTERNAIONAL
                         Time = DateTime.Parse(noviceCells[i, 1].Value as string),
@@ -247,7 +187,6 @@ namespace KeqingNiuza.Core.Wish
                         Rank = int.Parse(noviceCells[i, 4].Value.ToString()),
                         WishType = WishType.Novice,
                         Count = 1,
-                        IsLostId = true,
                         Language = "zh-cn"
                     };
                     var id = noviceCells[i, 7].Value as string;
@@ -271,12 +210,12 @@ namespace KeqingNiuza.Core.Wish
             }
 
 
-            var characterQueue = new Queue<ImportedWishData>(CharacterList);
-            var weaponQueue = new Queue<ImportedWishData>(WeaponList);
-            var permanentQueue = new Queue<ImportedWishData>(PermanentList);
-            var noviceQueue = new Queue<ImportedWishData>(NoviceList);
+            var characterQueue = new Queue<WishData>(CharacterList);
+            var weaponQueue = new Queue<WishData>(WeaponList);
+            var permanentQueue = new Queue<WishData>(PermanentList);
+            var noviceQueue = new Queue<WishData>(NoviceList);
 
-            ImportedWishDataList = new List<ImportedWishData>();
+            ImportedWishDataList = new List<WishData>();
             do
             {
                 WishData a = null, b = null, c = null, d = null, result;
@@ -329,100 +268,5 @@ namespace KeqingNiuza.Core.Wish
 
         }
 
-
-        // 因为很多未知Bug，取消此条
-#if false
-
-        /// <summary>
-        /// 检测重复数据，同一时间点只能由1条或10条数据
-        /// </summary>
-        public void DectectDuplicate()
-        {
-            var groups = ShownWishDataCollection.GroupBy(x => x.Time);
-            foreach (var group in groups)
-            {
-                if (group.Count() != 1 && group.Count() != 10)
-                {
-                    foreach (var item in group)
-                    {
-                        item.IsError = true;
-                        item.Comment = "该时间点数据存在重复或缺失";
-                    }
-                }
-            }
-        }
-
-#endif
-
-
-        /// <summary>
-        /// 检测导入数据与现有数据匹配
-        /// </summary>
-        public void MatchOriginalData()
-        {
-            foreach (var item in ShownWishDataCollection)
-            {
-                item.IsError = false;
-                item.Comment = "";
-            }
-            var list = ShownWishDataCollection.Except(OriginalWishDataList, new ImportDataComparer());
-            var time = OriginalWishDataList.First().Time;
-            var errorlist = list.Where(x => x.Time >= time).Select(x => x).ToList();
-            if (errorlist.Any())
-            {
-                foreach (ImportedWishData data in errorlist)
-                {
-                    data.IsError = true;
-                    data.Comment = "与现有数据不匹配";
-                }
-                IsMatchOriginalData = false;
-                CanExport = false;
-            }
-            else
-            {
-                IsMatchOriginalData = true;
-                CanExport = true;
-            }
-        }
-
-
-
-
-
-        /// <summary>
-        /// 导出合并数据
-        /// </summary>
-        /// <returns></returns>
-        public List<WishData> ExportMergedDataList()
-        {
-            var mergedDataList = new List<WishData>();
-            var time = OriginalWishDataList.First().Time;
-            var foreList = ImportedWishDataList.Where(x => x.Time < time).Select(x => x).ToList();
-            long i = 1000000000000000000;
-            foreach (var data in foreList)
-            {
-                if (data.Id == 0)
-                {
-                    i++;
-                    data.Id = i;
-                }
-            }
-            mergedDataList.AddRange(foreList);
-            mergedDataList.AddRange(OriginalWishDataList);
-            return mergedDataList;
-        }
-    }
-
-    class ImportDataComparer : IEqualityComparer<WishData>
-    {
-        public bool Equals(WishData x, WishData y)
-        {
-            return (x.Time, x.Name) == (y.Time, y.Name);
-        }
-
-        public int GetHashCode(WishData obj)
-        {
-            return (obj.Time, obj.Name).GetHashCode();
-        }
     }
 }

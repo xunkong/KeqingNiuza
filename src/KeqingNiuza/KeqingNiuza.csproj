@@ -119,7 +119,6 @@
     <Compile Include="Model\UserData.cs" />
     <Compile Include="Service\Log.cs" />
     <Compile Include="Service\LogType.cs" />
-    <Compile Include="ViewModel\ExcelImportViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\WishAchievementViewModel.cs" />
     <Compile Include="ViewModel\WishOriginalDataViewModel.cs" />

@@ -259,7 +259,7 @@
                              GroupName="SideMenu"
                              Style="{StaticResource SideMenuRadioButton}"
                              Tag="MusicGameView"
-                             Visibility="Collapsed">
+                             Visibility="Visible">
                     <StackPanel Orientation="Horizontal">
                         <Path Width="18"
                               Height="18"

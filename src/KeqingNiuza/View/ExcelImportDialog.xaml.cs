@@ -1,12 +1,20 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 using HandyControl.Controls;
 using HandyControl.Interactivity;
+using HandyControl.Tools.Extension;
+using KeqingNiuza.Core.Wish;
+using KeqingNiuza.Model;
 using KeqingNiuza.Service;
-using KeqingNiuza.ViewModel;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace KeqingNiuza.View
@@ -14,42 +22,98 @@ namespace KeqingNiuza.View
     /// <summary>
     /// ExcelImportView.xaml 的交互逻辑
     /// </summary>
-    public partial class ExcelImportDialog : UserControl
+    public partial class ExcelImportDialog : UserControl, INotifyPropertyChanged, IDialogResultable<bool>
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
 
 
-        public ExcelImportViewModel ViewModel { get; set; }
+        public bool Result { get; set; }
+        public Action CloseAction { get; set; }
 
         public ExcelImportDialog()
         {
             InitializeComponent();
-            ViewModel = new ExcelImportViewModel();
-            DataContext = ViewModel;
+            DataContext = this;
         }
+
+
+        private int _ImportUid;
+        public int ImportUid
+        {
+            get { return _ImportUid; }
+            set
+            {
+                _ImportUid = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+        private List<WishData> _ImportedWishDatas;
+        public List<WishData> ImportedWishDatas
+        {
+            get { return _ImportedWishDatas; }
+            set
+            {
+                _ImportedWishDatas = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private int _StartRow = 1;
+        public int StartRow
+        {
+            get { return _StartRow; }
+            set
+            {
+                _StartRow = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+
+
 
 
 
         private void Button_SelectFile_Click(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.SelectedUserData == null)
-            {
-                TextBlock_Info.Text = "请选择 Uid";
-                TextBlock_Info.Foreground = new SolidColorBrush(Colors.Red);
-                return;
-            }
+            var item = ComboBox_ImportTemplate.SelectedItem as ComboBoxItem;
+            var filter = item?.Tag as string == "json" ? "Json file|*.json" : "Excel worksheets|*.xlsx";
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = "Excel worksheets|*.xlsx|All|*.*",
+                Filter = $"{filter}|All|*.*",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
             };
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    ViewModel.ImportExcelFile(openFileDialog.FileName);
-                    TextBlock_Info.Foreground = new SolidColorBrush(Colors.Gray);
-                    TextBlock_Info.Text = openFileDialog.SafeFileName;
+                    var file = openFileDialog.FileName;
+                    if (Path.GetExtension(file) == ".xlsx")
+                    {
+                        ImportExcelFile(file);
+                        TextBlock_Info.Foreground = new SolidColorBrush(Colors.Gray);
+                        TextBlock_Info.Text = openFileDialog.SafeFileName;
+                        return;
+                    }
+                    if (Path.GetExtension(file) == ".json")
+                    {
+                        ImportJsonFile(file);
+                        TextBlock_Info.Foreground = new SolidColorBrush(Colors.Gray);
+                        TextBlock_Info.Text = openFileDialog.SafeFileName;
+                        return;
+                    }
+                    TextBlock_Info.Text = "拓展名不正确";
+                    TextBlock_Info.Foreground = new SolidColorBrush(Colors.Red);
                 }
                 catch (Exception ex)
                 {
@@ -69,8 +133,29 @@ namespace KeqingNiuza.View
 
         private void Button_Import_Click(object sender, RoutedEventArgs e)
         {
-            ViewModel.ExportMergedDataList();
-            ControlCommands.Close.Execute(null, this);
+            if (ImportUid == 0)
+            {
+                TextBlock_Error.Text = "请输入Uid";
+                return;
+            }
+            if (StartRow > ImportedWishDatas.Count)
+            {
+                TextBlock_Error.Text = "跳过的行数过多";
+                return;
+            }
+            try
+            {
+                ExportWishLogList();
+                Result = true;
+                var user = new UserData { Uid = ImportUid, LastUpdateTime = DateTime.Now };
+                (System.Windows.Application.Current.MainWindow as MainWindow).ViewModel.SelectedUserData = user;
+                ControlCommands.Close.Execute(null, this);
+            }
+            catch (Exception ex)
+            {
+                TextBlock_Error.Text = ex.Message;
+                Log.OutputLog(LogType.Error, "ImportWishLog", ex);
+            }
         }
 
         private void Button_Cancel_Click(object sender, RoutedEventArgs e)
@@ -78,9 +163,55 @@ namespace KeqingNiuza.View
             ControlCommands.Close.Execute(null, this);
         }
 
-        private void Button_Refresh_Click(object sender, RoutedEventArgs e)
+
+
+        private void ImportExcelFile(string path)
         {
-            ViewModel.MatchOriginalData();
+            var list = ExcelImporter.ImportFromExcel(path);
+            // 以时间倒序排列
+            list.Reverse();
+            ImportedWishDatas = list;
         }
+
+
+        private void ImportJsonFile(string path)
+        {
+            var str = File.ReadAllText(path);
+            var list = JsonSerializer.Deserialize<List<WishData>>(str);
+            ImportedWishDatas = list.OrderByDescending(x => x.Id).ToList();
+        }
+
+
+        private void ExportWishLogList()
+        {
+            var list = ImportedWishDatas.Skip(StartRow - 1).ToList();
+            // 重新以时间正序排列
+            list.Reverse();
+            long id = 1000000000000000001;
+            for (int i = 0; i < list.Count; i++)
+            {
+                var item = list[i];
+                if (item.Uid == 0)
+                {
+                    item.Uid = ImportUid;
+                }
+                if (item.Id == 0)
+                {
+                    item.Id = id + i;
+                    item.IsLostId = true;
+                }
+            }
+            var fileName = $"{Service.Const.UserDataPath}\\WishLog_{ImportUid}.json";
+            if (File.Exists(fileName))
+            {
+                var str = File.ReadAllText(fileName);
+                var existList = JsonSerializer.Deserialize<List<WishData>>(str);
+                list.AddRange(existList.OrderBy(x => x.Id));
+            }
+            var json = JsonSerializer.Serialize(list, Service.Const.JsonOptions);
+            File.WriteAllText(fileName, json);
+        }
+
+
     }
 }

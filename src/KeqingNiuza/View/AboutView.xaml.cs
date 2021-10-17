@@ -43,28 +43,10 @@ namespace KeqingNiuza.View
 
         private async void Button_ImportExcel_Click(object sender, RoutedEventArgs e)
         {
-            var result = await Dialog.Show(new ExcelImportDialog()).GetResultAsync<(bool, UserData, List<WishData>)>();
-            if (result.Item1)
+            if (await Dialog.Show(new ExcelImportDialog()).GetResultAsync<bool>())
             {
-                try
-                {
-                    var str = JsonSerializer.Serialize(result.Item3, Service.Const.JsonOptions);
-                    File.WriteAllText(result.Item2.WishLogFile, str);
-                    result.Item2.LastUpdateTime = DateTime.Now;
-                    Growl.Success("导入数据成功");
-                }
-                catch (Exception ex)
-                {
-                    Growl.Warning(ex.Message);
-                    Log.OutputLog(LogType.Warning, "ImportExcelFile", ex);
-                }
-            }
-            else
-            {
-                if (result.Item2 != null)
-                {
-                    Growl.Warning("导入数据失败");
-                }
+                Growl.Success("导入数据成功");
+                (Application.Current.MainWindow as MainWindow).ViewModel.ChangeViewContent("WishSummaryView");
             }
         }
 
