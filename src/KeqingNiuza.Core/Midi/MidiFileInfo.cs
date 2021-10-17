@@ -30,7 +30,19 @@ namespace KeqingNiuza.Core.Midi
 
         public MidiFileInfo(string path)
         {
-            MidiFile = MidiFile.Read(Path.GetFullPath(path));
+            MidiFile = MidiFile.Read(Path.GetFullPath(path), new ReadingSettings
+            {
+                InvalidChannelEventParameterValuePolicy = InvalidChannelEventParameterValuePolicy.ReadValid,
+                InvalidChunkSizePolicy = InvalidChunkSizePolicy.Ignore,
+                InvalidMetaEventParameterValuePolicy = InvalidMetaEventParameterValuePolicy.SnapToLimits,
+                MissedEndOfTrackPolicy = MissedEndOfTrackPolicy.Ignore,
+                NoHeaderChunkPolicy = NoHeaderChunkPolicy.Ignore,
+                NotEnoughBytesPolicy = NotEnoughBytesPolicy.Ignore,
+                UnexpectedTrackChunksCountPolicy = UnexpectedTrackChunksCountPolicy.Ignore,
+                UnknownChannelEventPolicy = UnknownChannelEventPolicy.SkipStatusByteAndOneDataByte,
+                UnknownChunkIdPolicy = UnknownChunkIdPolicy.ReadAsUnknownChunk,
+                UnknownFileFormatPolicy = UnknownFileFormatPolicy.Ignore,
+            });
             Name = Path.GetFileNameWithoutExtension(path);
             MidiTracks = MidiFile.GetTrackChunks().Select(x => new MidiTrack(x)).ToList();
             CanPlayTracks = MidiTracks.Where(x => x.CanBeChecked).ToList();
