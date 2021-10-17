@@ -142,6 +142,7 @@
     <Compile Include="View\MusicGameView.xaml.cs">
       <DependentUpon>MusicGameView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\RecordingKey.cs" />
     <Compile Include="View\ScheduleTaskView.xaml.cs">
       <DependentUpon>ScheduleTaskView.xaml</DependentUpon>
     </Compile>

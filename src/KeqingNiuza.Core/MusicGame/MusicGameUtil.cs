@@ -52,6 +52,14 @@ namespace KeqingNiuza.Core.MusicGame
             {
                 return false;
             }
+            if (!User32.RegisterHotKey(hWnd, 1006, (uint)(MOD_CONTROL | MOD_NOREPEAT), (uint)VK_R))
+            {
+                return false;
+            }
+            if (!User32.RegisterHotKey(hWnd, 1007, (uint)(MOD_CONTROL | MOD_NOREPEAT), (uint)VK_T))
+            {
+                return false;
+            }
             return true;
         }
 
@@ -67,6 +75,14 @@ namespace KeqingNiuza.Core.MusicGame
                 return false;
             }
             if (!User32.UnregisterHotKey(hWnd, 1005))
+            {
+                return false;
+            }
+            if (!User32.UnregisterHotKey(hWnd, 1006))
+            {
+                return false;
+            }
+            if (!User32.UnregisterHotKey(hWnd, 1007))
             {
                 return false;
             }

@@ -131,6 +131,10 @@ namespace KeqingNiuza.ViewModel
             {
                 return;
             }
+            if (!UserDataList.Contains(SelectedUserData))
+            {
+                UserDataList.Add(SelectedUserData);
+            }
             try
             {
                 WishDataList = LocalWishLogLoader.Load(SelectedUserData.WishLogFile);

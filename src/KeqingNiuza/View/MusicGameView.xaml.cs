@@ -22,6 +22,11 @@ using KeqingNiuza.Core.Midi;
 using System.Threading;
 using System.IO;
 using System.Text.Json;
+using System.Runtime.InteropServices;
+using KeqingNiuza.Core.Native;
+using Newtonsoft.Json;
+using HandyControl.Controls;
+using KeqingNiuza.Service;
 
 namespace KeqingNiuza.View
 {
@@ -37,10 +42,14 @@ namespace KeqingNiuza.View
         }
 
 
+        private const int WH_KEYBOARD_LL = 13;
+
         private IntPtr _hwnd_keqing;
         private IntPtr _hwnd_genshin;
         private HwndSource _hwndSource;
-
+        private IntPtr _hookId;
+        private User32.LowLevelKeyboardProc _hookProc;
+        private Stopwatch _hookSw;
 
         // 时间相对偏移量(ms)，正数为快进，负数为快退
         private long _releativeTime;
@@ -49,6 +58,7 @@ namespace KeqingNiuza.View
 
         private Queue<NoteInfo> _noteQueue;
 
+        private List<RecordingKey> _keys;
 
         private bool _IsFindGenshinWindow;
         public bool IsFindGenshinWindow
@@ -99,6 +109,16 @@ namespace KeqingNiuza.View
             }
         }
 
+        private bool _IsRecording;
+        public bool IsRecording
+        {
+            get { return _IsRecording; }
+            set
+            {
+                _IsRecording = value;
+                OnPropertyChanged();
+            }
+        }
 
 
         public MusicGameView()
@@ -122,9 +142,11 @@ namespace KeqingNiuza.View
             }
             _hwndSource = HwndSource.FromHwnd(_hwnd_keqing);
             _hwndSource.AddHook(MusicGameHwndHook);
-            var path = @"E:\SnowMountain_hard.json";
+            var path = @"E:\RecordingKeys-21-10-15-09-16-26.json";
             var json = File.ReadAllText(path);
-            _noteList = JsonSerializer.Deserialize<List<NoteInfo>>(json);
+            _keys = System.Text.Json.JsonSerializer.Deserialize<List<RecordingKey>>(json);
+            _hookProc = KeyboardHook;
+            //_keys = new List<RecordingKey>();
         }
 
 
@@ -162,6 +184,29 @@ namespace KeqingNiuza.View
                         _releativeTime += 100;
                         handled = true;
                         break;
+                    //开始录制
+                    case 1006:
+                        _hookId = User32.SetWindowsHookEx(WH_KEYBOARD_LL, _hookProc, User32.GetModuleHandle(Process.GetCurrentProcess().MainModule.ModuleName), 0);
+                        User32.timeBeginPeriod(1);
+                        _hookSw = Stopwatch.StartNew();
+                        break;
+                    // 停止录制
+                    case 1007:
+                        User32.UnhookWindowsHookEx(_hookId);
+                        User32.timeEndPeriod(1);
+                        var count = _keys.Count;
+                        var json = JsonConvert.SerializeObject(_keys.Skip(2).Take(count - 4), Formatting.Indented);
+                        _keys.Clear();
+                        try
+                        {
+                            File.WriteAllText($"{Const.UserDataPath}\\RecordingKeys-{DateTime.Now:yy-MM-dd-HH-mm-ss}.json", json);
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.OutputLog(LogType.Warning, "Save recording keys", ex);
+                            Growl.Warning(ex.Message);
+                        }
+                        break;
                 }
             }
             return IntPtr.Zero;
@@ -173,39 +218,83 @@ namespace KeqingNiuza.View
             Console.WriteLine($"{DateTime.Now}  start");
             _releativeTime = 0;
             var sw = Stopwatch.StartNew();
-            _noteQueue = new Queue<NoteInfo>(_noteList);
-            var notes = new List<NoteInfo>(8);
-            Core.Native.User32.timeBeginPeriod(1);
+            //_noteQueue = new Queue<NoteInfo>(_noteList);
+            //var notes = new List<NoteInfo>(8);
+            //User32.timeBeginPeriod(1);
+            //for (; ; )
+            //{
+            //    if (!IsPlaying)
+            //    {
+            //        break;
+            //    }
+            //    var time = _noteQueue.Peek().Time;
+            //    while (_noteQueue.Any() && _noteQueue.FirstOrDefault()?.Time == time)
+            //    {
+            //        notes.Add(_noteQueue.Dequeue());
+            //    };
+            //    var delay = (int)(time + _releativeTime - sw.ElapsedMilliseconds);
+            //    await Task.Delay(delay > 0 ? delay : 0);
+            //    notes.ForEach(x => PostKey(_hwnd_genshin, x.ButtonType, OperationType.KeyDownUp, false));
+            //    Console.WriteLine(sw.ElapsedMilliseconds);
+            //    foreach (var item in notes)
+            //    {
+            //        Console.Write(item.ButtonType + "  ");
+            //    }
+            //    Console.WriteLine();
+            //    notes.Clear();
+            //    if (!_noteQueue.Any())
+            //    {
+            //        break;
+            //    }
+            //}
+            var keyQueue = new Queue<RecordingKey>(_keys);
+            var keys = new List<RecordingKey>(8);
+            User32.timeBeginPeriod(1);
             for (; ; )
             {
                 if (!IsPlaying)
                 {
                     break;
                 }
-                var time = _noteQueue.Peek().Time;
-                while (_noteQueue.Any() && _noteQueue.FirstOrDefault()?.Time == time)
+                var time = keyQueue.Peek().Time;
+                while (keyQueue.Any() && keyQueue.FirstOrDefault()?.Time == time)
                 {
-                    notes.Add(_noteQueue.Dequeue());
+                    keys.Add(keyQueue.Dequeue());
                 };
                 var delay = (int)(time + _releativeTime - sw.ElapsedMilliseconds);
                 await Task.Delay(delay > 0 ? delay : 0);
-                notes.ForEach(x => PostKey(_hwnd_genshin, x.ButtonType, OperationType.KeyDownUp, false));
+                keys.ForEach(x => User32.PostMessage(_hwnd_genshin, (Msg)x.Operation, (IntPtr)x.Key, (IntPtr)0));
                 Console.WriteLine(sw.ElapsedMilliseconds);
-                foreach (var item in notes)
+                foreach (var item in keys)
                 {
-                    Console.Write(item.ButtonType + "  ");
+                    Console.Write(item.Key + "  ");
                 }
                 Console.WriteLine();
-                notes.Clear();
-                if (!_noteQueue.Any())
+                keys.Clear();
+                if (!keyQueue.Any())
                 {
                     break;
                 }
             }
             IsPlaying = false;
-            Core.Native.User32.timeEndPeriod(1);
+            User32.timeEndPeriod(1);
             Console.WriteLine($"{DateTime.Now}  end");
         }
+
+        private IntPtr KeyboardHook(int nCode, IntPtr wParam, IntPtr lParam)
+        {
+            if (nCode >= 0)
+            {
+                int vkCode = 0;
+                if (wParam == (IntPtr)Msg.WM_KEYDOWN || wParam == (IntPtr)Msg.WM_CHAR || wParam == (IntPtr)Msg.WM_KEYUP)
+                {
+                    vkCode = Marshal.ReadInt32(lParam);
+                    _keys.Add(new RecordingKey { Time = _hookSw.ElapsedMilliseconds, Operation = (int)wParam, Key = vkCode });
+                }
+            }
+            return User32.CallNextHookEx(_hookId, nCode, wParam, lParam);
+        }
+
 
 
         #region IDispose
@@ -223,6 +312,7 @@ namespace KeqingNiuza.View
                 // TODO: 释放未托管的资源(未托管的对象)并重写终结器
                 // TODO: 将大型字段设置为 null
                 UnregisterHotKey(_hwnd_keqing);
+                User32.UnhookWindowsHookEx(_hookId);
                 disposedValue = true;
             }
         }
