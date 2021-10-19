@@ -167,7 +167,7 @@ namespace KeqingNiuza.ViewModel
             WishEventList = eventlist.Prepend(zeroWishEvent).ToList();
             SelectedWishEvent = WishEventList[0];
 
-            WishDataList = MainWindowViewModel.WishDataList;
+            WishDataList = MainWindowViewModel.WishDataList.ToList();
             WishDataList.Reverse();
             FilteredWishData = WishDataList;
         }
