@@ -15,7 +15,7 @@ namespace KeqingNiuza.Converter
             else
             {
                 var userdata = value as UserData;
-                return $"*****{userdata.Uid % 1000}";
+                return $"*****{userdata.Uid % 1000:D3}";
             }
 
 

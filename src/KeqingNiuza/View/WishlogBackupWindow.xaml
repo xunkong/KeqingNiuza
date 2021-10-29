@@ -1,0 +1,54 @@
+﻿<Window x:Class="KeqingNiuza.View.WishlogBackupWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:KeqingNiuza.View"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="刻记牛杂店 祈愿记录备份"
+        Width="800"
+        Height="450"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d">
+    <Grid Margin="20,10,20,0">
+
+        <StackPanel>
+
+            <TextBlock Text="备份服务的认证方式为祈愿记录网址，服务通过网址获取uid，与提交的uid相匹配则认为是本人操作。" />
+            <TextBlock Text="备份服务不会保存从网址中获取的祈愿记录，所有祈愿记录均由玩家上传，并且不会对uid以外的信息进行校验。" />
+            <TextBlock Text="本人尽量保证备份服务的稳定性，您可以随时删除备份在服务中的祈愿记录。" />
+
+            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                <TextBlock VerticalAlignment="Center" Text="选择Uid：" />
+                <ComboBox Width="120"
+                          Margin="10,0,0,0"
+                          DisplayMemberPath="Uid"
+                          ItemsSource="{Binding UserDataList}"
+                          SelectedItem="{Binding SelectedUserData}" />
+                <Button x:Name="Button_Upload"
+                        Margin="10,0,0,0"
+                        Click="Button_Upload_Click"
+                        Content="上传"
+                        IsEnabled="{Binding ButtonEnable}" />
+                <Button x:Name="Button_Get"
+                        Margin="10,0,0,0"
+                        Click="Button_Get_Click"
+                        Content="下载"
+                        IsEnabled="{Binding ButtonEnable}" />
+                <Button x:Name="Button_Delete"
+                        Margin="10,0,0,0"
+                        Click="Button_Delete_Click"
+                        Content="删除"
+                        IsEnabled="{Binding ButtonEnable}" />
+            </StackPanel>
+
+            <TextBlock Margin="0,10,0,0" Text="{Binding StateInfoText}" />
+
+            <TextBlock Margin="0,20,0,0" Text="请求跟踪（信息保存在日志中）" />
+            <TextBlock Margin="0,6,0,0" Text="{Binding RequestInfoText}" />
+
+        </StackPanel>
+
+
+    </Grid>
+</Window>

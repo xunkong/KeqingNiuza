@@ -90,7 +90,7 @@ namespace KeqingNiuza.Core.Wish
             }
             else
             {
-                throw new Exception("没有祈愿记录");
+                throw new ArgumentException("此Uid没有祈愿记录");
             }
         }
 

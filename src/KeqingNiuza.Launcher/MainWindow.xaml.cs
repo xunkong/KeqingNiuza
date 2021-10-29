@@ -274,7 +274,7 @@ namespace KeqingNiuza.Launcher
             InfoTest = "正在检查更新";
             await Task.Delay(100);
             var client = new HttpClient();
-            client.DefaultRequestHeaders.Add("User-Agent", $"KeqingNiuza Launcher {MetaData.FileVersion}");
+            client.DefaultRequestHeaders.Add("User-Agent", $"KeqingLauncher/{MetaData.FileVersion} UserId/{MetaData.UserId}");
             string json = null;
             try
             {
@@ -363,7 +363,7 @@ namespace KeqingNiuza.Launcher
         private async Task<List<KeqingNiuzaFileInfo>> TestUpdate()
         {
             var client = new HttpClient(new HttpClientHandler { AutomaticDecompression = System.Net.DecompressionMethods.GZip | System.Net.DecompressionMethods.Deflate });
-            client.DefaultRequestHeaders.Add("User-Agent", $"KeqingNiuza Launcher {MetaData.FileVersion}");
+            client.DefaultRequestHeaders.Add("User-Agent", $"KeqingLauncher/{MetaData.FileVersion} UserId/{MetaData.UserId}");
             client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip, deflate");
             var jsonTask = client.GetStringAsync(versionUrl);
             var wallpaperExist = File.Exists(".\\UserData\\setting_wallpaper");

@@ -65,6 +65,18 @@
                             FontSize="12" />
                 </StackPanel>
 
+                <!--  祈愿记录备份  -->
+                <TextBlock Margin="0,20,0,0"
+                           FontSize="20"
+                           Text="祈愿记录备份" />
+                <TextBlock Margin="0,6,0,0" Text="刻记牛杂店提供的祈愿记录备份服务。" />
+                <Button x:Name="Button_WishlogBackup"
+                        Margin="0,6,0,0"
+                        HorizontalAlignment="Left"
+                        Click="Button_WishlogBackup_Click"
+                        Content="祈愿记录备份" />
+
+
                 <!--  捐赠  -->
                 <TextBlock Margin="0,20,0,0"
                            FontSize="20"

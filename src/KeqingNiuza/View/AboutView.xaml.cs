@@ -55,5 +55,12 @@ namespace KeqingNiuza.View
             var mainWindow = Application.Current.MainWindow as MainWindow;
             await mainWindow.ViewModel.UpdateWishData(TextBox_InputUrl.Text);
         }
+
+        private void Button_WishlogBackup_Click(object sender, RoutedEventArgs e)
+        {
+            var window = new WishlogBackupWindow();
+            window.Owner = Application.Current.MainWindow;
+            window.ShowDialog();
+        }
     }
 }

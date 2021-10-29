@@ -96,7 +96,7 @@ namespace KeqingNiuza.ViewModel
         }
 
 
-        private ObservableCollection<UserData> _UserDataList;
+        private static ObservableCollection<UserData> _UserDataList;
         public ObservableCollection<UserData> UserDataList
         {
             get { return _UserDataList; }
@@ -105,6 +105,15 @@ namespace KeqingNiuza.ViewModel
                 _UserDataList = value;
                 OnPropertyChanged();
             }
+        }
+
+        public static List<UserData> GetUserDataList()
+        {
+            if (_UserDataList == null || !_UserDataList.Any())
+            {
+                return null;
+            }
+            return _UserDataList.ToList();
         }
 
         public static UserData GetSelectedUserData()
