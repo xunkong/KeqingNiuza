@@ -824,5 +824,19 @@
     "Rank": 4,
     "ItemType": "武器",
     "WeaponType": 2
+  },
+  {
+    "Name": "断浪长鳍",
+    "NameEn": "Weapon Wavebreaker\u0027's Fin",
+    "Rank": 4,
+    "ItemType": "武器",
+    "WeaponType": 4
+  },
+  {
+    "Name": "曚云之月",
+    "NameEn": "Weapon Mouun\u0027s Moon",
+    "Rank": 4,
+    "ItemType": "武器",
+    "WeaponType": 3
   }
 ]
