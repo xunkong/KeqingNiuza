@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{743ADDF9-515D-4E69-86B4-A326F31AF3FA}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>KeqingNiuza.RealtimeNotes</RootNamespace>
+    <AssemblyName>KeqingNiuza.RealtimeNotes</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\Release\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>KeqingNiuza.RealtimeNotes.exe.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="AddTaskWindow.xaml.cs">
+      <DependentUpon>AddTaskWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Const.cs" />
+    <Compile Include="Converter\IsPinnedToButtonContentConverter.cs" />
+    <Compile Include="Converter\UrlToImageSourceConverter.cs" />
+    <Compile Include="DGP.Genshin\Common\Data\Behavior\BoxedValue.cs" />
+    <Compile Include="DGP.Genshin\Common\Data\Behavior\Observable.cs" />
+    <Compile Include="DGP.Genshin\Common\Data\Json\Json.cs" />
+    <Compile Include="DGP.Genshin\Common\Data\Privacy\PrivateString.cs" />
+    <Compile Include="DGP.Genshin\Common\Data\Regex\RegexPatterns.cs" />
+    <Compile Include="DGP.Genshin\Common\Request\DynamicSecret\DynamicSecretProvider.cs" />
+    <Compile Include="DGP.Genshin\Common\Request\DynamicSecret\DynamicSecretProvider2.cs" />
+    <Compile Include="DGP.Genshin\Common\Request\DynamicSecret\DynamicSecretProviderMd5Base.cs" />
+    <Compile Include="DGP.Genshin\Common\Request\DynamicSecret\RequesterExtensions.cs" />
+    <Compile Include="DGP.Genshin\Common\Request\QueryString\ListExtensions.cs" />
+    <Compile Include="DGP.Genshin\Common\Request\QueryString\QueryString.cs" />
+    <Compile Include="DGP.Genshin\Common\Request\QueryString\QueryStringParameter.cs" />
+    <Compile Include="DGP.Genshin\Common\Request\QueryString\QueryStringSeparator.cs" />
+    <Compile Include="DGP.Genshin\Common\Request\Requester.cs" />
+    <Compile Include="DGP.Genshin\Common\Request\RequestOptions.cs" />
+    <Compile Include="DGP.Genshin\Common\Response\KnownReturnCode.cs" />
+    <Compile Include="DGP.Genshin\Common\Response\ListWrapper.cs" />
+    <Compile Include="DGP.Genshin\Common\Response\Response.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Gacha\Config.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Gacha\ConfigType.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Gacha\FetchProgress.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Gacha\GachaData.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Gacha\GachaDataCollection.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Gacha\GachaLog.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Gacha\GachaLogItem.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Gacha\GachaLogWorker.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Journey\Day.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Journey\DetailAction.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Journey\JourneyAction.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Journey\JourneyBase.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Journey\JourneyDetail.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Journey\JourneyInfo.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Journey\JourneyProvider.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Journey\Month.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Journey\SumAction.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Post\Post.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Post\PostProvider.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\Avatar\Avatar.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\Avatar\Constellation.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\Avatar\Costume.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\Avatar\DetailedAvatar.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\Avatar\DetailedAvatarInfo.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\Avatar\Reliquary.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\Avatar\ReliquaryAffix.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\Avatar\ReliquarySet.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\Avatar\Weapon.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\DailyNote\DailyNote.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\DailyNote\DailyNoteProvider.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\DailyNote\Expedition.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\Home.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\Offering.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\PlayerInfo.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\PlayerStats.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\RecordProvider.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\SpiralAbyss\Battle.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\SpiralAbyss\Floor.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\SpiralAbyss\IconAvatar.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\SpiralAbyss\Level.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\SpiralAbyss\Rank.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\SpiralAbyss\SpiralAbyss.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Record\WorldExploration.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Sign\ReSignInfo.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Sign\SignInAward.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Sign\SignInInfo.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Sign\SignInProvider.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Sign\SignInResult.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\Sign\SignInReward.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\StringExtensions.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\UserInfo\Achieve.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\UserInfo\Certification.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\UserInfo\CommunityInfo.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\UserInfo\LevelExp.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\UserInfo\NotifyDisable.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\UserInfo\PrivacyInvisible.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\UserInfo\UserFuncStatus.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\UserInfo\UserInfo.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\UserInfo\UserInfoProvider.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\UserInfo\UserInfoWrapper.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\User\UserGameRole.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\User\UserGameRoleInfo.cs" />
+    <Compile Include="DGP.Genshin\MiHoYoAPI\User\UserGameRoleProvider.cs" />
+    <Compile Include="Endecryption.cs" />
+    <Compile Include="Models\IInitializeWithWindow.cs" />
+    <Compile Include="Models\RealtimeNotesInfo.cs" />
+    <Compile Include="RegisterSparsePackageWindow.xaml.cs">
+      <DependentUpon>RegisterSparsePackageWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Services\BackgroundService.cs" />
+    <Compile Include="Services\RealtimeNotesService.cs" />
+    <Compile Include="Services\TileService.cs" />
+    <Compile Include="SetCookieWindow.xaml.cs">
+      <DependentUpon>SetCookieWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SparsePackageUtil.cs" />
+    <Page Include="AddTaskWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="RegisterSparsePackageWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SetCookieWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="DGP.Genshin\MiHoYoAPI\README.md" />
+    <None Include="KeqingNiuza.msix">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="KeqingNiuza.RealtimeNotes.exe.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
+      <Version>7.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts">
+      <Version>10.0.19041.1</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="TaskScheduler">
+      <Version>2.9.2</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="resource\others\*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StandardSocketsHttpHandler\StandardSocketsHttpHandler.csproj">
+      <Project>{000df5fe-11ea-42e3-a75f-6ffaf2ed0f25}</Project>
+      <Name>StandardSocketsHttpHandler</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

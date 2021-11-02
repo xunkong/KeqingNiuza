@@ -1,0 +1,206 @@
+﻿<Window x:Class="KeqingNiuza.RealtimeNotes.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:KeqingNiuza.RealtimeNotes.Converter"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:KeqingNiuza.RealtimeNotes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="实时便笺"
+        Width="800"
+        Height="450"
+        DataContext="{Binding RelativeSource={RelativeSource Self}}"
+        WindowStartupLocation="CenterScreen"
+        mc:Ignorable="d">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <c:UrlToImageSourceConverter x:Key="UrlConverter" />
+            <c:IsPinnedToButtonContentConverter x:Key="PinConverter" />
+            <Style TargetType="TextBlock">
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="FontSize" Value="12" />
+            </Style>
+        </ResourceDictionary>
+    </Window.Resources>
+
+
+
+
+    <Grid Margin="12">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0">
+
+            <StackPanel Orientation="Horizontal">
+
+                <TextBlock x:Name="TextBlock_SparsePackageState" VerticalAlignment="Center" />
+                <Button x:Name="Button_RegisterPackage"
+                        Width="80"
+                        Height="24"
+                        Margin="12,0,0,0"
+                        Click="Button_RegisterPackage_Click"
+                        Content="注册程序包" />
+
+                <Button x:Name="Button_SetCookie"
+                        Width="80"
+                        Height="24"
+                        Margin="12,0,0,0"
+                        Click="Button_SetCookie_Click"
+                        Content="设置Cookie" />
+
+                <Button x:Name="Button_AddTask"
+                        Width="120"
+                        Height="24"
+                        Margin="12,0,0,0"
+                        Click="Button_AddTask_Click"
+                        Content="添加定时刷新任务">
+                    <Button.ToolTip>
+                        <TextBlock Text="每15分钟刷新一次" />
+                    </Button.ToolTip>
+                </Button>
+
+
+                <Button x:Name="Button_Refresh"
+                        Width="70"
+                        Height="24"
+                        Margin="12,0,0,0"
+                        Click="Button_Refresh_Click"
+                        Content="立即刷新" />
+
+
+            </StackPanel>
+
+
+            <TextBlock x:Name="TextBlock_State" Margin="0,8,0,0" />
+
+        </StackPanel>
+
+
+        <ScrollViewer Grid.Row="1" Margin="0,12,0,0">
+            <ItemsControl ItemsSource="{Binding NoteList}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="620"
+                                Margin="0,0,0,12"
+                                HorizontalAlignment="Left"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                CornerRadius="4">
+                            <Grid Height="60" Margin="12,0,12,0">
+                                <StackPanel Orientation="Horizontal">
+
+                                    <StackPanel Width="80" Margin="0,10,10,0">
+                                        <TextBlock Grid.Row="0"
+                                                   Grid.Column="0"
+                                                   Text="{Binding NickName}" />
+                                        <TextBlock Grid.Row="0"
+                                                   Grid.Column="1"
+                                                   Margin="0,15,0,0"
+                                                   Text="{Binding Uid}" />
+                                    </StackPanel>
+                                    <!--  树脂  -->
+                                    <StackPanel Width="60" Margin="0,10,0,0">
+                                        <Image Width="20"
+                                               Source="/resource/others/Resin.png"
+                                               Stretch="Uniform" />
+                                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0}/{1}">
+                                                    <Binding Path="CurrentResin" />
+                                                    <Binding Path="MaxResin" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </StackPanel>
+                                    <!--  委托  -->
+                                    <StackPanel Width="40" Margin="0,10,0,0">
+                                        <Image Width="20"
+                                               Source="/resource/others/Commission.png"
+                                               Stretch="Uniform" />
+                                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0}/{1}">
+                                                    <Binding Path="FinishedTaskNum" />
+                                                    <Binding Path="TotalTaskNum" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+                                    </StackPanel>
+                                    <!--  周本  -->
+                                    <StackPanel Width="40" Margin="10,10,0,0">
+                                        <Image Width="20"
+                                               Source="/resource/others/Domain.png"
+                                               Stretch="Uniform" />
+                                        <TextBlock Margin="0,10,0,0" HorizontalAlignment="Center">
+                                            <TextBlock.Text>
+                                                <MultiBinding StringFormat="{}{0}/{1}">
+                                                    <Binding Path="RemainResinDiscountNum" />
+                                                    <Binding Path="ResinDiscountNumLimit" />
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+
+
+                                    </StackPanel>
+
+                                    <!--  派遣  -->
+                                    <ItemsControl Grid.Row="1"
+                                                  Grid.Column="1"
+                                                  Width="240"
+                                                  ItemsSource="{Binding Expeditions}">
+                                        <ItemsControl.ItemsPanel>
+                                            <ItemsPanelTemplate>
+                                                <StackPanel Orientation="Horizontal" />
+                                            </ItemsPanelTemplate>
+                                        </ItemsControl.ItemsPanel>
+                                        <ItemsControl.ItemTemplate>
+                                            <DataTemplate>
+                                                <StackPanel Margin="10,0,0,0">
+                                                    <Image Width="30"
+                                                           Source="{Binding AvatarSideIcon, Converter={StaticResource UrlConverter}}"
+                                                           Stretch="Uniform" />
+                                                    <TextBlock Margin="0,10,0,0"
+                                                               VerticalAlignment="Center"
+                                                               Text="{Binding RemainedTimeFormatted}" />
+                                                </StackPanel>
+                                            </DataTemplate>
+                                        </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+
+                                    <Button x:Name="Button_PinToStart"
+                                            Width="100"
+                                            Height="24"
+                                            Margin="12,0,0,0"
+                                            HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Click="Button_PinToStart_Click"
+                                            Content="{Binding IsPinned, Converter={StaticResource PinConverter}}"
+                                            Tag="{Binding}" />
+
+
+                                </StackPanel>
+
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+
+            </ItemsControl>
+
+        </ScrollViewer>
+
+
+    </Grid>
+</Window>

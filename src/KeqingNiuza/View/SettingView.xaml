@@ -18,8 +18,9 @@
     </UserControl.Resources>
 
     <Grid>
-        <StackPanel Margin="30,20,0,0">
-            <!--<TextBlock FontSize="20" Text="更新" />
+        <hc:ScrollViewer IsInertiaEnabled="True">
+            <StackPanel Margin="30,20,0,0">
+                <!--<TextBlock FontSize="20" Text="更新" />
             <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                 <TextBlock Width="120"
                            VerticalAlignment="Center"
@@ -45,119 +46,138 @@
                               Style="{StaticResource ToggleButtonSwitch}" />
             </StackPanel>-->
 
-            <TextBlock Margin="0,0,0,0"
-                       FontSize="20"
-                       Text="任务提醒" />
-            <TextBlock Margin="0,6,0,0"
-                       Foreground="Gray"
-                       Text="更改此设置需要管理员权限" />
-            <TextBlock Margin="0,4,0,0"
-                       Foreground="Gray"
-                       Text="开始游戏前提醒需要启用「审核进程跟踪」" />
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                <TextBlock Width="120"
-                           VerticalAlignment="Center"
-                           Text="开机后一分钟提醒" />
-                <ToggleButton Margin="10,0,0,0"
-                              IsChecked="{Binding IsLogonTrigger}"
-                              Style="{StaticResource ToggleButtonSwitch}" />
-            </StackPanel>
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                <TextBlock Width="120"
-                           VerticalAlignment="Center"
-                           Text="开始游戏前提醒" />
-                <ToggleButton Margin="10,0,0,0"
-                              IsChecked="{Binding IsGenshinStartTrigger}"
-                              Style="{StaticResource ToggleButtonSwitch}" />
-            </StackPanel>
+                <TextBlock Margin="0,0,0,0"
+                           FontSize="20"
+                           Text="任务提醒" />
+                <TextBlock Margin="0,6,0,0"
+                           Foreground="Gray"
+                           Text="更改此设置需要管理员权限" />
+                <TextBlock Margin="0,4,0,0"
+                           Foreground="Gray"
+                           Text="开始游戏前提醒需要启用「审核进程跟踪」" />
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                    <TextBlock Width="120"
+                               VerticalAlignment="Center"
+                               Text="开机后一分钟提醒" />
+                    <ToggleButton Margin="10,0,0,0"
+                                  IsChecked="{Binding IsLogonTrigger}"
+                                  Style="{StaticResource ToggleButtonSwitch}" />
+                </StackPanel>
+                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                    <TextBlock Width="120"
+                               VerticalAlignment="Center"
+                               Text="开始游戏前提醒" />
+                    <ToggleButton Margin="10,0,0,0"
+                                  IsChecked="{Binding IsGenshinStartTrigger}"
+                                  Style="{StaticResource ToggleButtonSwitch}" />
+                </StackPanel>
 
-            <TextBlock Margin="0,20,0,0"
-                       FontSize="20"
-                       Text="服务器区域" />
-            <TextBlock Margin="0,6,0,0"
-                       Foreground="Gray"
-                       Text="外服支持没有经过测试，可能会出现各种奇怪的Bug" />
-            <TextBlock Margin="0,4,0,0"
-                       Foreground="Gray"
-                       Text="请确保游戏内使用简体中文" />
-            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                <TextBlock Width="120"
-                           VerticalAlignment="Center"
-                           Text="外服" />
-                <ToggleButton Margin="10,0,0,0"
-                              IsChecked="{Binding IsOversea}"
-                              Style="{StaticResource ToggleButtonSwitch}" />
-            </StackPanel>
-
-            <StackPanel Visibility="{Binding DailyCheckVisibility}">
                 <TextBlock Margin="0,20,0,0"
                            FontSize="20"
-                           Text="米游社签到" />
+                           Text="服务器区域" />
+                <TextBlock Margin="0,6,0,0"
+                           Foreground="Gray"
+                           Text="外服支持没有经过测试，可能会出现各种奇怪的Bug" />
                 <TextBlock Margin="0,4,0,0"
                            Foreground="Gray"
-                           Text="如果出现拒绝访问，请尝试使用管理员权限" />
+                           Text="请确保游戏内使用简体中文" />
                 <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
                     <TextBlock Width="120"
                                VerticalAlignment="Center"
-                               Text="自动签到" />
+                               Text="外服" />
                     <ToggleButton Margin="10,0,0,0"
-                                  IsChecked="{Binding DailyCheck_IsAutoCheckIn}"
+                                  IsChecked="{Binding IsOversea}"
                                   Style="{StaticResource ToggleButtonSwitch}" />
                 </StackPanel>
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Width="120"
-                               VerticalAlignment="Center"
-                               Text="始终显示结果" />
-                    <ToggleButton Margin="10,0,0,0"
-                                  IsChecked="{Binding DialyCheck_AlwaysShowResult}"
-                                  Style="{StaticResource ToggleButtonSwitch}" />
+
+                <StackPanel Visibility="{Binding DailyCheckVisibility}">
+                    <TextBlock Margin="0,20,0,0"
+                               FontSize="20"
+                               Text="米游社签到" />
+                    <TextBlock Margin="0,4,0,0"
+                               Foreground="Gray"
+                               Text="如果出现拒绝访问，请尝试使用管理员权限" />
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock Width="120"
+                                   VerticalAlignment="Center"
+                                   Text="自动签到" />
+                        <ToggleButton Margin="10,0,0,0"
+                                      IsChecked="{Binding DailyCheck_IsAutoCheckIn}"
+                                      Style="{StaticResource ToggleButtonSwitch}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock Width="120"
+                                   VerticalAlignment="Center"
+                                   Text="始终显示结果" />
+                        <ToggleButton Margin="10,0,0,0"
+                                      IsChecked="{Binding DialyCheck_AlwaysShowResult}"
+                                      Style="{StaticResource ToggleButtonSwitch}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock Width="120"
+                                   VerticalAlignment="Center"
+                                   Text="签到时间" />
+                        <TextBox Margin="10,0,0,0" Text="{Binding DailyCheck_StartTime, Converter={StaticResource DailyCheckStartTimeConverter}}" />
+                    </StackPanel>
+                    <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                        <TextBlock Width="120"
+                                   VerticalAlignment="Center"
+                                   Text="随机延迟" />
+                        <TextBox Margin="10,0,0,0" Text="{Binding DailyCheck_RandomDelay}" />
+                    </StackPanel>
+                    <Button x:Name="Button_DailyCheckSave"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Left"
+                            Click="Button_DailyCheckSave_Click"
+                            Content="保存" />
                 </StackPanel>
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Width="120"
-                               VerticalAlignment="Center"
-                               Text="签到时间" />
-                    <TextBox Margin="10,0,0,0" Text="{Binding DailyCheck_StartTime, Converter={StaticResource DailyCheckStartTimeConverter}}" />
+
+                <StackPanel>
+                    <TextBlock Margin="0,20,0,0"
+                               FontSize="20"
+                               Text="实时便笺" />
+                    <TextBlock Margin="0,4,0,0"
+                               Foreground="Gray"
+                               Text="此功能需要 Windows 10 20H1 及以上版本（Windows 11 不可用），内容以磁贴形式呈现" />
+                    <Button x:Name="Button_RealtimeNotes"
+                            Margin="0,10,0,0"
+                            HorizontalAlignment="Left"
+                            Click="Button_RealtimeNotes_Click"
+                            Content="实时便笺" />
                 </StackPanel>
-                <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
-                    <TextBlock Width="120"
-                               VerticalAlignment="Center"
-                               Text="随机延迟" />
-                    <TextBox Margin="10,0,0,0" Text="{Binding DailyCheck_RandomDelay}" />
+
+
+                <StackPanel>
+                    <TextBlock Margin="0,20,0,0"
+                               FontSize="20"
+                               Text="其他" />
+                    <StackPanel Margin="0,6,0,0" Orientation="Horizontal">
+                        <TextBlock Width="120"
+                                   FontSize="16"
+                                   Text="下载推荐壁纸" />
+                        <ToggleButton HorizontalAlignment="Left"
+                                      IsChecked="{Binding IsDownloadWallpaper}"
+                                      Style="{StaticResource ToggleButtonSwitch}" />
+                    </StackPanel>
+                    <TextBlock Margin="0,4,0,0"
+                               Foreground="Gray"
+                               Text="启动器运行时会下载推荐壁纸，作为其背景图片" />
+                    <TextBlock Margin="0,4,0,0"
+                               Foreground="Gray"
+                               Text="壁纸保存在wallpaper文件夹中，内容仅代表开发者个人喜好" />
+                    <Button x:Name="Button_DownloadWallpaper"
+                            Margin="0,8,0,0"
+                            HorizontalAlignment="Left"
+                            Click="Button_DownloadWallpaper_Click"
+                            Content="立即下载" />
+
                 </StackPanel>
-                <Button x:Name="Button_DailyCheckSave"
-                        Margin="0,10,0,0"
-                        HorizontalAlignment="Left"
-                        Click="Button_DailyCheckSave_Click"
-                        Content="保存" />
+                
+                
+                <TextBlock Margin="0 24 0 0"/>
             </StackPanel>
+        </hc:ScrollViewer>
 
-
-            <StackPanel>
-                <TextBlock Margin="0,20,0,0"
-                           FontSize="20"
-                           Text="其他" />
-                <StackPanel Margin="0,6,0,0" Orientation="Horizontal">
-                    <TextBlock Width="120"
-                               FontSize="16"
-                               Text="下载推荐壁纸" />
-                    <ToggleButton HorizontalAlignment="Left"
-                                  IsChecked="{Binding IsDownloadWallpaper}"
-                                  Style="{StaticResource ToggleButtonSwitch}" />
-                </StackPanel>
-                <TextBlock Margin="0,4,0,0"
-                           Foreground="Gray"
-                           Text="启动器运行时会下载推荐壁纸，作为其背景图片" />
-                <TextBlock Margin="0,4,0,0"
-                           Foreground="Gray"
-                           Text="壁纸保存在wallpaper文件夹中，内容仅代表开发者个人喜好" />
-                <Button x:Name="Button_DownloadWallpaper"
-                        Margin="0,8,0,0"
-                        HorizontalAlignment="Left"
-                        Click="Button_DownloadWallpaper_Click"
-                        Content="立即下载" />
-
-            </StackPanel>
-        </StackPanel>
 
         <StackPanel Margin="12,0,12,8"
                     HorizontalAlignment="Right"

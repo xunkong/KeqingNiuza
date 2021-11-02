@@ -221,5 +221,18 @@ namespace KeqingNiuza.View
                 Growl.Warning(ex.Message);
             }
         }
+
+        private void Button_RealtimeNotes_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Process.Start("KeqingNiuza.RealtimeNotes.exe");
+            }
+            catch (Exception ex)
+            {
+                Log.OutputLog(LogType.Warning, "Run realtimeNotes", ex);
+                Growl.Warning(ex.Message);
+            }
+        }
     }
 }

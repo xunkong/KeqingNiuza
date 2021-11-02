@@ -1,0 +1,33 @@
+﻿<Window x:Class="KeqingNiuza.RealtimeNotes.RegisterSparsePackageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:KeqingNiuza.RealtimeNotes"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        Title="实时便笺 注册程序包"
+        Width="800"
+        Height="450"
+        WindowStartupLocation="CenterOwner"
+        mc:Ignorable="d">
+    <Grid Margin="12">
+
+        <StackPanel>
+
+            <TextBlock Text="注册程序包请遵循以下步骤：" />
+            <TextBlock Margin="0,8,0,0" Text="• 按照刻记牛杂店根目录中的证书至「本地计算机-&gt;受信任的根证书颁发机构」" />
+            <TextBlock Text="• 点击下方的注册程序包，注册成功后会自动重启软件" />
+
+            <Button x:Name="Button_RegisterPackage"
+                    Width="200"
+                    Height="24"
+                    Margin="0,12,0,0"
+                    HorizontalAlignment="Left"
+                    Click="Button_RegisterPackage_Click"
+                    Content="注册程序包" />
+
+            <TextBlock x:Name="TextBlock_State" Margin="0,12,0,0" />
+
+        </StackPanel>
+
+    </Grid>
+</Window>

@@ -111,7 +111,7 @@
       <Version>4.5.3.3</Version>
     </PackageReference>
     <PackageReference Include="Melanchall.DryWetMidi">
-      <Version>5.2.0</Version>
+      <Version>5.2.1</Version>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>13.0.1</Version>

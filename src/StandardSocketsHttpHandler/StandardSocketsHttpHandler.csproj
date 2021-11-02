@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{000DF5FE-11EA-42E3-A75F-6FFAF2ED0F25}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>System.Net.Http</RootNamespace>
+    <AssemblyName>StandardSocketsHttpHandler</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;NETSTANDARD2_0;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;NETSTANDARD2_0;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="HashCode.cs" />
+    <Compile Include="IO\Extensions\StreamExtensions.cs" />
+    <Compile Include="IO\StringBuilderCache.cs" />
+    <Compile Include="Net\HttpKnownHeaderNames.cs" />
+    <Compile Include="Net\HttpStatusDescription.cs" />
+    <Compile Include="Net\HttpVersionInternal.cs" />
+    <Compile Include="Net\Http\ByteArrayHelpers.cs" />
+    <Compile Include="Net\Http\DecompressionHandler.cs" />
+    <Compile Include="Net\Http\Extensions\HttpContentHeadersExtensions.cs" />
+    <Compile Include="Net\Http\Extensions\HttpHeadersExtensions.cs" />
+    <Compile Include="Net\Http\Extensions\HttpRequestMessageExtensions.cs" />
+    <Compile Include="Net\Http\Extensions\HttpResponseMessageExtensions.cs" />
+    <Compile Include="Net\Http\Headers\BaseHeaderParser.cs" />
+    <Compile Include="Net\Http\Headers\ByteArrayHeaderParser.cs" />
+    <Compile Include="Net\Http\Headers\CacheControlHeaderParser.cs" />
+    <Compile Include="Net\Http\Headers\DateHeaderParser.cs" />
+    <Compile Include="Net\Http\Headers\GenericHeaderParser.cs" />
+    <Compile Include="Net\Http\Headers\HeaderDescriptor.cs" />
+    <Compile Include="Net\Http\Headers\HeaderUtilities.cs" />
+    <Compile Include="Net\Http\Headers\HttpHeaderParser.cs" />
+    <Compile Include="Net\Http\Headers\HttpHeaderType.cs" />
+    <Compile Include="Net\Http\Headers\Int32NumberHeaderParser.cs" />
+    <Compile Include="Net\Http\Headers\Int64NumberHeaderParser.cs" />
+    <Compile Include="Net\Http\Headers\KnownHeader.cs" />
+    <Compile Include="Net\Http\Headers\KnownHeaders.cs" />
+    <Compile Include="Net\Http\Headers\MediaTypeHeaderParser.cs" />
+    <Compile Include="Net\Http\Headers\ObjectCollection.cs" />
+    <Compile Include="Net\Http\Headers\ProductInfoHeaderParser.cs" />
+    <Compile Include="Net\Http\Headers\TimeSpanHeaderParser.cs" />
+    <Compile Include="Net\Http\Headers\TransferCodingHeaderParser.cs" />
+    <Compile Include="Net\Http\Headers\UriHeaderParser.cs" />
+    <Compile Include="Net\Http\HttpHandlerDefaults.cs" />
+    <Compile Include="Net\Http\HttpParseResult.cs" />
+    <Compile Include="Net\Http\HttpRuleParser.cs" />
+    <Compile Include="Net\Http\HttpUtilities.cs" />
+    <Compile Include="Net\Http\NetEventSource.Http.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\AuthenticationHelper.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\AuthenticationHelper.Digest.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\AuthenticationHelper.NtAuth.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\CancellationHelper.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\ChunkedEncodingReadStream.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\ChunkedEncodingWriteStream.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\ConnectHelper.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\ConnectionCloseReadStream.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\ContentLengthReadStream.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\ContentLengthWriteStream.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\CookieHelper.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\EmptyReadStream.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\HttpAuthenticatedConnectionHandler.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\HttpConnection.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\HttpConnectionHandler.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\HttpConnectionKind.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\HttpConnectionPool.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\HttpConnectionPoolManager.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\HttpConnectionResponseContent.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\HttpConnectionSettings.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\HttpContentDuplexStream.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\HttpContentReadStream.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\HttpContentStream.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\HttpContentWriteStream.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\RawConnectionStream.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\RedirectHandler.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\SocketsHttpConnectionContext.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\StandardHttpMessageHandler.cs" />
+    <Compile Include="Net\Http\SocketsHttpHandler\StandardSocketsHttpHandler.cs" />
+    <Compile Include="Net\Http\SR.Designer.cs" />
+    <Compile Include="Net\Http\Utils\HttpMethodUtils.cs" />
+    <Compile Include="Net\NetEventSource.Common.cs" />
+    <Compile Include="Net\SecurityProtocol.cs" />
+    <Compile Include="Net\Security\Extensions\SslStreamExtensions.cs" />
+    <Compile Include="Net\Security\SR.Designer.cs" />
+    <Compile Include="Net\Security\SslApplicationProtocol.cs" />
+    <Compile Include="Net\Security\SslClientAuthenticationOptions.cs" />
+    <Compile Include="Net\Security\SslClientAuthenticationOptionsExtensions.cs" />
+    <Compile Include="Net\UriScheme.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Threading\Tasks\Extensions\TaskExtensions.cs" />
+    <Compile Include="Threading\Tasks\TaskToApm.cs" />
+    <Compile Include="TypeForwarding.cs" />
+    <Compile Include="Utils\RuntimeUtils.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Net\Http\SR.resx" />
+    <EmbeddedResource Include="Net\Security\SR.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="System.Memory">
+      <Version>4.5.4</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>5.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
