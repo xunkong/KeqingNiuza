@@ -1,6 +1,6 @@
 {
   "Version": "2.2.0",
-  "LastUpdateTime": "2021-11-02T16:01:05.9050558+08:00",
+  "LastUpdateTime": "2021-11-02T22:16:40.9101261+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -105,9 +105,9 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1705472,
-      "CompressedSize": 1154537,
-      "SHA256": "94F1C48B8EB616D61C953D78BBF1F1C59276CD5E6DC24E035C932D48B239CB70",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/94F1C48B8EB616D61C953D78BBF1F1C59276CD5E6DC24E035C932D48B239CB70",
+      "CompressedSize": 1154536,
+      "SHA256": "EE6D07AD784893D3B4082BCE57BADDE70329955A3CB8A0E63AB2C82D9F9C8077",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/EE6D07AD784893D3B4082BCE57BADDE70329955A3CB8A0E63AB2C82D9F9C8077",
       "ContentEncoding": "Deflate"
     },
     {
@@ -133,8 +133,8 @@
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 439808,
       "CompressedSize": 89174,
-      "SHA256": "6A44DA3CD66C7C96A7C97FED4792B999CB2A2EC665423F9F04A6AEAC2120B264",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/6A44DA3CD66C7C96A7C97FED4792B999CB2A2EC665423F9F04A6AEAC2120B264",
+      "SHA256": "601BEDE35F95F94F1FE8DF1909A9AC079BF4F3F1FE71C8164B005904E7634A25",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/601BEDE35F95F94F1FE8DF1909A9AC079BF4F3F1FE71C8164B005904E7634A25",
       "ContentEncoding": "Deflate"
     },
     {
@@ -1389,6 +1389,15 @@
       "ContentEncoding": "Deflate"
     },
     {
+      "Name": "Character_Thoma_Thumb.png",
+      "Path": ".\\bin\\resource\\character\\Character_Thoma_Thumb.png",
+      "Size": 73164,
+      "CompressedSize": 73189,
+      "SHA256": "8A7C6683B3F1E993F20BB9A09C44C0A8A95FDC91DAAE7783867B8EB3265BD3FE",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/8A7C6683B3F1E993F20BB9A09C44C0A8A95FDC91DAAE7783867B8EB3265BD3FE",
+      "ContentEncoding": "Deflate"
+    },
+    {
       "Name": "Character_Traveler_(Female)_Portrait.png",
       "Path": ".\\bin\\resource\\character\\Character_Traveler_(Female)_Portrait.png",
       "Size": 311508,
@@ -1562,10 +1571,10 @@
     {
       "Name": "CharacterInfoList.json",
       "Path": ".\\bin\\resource\\list\\CharacterInfoList.json",
-      "Size": 5045,
-      "CompressedSize": 814,
-      "SHA256": "4081C6BBD3478912E3012F1442CE8656D75EAE1110A7693E52CDF0E0ABC81184",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/4081C6BBD3478912E3012F1442CE8656D75EAE1110A7693E52CDF0E0ABC81184",
+      "Size": 5168,
+      "CompressedSize": 829,
+      "SHA256": "79D53946EA707D54170C20E53F6CBD2F2FFFFF63131EFB62766045B1FF3E492C",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/7/79D53946EA707D54170C20E53F6CBD2F2FFFFF63131EFB62766045B1FF3E492C",
       "ContentEncoding": "Deflate"
     },
     {
