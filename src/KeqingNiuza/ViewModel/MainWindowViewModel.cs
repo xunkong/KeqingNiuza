@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
@@ -57,6 +58,7 @@ namespace KeqingNiuza.ViewModel
             _timer = new System.Timers.Timer(1000);
             _timer.AutoReset = false;
             _timer.Elapsed += LoadCloudAccount;
+            _timer.Elapsed += ShowChangeLog;
             _timer.Start();
         }
 
@@ -217,6 +219,43 @@ namespace KeqingNiuza.ViewModel
                     }
                 }
             });
+        }
+
+
+        public async void ShowChangeLog(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            var file = "..\\changelog.txt";
+            try
+            {
+                if (File.Exists(file))
+                {
+                    var lines = File.ReadLines(file);
+                    if (lines.Any())
+                    {
+                        var line = lines.First();
+                        if (line == FileVersion)
+                        {
+                            return;
+                        }
+                    }
+                }
+                var url = $"https://api.xk.scighost.com/keqingniuza/changelog?version={FileVersion}";
+                var client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = true, AutomaticDecompression = System.Net.DecompressionMethods.GZip });
+                client.DefaultRequestHeaders.Add("User-Agent", $"KeqingNiuza/{FileVersion}");
+                var content = await client.GetStringAsync(url);
+                if (string.IsNullOrWhiteSpace(content))
+                {
+                    File.WriteAllText(file, FileVersion);
+                    return;
+                }
+                File.WriteAllText(file, $"{FileVersion}\n{content}");
+                System.Windows.MessageBox.Show(content, $"{FileVersion} 更新内容");
+            }
+            catch (Exception ex)
+            {
+
+            }
+
         }
 
         public void AddNewUid()
