@@ -1,14 +1,23 @@
 {
-  "Version": "2.1.6",
-  "LastUpdateTime": "2021-10-30T12:23:11.3068776+08:00",
+  "Version": "2.2.0",
+  "LastUpdateTime": "2021-11-02T15:48:56.4337679+08:00",
   "KeqingNiuzaFiles": [
+    {
+      "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
+      "Path": ".\\Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
+      "Size": 854,
+      "CompressedSize": 792,
+      "SHA256": "6D5CF440BED4D2D23C768A0B6828F85CCC1F120B18BDAF276AEECA3907D330A6",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/6D5CF440BED4D2D23C768A0B6828F85CCC1F120B18BDAF276AEECA3907D330A6",
+      "ContentEncoding": "Deflate"
+    },
     {
       "Name": "KeqingNiuza Launcher.exe",
       "Path": ".\\KeqingNiuza Launcher.exe",
       "Size": 1468928,
-      "CompressedSize": 1056647,
-      "SHA256": "633A10D332FF6CD3DDF297243B1A54221F3C8F91C68198F0655D8CC1AC51DA58",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/633A10D332FF6CD3DDF297243B1A54221F3C8F91C68198F0655D8CC1AC51DA58",
+      "CompressedSize": 1056649,
+      "SHA256": "CD334B3C2D9D139F9E3F038ED8F8098FF66F99426853FA87718754762A264152",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CD334B3C2D9D139F9E3F038ED8F8098FF66F99426853FA87718754762A264152",
       "ContentEncoding": "Deflate"
     },
     {
@@ -32,28 +41,28 @@
     {
       "Name": "使用手册.pdf",
       "Path": ".\\使用手册.pdf",
-      "Size": 1910695,
-      "CompressedSize": 1861786,
-      "SHA256": "D1C9739B9067D9C924A470CF6606884714C7CB3D901816F4873A521D0D53FAC4",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/D1C9739B9067D9C924A470CF6606884714C7CB3D901816F4873A521D0D53FAC4",
+      "Size": 2166720,
+      "CompressedSize": 2111507,
+      "SHA256": "D9C44A7B49550D620E8018DCF96D0A4814E11472A3D573E3E798CB0468910723",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/D9C44A7B49550D620E8018DCF96D0A4814E11472A3D573E3E798CB0468910723",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "ControlzEx.dll",
       "Path": ".\\bin\\ControlzEx.dll",
-      "Size": 235192,
-      "CompressedSize": 100436,
-      "SHA256": "BA8DC8D813872DA0B0DA537D48B25E53E222C13FF00EC5D75686922A4EB09F45",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/BA8DC8D813872DA0B0DA537D48B25E53E222C13FF00EC5D75686922A4EB09F45",
+      "Size": 235768,
+      "CompressedSize": 100616,
+      "SHA256": "054D39BA9084D0440423BEE00A438D96E22CDC4EA1B0CDC028C1A16F69BD8DD0",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/0/054D39BA9084D0440423BEE00A438D96E22CDC4EA1B0CDC028C1A16F69BD8DD0",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "ControlzEx.pdb",
       "Path": ".\\bin\\ControlzEx.pdb",
-      "Size": 763392,
-      "CompressedSize": 384712,
-      "SHA256": "097E8AE58F3515E724E8F6C24D349298E92C822A7DA534632BC2A951CFC241D6",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/0/097E8AE58F3515E724E8F6C24D349298E92C822A7DA534632BC2A951CFC241D6",
+      "Size": 765440,
+      "CompressedSize": 385094,
+      "SHA256": "311EDA6C67D4AA6C5770819B92BA918FBEACFBB7D90FF7522793E9A999A98323",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/311EDA6C67D4AA6C5770819B92BA918FBEACFBB7D90FF7522793E9A999A98323",
       "ContentEncoding": "Deflate"
     },
     {
@@ -78,9 +87,9 @@
       "Name": "KeqingNiuza.Core.dll",
       "Path": ".\\bin\\KeqingNiuza.Core.dll",
       "Size": 131584,
-      "CompressedSize": 56661,
-      "SHA256": "781F7AE02337C32FE0C9DE1FB86F758388F2D6BB0BAB62DA28FFBD607EFA2525",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/7/781F7AE02337C32FE0C9DE1FB86F758388F2D6BB0BAB62DA28FFBD607EFA2525",
+      "CompressedSize": 56670,
+      "SHA256": "5CD9CB470C2FEAE21FFC0EFBF1A21B261EAF52B647BACC9287FDD5B2B79D8066",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5CD9CB470C2FEAE21FFC0EFBF1A21B261EAF52B647BACC9287FDD5B2B79D8066",
       "ContentEncoding": "Deflate"
     },
     {
@@ -95,28 +104,64 @@
     {
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
-      "Size": 1703936,
-      "CompressedSize": 1153828,
-      "SHA256": "5E8788D876FDEBC5DC7F8873BA4525B80F922A8AD3408F6F926E4C878E216F65",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5E8788D876FDEBC5DC7F8873BA4525B80F922A8AD3408F6F926E4C878E216F65",
+      "Size": 1705472,
+      "CompressedSize": 1154549,
+      "SHA256": "C3F5B0E38A7F6AF30CDE83D4D6EBDC70F81110BEB78100D5B965B08158CBE002",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C3F5B0E38A7F6AF30CDE83D4D6EBDC70F81110BEB78100D5B965B08158CBE002",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "KeqingNiuza.exe.config",
       "Path": ".\\bin\\KeqingNiuza.exe.config",
-      "Size": 3161,
-      "CompressedSize": 776,
-      "SHA256": "5DC9B587D7192E1FF0BB3845AFF055C384615412AF86C0FD7D2FF6867F7CB0B8",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5DC9B587D7192E1FF0BB3845AFF055C384615412AF86C0FD7D2FF6867F7CB0B8",
+      "Size": 2832,
+      "CompressedSize": 743,
+      "SHA256": "15A9735CD85844AF3829F5C7BB88050D0E32B0DD9AAFF238E26A6DFF83FA852B",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/15A9735CD85844AF3829F5C7BB88050D0E32B0DD9AAFF238E26A6DFF83FA852B",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "KeqingNiuza.msix",
+      "Path": ".\\bin\\KeqingNiuza.msix",
+      "Size": 1243904,
+      "CompressedSize": 1175198,
+      "SHA256": "686D3AB097AB93FD16DAC6F36F450FE335D7A606910DEC1005FF2D6FDD638E5E",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/686D3AB097AB93FD16DAC6F36F450FE335D7A606910DEC1005FF2D6FDD638E5E",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
-      "Size": 437760,
-      "CompressedSize": 88494,
-      "SHA256": "08BBE30BF6E847281395157AB5FBCA5A2A738814AD19C5677F879DC8731AAC3C",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/0/08BBE30BF6E847281395157AB5FBCA5A2A738814AD19C5677F879DC8731AAC3C",
+      "Size": 439808,
+      "CompressedSize": 89180,
+      "SHA256": "4D2F5752185A97F000DBC98949BD62A82BDF8FF7A884045CE90A6D169B7C4B48",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/4D2F5752185A97F000DBC98949BD62A82BDF8FF7A884045CE90A6D169B7C4B48",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "KeqingNiuza.RealtimeNotes.exe",
+      "Path": ".\\bin\\KeqingNiuza.RealtimeNotes.exe",
+      "Size": 157184,
+      "CompressedSize": 62156,
+      "SHA256": "AF1432D861621DA4F7C8F49B048AC7FCDB3A40243770F01F7C055CA57557B81F",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/AF1432D861621DA4F7C8F49B048AC7FCDB3A40243770F01F7C055CA57557B81F",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "KeqingNiuza.RealtimeNotes.exe.config",
+      "Path": ".\\bin\\KeqingNiuza.RealtimeNotes.exe.config",
+      "Size": 886,
+      "CompressedSize": 343,
+      "SHA256": "BB8AAEA166DCF5186CB47C2EA79851C05FAAD83AF25FC90F53475F90D829C9D4",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/BB8AAEA166DCF5186CB47C2EA79851C05FAAD83AF25FC90F53475F90D829C9D4",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "KeqingNiuza.RealtimeNotes.pdb",
+      "Path": ".\\bin\\KeqingNiuza.RealtimeNotes.pdb",
+      "Size": 583168,
+      "CompressedSize": 111030,
+      "SHA256": "E3363B888D61BFBF8E3F45BE0B179A2950932E80B522B1871F608D330FC5359F",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E3363B888D61BFBF8E3F45BE0B179A2950932E80B522B1871F608D330FC5359F",
       "ContentEncoding": "Deflate"
     },
     {
@@ -158,37 +203,37 @@
     {
       "Name": "Melanchall.DryWetMidi.dll",
       "Path": ".\\bin\\Melanchall.DryWetMidi.dll",
-      "Size": 596992,
-      "CompressedSize": 231210,
-      "SHA256": "8F0FFBA48FB472D3813A39FE3DA6F6E953B813FACF71025DB25CBE814EA98EC9",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/8F0FFBA48FB472D3813A39FE3DA6F6E953B813FACF71025DB25CBE814EA98EC9",
+      "Size": 621568,
+      "CompressedSize": 241170,
+      "SHA256": "4253676894D6E26625965D16C4D523D5599A57470097EA3807522F0B3F9A809B",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/4253676894D6E26625965D16C4D523D5599A57470097EA3807522F0B3F9A809B",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "Microsoft.AppCenter.Analytics.dll",
       "Path": ".\\bin\\Microsoft.AppCenter.Analytics.dll",
-      "Size": 22376,
-      "CompressedSize": 12200,
-      "SHA256": "0F8B2365E3990DDBB214B6D54E7AC95EF6F7E03C93DC29FA1105EB696E25FAFB",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/0/0F8B2365E3990DDBB214B6D54E7AC95EF6F7E03C93DC29FA1105EB696E25FAFB",
+      "Size": 22400,
+      "CompressedSize": 12214,
+      "SHA256": "A21925E4878F09101B61093EC07F03F7AA4C25762A8499CE36CCCA1274E6920E",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/A21925E4878F09101B61093EC07F03F7AA4C25762A8499CE36CCCA1274E6920E",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "Microsoft.AppCenter.Crashes.dll",
       "Path": ".\\bin\\Microsoft.AppCenter.Crashes.dll",
       "Size": 52072,
-      "CompressedSize": 24140,
-      "SHA256": "D4708E394363D5C45325131BD33C120752B01984864DAF1099F641F41B2133C5",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/D4708E394363D5C45325131BD33C120752B01984864DAF1099F641F41B2133C5",
+      "CompressedSize": 24137,
+      "SHA256": "46E7F28FA36FA3562F66963352735F8FE9A1B52B28070ED20EBA65A1499985D2",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/46E7F28FA36FA3562F66963352735F8FE9A1B52B28070ED20EBA65A1499985D2",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "Microsoft.AppCenter.dll",
       "Path": ".\\bin\\Microsoft.AppCenter.dll",
-      "Size": 144232,
-      "CompressedSize": 62272,
-      "SHA256": "1D3C4C625D8B385E8014547D01265CB593ED244B6F8BD527F8D5D8D2E123C69F",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/1D3C4C625D8B385E8014547D01265CB593ED244B6F8BD527F8D5D8D2E123C69F",
+      "Size": 144744,
+      "CompressedSize": 62339,
+      "SHA256": "2BE5E1217C11FC8B2FC54B4E0ECBD1AE30EDBF894A3D0E74BB654FCD2BB22F63",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2BE5E1217C11FC8B2FC54B4E0ECBD1AE30EDBF894A3D0E74BB654FCD2BB22F63",
       "ContentEncoding": "Deflate"
     },
     {
@@ -203,28 +248,28 @@
     {
       "Name": "Microsoft.Toolkit.Uwp.Notifications.dll",
       "Path": ".\\bin\\Microsoft.Toolkit.Uwp.Notifications.dll",
-      "Size": 143512,
-      "CompressedSize": 62480,
-      "SHA256": "00BFC090A2B8DCF98D3AC70E06B1E8E1D185656D9AE4528BA71CD5F215875FFC",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/0/00BFC090A2B8DCF98D3AC70E06B1E8E1D185656D9AE4528BA71CD5F215875FFC",
+      "Size": 143568,
+      "CompressedSize": 62534,
+      "SHA256": "19BBAD78B7CF8F251947D2E6A0B40A9C0EE36963ED284D8BDE7E0891DC72005B",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/19BBAD78B7CF8F251947D2E6A0B40A9C0EE36963ED284D8BDE7E0891DC72005B",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "Microsoft.Toolkit.Uwp.Notifications.pdb",
       "Path": ".\\bin\\Microsoft.Toolkit.Uwp.Notifications.pdb",
-      "Size": 67564,
-      "CompressedSize": 32505,
-      "SHA256": "E8EC48FE5B8F54D8E080D61B42FA148595D480F2AC8F5B37FC412340F51DC5F7",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E8EC48FE5B8F54D8E080D61B42FA148595D480F2AC8F5B37FC412340F51DC5F7",
+      "Size": 67752,
+      "CompressedSize": 32591,
+      "SHA256": "DB166A33C60BDF0C13ACCF29AB473775D01ADD81A9B12A7C8740663E5D106893",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/DB166A33C60BDF0C13ACCF29AB473775D01ADD81A9B12A7C8740663E5D106893",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "Microsoft.Win32.TaskScheduler.dll",
       "Path": ".\\bin\\Microsoft.Win32.TaskScheduler.dll",
       "Size": 333824,
-      "CompressedSize": 139613,
-      "SHA256": "6928BF7BB271EACF64ED826B46597F73111867009720167C070E214488C4C445",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/6928BF7BB271EACF64ED826B46597F73111867009720167C070E214488C4C445",
+      "CompressedSize": 139671,
+      "SHA256": "5B666551577FB620852FF99A39227523DB5828AC87F18652888964212531DE38",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5B666551577FB620852FF99A39227523DB5828AC87F18652888964212531DE38",
       "ContentEncoding": "Deflate"
     },
     {
@@ -288,6 +333,24 @@
       "CompressedSize": 19009,
       "SHA256": "63237364887BA1F0C5359EE8F7F5B1ED6B9C0ADCAA07DE52142BB11D1018ED59",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/63237364887BA1F0C5359EE8F7F5B1ED6B9C0ADCAA07DE52142BB11D1018ED59",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "StandardSocketsHttpHandler.dll",
+      "Path": ".\\bin\\StandardSocketsHttpHandler.dll",
+      "Size": 234496,
+      "CompressedSize": 88803,
+      "SHA256": "4A951BA455E9DBBB385121D8100A8378A96B00A8D7D9739A8902FA09E29342C2",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/4A951BA455E9DBBB385121D8100A8378A96B00A8D7D9739A8902FA09E29342C2",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "StandardSocketsHttpHandler.pdb",
+      "Path": ".\\bin\\StandardSocketsHttpHandler.pdb",
+      "Size": 620032,
+      "CompressedSize": 138456,
+      "SHA256": "2D471B77BF931100539AD8FBE20856D0022376B88DC6D8B0EB6BE4A9EF9BC252",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2D471B77BF931100539AD8FBE20856D0022376B88DC6D8B0EB6BE4A9EF9BC252",
       "ContentEncoding": "Deflate"
     },
     {
@@ -1508,19 +1571,19 @@
     {
       "Name": "WeaponInfoList.json",
       "Path": ".\\bin\\resource\\list\\WeaponInfoList.json",
-      "Size": 16215,
-      "CompressedSize": 2616,
-      "SHA256": "EC0BBE7FE35D426BD95ABA59F7FF2FF5783916BBF3035E4EA05FDF1962680329",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/EC0BBE7FE35D426BD95ABA59F7FF2FF5783916BBF3035E4EA05FDF1962680329",
+      "Size": 16515,
+      "CompressedSize": 2677,
+      "SHA256": "DFE05C2FFF7B6E0304423FF379CF4BCE162BA39EFDC40F36CF46090BD438BFAE",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/DFE05C2FFF7B6E0304423FF379CF4BCE162BA39EFDC40F36CF46090BD438BFAE",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "WishEventList.json",
       "Path": ".\\bin\\resource\\list\\WishEventList.json",
-      "Size": 12669,
-      "CompressedSize": 1760,
-      "SHA256": "51119203897E3F097FF498850B5B15127D953868A18EEB095431D0FFAD47DAF0",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/51119203897E3F097FF498850B5B15127D953868A18EEB095431D0FFAD47DAF0",
+      "Size": 13322,
+      "CompressedSize": 1829,
+      "SHA256": "562418FB426AAC51A35E03264C8E945CD2220A3A34776174DC8D1F39BF7A8CA6",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/562418FB426AAC51A35E03264C8E945CD2220A3A34776174DC8D1F39BF7A8CA6",
       "ContentEncoding": "Deflate"
     },
     {
@@ -1998,6 +2061,150 @@
       "CompressedSize": 1139,
       "SHA256": "D26372130D5D9C49E84E82F6ED40704040356C482A1DB30F3DE75C46D6DFFF40",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/D26372130D5D9C49E84E82F6ED40704040356C482A1DB30F3DE75C46D6DFFF40",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Commission.png",
+      "Path": ".\\bin\\resource\\others\\Commission.png",
+      "Size": 116804,
+      "CompressedSize": 108753,
+      "SHA256": "95E0F27F71E3A5999565A840B82A13EE60050C22FFD89FC74EB8E3D2801479DC",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/95E0F27F71E3A5999565A840B82A13EE60050C22FFD89FC74EB8E3D2801479DC",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Commission_30.png",
+      "Path": ".\\bin\\resource\\others\\Commission_30.png",
+      "Size": 1837,
+      "CompressedSize": 1842,
+      "SHA256": "92900ADF2BB9F50A31387E56AA28ADAE4A93464D6A7EDDA0426EB8D67EADF641",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/92900ADF2BB9F50A31387E56AA28ADAE4A93464D6A7EDDA0426EB8D67EADF641",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Commission_32.png",
+      "Path": ".\\bin\\resource\\others\\Commission_32.png",
+      "Size": 1904,
+      "CompressedSize": 1909,
+      "SHA256": "E86E3F260EF9C6B25899E6B611A1991345371D08D0D443393C0A704D7413F29A",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E86E3F260EF9C6B25899E6B611A1991345371D08D0D443393C0A704D7413F29A",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Commission_64.png",
+      "Path": ".\\bin\\resource\\others\\Commission_64.png",
+      "Size": 4506,
+      "CompressedSize": 4511,
+      "SHA256": "7C34DF787AB610AF2527ED93FD155ADFC09F9F5929F31FDBED656A20ED545F58",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/7/7C34DF787AB610AF2527ED93FD155ADFC09F9F5929F31FDBED656A20ED545F58",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Domain.png",
+      "Path": ".\\bin\\resource\\others\\Domain.png",
+      "Size": 180352,
+      "CompressedSize": 162894,
+      "SHA256": "FADB1F46100A05B6061FB16668287678C01A82994C488503CA4483A1FE4B0658",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/FADB1F46100A05B6061FB16668287678C01A82994C488503CA4483A1FE4B0658",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Domain_30.png",
+      "Path": ".\\bin\\resource\\others\\Domain_30.png",
+      "Size": 2148,
+      "CompressedSize": 2153,
+      "SHA256": "B4D3D846F7A3E6CBF4DE375751F79C1B7B2256133612A8BA6C33F0B3AF3EB0BC",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B4D3D846F7A3E6CBF4DE375751F79C1B7B2256133612A8BA6C33F0B3AF3EB0BC",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Domain_32.png",
+      "Path": ".\\bin\\resource\\others\\Domain_32.png",
+      "Size": 2158,
+      "CompressedSize": 2163,
+      "SHA256": "DD7869BDD9954EC2F0A54BBBDEE90E16BDB33F5E2183919B5419539302CAEF1D",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/DD7869BDD9954EC2F0A54BBBDEE90E16BDB33F5E2183919B5419539302CAEF1D",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Domain_64.png",
+      "Path": ".\\bin\\resource\\others\\Domain_64.png",
+      "Size": 6079,
+      "CompressedSize": 6084,
+      "SHA256": "241FF17B443B745A44CB75FA8FB89DE29B5B2CE463F6BE4F784903CCBCD7EDD9",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/241FF17B443B745A44CB75FA8FB89DE29B5B2CE463F6BE4F784903CCBCD7EDD9",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Resin.png",
+      "Path": ".\\bin\\resource\\others\\Resin.png",
+      "Size": 41280,
+      "CompressedSize": 41295,
+      "SHA256": "699D91AB6BAC67B568877C19745DCD9D05960FD2AD00907919F883C5DC9FA12F",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/699D91AB6BAC67B568877C19745DCD9D05960FD2AD00907919F883C5DC9FA12F",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Resin2.png",
+      "Path": ".\\bin\\resource\\others\\Resin2.png",
+      "Size": 59492,
+      "CompressedSize": 59512,
+      "SHA256": "5EB92C4C4980BBD22F1930A0E2FEABB99E6DB0238FBD7050E9A82956465A37D6",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5EB92C4C4980BBD22F1930A0E2FEABB99E6DB0238FBD7050E9A82956465A37D6",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Resin_16.png",
+      "Path": ".\\bin\\resource\\others\\Resin_16.png",
+      "Size": 825,
+      "CompressedSize": 830,
+      "SHA256": "2615F2683C7001FE63CE2CC0B559D4D0E99D9451F57FD3D92D41758F53DF5985",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2615F2683C7001FE63CE2CC0B559D4D0E99D9451F57FD3D92D41758F53DF5985",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Resin_24.png",
+      "Path": ".\\bin\\resource\\others\\Resin_24.png",
+      "Size": 1430,
+      "CompressedSize": 1435,
+      "SHA256": "A82B850C38FF90EF52BB3BF3A64386970697882063E53613D951B78189E04C32",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/A82B850C38FF90EF52BB3BF3A64386970697882063E53613D951B78189E04C32",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Resin_30.png",
+      "Path": ".\\bin\\resource\\others\\Resin_30.png",
+      "Size": 1998,
+      "CompressedSize": 2003,
+      "SHA256": "34BD75101A2CC4545F94ADC6C952BDE0E28DD321690D93E3A8A8BE0F72E9DD67",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/34BD75101A2CC4545F94ADC6C952BDE0E28DD321690D93E3A8A8BE0F72E9DD67",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Resin_32.png",
+      "Path": ".\\bin\\resource\\others\\Resin_32.png",
+      "Size": 2201,
+      "CompressedSize": 2206,
+      "SHA256": "0E7E856096ABFA737FBAF9B55E620A146155593C3E2AA7C20D8F0DFFCF51B172",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/0/0E7E856096ABFA737FBAF9B55E620A146155593C3E2AA7C20D8F0DFFCF51B172",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Resin_64.png",
+      "Path": ".\\bin\\resource\\others\\Resin_64.png",
+      "Size": 6786,
+      "CompressedSize": 6791,
+      "SHA256": "4EAA4DAF67041D42BAEAD129BD794437C03B00B13BF3D604A304A26E70B86ABE",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/4EAA4DAF67041D42BAEAD129BD794437C03B00B13BF3D604A304A26E70B86ABE",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Transparent.png",
+      "Path": ".\\bin\\resource\\others\\Transparent.png",
+      "Size": 140,
+      "CompressedSize": 130,
+      "SHA256": "C3779E3AA70B2F422AB0C8C58285FD4007567A859BC6BE84BDE6A06B9573AC5D",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C3779E3AA70B2F422AB0C8C58285FD4007567A859BC6BE84BDE6A06B9573AC5D",
       "ContentEncoding": "Deflate"
     },
     {
@@ -2493,6 +2700,15 @@
       "CompressedSize": 52068,
       "SHA256": "383545230834DFB6BC3640C5CD404285320B657703D46F0E33E304067E5C3E63",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/383545230834DFB6BC3640C5CD404285320B657703D46F0E33E304067E5C3E63",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Weapon_Mouun's_Moon.png",
+      "Path": ".\\bin\\resource\\weapon\\Weapon_Mouun's_Moon.png",
+      "Size": 108540,
+      "CompressedSize": 104917,
+      "SHA256": "508C278BBE90FFEB21F4068E4A5A12D4DB4FF0B5D1898E5D34934B7EEF604039",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/508C278BBE90FFEB21F4068E4A5A12D4DB4FF0B5D1898E5D34934B7EEF604039",
       "ContentEncoding": "Deflate"
     },
     {
@@ -3006,6 +3222,15 @@
       "CompressedSize": 29182,
       "SHA256": "CAD2A5B763A8A057D798585F94A62EF1CB1EDF51378F3F872E234AC75FC2AC68",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CAD2A5B763A8A057D798585F94A62EF1CB1EDF51378F3F872E234AC75FC2AC68",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Weapon_Wavebreaker's_Fin.png",
+      "Path": ".\\bin\\resource\\weapon\\Weapon_Wavebreaker's_Fin.png",
+      "Size": 43047,
+      "CompressedSize": 39719,
+      "SHA256": "708B8DCB39FE49F19B9CCDF02DE6489A4C601ED9F34316DCF0608DFA798F0A3D",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/7/708B8DCB39FE49F19B9CCDF02DE6489A4C601ED9F34316DCF0608DFA798F0A3D",
       "ContentEncoding": "Deflate"
     },
     {
