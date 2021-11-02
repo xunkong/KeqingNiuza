@@ -56,7 +56,7 @@
             <TextBox x:Name="TextBox_Cookie"
                      Height="200"
                      VerticalContentAlignment="Top"
-                     TextWrapping="WrapWithOverflow" />
+                     TextWrapping="Wrap" />
 
         </StackPanel>
 

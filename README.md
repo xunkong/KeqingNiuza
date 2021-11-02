@@ -26,6 +26,8 @@
 - [HandyControl](https://github.com/HandyOrg/HandyControl)
 - [Live-Charts](https://github.com/Live-Charts/Live-Charts)
 - [Newtonsoft.Json](https://github.com/JamesNK/Newtonsoft.Json)
+- [Snap.Genshin](https://github.com/DGP-Studio/Snap.Genshin)
+- [StandardSocketsHttpHandler](https://github.com/TalAloni/StandardSocketsHttpHandler)
 - [TaskScheduler](https://github.com/dahall/taskscheduler)
 - [WebDavClient](https://github.com/skazantsev/WebDavClient)
 - [WindowsCommunityToolkit](https://github.com/CommunityToolkit/WindowsCommunityToolkit)
@@ -39,6 +41,8 @@
 ## 截图
 
 ![ScreenShot1](img/Snipaste_2021-06-19_10-46-43.png)
+
+<img src="img/image-20211102151941122.png" alt="便笺磁贴" style="width:400px; float:left;" />
 
 ---
 

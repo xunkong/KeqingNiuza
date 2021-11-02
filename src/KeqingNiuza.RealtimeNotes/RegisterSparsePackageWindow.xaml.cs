@@ -36,7 +36,7 @@ namespace KeqingNiuza.RealtimeNotes
                 await Task.Delay(500);
                 try
                 {
-                    Process.Start(typeof(RegisterSparsePackageWindow).Assembly.Location, "--setting");
+                    Process.Start(typeof(RegisterSparsePackageWindow).Assembly.Location);
                     Environment.Exit(0);
                 }
                 catch (Exception ex)

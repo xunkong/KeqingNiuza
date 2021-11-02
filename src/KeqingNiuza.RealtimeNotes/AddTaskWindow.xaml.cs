@@ -68,7 +68,7 @@ namespace KeqingNiuza.RealtimeNotes
             }
             try
             {
-                BackgroundService.AddScheduleTask();
+                BackgroundService.AddScheduleTask(Interval);
                 StateText = "添加成功";
             }
             catch (Exception ex)

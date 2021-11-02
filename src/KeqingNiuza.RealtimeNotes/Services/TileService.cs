@@ -54,7 +54,7 @@ namespace KeqingNiuza.RealtimeNotes.Services
                 do
                 {
                     info.Expeditions.Add(new Expedition { AvatarSideIcon = Path.Combine(AppContext.BaseDirectory, "resource/others/Transparent.png") });
-                } while (info.Expeditions.Count == 5);
+                } while (info.Expeditions.Count != 5);
             }
             var updater = TileUpdateManager.CreateTileUpdaterForSecondaryTile(info.Uid);
             var content = GetTileContent(info);

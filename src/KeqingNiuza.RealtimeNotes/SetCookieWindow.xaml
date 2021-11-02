@@ -21,7 +21,7 @@
                      Height="240"
                      Margin="0,12,0,0"
                      VerticalContentAlignment="Top"
-                     TextWrapping="WrapWithOverflow" />
+                     TextWrapping="Wrap" />
 
             <TextBlock x:Name="TextBlock_StateText" Margin="0 12 0 0" />
 

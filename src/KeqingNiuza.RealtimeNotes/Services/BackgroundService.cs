@@ -68,13 +68,13 @@ namespace KeqingNiuza.RealtimeNotes.Services
 
 
 
-        public static void AddScheduleTask()
+        public static void AddScheduleTask(int interval)
         {
             using (var t = MT.TaskService.Instance.NewTask())
             {
                 t.RegistrationInfo.Description = "刻记牛杂店-任务提醒";
                 var lt = new MT.TimeTrigger();
-                lt.Repetition = new MT.RepetitionPattern(TimeSpan.FromMinutes(15), TimeSpan.Zero);
+                lt.Repetition = new MT.RepetitionPattern(TimeSpan.FromMinutes(interval), TimeSpan.Zero);
                 t.Triggers.Add(lt);
                 var exePath = Process.GetCurrentProcess().MainModule.FileName;
                 var exeDir = Path.GetDirectoryName(exePath);
