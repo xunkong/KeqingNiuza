@@ -241,7 +241,7 @@ namespace KeqingNiuza.ViewModel
                 }
                 var url = $"https://api.xk.scighost.com/keqingniuza/changelog?version={FileVersion}";
                 var client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = true, AutomaticDecompression = System.Net.DecompressionMethods.GZip });
-                client.DefaultRequestHeaders.Add("User-Agent", $"KeqingNiuza/{FileVersion}");
+                client.DefaultRequestHeaders.Add("User-Agent", $"KeqingNiuza/{FileVersion} UserId/{UserId}");
                 var content = await client.GetStringAsync(url);
                 if (string.IsNullOrWhiteSpace(content))
                 {
