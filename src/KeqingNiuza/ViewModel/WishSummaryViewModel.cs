@@ -24,14 +24,24 @@ namespace KeqingNiuza.ViewModel
             WishSummary = WishSummary.Create(WishDataList, IgnoreFirstStar5Character, IgnoreFirstStar5Weapon, IgnoreFirstStar5Permanent);
             CharacterOrder("星级");
             WeaponOrder("星级");
-            if (!IsCorrectOrder)
-            {
-                WishSummary.CharacterStatistics.Star5List.Reverse();
-                WishSummary.CharacterStatistics.Star4List.Reverse();
-                WishSummary.WeaponStatistics.Star5List.Reverse();
-                WishSummary.WeaponStatistics.Star4List.Reverse();
-                WishSummary.PermanentStatistics.Star5List.Reverse();
-                WishSummary.PermanentStatistics.Star4List.Reverse();
+            if (!IsCorrectOrder) {
+                if (WishSummary.CharacterStatistics != null)
+                {
+                    WishSummary.CharacterStatistics.Star5List.Reverse();
+                    WishSummary.CharacterStatistics.Star4List.Reverse();
+                }
+
+                if (WishSummary.WeaponStatistics != null)
+                {
+                    WishSummary.WeaponStatistics.Star5List.Reverse();
+                    WishSummary.WeaponStatistics.Star4List.Reverse();
+                }
+
+                if (WishSummary.PermanentStatistics != null)
+                {
+                    WishSummary.PermanentStatistics.Star5List.Reverse();
+                    WishSummary.PermanentStatistics.Star4List.Reverse();
+                }
             }
         }
 
