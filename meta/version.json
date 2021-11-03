@@ -1,6 +1,6 @@
 {
-  "Version": "2.2.0",
-  "LastUpdateTime": "2021-11-03T00:00:59.2620893+08:00",
+  "Version": "2.2.0.1",
+  "LastUpdateTime": "2021-11-03T08:59:12.4822438+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -15,9 +15,9 @@
       "Name": "KeqingNiuza Launcher.exe",
       "Path": ".\\KeqingNiuza Launcher.exe",
       "Size": 1468928,
-      "CompressedSize": 1056649,
-      "SHA256": "CD334B3C2D9D139F9E3F038ED8F8098FF66F99426853FA87718754762A264152",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CD334B3C2D9D139F9E3F038ED8F8098FF66F99426853FA87718754762A264152",
+      "CompressedSize": 1056651,
+      "SHA256": "5CCB7E35D16E9741F762524BACED5E102E871A0EDEDB99FFD6CCE160BF6FD4E6",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5CCB7E35D16E9741F762524BACED5E102E871A0EDEDB99FFD6CCE160BF6FD4E6",
       "ContentEncoding": "Deflate"
     },
     {
@@ -105,9 +105,9 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1705472,
-      "CompressedSize": 1154536,
-      "SHA256": "1EF02DC4080699EA5DE5340BFB2A1161318F31CDEAFFE3A6F0414B6EBBC556D2",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/1EF02DC4080699EA5DE5340BFB2A1161318F31CDEAFFE3A6F0414B6EBBC556D2",
+      "CompressedSize": 1154552,
+      "SHA256": "485C11F26BBC1E98359612CBA87855782DEE095BFC99D1F9D0D927D656B60FC0",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/485C11F26BBC1E98359612CBA87855782DEE095BFC99D1F9D0D927D656B60FC0",
       "ContentEncoding": "Deflate"
     },
     {
@@ -132,18 +132,18 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 439808,
-      "CompressedSize": 89178,
-      "SHA256": "8E6D6AFE051CC34E204E0E900ED2902FA343B891F6ABD5681CB6DAC333843A12",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/8E6D6AFE051CC34E204E0E900ED2902FA343B891F6ABD5681CB6DAC333843A12",
+      "CompressedSize": 89206,
+      "SHA256": "10E87B3CAC0AFDFCB96FB07DC512440794138323078E41A8C630A2B9F64FF850",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/10E87B3CAC0AFDFCB96FB07DC512440794138323078E41A8C630A2B9F64FF850",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "KeqingNiuza.RealtimeNotes.exe",
       "Path": ".\\bin\\KeqingNiuza.RealtimeNotes.exe",
       "Size": 157184,
-      "CompressedSize": 62156,
-      "SHA256": "AF1432D861621DA4F7C8F49B048AC7FCDB3A40243770F01F7C055CA57557B81F",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/AF1432D861621DA4F7C8F49B048AC7FCDB3A40243770F01F7C055CA57557B81F",
+      "CompressedSize": 62221,
+      "SHA256": "769DD53D58D28D9F38E219DDD658E970311575CCF388A935B8DA723173491A25",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/7/769DD53D58D28D9F38E219DDD658E970311575CCF388A935B8DA723173491A25",
       "ContentEncoding": "Deflate"
     },
     {
@@ -158,10 +158,10 @@
     {
       "Name": "KeqingNiuza.RealtimeNotes.pdb",
       "Path": ".\\bin\\KeqingNiuza.RealtimeNotes.pdb",
-      "Size": 583168,
-      "CompressedSize": 111030,
-      "SHA256": "E3363B888D61BFBF8E3F45BE0B179A2950932E80B522B1871F608D330FC5359F",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E3363B888D61BFBF8E3F45BE0B179A2950932E80B522B1871F608D330FC5359F",
+      "Size": 585216,
+      "CompressedSize": 111413,
+      "SHA256": "B631808085B68413B5E6A4CB9441D62B82E98195B5B6A7F49AED94B63D868687",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B631808085B68413B5E6A4CB9441D62B82E98195B5B6A7F49AED94B63D868687",
       "ContentEncoding": "Deflate"
     },
     {
