@@ -74,6 +74,7 @@ namespace KeqingNiuza.RealtimeNotes
             catch (Exception ex)
             {
                 StateText = $"添加失败：{ex.Message}";
+                LogService.Log(ex.ToString());
             }
         }
     }

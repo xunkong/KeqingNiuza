@@ -69,6 +69,7 @@ namespace KeqingNiuza.RealtimeNotes
             catch (Exception ex)
             {
                 TextBlock_State.Text = $"无法读取已保存的Cookie：{ex.Message}";
+                LogService.Log(ex.ToString());
             }
             await UpdateNoteAsync();
         }
@@ -128,6 +129,7 @@ namespace KeqingNiuza.RealtimeNotes
                 catch (Exception ex)
                 {
                     TextBlock_State.Text = ex.Message;
+                    LogService.Log(ex.ToString());
                 }
                 finally
                 {
@@ -160,6 +162,7 @@ namespace KeqingNiuza.RealtimeNotes
                 catch (Exception ex)
                 {
                     TextBlock_State.Text = $"无法读取已保存的Cookie：{ex.Message}";
+                    LogService.Log(ex.ToString());
                 }
                 await UpdateNoteAsync();
             }
@@ -192,6 +195,7 @@ namespace KeqingNiuza.RealtimeNotes
             catch (Exception ex)
             {
                 TextBlock_State.Text = ex.Message;
+                LogService.Log(ex.ToString());
             }
 
         }

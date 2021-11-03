@@ -159,6 +159,7 @@
       <DependentUpon>RegisterSparsePackageWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Services\BackgroundService.cs" />
+    <Compile Include="Services\LogService.cs" />
     <Compile Include="Services\RealtimeNotesService.cs" />
     <Compile Include="Services\TileService.cs" />
     <Compile Include="SetCookieWindow.xaml.cs">

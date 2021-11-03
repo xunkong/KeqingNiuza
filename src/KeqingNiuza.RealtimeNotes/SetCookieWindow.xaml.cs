@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using KeqingNiuza.RealtimeNotes.Services;
 using Windows.Storage;
 
 namespace KeqingNiuza.RealtimeNotes
@@ -42,6 +43,8 @@ namespace KeqingNiuza.RealtimeNotes
                 catch (Exception ex)
                 {
                     TextBlock_StateText.Text = $"无法读取已保存的Cookie：{ex.Message}";
+                    LogService.Log(ex.ToString());
+
                 }
             }
         }
@@ -64,7 +67,7 @@ namespace KeqingNiuza.RealtimeNotes
             catch (Exception ex)
             {
                 TextBlock_StateText.Text = $"保存时出现错误：{ex.Message}";
-                return;
+                LogService.Log(ex.ToString());
             }
         }
 

@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using KeqingNiuza.RealtimeNotes.Services;
 using static KeqingNiuza.RealtimeNotes.SparsePackageUtil;
 
 namespace KeqingNiuza.RealtimeNotes
@@ -42,6 +43,7 @@ namespace KeqingNiuza.RealtimeNotes
                 catch (Exception ex)
                 {
                     TextBlock_State.Text = $"注册成功\n重启失败：{ex.Message}";
+                    LogService.Log(ex.ToString());
                 }
             }
             else

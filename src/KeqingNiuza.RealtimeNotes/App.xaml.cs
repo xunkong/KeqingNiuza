@@ -59,9 +59,7 @@ namespace KeqingNiuza.RealtimeNotes
         private void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             MessageBox.Show($"发生了错误：\n{(e.ExceptionObject as Exception)?.Message}", "实时便笺");
-            var file = $"..\\Log\\note-{DateTime.Now:yyMMdd}.txt";
-            var content = $"[{DateTime.Now:yy-MM-dd HH:mm:ss.fff}]\n{e.ExceptionObject}\n";
-            File.AppendAllText(file, content);
+            LogService.Log(e.ExceptionObject.ToString());
         }
     }
 }
