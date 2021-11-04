@@ -112,7 +112,7 @@ namespace KeqingNiuza.RealtimeNotes.Services
                                 },
                                 new AdaptiveText
                                 {
-                                    Text = $"更新于{DateTime.Now:mm:ss}",
+                                    Text = $"更新于{DateTime.Now:HH:mm}",
                                     HintAlign =AdaptiveTextAlign.Left
                                 },
                                 new AdaptiveText(),
