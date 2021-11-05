@@ -12,9 +12,17 @@ namespace KeqingNiuza.RealtimeNotes
     {
         //public static JsonSerializerOptions JsonOptions { get; } = new JsonSerializerOptions() { AllowTrailingCommas = true, Encoder = JavaScriptEncoder.Create(UnicodeRanges.All), WriteIndented = true };
 
+#if PACKAGED
+        public static string UserDataPath { get; } = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\RealtimeNotes\\UserData";
+#else
         public static string UserDataPath { get; } = "..\\UserData";
+#endif
 
+#if PACKAGED
+        public static string LogPath { get; } = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}\\RealtimeNotes\\Log";
+#else
         public static string LogPath { get; } = "..\\Log";
+#endif
 
         private static string userId;
 

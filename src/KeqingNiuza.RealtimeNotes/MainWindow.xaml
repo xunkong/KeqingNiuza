@@ -61,7 +61,7 @@
                         Click="Button_AddTask_Click"
                         Content="添加定时刷新任务">
                     <Button.ToolTip>
-                        <TextBlock Text="每15分钟刷新一次" />
+                        <TextBlock Text="默认每15分钟刷新一次" />
                     </Button.ToolTip>
                 </Button>
 

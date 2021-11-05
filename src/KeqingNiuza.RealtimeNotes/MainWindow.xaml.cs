@@ -50,6 +50,16 @@ namespace KeqingNiuza.RealtimeNotes
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
+#if PACKAGED
+            isRunningWithIdentity = true;
+            TextBlock_SparsePackageState.Text = "无需注册程序包";
+            TextBlock_SparsePackageState.Foreground = Brushes.Gray;
+            Button_RegisterPackage.IsEnabled = false;
+            Button_AddTask.Width = 300;
+            Button_AddTask.IsEnabled = false;
+            Button_AddTask.Content = "打包的版本不能使用定时刷新，需要点击磁贴手动刷新";
+            Icon = new BitmapImage(new Uri(@"..\Images\Square44x44Logo.altform-unplated_targetsize-48.png", UriKind.Relative));
+#else
             if (IsRunningWithIdentity(out packageName))
             {
                 isRunningWithIdentity = true;
@@ -61,6 +71,7 @@ namespace KeqingNiuza.RealtimeNotes
                 TextBlock_SparsePackageState.Text = "未注册程序包";
                 TextBlock_SparsePackageState.Foreground = Brushes.Red;
             }
+#endif
             try
             {
                 var bytes = File.ReadAllBytes(Const.CookiesFile);

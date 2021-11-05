@@ -11,8 +11,8 @@ namespace KeqingNiuza.RealtimeNotes.Services
     {
         public static void Log(string log)
         {
-            Directory.CreateDirectory("..\\Log");
-            var file = $"..\\Log\\note-{DateTime.Now:yyMMdd}.txt";
+            Directory.CreateDirectory(Const.LogPath);
+            var file = $"{Const.LogPath}\\note-{DateTime.Now:yyMMdd}.txt";
             var content = $"[{DateTime.Now:yy-MM-dd HH:mm:ss.fff}]\n{log}\n";
             File.AppendAllText(file, content);
         }
