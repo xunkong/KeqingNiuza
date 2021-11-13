@@ -97,11 +97,14 @@
     <Compile Include="Converter\ProbabilityConverter.cs" />
     <Compile Include="Converter\ReVisibilityConverter.cs" />
     <Compile Include="Converter\TimeSpanToSliderValueConverter.cs" />
+    <Compile Include="Converter\TriggerTypeToBoolConverter.cs" />
+    <Compile Include="Converter\TriggerTypeToVisibilityConverter.cs" />
     <Compile Include="Converter\UidConverter.cs" />
     <Compile Include="Converter\WishTypeConverter.cs" />
     <Compile Include="Model\ExtensionSetting.cs" />
     <Compile Include="Model\ResponseData.cs" />
     <Compile Include="Model\ScheduleInfo.cs" />
+    <Compile Include="Model\ScheduleInfoTriggerType.cs" />
     <Compile Include="Model\WishlogModel.cs" />
     <Compile Include="Model\WishlogResult.cs" />
     <Compile Include="Model\XunkongServerException.cs" />

@@ -76,18 +76,11 @@ namespace KeqingNiuza.Service
                 var list = JsonSerializer.Deserialize<List<ScheduleInfo>>(json);
                 foreach (var info in list)
                 {
-                    if (info.IsCountdownType)
+                    if (info.TriggerType == ScheduleInfoTriggerType.None)
                     {
-                        if (DateTime.Now > info.NextTriggerTime && info.IsEnable)
-                        {
-                            new ToastContentBuilder()
-                            .AddText("任务提醒")
-                            .AddText($"{info.Name}  倒计时已结束")
-                            .AddAttributionText(info.NextTriggerTime.ToString("G"))
-                            .Show();
-                        }
+                        continue;
                     }
-                    else
+                    if (info.TriggerType == ScheduleInfoTriggerType.Recovery)
                     {
                         if (DateTime.Now > info.NextMaxValueTime && info.IsEnable)
                         {
@@ -95,6 +88,17 @@ namespace KeqingNiuza.Service
                             .AddText("任务提醒")
                             .AddText($"{info.Name} {info.MaxValue}/{info.MaxValue}")
                             .AddAttributionText(info.NextMaxValueTime.ToString("G"))
+                            .Show();
+                        }
+                    }
+                    else
+                    {
+                        if (DateTime.Now > info.NextTriggerTime && info.IsEnable)
+                        {
+                            new ToastContentBuilder()
+                            .AddText("任务提醒")
+                            .AddText($"{info.Name}")
+                            .AddAttributionText(info.NextTriggerTime.ToString("G"))
                             .Show();
                         }
                     }
@@ -112,31 +116,36 @@ namespace KeqingNiuza.Service
             }
             foreach (var info in list)
             {
-                if (info.IsCountdownType)
+                if (info.TriggerType == ScheduleInfoTriggerType.None)
                 {
-                    if (info.NextTriggerTime > DateTime.Now && info.IsEnable)
-                    {
-                        new ToastContentBuilder()
-                            .AddText("任务提醒")
-                            .AddText($"{info.Name} 倒计时已结束")
-                            .AddAttributionText(info.NextTriggerTime.ToString("G"))
-                            .Schedule(info.NextTriggerTime);
-                    }
+                    continue;
                 }
-                else
+                if (info.TriggerType == ScheduleInfoTriggerType.Recovery)
                 {
                     if (info.NextMaxValueTime > DateTime.Now && info.IsEnable)
                     {
                         new ToastContentBuilder()
-                            .AddText("任务提醒")
-                            .AddText($"{info.Name} {info.MaxValue}/{info.MaxValue}")
-                            .AddAttributionText(info.NextMaxValueTime.ToString("G"))
-                            .Schedule(info.NextMaxValueTime);
+                        .AddText("任务提醒")
+                        .AddText($"{info.Name} {info.MaxValue}/{info.MaxValue}")
+                        .AddAttributionText(info.NextMaxValueTime.ToString("G"))
+                        .Schedule(info.NextMaxValueTime);
                     }
-
+                }
+                else
+                {
+                    if (info.NextTriggerTime > DateTime.Now && info.IsEnable)
+                    {
+                        new ToastContentBuilder()
+                        .AddText("任务提醒")
+                        .AddText($"{info.Name}")
+                        .AddAttributionText(info.NextTriggerTime.ToString("G"))
+                        .Schedule(info.NextTriggerTime);
+                    }
                 }
             }
         }
+
+
         public static void TestNotifacation()
         {
             new ToastContentBuilder()

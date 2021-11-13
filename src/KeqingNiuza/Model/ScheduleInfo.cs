@@ -38,13 +38,18 @@ namespace KeqingNiuza.Model
         }
 
 
-        private bool _IsCountdownType = true;
-        public bool IsCountdownType
+
+        private ScheduleInfoTriggerType _TriggerType;
+        public ScheduleInfoTriggerType TriggerType
         {
-            get { return _IsCountdownType; }
+            get { return _TriggerType; }
             set
             {
-                _IsCountdownType = value;
+                if (value == ScheduleInfoTriggerType.None)
+                {
+                    return;
+                }
+                _TriggerType = value;
                 OnPropertyChanged();
             }
         }
@@ -177,6 +182,37 @@ namespace KeqingNiuza.Model
                 OnPropertyChanged();
             }
         }
+
+
+        private int _Custom_DelayDay;
+        /// <summary>
+        /// 下一次提醒时间在几天后
+        /// </summary>
+        public int Custom_DelayDay
+        {
+            get { return _Custom_DelayDay; }
+            set
+            {
+                _Custom_DelayDay = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private DateTime _Custom_TriggerTime;
+        /// <summary>
+        /// 提醒时在当天的几点
+        /// </summary>
+        public DateTime Custom_TriggerTime
+        {
+            get { return _Custom_TriggerTime; }
+            set
+            {
+                _Custom_TriggerTime = value;
+                OnPropertyChanged();
+            }
+        }
+
 
 
 

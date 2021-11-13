@@ -99,7 +99,11 @@ namespace KeqingNiuza.View
                 if (SelectedScheduleInfo != null)
                 {
                     SelectedScheduleInfo.RemainingTime = (TimeSpan)value;
+                    OnPropertyChanged();
+                    OnPropertyChanged("SelectedInfoRemainingTime");
                     OnPropertyChanged("SelectedInfoNextTriggerTime");
+                    OnPropertyChanged("SelectedInfoCurrentValue");
+                    OnPropertyChanged("SelectedInfoNextMaxValueTime");
                 }
             }
         }
@@ -122,7 +126,11 @@ namespace KeqingNiuza.View
                 if (SelectedScheduleInfo != null)
                 {
                     SelectedScheduleInfo.NextTriggerTime = (DateTime)value;
+                    OnPropertyChanged();
                     OnPropertyChanged("SelectedInfoRemainingTime");
+                    OnPropertyChanged("SelectedInfoNextTriggerTime");
+                    OnPropertyChanged("SelectedInfoCurrentValue");
+                    OnPropertyChanged("SelectedInfoNextMaxValueTime");
                 }
             }
         }
@@ -145,8 +153,11 @@ namespace KeqingNiuza.View
                 if (SelectedScheduleInfo != null)
                 {
                     SelectedScheduleInfo.CurrentValue = (int)value;
-                    OnPropertyChanged("SelectedInfoNextMaxValueTime");
                     OnPropertyChanged();
+                    OnPropertyChanged("SelectedInfoRemainingTime");
+                    OnPropertyChanged("SelectedInfoNextTriggerTime");
+                    OnPropertyChanged("SelectedInfoCurrentValue");
+                    OnPropertyChanged("SelectedInfoNextMaxValueTime");
                 }
             }
         }
@@ -169,7 +180,11 @@ namespace KeqingNiuza.View
                 if (SelectedScheduleInfo != null)
                 {
                     SelectedScheduleInfo.NextMaxValueTime = (DateTime)value;
+                    OnPropertyChanged();
+                    OnPropertyChanged("SelectedInfoRemainingTime");
+                    OnPropertyChanged("SelectedInfoNextTriggerTime");
                     OnPropertyChanged("SelectedInfoCurrentValue");
+                    OnPropertyChanged("SelectedInfoNextMaxValueTime");
                 }
             }
         }
@@ -193,8 +208,25 @@ namespace KeqingNiuza.View
         private void Button_Reset_Click(object sender, RoutedEventArgs e)
         {
             var context = (sender as Button).DataContext as ScheduleInfo;
-            context.RemainingTime = context.Interval;
-            context.CurrentValue = 0;
+            switch (context.TriggerType)
+            {
+                case ScheduleInfoTriggerType.None:
+                    break;
+                case ScheduleInfoTriggerType.Countdown:
+                    SelectedInfoRemainingTime = context.Interval;
+                    break;
+                case ScheduleInfoTriggerType.Recovery:
+                    SelectedInfoCurrentValue = 0;
+                    break;
+                case ScheduleInfoTriggerType.FixedTime:
+                    var now = DateTime.Now;
+                    var next = new DateTime(now.Year, now.Month, now.Day + context.Custom_DelayDay, context.Custom_TriggerTime.Hour, context.Custom_TriggerTime.Minute, context.Custom_TriggerTime.Second);
+                    context.Interval = next - now;
+                    SelectedInfoRemainingTime = next - now;
+                    break;
+                default:
+                    break;
+            }
             Save();
         }
 
@@ -239,15 +271,15 @@ namespace KeqingNiuza.View
 
         private void RadioButton_Type_Click(object sender, RoutedEventArgs e)
         {
-            var tag = (sender as RadioButton).Tag as string;
-            if (tag == "Countdown" && SelectedScheduleInfo != null)
-            {
-                SelectedScheduleInfo.IsCountdownType = true;
-            }
-            if (tag == "Replenish" && SelectedScheduleInfo != null)
-            {
-                SelectedScheduleInfo.IsCountdownType = false;
-            }
+            //var tag = (sender as RadioButton).Tag as string;
+            //if (tag == "Countdown" && SelectedScheduleInfo != null)
+            //{
+            //    SelectedScheduleInfo.IsCountdownType = true;
+            //}
+            //if (tag == "Replenish" && SelectedScheduleInfo != null)
+            //{
+            //    SelectedScheduleInfo.IsCountdownType = false;
+            //}
         }
 
         private void Button_Add_Click(object sender, RoutedEventArgs e)
