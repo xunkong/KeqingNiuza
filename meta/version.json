@@ -1,6 +1,6 @@
 {
   "Version": "2.2.1",
-  "LastUpdateTime": "2021-11-13T12:03:50.8033252+08:00",
+  "LastUpdateTime": "2021-11-14T15:35:13.9498836+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -105,9 +105,9 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1708032,
-      "CompressedSize": 1155337,
-      "SHA256": "9BC9989656B0B42B3D8010322E6094497A73B7CEBA22CEE21C491BD877D263B5",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/9BC9989656B0B42B3D8010322E6094497A73B7CEBA22CEE21C491BD877D263B5",
+      "CompressedSize": 1155374,
+      "SHA256": "B111215E978D7CCB14353FCD14FDC92508E391BAF8F9B4A775908318C0BDB889",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B111215E978D7CCB14353FCD14FDC92508E391BAF8F9B4A775908318C0BDB889",
       "ContentEncoding": "Deflate"
     },
     {
@@ -132,9 +132,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 445952,
-      "CompressedSize": 90469,
-      "SHA256": "341517E417A33B4F9862F3223207DCFB68FAAF1E6EA2526076A2A515C64D4B77",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/341517E417A33B4F9862F3223207DCFB68FAAF1E6EA2526076A2A515C64D4B77",
+      "CompressedSize": 90474,
+      "SHA256": "3F936898ED62E3F9434E7BDCA89F2B51914B8461A0CD379F4AFCCA6C58F35AFA",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/3F936898ED62E3F9434E7BDCA89F2B51914B8461A0CD379F4AFCCA6C58F35AFA",
       "ContentEncoding": "Deflate"
     },
     {
@@ -1386,6 +1386,15 @@
       "CompressedSize": 93654,
       "SHA256": "9B0245290273A426D2ACBA384119F7DEDCAF511B2B617BB84E187C589FC1DC93",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/9B0245290273A426D2ACBA384119F7DEDCAF511B2B617BB84E187C589FC1DC93",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Character_Thoma_Portrait.png",
+      "Path": ".\\bin\\resource\\character\\Character_Thoma_Portrait.png",
+      "Size": 471677,
+      "CompressedSize": 469942,
+      "SHA256": "EF80C88C5613808019DDF1F4208DD4E4190F6D44205CB4F10F665F3CE10705A7",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/EF80C88C5613808019DDF1F4208DD4E4190F6D44205CB4F10F665F3CE10705A7",
       "ContentEncoding": "Deflate"
     },
     {
