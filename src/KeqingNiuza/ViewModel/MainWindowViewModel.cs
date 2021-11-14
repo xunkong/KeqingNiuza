@@ -239,7 +239,7 @@ namespace KeqingNiuza.ViewModel
                         }
                     }
                 }
-                var url = $"https://api.xk.scighost.com/keqingniuza/changelog?version={FileVersion}";
+                var url = $"https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/changelog/{FileVersion}.txt";
                 var client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = true, AutomaticDecompression = System.Net.DecompressionMethods.GZip });
                 client.DefaultRequestHeaders.Add("User-Agent", $"KeqingNiuza/{FileVersion} UserId/{UserId}");
                 var content = await client.GetStringAsync(url);
