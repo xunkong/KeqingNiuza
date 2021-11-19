@@ -112,7 +112,7 @@ namespace KeqingNiuza.RealtimeNotes.Services
                                 },
                                 new AdaptiveText
                                 {
-                                    Text = $"更新于{DateTime.Now:HH:mm}",
+                                    Text = $"更新于 {DateTime.Now:HH:mm}",
                                     HintAlign =AdaptiveTextAlign.Left
                                 },
                                 new AdaptiveText(),
@@ -153,7 +153,7 @@ namespace KeqingNiuza.RealtimeNotes.Services
                                         //        },
                                         //        new AdaptiveText
                                         //        {
-                                        //            Text = info.ResinRecoveryTimeFormatted,
+                                        //            Text = info.LastUpdateTime.AddSeconds(info.ResinRecoveryTime).ToString("HH:mm"),
                                         //            HintAlign = AdaptiveTextAlign.Center,
                                         //        }
                                         //    }
@@ -230,7 +230,7 @@ namespace KeqingNiuza.RealtimeNotes.Services
                                             {
                                                 new AdaptiveText
                                                 {
-                                                    Text=$"更新于{info.LastUpdateTime:HH:mm}",
+                                                    Text=$"更新于 {info.LastUpdateTime:HH:mm}",
                                                      HintAlign= AdaptiveTextAlign.Right,
                                                 }
                                             }
@@ -289,7 +289,7 @@ namespace KeqingNiuza.RealtimeNotes.Services
                                             {
                                                 new AdaptiveText
                                                 {
-                                                    Text = info.ResinRecoveryTimeFormatted,
+                                                    Text = info.LastUpdateTime.AddSeconds(info.ResinRecoveryTime).ToString("HH:mm"),
                                                     HintAlign = AdaptiveTextAlign.Left,
                                                 },
                                             }
@@ -477,7 +477,7 @@ namespace KeqingNiuza.RealtimeNotes.Services
                                             {
                                                 new AdaptiveText
                                                 {
-                                                    Text=$"更新于{info.LastUpdateTime:HH:mm}",
+                                                    Text=$"更新于 {info.LastUpdateTime:HH:mm}",
                                                      HintAlign= AdaptiveTextAlign.Right,
                                                 }
                                             }
@@ -522,7 +522,7 @@ namespace KeqingNiuza.RealtimeNotes.Services
                                                 },
                                                 new AdaptiveText
                                                 {
-                                                    Text =info.ResinRecoveryTimeFormatted,
+                                                    Text = info.LastUpdateTime.AddSeconds(info.ResinRecoveryTime).ToString("HH:mm"),
                                                     HintAlign = AdaptiveTextAlign.Center,
                                                 },
                                             }
