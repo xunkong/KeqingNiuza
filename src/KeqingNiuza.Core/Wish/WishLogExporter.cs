@@ -17,6 +17,8 @@ namespace KeqingNiuza.Core.Wish
 
         public event EventHandler<string> ProgressChanged;
 
+        private static Random random = new Random();
+
         public WishLogExporter(string url)
         {
             if (url.StartsWith("https://") && url.EndsWith("#/log"))
@@ -109,7 +111,7 @@ namespace KeqingNiuza.Core.Wish
             do
             {
                 OnProgressChanged(param);
-                Task.Delay(250).Wait();
+                Task.Delay(random.Next(200, 300)).Wait();
                 url = $@"{baseRequestUrl}{authString}&{param}";
                 str = HttpClient.GetStringAsync(url).Result;
                 result = JsonSerializer.Deserialize<ResponseData>(str);
@@ -139,7 +141,7 @@ namespace KeqingNiuza.Core.Wish
         /// <returns></returns>
         private List<WishData> GetWishLog(QueryParam param)
         {
-            Task.Delay(250).Wait();
+            Task.Delay(random.Next(200, 300)).Wait();
             List<WishData> list = new List<WishData>();
             var url = $@"{baseRequestUrl}{authString}&{param}";
             var str = HttpClient.GetStringAsync(url).Result;
