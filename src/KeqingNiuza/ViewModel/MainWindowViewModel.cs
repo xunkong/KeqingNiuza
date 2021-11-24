@@ -278,6 +278,7 @@ namespace KeqingNiuza.ViewModel
                 {
                     if (!string.IsNullOrEmpty(SelectedUserData.Url))
                     {
+                        LoadWishDataProgress = "检查获取祈愿记录网址是否过期";
                         if (await IsUrlTimeout(SelectedUserData.Url))
                         {
                             timeout = true;
@@ -323,6 +324,7 @@ namespace KeqingNiuza.ViewModel
                 if (!string.IsNullOrEmpty(url))
                 {
                     Growl.Info("正在加载");
+                    LoadWishDataProgress = "检查获取祈愿记录网址是否过期";
                     if (await IsUrlTimeout(url))
                     {
                         Growl.Warning("祈愿记录网址已过期");

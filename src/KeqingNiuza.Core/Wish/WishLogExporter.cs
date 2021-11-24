@@ -75,6 +75,7 @@ namespace KeqingNiuza.Core.Wish
         public async Task<int> GetUidByUrl()
         {
             var list = new List<WishData>();
+            ProgressChanged?.Invoke(this, "正在获取祈愿记录网址对应的 Uid");
             await Task.Run(() =>
              {
                  QueryParam param = new QueryParam() { WishType = WishType.CharacterEvent, Page = 1, Size = 6, EndId = 0 };
