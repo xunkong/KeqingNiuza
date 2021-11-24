@@ -75,13 +75,13 @@ namespace KeqingNiuza.Core.Wish
             var list = new List<WishData>();
             await Task.Run(() =>
              {
-                 QueryParam param = new QueryParam() { WishType = WishType.Novice, Page = 1, Size = 6, EndId = 0 };
+                 QueryParam param = new QueryParam() { WishType = WishType.CharacterEvent, Page = 1, Size = 6, EndId = 0 };
                  list.AddRange(GetWishLog(param));
                  param = new QueryParam() { WishType = WishType.Permanent, Page = 1, Size = 6, EndId = 0 };
                  list.AddRange(GetWishLog(param));
-                 param = new QueryParam() { WishType = WishType.CharacterEvent, Page = 1, Size = 6, EndId = 0 };
-                 list.AddRange(GetWishLog(param));
                  param = new QueryParam() { WishType = WishType.WeaponEvent, Page = 1, Size = 6, EndId = 0 };
+                 list.AddRange(GetWishLog(param));
+                 param = new QueryParam() { WishType = WishType.Novice, Page = 1, Size = 6, EndId = 0 };
                  list.AddRange(GetWishLog(param));
              });
             if (list.Any())
@@ -109,6 +109,7 @@ namespace KeqingNiuza.Core.Wish
             do
             {
                 OnProgressChanged(param);
+                Task.Delay(250).Wait();
                 url = $@"{baseRequestUrl}{authString}&{param}";
                 str = HttpClient.GetStringAsync(url).Result;
                 result = JsonSerializer.Deserialize<ResponseData>(str);
@@ -138,6 +139,7 @@ namespace KeqingNiuza.Core.Wish
         /// <returns></returns>
         private List<WishData> GetWishLog(QueryParam param)
         {
+            Task.Delay(250).Wait();
             List<WishData> list = new List<WishData>();
             var url = $@"{baseRequestUrl}{authString}&{param}";
             var str = HttpClient.GetStringAsync(url).Result;

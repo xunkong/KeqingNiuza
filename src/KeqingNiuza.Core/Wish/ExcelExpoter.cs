@@ -19,6 +19,7 @@ namespace KeqingNiuza.Core.Wish
         {
             ExcelPackage = new ExcelPackage();
             ExcelPackage.Workbook.Worksheets.Add("角色活动祈愿");
+            ExcelPackage.Workbook.Worksheets.Add("角色活动祈愿-2");
             ExcelPackage.Workbook.Worksheets.Add("武器活动祈愿");
             ExcelPackage.Workbook.Worksheets.Add("常驻祈愿");
             ExcelPackage.Workbook.Worksheets.Add("新手祈愿");
@@ -89,15 +90,18 @@ namespace KeqingNiuza.Core.Wish
             switch (datas[0].WishType)
             {
                 case WishType.Novice:
-                    sheetNum = 4;
+                    sheetNum = 5;
                     break;
                 case WishType.Permanent:
-                    sheetNum = 3;
+                    sheetNum = 4;
                     break;
                 case WishType.CharacterEvent:
                     sheetNum = 1;
                     break;
                 case WishType.WeaponEvent:
+                    sheetNum = 3;
+                    break;
+                case WishType.CharacterEvent_2:
                     sheetNum = 2;
                     break;
             }

@@ -25,6 +25,9 @@ namespace KeqingNiuza.Converter
                 case WishType.WeaponEvent:
                     result = "武器活动祈愿";
                     break;
+                case WishType.CharacterEvent_2:
+                    result = "角色活动祈愿-2";
+                    break;
                 default:
                     result = "";
                     break;

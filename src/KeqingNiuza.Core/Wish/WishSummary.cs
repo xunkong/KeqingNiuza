@@ -64,22 +64,20 @@ namespace KeqingNiuza.Core.Wish
             WishSummary summary = new WishSummary();
             var list = LocalWishLogLoader.Load(path);
             summary.WishDataList = list;
-            var groups = list.Distinct().GroupBy(x => x.WishType);
-            foreach (var group in groups)
+            var sublist = list.Where(x => x.WishType == WishType.CharacterEvent || x.WishType == WishType.CharacterEvent_2).OrderBy(x => x.Id).ToList();
+            if (sublist.Any())
             {
-                var sublist = group.OrderBy(x => x.Id);
-                switch (group.Key)
-                {
-                    case WishType.Permanent:
-                        summary.PermanentStatistics = GetStatistics(sublist.ToList());
-                        break;
-                    case WishType.CharacterEvent:
-                        summary.CharacterStatistics = GetStatistics(sublist.ToList());
-                        break;
-                    case WishType.WeaponEvent:
-                        summary.WeaponStatistics = GetStatistics(sublist.ToList());
-                        break;
-                }
+                summary.CharacterStatistics = GetStatistics(sublist);
+            }
+            sublist = list.Where(x => x.WishType == WishType.WeaponEvent).OrderBy(x => x.Id).ToList();
+            if (sublist.Any())
+            {
+                summary.WeaponStatistics = GetStatistics(sublist);
+            }
+            sublist = list.Where(x => x.WishType == WishType.Permanent).OrderBy(x => x.Id).ToList();
+            if (sublist.Any())
+            {
+                summary.PermanentStatistics = GetStatistics(sublist);
             }
             summary.CharacterInfoList = GetCharacterInfoList(list);
             summary.WeaponInfoList = GetWeaponInfoList(list);
@@ -93,22 +91,20 @@ namespace KeqingNiuza.Core.Wish
             {
                 WishDataList = list
             };
-            var groups = list.Distinct().GroupBy(x => x.WishType);
-            foreach (var group in groups)
+            var sublist = list.Where(x => x.WishType == WishType.CharacterEvent || x.WishType == WishType.CharacterEvent_2).OrderBy(x => x.Id).ToList();
+            if (sublist.Any())
             {
-                var sublist = group.OrderBy(x => x.Id);
-                switch (group.Key)
-                {
-                    case WishType.Permanent:
-                        summary.PermanentStatistics = GetStatistics(sublist.ToList(), ignoreFirstStar5Permanent);
-                        break;
-                    case WishType.CharacterEvent:
-                        summary.CharacterStatistics = GetStatistics(sublist.ToList(), ignoreFirstStar5Character);
-                        break;
-                    case WishType.WeaponEvent:
-                        summary.WeaponStatistics = GetStatistics(sublist.ToList(), ignoreFirstStar5Weapon);
-                        break;
-                }
+                summary.CharacterStatistics = GetStatistics(sublist, ignoreFirstStar5Character);
+            }
+            sublist = list.Where(x => x.WishType == WishType.WeaponEvent).OrderBy(x => x.Id).ToList();
+            if (sublist.Any())
+            {
+                summary.WeaponStatistics = GetStatistics(sublist, ignoreFirstStar5Weapon);
+            }
+            sublist = list.Where(x => x.WishType == WishType.Permanent).OrderBy(x => x.Id).ToList();
+            if (sublist.Any())
+            {
+                summary.PermanentStatistics = GetStatistics(sublist, ignoreFirstStar5Permanent);
             }
             summary.CharacterInfoList = GetCharacterInfoList(list);
             summary.WeaponInfoList = GetWeaponInfoList(list);

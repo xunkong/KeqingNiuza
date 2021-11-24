@@ -20,6 +20,11 @@
         /// <summary>
         /// 武器活动祈愿
         /// </summary>
-        WeaponEvent = 302
+        WeaponEvent = 302,
+
+        /// <summary>
+        /// 角色活动祈愿-2
+        /// </summary>
+        CharacterEvent_2 = 400,
     }
 }

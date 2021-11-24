@@ -204,7 +204,7 @@ namespace KeqingNiuza.ViewModel
                     tmp = tmp.FindAll(x => x.WishType == WishType.Permanent);
                     break;
                 case "角色活动祈愿":
-                    tmp = tmp.FindAll(x => x.WishType == WishType.CharacterEvent);
+                    tmp = tmp.FindAll(x => x.WishType == WishType.CharacterEvent|| x.WishType == WishType.CharacterEvent_2);
                     break;
                 case "武器活动祈愿":
                     tmp = tmp.FindAll(x => x.WishType == WishType.WeaponEvent);
