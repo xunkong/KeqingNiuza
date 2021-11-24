@@ -17,5 +17,7 @@
             Num = num;
             Time = time;
         }
+
+        public StarDetail() { }
     }
 }

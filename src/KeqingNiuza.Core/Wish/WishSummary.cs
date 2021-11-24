@@ -118,6 +118,7 @@ namespace KeqingNiuza.Core.Wish
 
         public static WishStatistics GetStatistics(List<WishData> list, bool ignoreFirstStar5 = false)
         {
+            var first5 = list.FirstOrDefault(x => x.Rank == 5);
             if (ignoreFirstStar5)
             {
                 var i = list.FindIndex(x => x.Rank == 5);
@@ -179,6 +180,20 @@ namespace KeqingNiuza.Core.Wish
             else
             {
                 ws.AverageUp5 = (double)(index + 1) / list.Count(x => x.Rank == 5 && (x.IsUp ?? false));
+            }
+
+            // Github@Yinr
+            // https://github.com/Yinr/KeqingNiuza/commit/5a684dbedb699d2d056631072567ff8b235ba613
+            if (ignoreFirstStar5 && first5 != null)
+            {
+                var detail = new StarDetail
+                {
+                    Name = first5.Name,
+                    Num = first5.Number + 1,
+                    Brush = "#ACACAC",
+                    Time = $"{first5.Time:yyyy/MM/dd HH:mm:ss} (不计入统计)"
+                };
+                ws.Star5List.Insert(0, detail);
             }
             return ws;
         }
