@@ -204,7 +204,7 @@ namespace KeqingNiuza.ViewModel
                     tmp = tmp.FindAll(x => x.WishType == WishType.Permanent);
                     break;
                 case "角色活动祈愿":
-                    tmp = tmp.FindAll(x => x.WishType == WishType.CharacterEvent|| x.WishType == WishType.CharacterEvent_2);
+                    tmp = tmp.FindAll(x => x.WishType == WishType.CharacterEvent || x.WishType == WishType.CharacterEvent_2);
                     break;
                 case "武器活动祈愿":
                     tmp = tmp.FindAll(x => x.WishType == WishType.WeaponEvent);
@@ -220,7 +220,14 @@ namespace KeqingNiuza.ViewModel
             }
             if (SelectedWishEvent.Name != "---")
             {
-                tmp = tmp.FindAll(x => x.WishType == SelectedWishEvent.WishType && x.Time > SelectedWishEvent.StartTime && x.Time < SelectedWishEvent.EndTime);
+                if (SelectedWishEvent.WishType == WishType.CharacterEvent)
+                {
+                    tmp = tmp.FindAll(x => (x.WishType == WishType.CharacterEvent || x.WishType == WishType.CharacterEvent_2) && x.Time > SelectedWishEvent.StartTime && x.Time < SelectedWishEvent.EndTime);
+                }
+                else
+                {
+                    tmp = tmp.FindAll(x => x.WishType == SelectedWishEvent.WishType && x.Time > SelectedWishEvent.StartTime && x.Time < SelectedWishEvent.EndTime);
+                }
             }
             if (ToggleButton_Search_IsChecked && TextBox_Search_Text != "")
             {
