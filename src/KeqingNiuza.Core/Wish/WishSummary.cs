@@ -59,32 +59,6 @@ namespace KeqingNiuza.Core.Wish
 
         private static Random Random = new Random();
 
-        public static WishSummary Create(string path)
-        {
-            WishSummary summary = new WishSummary();
-            var list = LocalWishLogLoader.Load(path);
-            summary.WishDataList = list;
-            var sublist = list.Where(x => x.WishType == WishType.CharacterEvent || x.WishType == WishType.CharacterEvent_2).OrderBy(x => x.Id).ToList();
-            if (sublist.Any())
-            {
-                summary.CharacterStatistics = GetStatistics(sublist);
-            }
-            sublist = list.Where(x => x.WishType == WishType.WeaponEvent).OrderBy(x => x.Id).ToList();
-            if (sublist.Any())
-            {
-                summary.WeaponStatistics = GetStatistics(sublist);
-            }
-            sublist = list.Where(x => x.WishType == WishType.Permanent).OrderBy(x => x.Id).ToList();
-            if (sublist.Any())
-            {
-                summary.PermanentStatistics = GetStatistics(sublist);
-            }
-            summary.CharacterInfoList = GetCharacterInfoList(list);
-            summary.WeaponInfoList = GetWeaponInfoList(list);
-            return summary;
-        }
-
-
         public static WishSummary Create(List<WishData> list, bool ignoreFirstStar5Character = false, bool ignoreFirstStar5Weapon = false, bool ignoreFirstStar5Permanent = false)
         {
             WishSummary summary = new WishSummary
