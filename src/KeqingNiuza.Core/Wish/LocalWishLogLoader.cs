@@ -37,6 +37,11 @@ namespace KeqingNiuza.Core.Wish
             {
                 resultList.AddRange(ComputeWishInfo(WishEventList, sublist));
             }
+            sublist = originalList.Where(x => x.WishType == WishType.Novice).OrderBy(x => x.Id).ToList();
+            if (sublist.Any())
+            {
+                resultList.AddRange(ComputeWishInfo(WishEventList, sublist));
+            }
             return resultList.OrderBy(x => x.Id).ToList();
         }
 
