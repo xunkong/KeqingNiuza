@@ -1,6 +1,6 @@
 {
   "Version": "2.2.2.2",
-  "LastUpdateTime": "2021-11-27T00:05:07.5433374+08:00",
+  "LastUpdateTime": "2021-11-27T16:20:03.759994+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -106,8 +106,8 @@
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1708544,
       "CompressedSize": 1155476,
-      "SHA256": "AE745496B640C64658F4F24EE824A461AB6D866A2DBD6DA8709020EF4DFACA4A",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/AE745496B640C64658F4F24EE824A461AB6D866A2DBD6DA8709020EF4DFACA4A",
+      "SHA256": "2EC7AA22F4D24C8B48FA37AC07E11E1E0AE8691459DE55B79A2F6AEB84920159",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2EC7AA22F4D24C8B48FA37AC07E11E1E0AE8691459DE55B79A2F6AEB84920159",
       "ContentEncoding": "Deflate"
     },
     {
@@ -133,8 +133,8 @@
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 445952,
       "CompressedSize": 90609,
-      "SHA256": "3A36967755CD36DF26D4538B8DFDF269F30032682D90EA004BE79C9BE3F7CAB8",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/3A36967755CD36DF26D4538B8DFDF269F30032682D90EA004BE79C9BE3F7CAB8",
+      "SHA256": "BCA04B2B2DEDA578FE42073D85ADF096BBC77040278AD96AD634307D6BE2484C",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/BCA04B2B2DEDA578FE42073D85ADF096BBC77040278AD96AD634307D6BE2484C",
       "ContentEncoding": "Deflate"
     },
     {
@@ -1589,10 +1589,10 @@
     {
       "Name": "WeaponInfoList.json",
       "Path": ".\\bin\\resource\\list\\WeaponInfoList.json",
-      "Size": 16515,
-      "CompressedSize": 2677,
-      "SHA256": "DFE05C2FFF7B6E0304423FF379CF4BCE162BA39EFDC40F36CF46090BD438BFAE",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/DFE05C2FFF7B6E0304423FF379CF4BCE162BA39EFDC40F36CF46090BD438BFAE",
+      "Size": 16500,
+      "CompressedSize": 2666,
+      "SHA256": "54EA0BE6F40CC44B7DA613B52BFADEDCB5212027A8068C3C9CB22CE6F436AD33",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/54EA0BE6F40CC44B7DA613B52BFADEDCB5212027A8068C3C9CB22CE6F436AD33",
       "ContentEncoding": "Deflate"
     },
     {
@@ -2723,10 +2723,10 @@
     {
       "Name": "Weapon_Mouun's_Moon.png",
       "Path": ".\\bin\\resource\\weapon\\Weapon_Mouun's_Moon.png",
-      "Size": 108540,
-      "CompressedSize": 104917,
-      "SHA256": "508C278BBE90FFEB21F4068E4A5A12D4DB4FF0B5D1898E5D34934B7EEF604039",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/508C278BBE90FFEB21F4068E4A5A12D4DB4FF0B5D1898E5D34934B7EEF604039",
+      "Size": 45805,
+      "CompressedSize": 45796,
+      "SHA256": "8CB0878A5AA88DAC997A4F76BF8D2EC71DE7E9509C5E2EDECC91379E49802158",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/8CB0878A5AA88DAC997A4F76BF8D2EC71DE7E9509C5E2EDECC91379E49802158",
       "ContentEncoding": "Deflate"
     },
     {
@@ -3245,10 +3245,10 @@
     {
       "Name": "Weapon_Wavebreaker's_Fin.png",
       "Path": ".\\bin\\resource\\weapon\\Weapon_Wavebreaker's_Fin.png",
-      "Size": 43047,
-      "CompressedSize": 39719,
-      "SHA256": "708B8DCB39FE49F19B9CCDF02DE6489A4C601ED9F34316DCF0608DFA798F0A3D",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/7/708B8DCB39FE49F19B9CCDF02DE6489A4C601ED9F34316DCF0608DFA798F0A3D",
+      "Size": 29165,
+      "CompressedSize": 29123,
+      "SHA256": "8EA30DB4685DA999C11945CCAD69B55B534A876E11AA7E082D3DE17C671C9F97",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/8EA30DB4685DA999C11945CCAD69B55B534A876E11AA7E082D3DE17C671C9F97",
       "ContentEncoding": "Deflate"
     },
     {
