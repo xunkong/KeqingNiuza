@@ -1,6 +1,6 @@
 {
   "Version": "2.2.2.2",
-  "LastUpdateTime": "2021-11-27T16:20:03.759994+08:00",
+  "LastUpdateTime": "2021-12-12T22:07:37.9279719+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -106,8 +106,8 @@
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1708544,
       "CompressedSize": 1155476,
-      "SHA256": "2EC7AA22F4D24C8B48FA37AC07E11E1E0AE8691459DE55B79A2F6AEB84920159",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2EC7AA22F4D24C8B48FA37AC07E11E1E0AE8691459DE55B79A2F6AEB84920159",
+      "SHA256": "18009A229032C38556014A42F94215328BBCA8AAFB67F6902165DA9BD7A98644",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/18009A229032C38556014A42F94215328BBCA8AAFB67F6902165DA9BD7A98644",
       "ContentEncoding": "Deflate"
     },
     {
@@ -132,9 +132,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 445952,
-      "CompressedSize": 90609,
-      "SHA256": "BCA04B2B2DEDA578FE42073D85ADF096BBC77040278AD96AD634307D6BE2484C",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/BCA04B2B2DEDA578FE42073D85ADF096BBC77040278AD96AD634307D6BE2484C",
+      "CompressedSize": 90603,
+      "SHA256": "64AC756BFCF099FCDE3DFBC70B7F27A9E21C3AD3401990CA6BB3126E0B085F8A",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/64AC756BFCF099FCDE3DFBC70B7F27A9E21C3AD3401990CA6BB3126E0B085F8A",
       "ContentEncoding": "Deflate"
     },
     {
@@ -867,6 +867,15 @@
       "ContentEncoding": "Deflate"
     },
     {
+      "Name": "Character_Arataki_Itto_Thumb.png",
+      "Path": ".\\bin\\resource\\character\\Character_Arataki_Itto_Thumb.png",
+      "Size": 99695,
+      "CompressedSize": 99707,
+      "SHA256": "C82FDA6F6B075F40116FCDEED3339581EE7E661DD72DD7275292B7092B2480EB",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C82FDA6F6B075F40116FCDEED3339581EE7E661DD72DD7275292B7092B2480EB",
+      "ContentEncoding": "Deflate"
+    },
+    {
       "Name": "Character_Ayaka_Portrait.png",
       "Path": ".\\bin\\resource\\character\\Character_Ayaka_Portrait.png",
       "Size": 528991,
@@ -1044,6 +1053,15 @@
       "CompressedSize": 87036,
       "SHA256": "AA010C41AA6BA77B4BD764572DEA0BD05204EC83C1E46321FABF804A731FBDE2",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/AA010C41AA6BA77B4BD764572DEA0BD05204EC83C1E46321FABF804A731FBDE2",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Character_Gorou_Thumb.png",
+      "Path": ".\\bin\\resource\\character\\Character_Gorou_Thumb.png",
+      "Size": 95830,
+      "CompressedSize": 95860,
+      "SHA256": "C94DD868789E2BF94EF1339CDC354814515AB6BA5C81F698DB702F25736F004C",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C94DD868789E2BF94EF1339CDC354814515AB6BA5C81F698DB702F25736F004C",
       "ContentEncoding": "Deflate"
     },
     {
@@ -1580,28 +1598,28 @@
     {
       "Name": "CharacterInfoList.json",
       "Path": ".\\bin\\resource\\list\\CharacterInfoList.json",
-      "Size": 5168,
-      "CompressedSize": 829,
-      "SHA256": "79D53946EA707D54170C20E53F6CBD2F2FFFFF63131EFB62766045B1FF3E492C",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/7/79D53946EA707D54170C20E53F6CBD2F2FFFFF63131EFB62766045B1FF3E492C",
+      "Size": 5427,
+      "CompressedSize": 867,
+      "SHA256": "76CF117AA6CB0738F7F140B79EFC273E30BA9D07CDA339A8BD4499B823107733",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/7/76CF117AA6CB0738F7F140B79EFC273E30BA9D07CDA339A8BD4499B823107733",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "WeaponInfoList.json",
       "Path": ".\\bin\\resource\\list\\WeaponInfoList.json",
-      "Size": 16500,
-      "CompressedSize": 2666,
-      "SHA256": "54EA0BE6F40CC44B7DA613B52BFADEDCB5212027A8068C3C9CB22CE6F436AD33",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/54EA0BE6F40CC44B7DA613B52BFADEDCB5212027A8068C3C9CB22CE6F436AD33",
+      "Size": 16647,
+      "CompressedSize": 2699,
+      "SHA256": "D02A46DB2582DB7EFB517F2D2696BE523F3C209CE1ADF77C71F2F93902E65CE1",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/D02A46DB2582DB7EFB517F2D2696BE523F3C209CE1ADF77C71F2F93902E65CE1",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "WishEventList.json",
       "Path": ".\\bin\\resource\\list\\WishEventList.json",
-      "Size": 14040,
-      "CompressedSize": 1893,
-      "SHA256": "DC68A3A5FB05C4806F527DC7C23AD832376AB7D093728E144AB9B7D8AA516E6A",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/DC68A3A5FB05C4806F527DC7C23AD832376AB7D093728E144AB9B7D8AA516E6A",
+      "Size": 14702,
+      "CompressedSize": 1978,
+      "SHA256": "6E23AA6F156FF114CCA1413820EA3502C87F13FB2F89A0C9737502E87C53C98B",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/6E23AA6F156FF114CCA1413820EA3502C87F13FB2F89A0C9737502E87C53C98B",
       "ContentEncoding": "Deflate"
     },
     {
@@ -2862,6 +2880,15 @@
       "CompressedSize": 37246,
       "SHA256": "3FF72DA8C225F2C04C16F469D7036CB60BC19DBECA59443996B675973B2849B7",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/3FF72DA8C225F2C04C16F469D7036CB60BC19DBECA59443996B675973B2849B7",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Weapon_Redhorn_Stonethresher.png",
+      "Path": ".\\bin\\resource\\weapon\\Weapon_Redhorn_Stonethresher.png",
+      "Size": 35776,
+      "CompressedSize": 35666,
+      "SHA256": "A7848EF06282B66EAEA2F37465E4596F9734DA833973EDFF9519470CAA83E80D",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/A7848EF06282B66EAEA2F37465E4596F9734DA833973EDFF9519470CAA83E80D",
       "ContentEncoding": "Deflate"
     },
     {
