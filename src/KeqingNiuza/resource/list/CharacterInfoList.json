@@ -285,5 +285,19 @@
     "Rank": 4,
     "ItemType": "角色",
     "ElementType": 1
+  },
+  {
+    "Name": "荒泷一斗",
+    "NameEn": "Arataki Itto",
+    "Rank": 5,
+    "ItemType": "角色",
+    "ElementType": 7
+  },
+  {
+    "Name": "五郎",
+    "NameEn": "Gorou",
+    "Rank": 4,
+    "ItemType": "角色",
+    "ElementType": 7
   }
 ]
