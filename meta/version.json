@@ -1,6 +1,6 @@
 {
   "Version": "2.2.2.2",
-  "LastUpdateTime": "2021-12-12T22:07:37.9279719+08:00",
+  "LastUpdateTime": "2021-12-15T22:02:53.7106492+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -106,8 +106,8 @@
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1708544,
       "CompressedSize": 1155476,
-      "SHA256": "18009A229032C38556014A42F94215328BBCA8AAFB67F6902165DA9BD7A98644",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/18009A229032C38556014A42F94215328BBCA8AAFB67F6902165DA9BD7A98644",
+      "SHA256": "931D1078773B7C972695BFAC59FFAFA6745EDF640352264C00331E7B04ED25A7",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/931D1078773B7C972695BFAC59FFAFA6745EDF640352264C00331E7B04ED25A7",
       "ContentEncoding": "Deflate"
     },
     {
@@ -132,9 +132,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 445952,
-      "CompressedSize": 90603,
-      "SHA256": "64AC756BFCF099FCDE3DFBC70B7F27A9E21C3AD3401990CA6BB3126E0B085F8A",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/64AC756BFCF099FCDE3DFBC70B7F27A9E21C3AD3401990CA6BB3126E0B085F8A",
+      "CompressedSize": 90609,
+      "SHA256": "B7EDC096FA66109376F89A4C5A0D0A55A7BC27ACFB74355F02B405D531602757",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B7EDC096FA66109376F89A4C5A0D0A55A7BC27ACFB74355F02B405D531602757",
       "ContentEncoding": "Deflate"
     },
     {
@@ -867,6 +867,15 @@
       "ContentEncoding": "Deflate"
     },
     {
+      "Name": "Character_Arataki_Itto_Portrait.png",
+      "Path": ".\\bin\\resource\\character\\Character_Arataki_Itto_Portrait.png",
+      "Size": 1272126,
+      "CompressedSize": 1270820,
+      "SHA256": "F21624852A4A4765ED8A1C88BD7148D4D3C9899369481073184E378302C848DE",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F21624852A4A4765ED8A1C88BD7148D4D3C9899369481073184E378302C848DE",
+      "ContentEncoding": "Deflate"
+    },
+    {
       "Name": "Character_Arataki_Itto_Thumb.png",
       "Path": ".\\bin\\resource\\character\\Character_Arataki_Itto_Thumb.png",
       "Size": 99695,
@@ -1053,6 +1062,15 @@
       "CompressedSize": 87036,
       "SHA256": "AA010C41AA6BA77B4BD764572DEA0BD05204EC83C1E46321FABF804A731FBDE2",
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/AA010C41AA6BA77B4BD764572DEA0BD05204EC83C1E46321FABF804A731FBDE2",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Character_Gorou_Portrait.png",
+      "Path": ".\\bin\\resource\\character\\Character_Gorou_Portrait.png",
+      "Size": 1068921,
+      "CompressedSize": 1067425,
+      "SHA256": "56C48271C371231F653C041A4A6BCD54145EDC484813E610087D38130D6085DA",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/56C48271C371231F653C041A4A6BCD54145EDC484813E610087D38130D6085DA",
       "ContentEncoding": "Deflate"
     },
     {
