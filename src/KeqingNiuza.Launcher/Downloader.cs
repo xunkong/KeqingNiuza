@@ -89,8 +89,7 @@ namespace KeqingNiuza.Launcher
             stopwatch = Stopwatch.StartNew();
             timer.Start();
 
-            foreach (var info in infos)
-            {
+            await ParallelForEachAsync(infos, async info => {
                 byte[] buffer = new byte[BUFFERSIZE];
                 MemoryStream ms = new MemoryStream();
                 using (Stream hs = await HttpClient.GetStreamAsync(info.Url))
@@ -113,22 +112,45 @@ namespace KeqingNiuza.Launcher
                     }
                 }
                 ms.Position = 0;
-                Directory.CreateDirectory(Path.GetDirectoryName(info.Path));
-                using (var ds = new DeflateStream(ms, CompressionMode.Decompress))
-                {
-                    using (var fs = File.OpenWrite(info.Path))
-                    {
-                        fs.SetLength(info.Size);
-                        await ds.CopyToAsync(fs);
-                    }
-                }
-            }
+                await WriteStreamToFile(info, ms);
+            });
             var args = new ProgressChangedEventArgs(TotalSize, DownloadedSize, Speed);
             ProgressChanged?.Invoke(this, args);
             IsDownloading = false;
             DownloadFinished?.Invoke(this, null);
         }
 
+        private async Task WriteStreamToFile(KeqingNiuzaFileInfo info, MemoryStream ms)
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(info.Path));
+            using (var ds = new DeflateStream(ms, CompressionMode.Decompress))
+            {
+                using (var fs = File.OpenWrite(info.Path))
+                {
+                    fs.SetLength(info.Size);
+                    await ds.CopyToAsync(fs);
+                }
+            }
+        }
+
+        public async Task ParallelForEachAsync<T>(IEnumerable<T> source, Func<T, Task> asyncAction)
+        {
+            //Environment.ProcessorCount 逻辑处理器
+            SemaphoreSlim throttler = new SemaphoreSlim(Environment.ProcessorCount * 4);
+            IEnumerable<Task> tasks = source.Select(async item =>
+            {
+                await throttler.WaitAsync();
+                try
+                {
+                    await asyncAction(item).ConfigureAwait(false);
+                }
+                finally
+                {
+                    throttler.Release();
+                }
+            });
+            await Task.WhenAll(tasks);
+        }
 
         public void Cancel()
         {
