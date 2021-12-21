@@ -51,10 +51,10 @@ jobs:
         # An alias for enable_jekyll to disable adding .nojekyll file to master or gh-pages branches
         disable_nojekyll: true
 
-    - name: Deploy to Coding
-      shell: cmd
-      run: |
-        for /r bin/Release/cdn2/obj %i in (*) do ( curl -T %i -u ${{secrets.CODING_SECRET}} https://scighost-generic.pkg.coding.net/keqingniuza/releases/obj/%~nxi )
+    #- name: Deploy to Coding
+    #  shell: cmd
+    #  run: |
+    #    for /r bin/Release/cdn2/obj %i in (*) do ( curl -T %i -u ${{secrets.CODING_SECRET}} https://scighost-generic.pkg.coding.net/keqingniuza/releases/obj/%~nxi )
       
     - name: Setup Tencent COSCMD
       run: |
