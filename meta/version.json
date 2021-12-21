@@ -1,6 +1,6 @@
 {
-  "Version": "2.2.2.2",
-  "LastUpdateTime": "2021-12-21T10:45:44.2863425+08:00",
+  "Version": "2.2.3",
+  "LastUpdateTime": "2021-12-21T10:52:23.7684669+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -15,9 +15,9 @@
       "Name": "KeqingNiuza Launcher.exe",
       "Path": ".\\KeqingNiuza Launcher.exe",
       "Size": 1473024,
-      "CompressedSize": 1058568,
-      "SHA256": "A1D8FF6F9D5B572C1C284CF3822E7E248FA8ED378EE7101CAB86E8F91C7FE9AA",
-      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/A/A1D8FF6F9D5B572C1C284CF3822E7E248FA8ED378EE7101CAB86E8F91C7FE9AA",
+      "CompressedSize": 1058587,
+      "SHA256": "440AF926EE3E5C4CAB0551C7886BAF58B4231792AA669ABBA147197DFFC9E14F",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/4/440AF926EE3E5C4CAB0551C7886BAF58B4231792AA669ABBA147197DFFC9E14F",
       "ContentEncoding": "Deflate"
     },
     {
@@ -105,9 +105,9 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1708544,
-      "CompressedSize": 1155477,
-      "SHA256": "B43B495390C2C28ABFBC515C56C85728DA2592B601355D63273F8D83C17B8E3C",
-      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/B/B43B495390C2C28ABFBC515C56C85728DA2592B601355D63273F8D83C17B8E3C",
+      "CompressedSize": 1155483,
+      "SHA256": "9B0A072C7465B9FD5F74734540CB38506060261A9F2DD193983C4DE7A0FC27AB",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/9/9B0A072C7465B9FD5F74734540CB38506060261A9F2DD193983C4DE7A0FC27AB",
       "ContentEncoding": "Deflate"
     },
     {
@@ -132,9 +132,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 445952,
-      "CompressedSize": 90609,
-      "SHA256": "E5EB7767EF9622B34252BB56CC7E32CF11F22FD37F91DF022EEE803323D57BBF",
-      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/E/E5EB7767EF9622B34252BB56CC7E32CF11F22FD37F91DF022EEE803323D57BBF",
+      "CompressedSize": 90605,
+      "SHA256": "F13C7CD62EE29A2922A59B5CF35F12E75CF6AE59F82CA231BA0396821C322043",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/F/F13C7CD62EE29A2922A59B5CF35F12E75CF6AE59F82CA231BA0396821C322043",
       "ContentEncoding": "Deflate"
     },
     {
