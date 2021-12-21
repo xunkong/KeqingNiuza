@@ -89,7 +89,8 @@ namespace KeqingNiuza.Launcher
             stopwatch = Stopwatch.StartNew();
             timer.Start();
 
-            await ParallelForEachAsync(infos, async info => {
+            await ParallelForEachAsync(infos, async info =>
+            {
                 byte[] buffer = new byte[BUFFERSIZE];
                 MemoryStream ms = new MemoryStream();
                 using (Stream hs = await HttpClient.GetStreamAsync(info.Url))
@@ -142,7 +143,11 @@ namespace KeqingNiuza.Launcher
                 await throttler.WaitAsync();
                 try
                 {
-                    await asyncAction(item).ConfigureAwait(false);
+                    await asyncAction(item);
+                }
+                catch
+                {
+                    throw;
                 }
                 finally
                 {

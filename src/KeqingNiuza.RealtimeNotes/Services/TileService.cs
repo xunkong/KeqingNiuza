@@ -172,7 +172,7 @@ namespace KeqingNiuza.RealtimeNotes.Services
                                                 },
                                                 new AdaptiveText
                                                 {
-                                                    Text = $"{info.FinishedTaskNum}/{info.TotalTaskNum}",
+                                                    Text = info.IsExtraTaskRewardReceived? "√" : $"{info.FinishedTaskNum}/{info.TotalTaskNum}",
                                                     HintAlign = AdaptiveTextAlign.Center,
                                                 }
                                             }
@@ -315,7 +315,7 @@ namespace KeqingNiuza.RealtimeNotes.Services
                                             {
                                                 new AdaptiveText
                                                 {
-                                                    Text = $"{info.FinishedTaskNum}/{info.TotalTaskNum}",
+                                                    Text = info.IsExtraTaskRewardReceived? "√" : $"{info.FinishedTaskNum}/{info.TotalTaskNum}",
                                                     HintAlign = AdaptiveTextAlign.Left,
                                                 },
                                             }
@@ -541,7 +541,7 @@ namespace KeqingNiuza.RealtimeNotes.Services
                                                 },
                                                 new AdaptiveText
                                                 {
-                                                    Text = $"{info.FinishedTaskNum}/{info.TotalTaskNum}",
+                                                    Text = info.IsExtraTaskRewardReceived? "√" : $"{info.FinishedTaskNum}/{info.TotalTaskNum}",
                                                     HintAlign = AdaptiveTextAlign.Center,
                                                 },
                                             }

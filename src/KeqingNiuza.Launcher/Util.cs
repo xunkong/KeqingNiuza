@@ -16,6 +16,16 @@ namespace KeqingNiuza.Launcher
 
         private static SHA256 _SHA256;
 
+        private static readonly string jsDelivrUrl1 = "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn";
+
+        private static readonly string fastgitUrl1 = "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn";
+
+        private static readonly string jsDelivrUrl2 = "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2";
+
+        private static readonly string fastgitUrl2 = "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2";
+
+        private static readonly string codingUrl = "https://scighost-generic.pkg.coding.net/keqingniuza/releases";
+
         public static string HashData(byte[] bytes)
         {
             if (_SHA256 == null)
@@ -81,7 +91,7 @@ namespace KeqingNiuza.Launcher
             {
                 var path = $@"cdn2/obj/{info.SHA256[0]}/{info.SHA256}";
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                info.Url = $"https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/{path.Substring(5)}";
+                info.Url = $"{fastgitUrl2}/{path.Substring(5)}";
                 using (var fs = File.OpenRead(info.Path))
                 {
                     using (var dfs = File.Create(path))
@@ -139,7 +149,7 @@ namespace KeqingNiuza.Launcher
             {
                 var path = $@"cdn/wallpaper/{info.SHA256}";
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                info.Url = $"https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn/{path.Substring(4)}";
+                info.Url = $"{fastgitUrl1}/{path.Substring(4)}";
                 using (var fs = File.OpenRead(info.Path))
                 {
                     using (var dfs = File.Create(path))
