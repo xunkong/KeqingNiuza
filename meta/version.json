@@ -1,6 +1,6 @@
 {
   "Version": "2.2.2.2",
-  "LastUpdateTime": "2021-12-21T10:34:53.0652717+08:00",
+  "LastUpdateTime": "2021-12-21T10:45:44.2863425+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -106,8 +106,8 @@
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1708544,
       "CompressedSize": 1155477,
-      "SHA256": "6E329FABCC5744323AFBEAE993273FF985D2FA5DDB1A9CA70288A1A55B2FE9BD",
-      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/6/6E329FABCC5744323AFBEAE993273FF985D2FA5DDB1A9CA70288A1A55B2FE9BD",
+      "SHA256": "B43B495390C2C28ABFBC515C56C85728DA2592B601355D63273F8D83C17B8E3C",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/B/B43B495390C2C28ABFBC515C56C85728DA2592B601355D63273F8D83C17B8E3C",
       "ContentEncoding": "Deflate"
     },
     {
@@ -132,9 +132,9 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 445952,
-      "CompressedSize": 90607,
-      "SHA256": "70D38951C66111B7306BB2983FA56D808BB61951757CAAA914B407F2CF4A700F",
-      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/7/70D38951C66111B7306BB2983FA56D808BB61951757CAAA914B407F2CF4A700F",
+      "CompressedSize": 90609,
+      "SHA256": "E5EB7767EF9622B34252BB56CC7E32CF11F22FD37F91DF022EEE803323D57BBF",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/E/E5EB7767EF9622B34252BB56CC7E32CF11F22FD37F91DF022EEE803323D57BBF",
       "ContentEncoding": "Deflate"
     },
     {
