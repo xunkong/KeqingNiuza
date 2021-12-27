@@ -16,15 +16,12 @@ namespace KeqingNiuza.Launcher
 
         private static SHA256 _SHA256;
 
-        private static readonly string jsDelivrUrl1 = "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn";
+        private static readonly string jsDelivrUrl = "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@";
 
-        private static readonly string fastgitUrl1 = "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn";
+        private static readonly string fastgitUrl = "https://raw.fastgit.org/Scighost/KeqingNiuza/";
 
-        private static readonly string jsDelivrUrl2 = "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2";
+        private static readonly string codingUrl = "https://scighost.coding.net/p/keqingniuza/d/KeqingNiuza/git/raw/";
 
-        private static readonly string fastgitUrl2 = "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2";
-
-        private static readonly string codingUrl = "https://scighost-generic.pkg.coding.net/keqingniuza/releases";
 
         public static string HashData(byte[] bytes)
         {
@@ -91,7 +88,9 @@ namespace KeqingNiuza.Launcher
             {
                 var path = $@"cdn2/obj/{info.SHA256[0]}/{info.SHA256}";
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                info.Url = $"{fastgitUrl2}/{path.Substring(5)}";
+                info.Url = codingUrl + path;
+                info.Url_CN = fastgitUrl + path;
+                info.Url_OS = jsDelivrUrl + path;
                 using (var fs = File.OpenRead(info.Path))
                 {
                     using (var dfs = File.Create(path))
@@ -149,7 +148,9 @@ namespace KeqingNiuza.Launcher
             {
                 var path = $@"cdn/wallpaper/{info.SHA256}";
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                info.Url = $"{fastgitUrl1}/{path.Substring(4)}";
+                info.Url = codingUrl + path;
+                info.Url_CN = fastgitUrl + path;
+                info.Url_OS = jsDelivrUrl + path;
                 using (var fs = File.OpenRead(info.Path))
                 {
                     using (var dfs = File.Create(path))

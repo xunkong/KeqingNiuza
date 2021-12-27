@@ -17,6 +17,10 @@ namespace KeqingNiuza.Launcher
 
         public string Url { get; set; }
 
+        public string Url_CN { get; set; }
+
+        public string Url_OS { get; set; }
+
         public string ContentEncoding { get; set; }
 
 

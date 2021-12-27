@@ -10,9 +10,11 @@ using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace KeqingNiuza.Launcher
 {
@@ -41,6 +43,16 @@ namespace KeqingNiuza.Launcher
         private readonly string versionUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version.json";
 
         private readonly string wallpaperUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/wallpaper.json";
+
+        private readonly string versionUrl_cn = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version_cn.json";
+
+        private readonly string wallpaperUrl_cn = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/wallpaper_cn.json";
+
+        private readonly string versionUrl_os = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version_os.json";
+
+        private readonly string wallpaperUrl_os = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/wallpaper_os.json";
+
+        private readonly string geoIpApi = "http://ip-api.com/json";
 
         private string _arg;
 
@@ -309,8 +321,38 @@ namespace KeqingNiuza.Launcher
             }
             if (downloadingFiles?.Any() ?? false)
             {
+                try
+                {
+                    var ipjson = await client.GetStringAsync(geoIpApi);
+                    var jobj = JObject.Parse(ipjson);
+                    if (jobj["countryCode"].Value<string>() == "CN")
+                    {
+                        foreach (var item in downloadingFiles)
+                        {
+                            item.Url = item.Url_CN;
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in downloadingFiles)
+                        {
+                            item.Url = item.Url_OS;
+                        }
+                    }
+                }
+                catch { }
                 CanCancel = false;
-                await DownloadFiles(downloadingFiles);
+                try
+                {
+                    await DownloadFiles(downloadingFiles);
+                }
+                catch (HttpRequestException ex)
+                {
+                    InfoTest = ex.Message;
+                    CanRefresh = true;
+                    CanCancel = true;
+                    return;
+                }
             }
             else
             {
@@ -352,8 +394,39 @@ namespace KeqingNiuza.Launcher
             }
             if (list?.Any() ?? false)
             {
+                try
+                {
+                    var client = new HttpClient();
+                    var json = await client.GetStringAsync(geoIpApi);
+                    var jobj = JObject.Parse(json);
+                    if (jobj["countryCode"].Value<string>() == "CN")
+                    {
+                        foreach (var item in list)
+                        {
+                            item.Url = item.Url_CN;
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in list)
+                        {
+                            item.Url = item.Url_OS;
+                        }
+                    }
+                }
+                catch { }
                 CanCancel = false;
-                await DownloadFiles(list);
+                try
+                {
+                    await DownloadFiles(list);
+                }
+                catch (HttpRequestException ex)
+                {
+                    InfoTest = ex.Message;
+                    CanRefresh = true;
+                    CanCancel = true;
+                    return;
+                }
             }
             Process.Start(".\\bin\\KeqingNiuza.exe");
             Close();
