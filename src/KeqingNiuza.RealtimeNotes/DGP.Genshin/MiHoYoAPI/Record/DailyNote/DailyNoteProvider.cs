@@ -6,7 +6,7 @@ namespace DGP.Genshin.MiHoYoAPI.Record.DailyNote
 {
     public class DailyNoteProvider
     {
-        private const string BaseUrl = @"https://api-takumi.mihoyo.com/game_record/app/genshin/api";
+        private const string BaseUrl = @"https://api-takumi-record.mihoyo.com/game_record/app/genshin/api";
         private const string Referer = @"https://webstatic.mihoyo.com/app/community-game-records/index.html?v=6";
 
         private readonly Requester requester;
