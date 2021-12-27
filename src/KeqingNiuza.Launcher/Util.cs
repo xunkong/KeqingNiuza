@@ -20,8 +20,6 @@ namespace KeqingNiuza.Launcher
 
         private static readonly string fastgitUrl = "https://raw.fastgit.org/Scighost/KeqingNiuza/";
 
-        private static readonly string codingUrl = "https://scighost.coding.net/p/keqingniuza/d/KeqingNiuza/git/raw/";
-
         private static readonly string qcloudUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/";
 
 

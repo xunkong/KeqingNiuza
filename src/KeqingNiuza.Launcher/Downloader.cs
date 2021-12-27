@@ -91,6 +91,10 @@ namespace KeqingNiuza.Launcher
 
             await ParallelForEachAsync(infos, async info =>
             {
+                if (string.IsNullOrWhiteSpace(info.Url))
+                {
+                    return;
+                }
                 byte[] buffer = new byte[BUFFERSIZE];
                 MemoryStream ms = new MemoryStream();
                 using (Stream hs = await HttpClient.GetStreamAsync(info.Url))

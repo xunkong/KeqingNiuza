@@ -38,11 +38,11 @@
                                VerticalAlignment="Center"
                                FontSize="12"
                                Text="导入数据模板：" />
-                    <ComboBox x:Name="ComboBox_ImportTemplate" Width="100">
-                        <ComboBoxItem Content="Excel文件"
+                    <ComboBox x:Name="ComboBox_ImportTemplate" Width="180">
+                        <ComboBoxItem Content="Excel文件 (UIGF v2.0)"
                                       FontSize="12"
                                       Tag="excel" />
-                        <ComboBoxItem Content="Json文件"
+                        <ComboBoxItem Content="Json文件  (UIGF v2.0)"
                                       FontSize="12"
                                       Tag="json" />
                     </ComboBox>
@@ -70,11 +70,18 @@
                 <TextBlock Margin="0,10,0,10"
                            FontSize="20"
                            Text="导入祈愿数据" />
-                <TextBlock Margin="0,5,0,5" Foreground="Red" Text="从2.1.5软件不再对数据进行校验，为避免出现重复请在导入前阅读使用手册的「使用教程 - 祈愿分析 - 导入/导出记录」" />
+                <TextBlock Margin="0,5,0,5"
+                           Foreground="Red"
+                           Text="操作前记得备份" />
+                <TextBlock Margin="0,5,0,5" Text="导入过程不会对数据进行校验，请确保数据的完整性" />
+                <TextBlock Margin="0,5,0,5" Text="祈愿Id不一致时，近6个月的数据可能会重复，请根据数据页面已有的数据选择从第几行开始导入" />
                 <TextBlock Margin="0,5,0,5" Text="加载的祈愿数据自动按照时间倒序排列" />
-                <TextBlock Margin="0,5,0,5" Text="请根据数据页面已有的数据选择从第几行开始导入" />
-                <TextBlock Margin="0,5,0,5" Text="导入Excel文件的模板可以通过右上角个人信息卡片中的导出数据获得" />
-                <TextBlock Margin="0,5,0,5" Text="导入时必需的数据列有：时间、名称、类别、星级，其他列可以忽略" />
+                <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+                    <TextBlock Text="导入文件规范请参考：" />
+                    <TextBlock>
+                        <Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/DGP-Studio/Snap.Genshin/wiki/StandardFormat">统一可交换祈愿记录标准</Hyperlink>
+                    </TextBlock>
+                </StackPanel>
             </StackPanel>
 
             <DataGrid x:Name="DataGrid_ImportedData"
@@ -123,6 +130,7 @@
                                Foreground="Red" />
                     <TextBlock VerticalAlignment="Center"
                                FontSize="12"
+                               Foreground="Red"
                                Text="从第几行开始导入：" />
                     <TextBox Width="60"
                              Margin="0,0,15,0"

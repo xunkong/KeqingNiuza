@@ -91,12 +91,14 @@
     <Compile Include="Wish\ImportedWishData.cs" />
     <Compile Include="Wish\ItemInfo.cs" />
     <Compile Include="Wish\JsonConverter.cs" />
+    <Compile Include="Wish\JsonImporter.cs" />
     <Compile Include="Wish\LocalWishLogLoader.cs" />
     <Compile Include="Wish\Prediction.cs" />
     <Compile Include="Wish\QueryParam.cs" />
     <Compile Include="Wish\RelativeEvent.cs" />
     <Compile Include="Wish\ResponseData.cs" />
     <Compile Include="Wish\StarDetail.cs" />
+    <Compile Include="Wish\UIGFExcelImporter.cs" />
     <Compile Include="Wish\WeaponInfo.cs" />
     <Compile Include="Wish\WeaponType.cs" />
     <Compile Include="Wish\WishData.cs" />
@@ -117,7 +119,7 @@
       <Version>13.0.1</Version>
     </PackageReference>
     <PackageReference Include="System.Text.Json">
-      <Version>5.0.2</Version>
+      <Version>6.0.1</Version>
     </PackageReference>
     <PackageReference Include="WebDav.Client">
       <Version>2.7.0</Version>

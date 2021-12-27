@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using System.Windows.Forms;
 using System.Windows.Media;
 using HandyControl.Controls;
@@ -80,7 +82,11 @@ namespace KeqingNiuza.View
 
 
 
-
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            var link = sender as Hyperlink;
+            Process.Start(new ProcessStartInfo(link.NavigateUri.AbsoluteUri));
+        }
 
 
 
@@ -167,39 +173,38 @@ namespace KeqingNiuza.View
 
         private void ImportExcelFile(string path)
         {
-            var list = ExcelImporter.ImportFromExcel(path);
-            // 以时间倒序排列
-            list.Reverse();
-            ImportedWishDatas = list;
+            var list = UIGFExcelImporter.Import(path);
+            ImportedWishDatas = list.Distinct().OrderByDescending(x => x.Id).ToList();
+            ImportUid = ImportedWishDatas[0].Uid;
         }
 
 
         private void ImportJsonFile(string path)
         {
-            var str = File.ReadAllText(path);
-            var list = JsonSerializer.Deserialize<List<WishData>>(str);
-            ImportedWishDatas = list.OrderByDescending(x => x.Id).ToList();
+            var json = File.ReadAllText(path);
+            var list = new JsonImporter().Deserialize(json);
+            ImportedWishDatas = list.Distinct().OrderByDescending(x => x.Id).ToList();
         }
 
 
         private void ExportWishLogList()
         {
             var list = ImportedWishDatas.Skip(StartRow - 1).ToList();
-            // 重新以时间正序排列
-            list.Reverse();
-            long id = 1000000000000000001;
-            for (int i = 0; i < list.Count; i++)
-            {
-                var item = list[i];
-                if (item.Uid == 0)
-                {
-                    item.Uid = ImportUid;
-                }
-                if (item.Id == 0)
-                {
-                    item.Id = id + i;
-                }
-            }
+            //// 重新以时间正序排列
+            //list.Reverse();
+            //long id = 1000000000000000001;
+            //for (int i = 0; i < list.Count; i++)
+            //{
+            //    var item = list[i];
+            //    if (item.Uid == 0)
+            //    {
+            //        item.Uid = ImportUid;
+            //    }
+            //    if (item.Id == 0)
+            //    {
+            //        item.Id = id + i;
+            //    }
+            //}
             var fileName = $"{Service.Const.UserDataPath}\\WishLog_{ImportUid}.json";
             if (File.Exists(fileName))
             {
@@ -207,7 +212,7 @@ namespace KeqingNiuza.View
                 var existList = JsonSerializer.Deserialize<List<WishData>>(str);
                 list.AddRange(existList.OrderBy(x => x.Id));
             }
-            var json = JsonSerializer.Serialize(list, Service.Const.JsonOptions);
+            var json = JsonSerializer.Serialize(list.Distinct().OrderBy(x => x.Id), Service.Const.JsonOptions);
             File.WriteAllText(fileName, json);
         }
 

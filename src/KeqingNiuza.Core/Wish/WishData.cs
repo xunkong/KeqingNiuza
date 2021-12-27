@@ -68,6 +68,34 @@ namespace KeqingNiuza.Core.Wish
         public long Id { get; set; }
 
         /// <summary>
+        /// 此值仅作为导出到 UIGF 使用
+        /// </summary>
+        [JsonPropertyName("uigf_gacha_type")]
+        [Obsolete("此值仅作为导出到 UIGF 使用")]
+        public string QueryType
+        {
+            get
+            {
+                switch (WishType)
+                {
+                    case WishType.Novice:
+                        return "100";
+                    case WishType.Permanent:
+                        return "200";
+                    case WishType.CharacterEvent:
+                        return "301";
+                    case WishType.WeaponEvent:
+                        return "302";
+                    case WishType.CharacterEvent_2:
+                        return "301";
+                    default:
+                        return "";
+                }
+            }
+            set { }
+        }
+
+        /// <summary>
         /// 是否丢失祈愿Id，对应从其他软件导出数据，如果丢失，则祈愿Id的值为本地生成，不是全服唯一
         /// </summary>
         //public bool IsLostId { get; set; }
@@ -101,7 +129,7 @@ namespace KeqingNiuza.Core.Wish
 
         [JsonIgnore]
         private static List<WeaponInfo> WeaponInfoList = Const.WeaponInfoList;
-
+        private string queryType;
 
         [JsonIgnore]
         public string Thumb

@@ -439,7 +439,7 @@ namespace KeqingNiuza.ViewModel
             exporter.AddWishData(data);
             SaveFileDialog saveFileDialog = new SaveFileDialog
             {
-                FileName = $"原神祈愿记录_{SelectedUserData.Uid}.xlsx",
+                FileName = $"原神祈愿记录_{SelectedUserData.Uid}_{DateTime.Now:yyyyMMdd_HHmmss}.xlsx",
                 Filter = "Excel worksheets|*.xlsx",
                 InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
             };
