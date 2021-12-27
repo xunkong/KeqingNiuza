@@ -1,0 +1,36 @@
+name: Deploy Wallpaper
+
+on:
+  push:
+    branches: [ cdn ]
+
+jobs:
+
+
+  build:
+
+    runs-on: windows-latest  # For a list of available runner types, refer to
+                             # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
+      
+    steps:
+    - name: Set timezone
+      run: Set-TimeZone -Id "China Standard Time"
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        ref: cdn
+
+    - name: Setup Tencent COSCMD
+      run: |
+        pip install cos-python-sdk-v5==1.9.8
+        pip install coscmd
+
+    - name: Deploy to qcloud
+      shell: cmd
+      run: |
+        coscmd config -a ${{secrets.QCLOUD_SECRET_ID}} -s ${{ secrets.QCLOUD_SECRET_KEY }} -b ${{ secrets.QCLOUD_COS_BUCKET }} -e ${{secrets.QCLOUD_COS_ENDPOINT}}
+        coscmd upload -r ./ keqingniuza/cdn
+        coscmd upload wallpaper.json keqingniuza/meta/wallpaper.json
+
+    
