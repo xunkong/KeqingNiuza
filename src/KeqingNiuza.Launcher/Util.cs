@@ -22,6 +22,8 @@ namespace KeqingNiuza.Launcher
 
         private static readonly string codingUrl = "https://scighost.coding.net/p/keqingniuza/d/KeqingNiuza/git/raw/";
 
+        private static readonly string qcloudUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/";
+
 
         public static string HashData(byte[] bytes)
         {
@@ -88,7 +90,7 @@ namespace KeqingNiuza.Launcher
             {
                 var path = $@"cdn2/obj/{info.SHA256[0]}/{info.SHA256}";
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                info.Url = codingUrl + path;
+                info.Url = qcloudUrl + path;
                 info.Url_CN = fastgitUrl + path;
                 info.Url_OS = jsDelivrUrl + path;
                 using (var fs = File.OpenRead(info.Path))
@@ -148,7 +150,7 @@ namespace KeqingNiuza.Launcher
             {
                 var path = $@"cdn/wallpaper/{info.SHA256}";
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                info.Url = codingUrl + path;
+                info.Url = qcloudUrl + path;
                 info.Url_CN = fastgitUrl + path;
                 info.Url_OS = jsDelivrUrl + path;
                 using (var fs = File.OpenRead(info.Path))

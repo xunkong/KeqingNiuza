@@ -65,6 +65,7 @@ jobs:
       shell: cmd
       run: |
         coscmd config -a ${{secrets.QCLOUD_SECRET_ID}} -s ${{ secrets.QCLOUD_SECRET_KEY }} -b ${{ secrets.QCLOUD_COS_BUCKET }} -e ${{secrets.QCLOUD_COS_ENDPOINT}}
+        coscmd upload -r bin/Release/cdn2 keqingniuza/cdn2
         coscmd upload -r bin/Release/cdn2/meta keqingniuza/meta
 
     
