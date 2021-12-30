@@ -1,6 +1,6 @@
 {
-  "Version": "2.2.5",
-  "LastUpdateTime": "2021-12-27T18:43:04.8938459+08:00",
+  "Version": "2.2.5.1",
+  "LastUpdateTime": "2021-12-30T12:10:27.2938564+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -16,12 +16,12 @@
     {
       "Name": "KeqingNiuza Launcher.exe",
       "Path": ".\\KeqingNiuza Launcher.exe",
-      "Size": 1475072,
-      "CompressedSize": 1059568,
-      "SHA256": "AE93B630171838309E49DF92B618F455CEAAAA5CFB903165F50C2A4591ECF528",
-      "Url": "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/cdn2/obj/A/AE93B630171838309E49DF92B618F455CEAAAA5CFB903165F50C2A4591ECF528",
-      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/A/AE93B630171838309E49DF92B618F455CEAAAA5CFB903165F50C2A4591ECF528",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/AE93B630171838309E49DF92B618F455CEAAAA5CFB903165F50C2A4591ECF528",
+      "Size": 1474560,
+      "CompressedSize": 1059462,
+      "SHA256": "06A8B133106FA85775743C6A8BCBF98889D95A1268EAB5777C6B194897AC4561",
+      "Url": "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/cdn2/obj/0/06A8B133106FA85775743C6A8BCBF98889D95A1268EAB5777C6B194897AC4561",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/0/06A8B133106FA85775743C6A8BCBF98889D95A1268EAB5777C6B194897AC4561",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/0/06A8B133106FA85775743C6A8BCBF98889D95A1268EAB5777C6B194897AC4561",
       "ContentEncoding": "Deflate"
     },
     {
@@ -127,11 +127,11 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1709056,
-      "CompressedSize": 1155464,
-      "SHA256": "F3C9F8CBCD914846F2993F8165450927BEE5E09391FB3CE1FA735A3D8D586D55",
-      "Url": "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/cdn2/obj/F/F3C9F8CBCD914846F2993F8165450927BEE5E09391FB3CE1FA735A3D8D586D55",
-      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/F/F3C9F8CBCD914846F2993F8165450927BEE5E09391FB3CE1FA735A3D8D586D55",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F3C9F8CBCD914846F2993F8165450927BEE5E09391FB3CE1FA735A3D8D586D55",
+      "CompressedSize": 1155560,
+      "SHA256": "B9107DADF64842E334257B7FA98B696D6FA2D77AA17D82873FBCE3D504CE2D90",
+      "Url": "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/cdn2/obj/B/B9107DADF64842E334257B7FA98B696D6FA2D77AA17D82873FBCE3D504CE2D90",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/B/B9107DADF64842E334257B7FA98B696D6FA2D77AA17D82873FBCE3D504CE2D90",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B9107DADF64842E334257B7FA98B696D6FA2D77AA17D82873FBCE3D504CE2D90",
       "ContentEncoding": "Deflate"
     },
     {
@@ -160,11 +160,11 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 448000,
-      "CompressedSize": 90721,
-      "SHA256": "E6FADFD39428B4CC18F41FBEBC1ACF32CE2A94A87A32D9752615D39E81D4DF08",
-      "Url": "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/cdn2/obj/E/E6FADFD39428B4CC18F41FBEBC1ACF32CE2A94A87A32D9752615D39E81D4DF08",
-      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/E/E6FADFD39428B4CC18F41FBEBC1ACF32CE2A94A87A32D9752615D39E81D4DF08",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E6FADFD39428B4CC18F41FBEBC1ACF32CE2A94A87A32D9752615D39E81D4DF08",
+      "CompressedSize": 90766,
+      "SHA256": "B25CCA1526E17A72DD27D0065F87378A8982F3E63A3EF2E48182C61BF6B31338",
+      "Url": "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/cdn2/obj/B/B25CCA1526E17A72DD27D0065F87378A8982F3E63A3EF2E48182C61BF6B31338",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/B/B25CCA1526E17A72DD27D0065F87378A8982F3E63A3EF2E48182C61BF6B31338",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B25CCA1526E17A72DD27D0065F87378A8982F3E63A3EF2E48182C61BF6B31338",
       "ContentEncoding": "Deflate"
     },
     {
