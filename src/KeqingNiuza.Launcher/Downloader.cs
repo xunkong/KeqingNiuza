@@ -44,6 +44,7 @@ namespace KeqingNiuza.Launcher
         public Downloader(double progressInterval = 100)
         {
             HttpClient = new HttpClient();
+            HttpClient.DefaultRequestHeaders.Add("User-Agent", $"KeqingLauncher/{MetaData.FileVersion} UserId/{MetaData.UserId}");
             timer = new System.Timers.Timer(progressInterval);
             timer.Elapsed += ComputeSpeed;
             timer.AutoReset = true;

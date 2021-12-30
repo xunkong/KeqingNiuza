@@ -44,14 +44,6 @@ namespace KeqingNiuza.Launcher
 
         private readonly string wallpaperUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/wallpaper.json";
 
-        private readonly string versionUrl_cn = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version_cn.json";
-
-        private readonly string wallpaperUrl_cn = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/wallpaper_cn.json";
-
-        private readonly string versionUrl_os = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version_os.json";
-
-        private readonly string wallpaperUrl_os = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/wallpaper_os.json";
-
         private readonly string geoIpApi = "http://ip-api.com/json";
 
         private string _arg;

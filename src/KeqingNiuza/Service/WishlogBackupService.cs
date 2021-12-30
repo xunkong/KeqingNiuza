@@ -17,18 +17,19 @@ namespace KeqingNiuza.Service
 
         private readonly HttpClient _client;
         private const string WishlogBackupUrl = "https://api.xk.scighost.com/v1/wishlog";
+        private const string WishlogBackupUrl2 = "https://api.xunkong.cc/v0.1/wishlog";
+        private const string WishlogBackupUrl3 = "https://localhost:44362/v0.1/wishlog";
 
         public string RequestInfo { get; set; }
 
         public WishlogBackupService()
         {
             _client = new HttpClient(new HttpClientHandler { AllowAutoRedirect = true, AutomaticDecompression = System.Net.DecompressionMethods.GZip });
-            _client.DefaultRequestHeaders.Add("User-Agent", $"KeqingNiuza/{Const.FileVersion} UserId/{Const.UserId}");
+            _client.DefaultRequestHeaders.Add("User-Agent", $"KeqingNiuza/{Const.FileVersion}");
             _client.DefaultRequestHeaders.Add("Accept-Encoding", "gzip");
+            _client.DefaultRequestHeaders.Add("X-Device-Id", Const.UserId);
             _client.Timeout = TimeSpan.FromSeconds(30);
         }
-
-
 
 
 
@@ -52,10 +53,9 @@ namespace KeqingNiuza.Service
             {
                 Uid = uid,
                 Url = url,
-                Operation = operation,
                 List = list,
             };
-            var message = await _client.PostAsJsonAsync(WishlogBackupUrl, model);
+            var message = await _client.PostAsJsonAsync(WishlogBackupUrl2 + "/" + operation, model);
             var builder = new StringBuilder();
             builder.AppendLine(DateTime.Now.ToString("s"));
             builder.AppendLine("Request:");
@@ -75,10 +75,10 @@ namespace KeqingNiuza.Service
                 {
                     var response = await message.Content.ReadFromJsonAsync<ResponseData<WishlogResult>>(new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
                     builder.AppendLine($"code: {response.Code}");
-                    builder.AppendLine($"msg: {response.Msg}");
+                    builder.AppendLine($"msg: {response.Message}");
                     if (response.Code != 0)
                     {
-                        throw new XunkongServerException(response.Msg);
+                        throw new XunkongServerException(response.Message);
                     }
                     else
                     {

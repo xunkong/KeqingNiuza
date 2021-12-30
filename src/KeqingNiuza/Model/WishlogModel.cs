@@ -15,7 +15,7 @@ namespace KeqingNiuza.Model
         public string Url { get; set; }
 
 
-        public string Operation { get; set; }
+        public long LastId { get; set; }
 
 
         public IEnumerable<WishData> List { get; set; }
