@@ -220,7 +220,7 @@ namespace KeqingNiuza.View
                     break;
                 case ScheduleInfoTriggerType.FixedTime:
                     var now = DateTime.Now;
-                    var next = new DateTime(now.Year, now.Month, now.Day + context.Custom_DelayDay, context.Custom_TriggerTime.Hour, context.Custom_TriggerTime.Minute, context.Custom_TriggerTime.Second);
+                    var next = now.Date.AddDays(context.Custom_DelayDay) + context.Custom_TriggerTime.TimeOfDay;
                     context.Interval = next - now;
                     SelectedInfoRemainingTime = next - now;
                     break;
