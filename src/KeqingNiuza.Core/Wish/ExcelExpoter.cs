@@ -183,12 +183,13 @@ namespace KeqingNiuza.Core.Wish
                 cells[i + 2, 1].Value = "1";
                 cells[i + 2, 2].Value = ((int)datas[i].WishType).ToString();
                 cells[i + 2, 3].Value = datas[i].Id.ToString();
-                cells[i + 2, 4].Value = "";
+                cells[i + 2, 4].Value = string.Empty;
                 cells[i + 2, 5].Value = datas[i].ItemType;
                 cells[i + 2, 6].Value = datas[i].Language;
                 cells[i + 2, 7].Value = datas[i].Name;
-                cells[i + 2, 8].Value = datas[i].Rank;
-                cells[i + 2, 9].Value = datas[i].Time.ToString("yyyy-MM-dd  HH:mm:ss");
+                //ToString() fix uigf2 incompat issue.
+                cells[i + 2, 8].Value = datas[i].Rank.ToString();
+                cells[i + 2, 9].Value = datas[i].Time.ToString("yyyy-MM-dd HH:mm:ss");
                 cells[i + 2, 10].Value = datas[i].Uid.ToString();
 #pragma warning disable CS0618 // 类型或成员已过时
                 cells[i + 2, 11].Value = datas[i].QueryType;
