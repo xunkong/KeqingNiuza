@@ -388,6 +388,7 @@ namespace KeqingNiuza.Launcher
             {
                 try
                 {
+                    InfoTest = "正在检测适合的下载线路";
                     var client = new HttpClient();
                     var json = await client.GetStringAsync(geoIpApi);
                     var jobj = JObject.Parse(json);
