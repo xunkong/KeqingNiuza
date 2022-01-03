@@ -45,6 +45,9 @@
                         <ComboBoxItem Content="Json文件  (UIGF v2.0)"
                                       FontSize="12"
                                       Tag="json" />
+                        <ComboBoxItem Content="Excel文件  (老格式)"
+                                      FontSize="12"
+                                      Tag="excel.old" />
                     </ComboBox>
 
                     <TextBlock Margin="20,0,0,0"

@@ -93,7 +93,9 @@ namespace KeqingNiuza.View
         private void Button_SelectFile_Click(object sender, RoutedEventArgs e)
         {
             var item = ComboBox_ImportTemplate.SelectedItem as ComboBoxItem;
-            var filter = item?.Tag as string == "json" ? "Json file|*.json" : "Excel worksheets|*.xlsx";
+            var tag = item?.Tag as string;
+            var old = tag?.Contains("old") ?? false;
+            var filter = tag == "json" ? "Json file|*.json" : "Excel worksheets|*.xlsx";
             OpenFileDialog openFileDialog = new OpenFileDialog
             {
                 Filter = $"{filter}|All|*.*",
@@ -106,7 +108,7 @@ namespace KeqingNiuza.View
                     var file = openFileDialog.FileName;
                     if (Path.GetExtension(file) == ".xlsx")
                     {
-                        ImportExcelFile(file);
+                        ImportExcelFile(file, old);
                         TextBlock_Info.Foreground = new SolidColorBrush(Colors.Gray);
                         TextBlock_Info.Text = openFileDialog.SafeFileName;
                         return;
@@ -171,11 +173,21 @@ namespace KeqingNiuza.View
 
 
 
-        private void ImportExcelFile(string path)
+        private void ImportExcelFile(string path, bool old)
         {
-            var list = UIGFExcelImporter.Import(path);
-            ImportedWishDatas = list.Distinct().OrderByDescending(x => x.Id).ToList();
-            ImportUid = ImportedWishDatas[0].Uid;
+            if (old)
+            {
+                var list = ExcelImporter.ImportFromExcel(path);
+                list.Reverse();
+                ImportedWishDatas = list;
+            }
+            else
+            {
+                var list = UIGFExcelImporter.Import(path);
+                ImportedWishDatas = list.Distinct().OrderByDescending(x => x.Id).ToList();
+                ImportUid = ImportedWishDatas[0].Uid;
+            }
+
         }
 
 
@@ -190,21 +202,25 @@ namespace KeqingNiuza.View
         private void ExportWishLogList()
         {
             var list = ImportedWishDatas.Skip(StartRow - 1).ToList();
-            //// 重新以时间正序排列
-            //list.Reverse();
-            //long id = 1000000000000000001;
-            //for (int i = 0; i < list.Count; i++)
-            //{
-            //    var item = list[i];
-            //    if (item.Uid == 0)
-            //    {
-            //        item.Uid = ImportUid;
-            //    }
-            //    if (item.Id == 0)
-            //    {
-            //        item.Id = id + i;
-            //    }
-            //}
+            // 没有id则从10..01开始赋值
+            if (list.Any() && list[0].Id == 0)
+            {
+                // 重新以时间正序排列
+                list.Reverse();
+                long id = 1000000000000000001;
+                for (int i = 0; i < list.Count; i++)
+                {
+                    var item = list[i];
+                    if (item.Uid == 0)
+                    {
+                        item.Uid = ImportUid;
+                    }
+                    if (item.Id == 0)
+                    {
+                        item.Id = id + i;
+                    }
+                }
+            }
             var fileName = $"{Service.Const.UserDataPath}\\WishLog_{ImportUid}.json";
             if (File.Exists(fileName))
             {

@@ -88,7 +88,7 @@ namespace KeqingNiuza.Launcher
             {
                 var path = $@"cdn2/obj/{info.SHA256[0]}/{info.SHA256}";
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                info.Url = qcloudUrl + path;
+                info.Url = fastgitUrl + path;
                 info.Url_CN = fastgitUrl + path;
                 info.Url_OS = jsDelivrUrl + path;
                 using (var fs = File.OpenRead(info.Path))
@@ -148,7 +148,7 @@ namespace KeqingNiuza.Launcher
             {
                 var path = $@"cdn/wallpaper/{info.SHA256}";
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                info.Url = qcloudUrl + path;
+                info.Url = fastgitUrl + path;
                 info.Url_CN = fastgitUrl + path;
                 info.Url_OS = jsDelivrUrl + path;
                 using (var fs = File.OpenRead(info.Path))
