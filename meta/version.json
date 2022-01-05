@@ -1,6 +1,6 @@
 {
   "Version": "2.2.5.2",
-  "LastUpdateTime": "2022-01-03T17:27:31.0061246+08:00",
+  "LastUpdateTime": "2022-01-05T10:48:07.2340806+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -127,11 +127,11 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1709568,
-      "CompressedSize": 1155696,
-      "SHA256": "445E16BCDCB6854AD897D7D89252CA3FA0175B28674FDDA02F2CE77DAB08D04B",
-      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/4/445E16BCDCB6854AD897D7D89252CA3FA0175B28674FDDA02F2CE77DAB08D04B",
-      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/4/445E16BCDCB6854AD897D7D89252CA3FA0175B28674FDDA02F2CE77DAB08D04B",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/445E16BCDCB6854AD897D7D89252CA3FA0175B28674FDDA02F2CE77DAB08D04B",
+      "CompressedSize": 1155697,
+      "SHA256": "25248183C6601C972D3E01E57EE3011F1CBDE02B19C38AB01A050F2DE91B5A43",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/2/25248183C6601C972D3E01E57EE3011F1CBDE02B19C38AB01A050F2DE91B5A43",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/2/25248183C6601C972D3E01E57EE3011F1CBDE02B19C38AB01A050F2DE91B5A43",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/25248183C6601C972D3E01E57EE3011F1CBDE02B19C38AB01A050F2DE91B5A43",
       "ContentEncoding": "Deflate"
     },
     {
@@ -160,11 +160,11 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 448000,
-      "CompressedSize": 90982,
-      "SHA256": "BF8E52B6C146B5F2EC64C0B0654602C7490E4FA8A144670C630C17B7C79380E5",
-      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/B/BF8E52B6C146B5F2EC64C0B0654602C7490E4FA8A144670C630C17B7C79380E5",
-      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/B/BF8E52B6C146B5F2EC64C0B0654602C7490E4FA8A144670C630C17B7C79380E5",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/BF8E52B6C146B5F2EC64C0B0654602C7490E4FA8A144670C630C17B7C79380E5",
+      "CompressedSize": 90981,
+      "SHA256": "DE59059AC3C79ED9C907FF280F546BA650382F601F8761F5CE5F4DDDD8714773",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/D/DE59059AC3C79ED9C907FF280F546BA650382F601F8761F5CE5F4DDDD8714773",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/D/DE59059AC3C79ED9C907FF280F546BA650382F601F8761F5CE5F4DDDD8714773",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/DE59059AC3C79ED9C907FF280F546BA650382F601F8761F5CE5F4DDDD8714773",
       "ContentEncoding": "Deflate"
     },
     {
@@ -1697,6 +1697,17 @@
       "ContentEncoding": "Deflate"
     },
     {
+      "Name": "Character_Shenhe_Thumb.png",
+      "Path": ".\\bin\\resource\\character\\Character_Shenhe_Thumb.png",
+      "Size": 88452,
+      "CompressedSize": 88254,
+      "SHA256": "793A9690EB5A358DB8F1E15A2D9C117B6E2177F593902565A512DDD7C9749F74",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/7/793A9690EB5A358DB8F1E15A2D9C117B6E2177F593902565A512DDD7C9749F74",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/7/793A9690EB5A358DB8F1E15A2D9C117B6E2177F593902565A512DDD7C9749F74",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/7/793A9690EB5A358DB8F1E15A2D9C117B6E2177F593902565A512DDD7C9749F74",
+      "ContentEncoding": "Deflate"
+    },
+    {
       "Name": "Character_Sucrose_Portrait.png",
       "Path": ".\\bin\\resource\\character\\Character_Sucrose_Portrait.png",
       "Size": 724142,
@@ -1950,6 +1961,17 @@
       "ContentEncoding": "Deflate"
     },
     {
+      "Name": "Character_Yunjin_Thumb.png",
+      "Path": ".\\bin\\resource\\character\\Character_Yunjin_Thumb.png",
+      "Size": 86843,
+      "CompressedSize": 86643,
+      "SHA256": "6C82A6577A5F3909E3CF96C1FFE9CA2BA211F65F879F058BE363FD365B2023CB",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/6/6C82A6577A5F3909E3CF96C1FFE9CA2BA211F65F879F058BE363FD365B2023CB",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/6/6C82A6577A5F3909E3CF96C1FFE9CA2BA211F65F879F058BE363FD365B2023CB",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/6C82A6577A5F3909E3CF96C1FFE9CA2BA211F65F879F058BE363FD365B2023CB",
+      "ContentEncoding": "Deflate"
+    },
+    {
       "Name": "Character_Zhongli_Portrait.png",
       "Path": ".\\bin\\resource\\character\\Character_Zhongli_Portrait.png",
       "Size": 346982,
@@ -1974,34 +1996,34 @@
     {
       "Name": "CharacterInfoList.json",
       "Path": ".\\bin\\resource\\list\\CharacterInfoList.json",
-      "Size": 5427,
-      "CompressedSize": 867,
-      "SHA256": "76CF117AA6CB0738F7F140B79EFC273E30BA9D07CDA339A8BD4499B823107733",
-      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/7/76CF117AA6CB0738F7F140B79EFC273E30BA9D07CDA339A8BD4499B823107733",
-      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/7/76CF117AA6CB0738F7F140B79EFC273E30BA9D07CDA339A8BD4499B823107733",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/7/76CF117AA6CB0738F7F140B79EFC273E30BA9D07CDA339A8BD4499B823107733",
+      "Size": 5675,
+      "CompressedSize": 898,
+      "SHA256": "9B74F16B3DFF68F1FAA239498862DBA5436EC52880072CADBE97A3F0FCBA80F3",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/9/9B74F16B3DFF68F1FAA239498862DBA5436EC52880072CADBE97A3F0FCBA80F3",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/9/9B74F16B3DFF68F1FAA239498862DBA5436EC52880072CADBE97A3F0FCBA80F3",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/9B74F16B3DFF68F1FAA239498862DBA5436EC52880072CADBE97A3F0FCBA80F3",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "WeaponInfoList.json",
       "Path": ".\\bin\\resource\\list\\WeaponInfoList.json",
-      "Size": 16647,
-      "CompressedSize": 2699,
-      "SHA256": "D02A46DB2582DB7EFB517F2D2696BE523F3C209CE1ADF77C71F2F93902E65CE1",
-      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/D/D02A46DB2582DB7EFB517F2D2696BE523F3C209CE1ADF77C71F2F93902E65CE1",
-      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/D/D02A46DB2582DB7EFB517F2D2696BE523F3C209CE1ADF77C71F2F93902E65CE1",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/D02A46DB2582DB7EFB517F2D2696BE523F3C209CE1ADF77C71F2F93902E65CE1",
+      "Size": 16780,
+      "CompressedSize": 2720,
+      "SHA256": "E0D561754512B601C4EFB500F6E6B44ECA75FE718F8964F1906226B399DF0005",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/E/E0D561754512B601C4EFB500F6E6B44ECA75FE718F8964F1906226B399DF0005",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/E/E0D561754512B601C4EFB500F6E6B44ECA75FE718F8964F1906226B399DF0005",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E0D561754512B601C4EFB500F6E6B44ECA75FE718F8964F1906226B399DF0005",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "WishEventList.json",
       "Path": ".\\bin\\resource\\list\\WishEventList.json",
-      "Size": 14702,
-      "CompressedSize": 1978,
-      "SHA256": "6E23AA6F156FF114CCA1413820EA3502C87F13FB2F89A0C9737502E87C53C98B",
-      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/6/6E23AA6F156FF114CCA1413820EA3502C87F13FB2F89A0C9737502E87C53C98B",
-      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/6/6E23AA6F156FF114CCA1413820EA3502C87F13FB2F89A0C9737502E87C53C98B",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/6E23AA6F156FF114CCA1413820EA3502C87F13FB2F89A0C9737502E87C53C98B",
+      "Size": 15369,
+      "CompressedSize": 2055,
+      "SHA256": "70A81095C9431308255D9689E3B5181ED1BB672B813DED6259F3160C990C6045",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/7/70A81095C9431308255D9689E3B5181ED1BB672B813DED6259F3160C990C6045",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/7/70A81095C9431308255D9689E3B5181ED1BB672B813DED6259F3160C990C6045",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/7/70A81095C9431308255D9689E3B5181ED1BB672B813DED6259F3160C990C6045",
       "ContentEncoding": "Deflate"
     },
     {
@@ -3509,6 +3531,17 @@
       "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/5/5898C1E9FD83AE1C0C1148F073BCF92614E06550562F0619C28B6E19AA87559F",
       "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/5/5898C1E9FD83AE1C0C1148F073BCF92614E06550562F0619C28B6E19AA87559F",
       "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5898C1E9FD83AE1C0C1148F073BCF92614E06550562F0619C28B6E19AA87559F",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Weapon_Queller_Santika.png",
+      "Path": ".\\bin\\resource\\weapon\\Weapon_Queller_Santika.png",
+      "Size": 52043,
+      "CompressedSize": 51801,
+      "SHA256": "FD9CD14FBFD6BC1F5D7EA6DE6DA1CA65EDA5895FD307B8FD9B6BCDC793C5AEE0",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/F/FD9CD14FBFD6BC1F5D7EA6DE6DA1CA65EDA5895FD307B8FD9B6BCDC793C5AEE0",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/F/FD9CD14FBFD6BC1F5D7EA6DE6DA1CA65EDA5895FD307B8FD9B6BCDC793C5AEE0",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/FD9CD14FBFD6BC1F5D7EA6DE6DA1CA65EDA5895FD307B8FD9B6BCDC793C5AEE0",
       "ContentEncoding": "Deflate"
     },
     {
