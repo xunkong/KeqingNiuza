@@ -845,5 +845,12 @@
     "Rank": 5,
     "ItemType": "武器",
     "WeaponType": 2
+  },
+  {
+    "Name": "息灾",
+    "NameEn": "Calamity Queller",
+    "Rank": 5,
+    "ItemType": "武器",
+    "WeaponType": 4
   }
 ]
