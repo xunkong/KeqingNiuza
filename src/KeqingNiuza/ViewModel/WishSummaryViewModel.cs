@@ -24,7 +24,8 @@ namespace KeqingNiuza.ViewModel
             WishSummary = WishSummary.Create(WishDataList, IgnoreFirstStar5Character, IgnoreFirstStar5Weapon, IgnoreFirstStar5Permanent);
             CharacterOrder("星级");
             WeaponOrder("星级");
-            if (!IsCorrectOrder) {
+            if (!IsCorrectOrder)
+            {
                 if (WishSummary.CharacterStatistics != null)
                 {
                     WishSummary.CharacterStatistics.Star5List.Reverse();
@@ -101,7 +102,7 @@ namespace KeqingNiuza.ViewModel
             set
             {
                 UserData.IgnoreFirstStar5Character = value;
-                WishSummary.CharacterStatistics = WishSummary.GetStatistics(WishDataList.Where(x => x.WishType == WishType.CharacterEvent).ToList(), value);
+                WishSummary.CharacterStatistics = WishSummary.GetStatistics(WishDataList.Where(x => x.WishType == WishType.CharacterEvent || x.WishType == WishType.CharacterEvent_2).ToList(), value);
                 OnPropertyChanged();
             }
         }
