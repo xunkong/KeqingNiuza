@@ -1,6 +1,6 @@
 {
   "Version": "2.2.5.2",
-  "LastUpdateTime": "2022-01-05T10:48:07.2340806+08:00",
+  "LastUpdateTime": "2022-01-07T14:32:31.3194767+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -127,11 +127,11 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1709568,
-      "CompressedSize": 1155697,
-      "SHA256": "25248183C6601C972D3E01E57EE3011F1CBDE02B19C38AB01A050F2DE91B5A43",
-      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/2/25248183C6601C972D3E01E57EE3011F1CBDE02B19C38AB01A050F2DE91B5A43",
-      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/2/25248183C6601C972D3E01E57EE3011F1CBDE02B19C38AB01A050F2DE91B5A43",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/25248183C6601C972D3E01E57EE3011F1CBDE02B19C38AB01A050F2DE91B5A43",
+      "CompressedSize": 1155695,
+      "SHA256": "60FC0DB20C5A68F6055FDE0F0FD2AB547F09D81444F9371F0A2887EA30F3682D",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/6/60FC0DB20C5A68F6055FDE0F0FD2AB547F09D81444F9371F0A2887EA30F3682D",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/6/60FC0DB20C5A68F6055FDE0F0FD2AB547F09D81444F9371F0A2887EA30F3682D",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/6/60FC0DB20C5A68F6055FDE0F0FD2AB547F09D81444F9371F0A2887EA30F3682D",
       "ContentEncoding": "Deflate"
     },
     {
@@ -160,11 +160,11 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 448000,
-      "CompressedSize": 90981,
-      "SHA256": "DE59059AC3C79ED9C907FF280F546BA650382F601F8761F5CE5F4DDDD8714773",
-      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/D/DE59059AC3C79ED9C907FF280F546BA650382F601F8761F5CE5F4DDDD8714773",
-      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/D/DE59059AC3C79ED9C907FF280F546BA650382F601F8761F5CE5F4DDDD8714773",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/DE59059AC3C79ED9C907FF280F546BA650382F601F8761F5CE5F4DDDD8714773",
+      "CompressedSize": 91003,
+      "SHA256": "34B6E52B2B6D223EDC55FA415B44412ED99C43F170B100B44656B444CBB39894",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/3/34B6E52B2B6D223EDC55FA415B44412ED99C43F170B100B44656B444CBB39894",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/3/34B6E52B2B6D223EDC55FA415B44412ED99C43F170B100B44656B444CBB39894",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/3/34B6E52B2B6D223EDC55FA415B44412ED99C43F170B100B44656B444CBB39894",
       "ContentEncoding": "Deflate"
     },
     {
@@ -1697,6 +1697,17 @@
       "ContentEncoding": "Deflate"
     },
     {
+      "Name": "Character_Shenhe_Portrait.png",
+      "Path": ".\\bin\\resource\\character\\Character_Shenhe_Portrait.png",
+      "Size": 2116022,
+      "CompressedSize": 2113496,
+      "SHA256": "D7BFBBF4FF520BEAC5E1CA664316EBC6B82D7695C96A9EE2591F9C48B5B7843E",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/D/D7BFBBF4FF520BEAC5E1CA664316EBC6B82D7695C96A9EE2591F9C48B5B7843E",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/D/D7BFBBF4FF520BEAC5E1CA664316EBC6B82D7695C96A9EE2591F9C48B5B7843E",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/D7BFBBF4FF520BEAC5E1CA664316EBC6B82D7695C96A9EE2591F9C48B5B7843E",
+      "ContentEncoding": "Deflate"
+    },
+    {
       "Name": "Character_Shenhe_Thumb.png",
       "Path": ".\\bin\\resource\\character\\Character_Shenhe_Thumb.png",
       "Size": 88452,
@@ -1958,6 +1969,17 @@
       "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/A/A90D13CEC94D5A896C7B51C85058998274E024B8686937C84ECBF29CB5FE085F",
       "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/A/A90D13CEC94D5A896C7B51C85058998274E024B8686937C84ECBF29CB5FE085F",
       "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/A/A90D13CEC94D5A896C7B51C85058998274E024B8686937C84ECBF29CB5FE085F",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "Character_Yunjin_Portrait.png",
+      "Path": ".\\bin\\resource\\character\\Character_Yunjin_Portrait.png",
+      "Size": 2001438,
+      "CompressedSize": 1995372,
+      "SHA256": "9F4B49916AD17C5410CAABABCB94387A0CE43457BF40F691E83E75C403FCEB3F",
+      "Url": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/9/9F4B49916AD17C5410CAABABCB94387A0CE43457BF40F691E83E75C403FCEB3F",
+      "Url_CN": "https://raw.fastgit.org/Scighost/KeqingNiuza/cdn2/obj/9/9F4B49916AD17C5410CAABABCB94387A0CE43457BF40F691E83E75C403FCEB3F",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/9F4B49916AD17C5410CAABABCB94387A0CE43457BF40F691E83E75C403FCEB3F",
       "ContentEncoding": "Deflate"
     },
     {
