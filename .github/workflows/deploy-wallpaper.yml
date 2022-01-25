@@ -30,7 +30,8 @@ jobs:
       shell: cmd
       run: |
         coscmd config -a ${{secrets.QCLOUD_SECRET_ID}} -s ${{ secrets.QCLOUD_SECRET_KEY }} -b ${{ secrets.QCLOUD_COS_BUCKET }} -e ${{secrets.QCLOUD_COS_ENDPOINT}}
-        coscmd upload -r ./ keqingniuza/cdn
-        coscmd upload wallpaper.json keqingniuza/meta/wallpaper.json
+        coscmd upload -r wallpaper keqingniuza/cdn
+        
+      #coscmd upload wallpaper.json keqingniuza/meta/wallpaper.json
 
     
