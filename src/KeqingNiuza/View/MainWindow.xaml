@@ -452,13 +452,16 @@
                                  Grid.Column="0"
                                  Grid.ColumnSpan="2"
                                  Background="#F3F3F3"
-                                 Columns="2"
+                                 Columns="3"
                                  Rows="1">
                         <Button x:Name="Button_Load"
                                 Click="Button_Load_Click"
-                                Content="加载数据"
+                                Content="增量更新"
                                 Style="{StaticResource BrushButtonStyle}" />
-
+                        <Button x:Name="Button_LoadAll"
+                                Click="Button_LoadAll_Click"
+                                Content="全量更新"
+                                Style="{StaticResource BrushButtonStyle}" />
                         <Button x:Name="Button_Export"
                                 Click="Button_Export_Click"
                                 Content="导出数据"

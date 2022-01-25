@@ -22,6 +22,8 @@ namespace KeqingNiuza.Launcher
 
         private static readonly string qcloudUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/";
 
+        private static readonly string coding = "https://scighost-generic.pkg.coding.net/keqingniuza/";
+
 
         public static string HashData(byte[] bytes)
         {
@@ -75,6 +77,15 @@ namespace KeqingNiuza.Launcher
         }
 
 
+        public static void OutputLog(string message)
+        {
+            Directory.CreateDirectory(".\\Log");
+            var str = $"[{DateTime.Now:yyyy-MM-dd HH:mm:ss.fff} | Launcher {MetaData.FileVersion}]\n{message}\n\n";
+            var name = $".\\Log\\launcher-{DateTime.Now:yyMMdd}.txt";
+            File.AppendAllText(name, str);
+        }
+
+
         public static void Deploy()
         {
             if (Directory.Exists(".\\cdn2"))
@@ -88,8 +99,8 @@ namespace KeqingNiuza.Launcher
             {
                 var path = $@"cdn2/obj/{info.SHA256[0]}/{info.SHA256}";
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                info.Url = fastgitUrl + path;
-                info.Url_CN = fastgitUrl + path;
+                info.Url = coding + $"releases/{info.SHA256[0]}/{info.SHA256}";
+                info.Url_CN = coding + $"releases/{info.SHA256[0]}/{info.SHA256}";
                 info.Url_OS = jsDelivrUrl + path;
                 using (var fs = File.OpenRead(info.Path))
                 {
@@ -148,8 +159,8 @@ namespace KeqingNiuza.Launcher
             {
                 var path = $@"cdn/wallpaper/{info.SHA256}";
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                info.Url = fastgitUrl + path;
-                info.Url_CN = fastgitUrl + path;
+                info.Url = coding + $"wallpaper/wallpaper/{info.SHA256}";
+                info.Url_CN = coding + $"wallpaper/wallpaper/{info.SHA256}";
                 info.Url_OS = jsDelivrUrl + path;
                 using (var fs = File.OpenRead(info.Path))
                 {

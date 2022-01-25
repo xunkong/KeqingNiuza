@@ -129,10 +129,21 @@ namespace KeqingNiuza.View
         private async void Button_Load_Click(object sender, RoutedEventArgs e)
         {
             Button_Load.IsEnabled = false;
+            Button_LoadAll.IsEnabled = false;
             await ViewModel.UpdateWishData();
+            Button_LoadAll.IsEnabled = true;
             Button_Load.IsEnabled = true;
         }
 
+
+        private async void Button_LoadAll_Click(object sender, RoutedEventArgs e)
+        {
+            Button_Load.IsEnabled = false;
+            Button_LoadAll.IsEnabled = false;
+            await ViewModel.UpdateWishData(true);
+            Button_LoadAll.IsEnabled = true;
+            Button_Load.IsEnabled = true;
+        }
 
 
         private void Button_Export_Click(object sender, RoutedEventArgs e)
@@ -264,5 +275,7 @@ namespace KeqingNiuza.View
                 Growl.Warning(ex.Message);
             }
         }
+
+
     }
 }

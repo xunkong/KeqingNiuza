@@ -268,7 +268,7 @@ namespace KeqingNiuza.ViewModel
         }
 
 
-        public async Task UpdateWishData()
+        public async Task UpdateWishData(bool getAll = false)
         {
             bool timeout = false;
             try
@@ -286,7 +286,7 @@ namespace KeqingNiuza.ViewModel
                         else
                         {
                             skipLoadGenshinLogFile = true;
-                            await LoadDataFromUrl(SelectedUserData.Url);
+                            await LoadDataFromUrl(SelectedUserData.Url, getAll);
                             ReloadViewContent();
                             ChangeViewContent("WishSummaryView");
                         }
@@ -295,7 +295,7 @@ namespace KeqingNiuza.ViewModel
                 if (!skipLoadGenshinLogFile)
                 {
                     var url = GenshinLogLoader.FindUrlFromLogFile();
-                    await LoadDataFromUrl(url);
+                    await LoadDataFromUrl(url, getAll);
                     ReloadViewContent();
                     ChangeViewContent("WishSummaryView");
                 }
@@ -331,7 +331,7 @@ namespace KeqingNiuza.ViewModel
                     }
                     else
                     {
-                        await LoadDataFromUrl(url);
+                        await LoadDataFromUrl(url, true);
                         ReloadViewContent();
                         ChangeViewContent("WishSummaryView");
                     }
@@ -373,7 +373,7 @@ namespace KeqingNiuza.ViewModel
             }
         }
 
-        private async Task LoadDataFromUrl(string url)
+        private async Task LoadDataFromUrl(string url, bool getAll = false)
         {
             var exporter = new WishLogExporter(url);
             exporter.ProgressChanged += WishLoadExporter_ProgressChanged;
@@ -397,7 +397,7 @@ namespace KeqingNiuza.ViewModel
                 if (File.Exists(userData?.WishLogFile))
                 {
                     oldList = LocalWishLogLoader.Load(userData.WishLogFile);
-                    newList = await exporter.GetAllLog(lastId: oldList.Last().Id);
+                    newList = await exporter.GetAllLog(lastId: getAll ? 0 : oldList.Last().Id);
                 }
                 else
                 {

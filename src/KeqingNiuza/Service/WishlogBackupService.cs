@@ -8,6 +8,7 @@ using System.Net.Http.Json;
 using KeqingNiuza.Model;
 using KeqingNiuza.Core.Wish;
 using Newtonsoft.Json.Linq;
+using System.Windows.Documents;
 
 namespace KeqingNiuza.Service
 {
@@ -33,7 +34,7 @@ namespace KeqingNiuza.Service
 
 
 
-        public async Task<WishlogResult> ExecuteAsync(int uid, string url, string operation, IEnumerable<WishData> list)
+        public async Task EnsureAuthkeyAsync(int uid, string url)
         {
             if (uid == 0)
             {
@@ -49,6 +50,27 @@ namespace KeqingNiuza.Service
             {
                 throw new ArgumentException("祈愿记录网址和Uid不匹配");
             }
+        }
+
+
+
+        public async Task<WishlogResult> GetServerDataAsync(int uid, string url)
+        {
+            var model = new WishlogModel
+            {
+                Uid = uid,
+                Url = url,
+            };
+            var message = await _client.PostAsJsonAsync(WishlogBackupUrl2 + "/" + "last", model);
+            message.EnsureSuccessStatusCode();
+            var response = await message.Content.ReadFromJsonAsync<ResponseData<WishlogResult>>(new System.Text.Json.JsonSerializerOptions { PropertyNameCaseInsensitive = true });
+            return response.Data;
+        }
+
+
+
+        public async Task<WishlogResult> ExecuteAsync(int uid, string url, string operation, IEnumerable<WishData> list)
+        {
             var model = new WishlogModel
             {
                 Uid = uid,

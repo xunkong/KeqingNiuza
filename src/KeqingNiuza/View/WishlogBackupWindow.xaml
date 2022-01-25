@@ -28,8 +28,13 @@
                 <Button x:Name="Button_Upload"
                         Margin="10,0,0,0"
                         Click="Button_Upload_Click"
-                        Content="上传"
+                        Content="增量上传"
                         IsEnabled="{Binding ButtonEnable}" />
+                <Button x:Name="Button_UploadAll"
+                        Margin="10,0,0,0"
+                        Click="Button_UploadAll_Click"
+                        Content="全部上传"
+                        IsEnabled="{Binding ButtonEnable}"/>
                 <Button x:Name="Button_Get"
                         Margin="10,0,0,0"
                         Click="Button_Get_Click"

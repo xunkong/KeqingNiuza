@@ -141,8 +141,19 @@ namespace KeqingNiuza.View
             try
             {
                 ButtonEnable = false;
-                StateInfoText = "正在上传，请稍等（最多30s）";
-                var result = await client.ExecuteAsync(SelectedUserData.Uid, SelectedUserData.Url, "put", _wishlogList);
+                StateInfoText = "检查祈愿记录网址的有效性";
+                await client.EnsureAuthkeyAsync(SelectedUserData.Uid, SelectedUserData.Url);
+                StateInfoText = "获取服务器已有数据";
+                var result = await client.GetServerDataAsync(SelectedUserData.Uid, SelectedUserData.Url);
+                var lastId = result?.List?.LastOrDefault()?.Id;
+                var list = _wishlogList.Where(x => x.Id > lastId).ToList();
+                if (list.Count == 0)
+                {
+                    StateInfoText = $"本地记录{_wishlogList.Count}条，服务器记录{result?.CurrentCount}条，无需上传";
+                    return;
+                }
+                StateInfoText = $"本地记录{_wishlogList.Count}条，服务器已有记录{result?.CurrentCount}条，正在上传祈愿记录";
+                result = await client.ExecuteAsync(SelectedUserData.Uid, SelectedUserData.Url, "put", list);
                 if (result != null)
                 {
                     StateInfoText = $"服务器上现有Uid{result.Uid}的祈愿记录{result.CurrentCount}条，此次上传新增{result.PutCount}条";
@@ -179,6 +190,8 @@ namespace KeqingNiuza.View
             try
             {
                 ButtonEnable = false;
+                StateInfoText = "检查祈愿记录网址的有效性";
+                await client.EnsureAuthkeyAsync(SelectedUserData.Uid, SelectedUserData.Url);
                 StateInfoText = "正在下载，请稍等（最多30s）";
                 var result = await client.ExecuteAsync(SelectedUserData.Uid, SelectedUserData.Url, "get", null);
                 if (result != null)
@@ -232,11 +245,61 @@ namespace KeqingNiuza.View
             try
             {
                 ButtonEnable = false;
+                StateInfoText = "检查祈愿记录网址的有效性";
+                await client.EnsureAuthkeyAsync(SelectedUserData.Uid, SelectedUserData.Url);
                 StateInfoText = "正在删除，请稍等（最多30s）";
                 var result = await client.ExecuteAsync(SelectedUserData.Uid, SelectedUserData.Url, "delete", null);
                 if (result != null)
                 {
                     StateInfoText = $"服务器上现有Uid{result.Uid}的祈愿记录{result.CurrentCount}条，此次删除{result.DeleteCount}条";
+                    return;
+                }
+                throw new Exception("Result is null");
+            }
+            catch (Exception ex)
+            {
+                if (ex.Message == "authkey timeout")
+                {
+                    StateInfoText = $"祈愿记录网址已过期，请重新加载数据";
+                }
+                else
+                {
+                    StateInfoText = $"发生错误：{ex.Message}";
+                }
+            }
+            finally
+            {
+                ButtonEnable = true;
+                RequestInfoText = client.RequestInfo;
+            }
+        }
+
+        private async void Button_UploadAll_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedUserData == null || _wishlogList == null)
+            {
+                StateInfoText = "请选择Uid";
+                return;
+            }
+            var client = new WishlogBackupService();
+            try
+            {
+                ButtonEnable = false;
+                StateInfoText = "检查祈愿记录网址的有效性";
+                await client.EnsureAuthkeyAsync(SelectedUserData.Uid, SelectedUserData.Url);
+                var steps = _wishlogList.Count / 10000 + 1;
+                WishlogResult result = null;
+                int addCount = 0;
+                for (int i = 0; i < steps; i++)
+                {
+                    var list = _wishlogList.Skip(10000 * i).Take(10000);
+                    StateInfoText = $"正在上传第{10000 * i + 1}-{10000 * i + list.Count()}条祈愿记录";
+                    result = await client.ExecuteAsync(SelectedUserData.Uid, SelectedUserData.Url, "put", list);
+                    addCount += result?.PutCount ?? 0;
+                }
+                if (result != null)
+                {
+                    StateInfoText = $"服务器上现有Uid{result.Uid}的祈愿记录{result.CurrentCount}条，此次上传新增{addCount}条";
                     return;
                 }
                 throw new Exception("Result is null");

@@ -462,6 +462,7 @@ namespace KeqingNiuza.Launcher
             _progressLoading.SetAnimationState(AnimationState.ProgressExpand);
             _progressLoading.SetAnimationState(AnimationState.ProgressShow);
             await Task.Delay(800);
+            Util.OutputLog(string.Join("\n", list.Select(x => x.Path)));
             var baseDir = Path.GetDirectoryName(AppContext.BaseDirectory);
             var rootFiles = list.Where(x => Path.GetDirectoryName(x.Path) == baseDir);
             if ((bool)rootFiles?.Any())
