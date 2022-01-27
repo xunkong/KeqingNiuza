@@ -389,7 +389,7 @@ namespace KeqingNiuza.Launcher
                 try
                 {
                     InfoTest = "正在检测适合的下载线路";
-                    var client = new HttpClient();
+                    var client = new HttpClient { Timeout = TimeSpan.FromSeconds(3) };
                     var json = await client.GetStringAsync(geoIpApi);
                     var jobj = JObject.Parse(json);
                     if (jobj["countryCode"].Value<string>() == "CN")

@@ -196,12 +196,26 @@ namespace KeqingNiuza.View
             var json = File.ReadAllText(path);
             var list = new JsonImporter().Deserialize(json);
             ImportedWishDatas = list.Distinct().OrderByDescending(x => x.Id).ToList();
+            if (ImportedWishDatas?.Any() ?? false)
+            {
+                ImportUid = ImportedWishDatas[0].Uid;
+            }
         }
 
 
         private void ExportWishLogList()
         {
             var list = ImportedWishDatas.Skip(StartRow - 1).ToList();
+            if (list.Any())
+            {
+                foreach (var item in list)
+                {
+                    if (item.Uid == 0)
+                    {
+                        item.Uid = ImportUid;
+                    }
+                }
+            }
             // 没有id则从10..01开始赋值
             if (list.Any() && list[0].Id == 0)
             {
@@ -211,10 +225,6 @@ namespace KeqingNiuza.View
                 for (int i = 0; i < list.Count; i++)
                 {
                     var item = list[i];
-                    if (item.Uid == 0)
-                    {
-                        item.Uid = ImportUid;
-                    }
                     if (item.Id == 0)
                     {
                         item.Id = id + i;

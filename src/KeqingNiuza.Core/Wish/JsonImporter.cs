@@ -35,8 +35,7 @@ namespace KeqingNiuza.Core.Wish
 
             if (node is JsonObject obj)
             {
-                if (obj.ContainsKey("uid")
-                    && obj.ContainsKey("gacha_type")
+                if (obj.ContainsKey("gacha_type")
                     && obj.ContainsKey("time")
                     && obj.ContainsKey("name")
                     && obj.ContainsKey("item_type")
