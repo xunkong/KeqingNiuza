@@ -852,5 +852,12 @@
     "Rank": 5,
     "ItemType": "武器",
     "WeaponType": 4
+  },
+  {
+    "Name": "神乐之真意",
+    "NameEn": "Kagura\u0027s Verity",
+    "Rank": 5,
+    "ItemType": "武器",
+    "WeaponType": 5
   }
 ]
