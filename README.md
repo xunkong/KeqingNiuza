@@ -2,6 +2,8 @@
 
 # 刻记牛杂店
 
+刻记牛杂店的下一代项目 [寻空](https://github.com/Scighost/Xunkong) 正在开发中，目前的功能不能完全代替牛杂店。
+
 ## 下载地址
 
 [Github Releases](https://github.com/Scighost/KeqingNiuza/releases)

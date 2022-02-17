@@ -86,6 +86,19 @@
                     投喂途径：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/alipay.jpg">支付宝</Hyperlink>
                     、<Hyperlink Click="Hyperlink_Click" NavigateUri="https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/wechatpay.png">微信支付</Hyperlink>
                 </TextBlock>
+
+                <TextBlock Margin="0,20,0,0"
+                           FontSize="20"
+                           Text="寻空" />
+                <TextBlock Margin="0,6,0,0" Text="寻空是牛杂店的下一代项目，仍处于开发阶段，功能残缺。（笑" />
+                <TextBlock Margin="0,6,0,0">
+                    项目地址：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/Scighost/Xunkong">Github@Scighost/Xunkong</Hyperlink>
+                </TextBlock>
+                <TextBlock Margin="0,6,0,0">
+                    下载尝鲜：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://xunkong-1306705684.file.myqcloud.com/download/Xunkong.Desktop.Installer.zip">传送门</Hyperlink>
+                </TextBlock>
+                
+                
             </StackPanel>
 
         </Grid>

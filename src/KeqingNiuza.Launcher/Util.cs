@@ -99,9 +99,11 @@ namespace KeqingNiuza.Launcher
             {
                 var path = $@"cdn2/obj/{info.SHA256[0]}/{info.SHA256}";
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                info.Url = coding + $"releases/{info.SHA256[0]}/{info.SHA256}";
-                info.Url_CN = coding + $"releases/{info.SHA256[0]}/{info.SHA256}";
+                // info.Url = coding + $"releases/{info.SHA256[0]}/{info.SHA256}";
+                // info.Url_CN = coding + $"releases/{info.SHA256[0]}/{info.SHA256}";
                 info.Url_OS = jsDelivrUrl + path;
+                info.Url = info.Url_OS;
+                info.Url_CN = info.Url_OS;
                 using (var fs = File.OpenRead(info.Path))
                 {
                     using (var dfs = File.Create(path))
@@ -159,9 +161,11 @@ namespace KeqingNiuza.Launcher
             {
                 var path = $@"cdn/wallpaper/{info.SHA256}";
                 Directory.CreateDirectory(Path.GetDirectoryName(path));
-                info.Url = coding + $"wallpaper/wallpaper/{info.SHA256}";
-                info.Url_CN = coding + $"wallpaper/wallpaper/{info.SHA256}";
+                // info.Url = coding + $"wallpaper/wallpaper/{info.SHA256}";
+                // info.Url_CN = coding + $"wallpaper/wallpaper/{info.SHA256}";
                 info.Url_OS = jsDelivrUrl + path;
+                info.Url = info.Url_OS;
+                info.Url_CN = info.Url_OS;
                 using (var fs = File.OpenRead(info.Path))
                 {
                     using (var dfs = File.Create(path))
