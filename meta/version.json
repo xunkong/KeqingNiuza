@@ -1,6 +1,6 @@
 {
-  "Version": "2.2.6.1",
-  "LastUpdateTime": "2022-02-17T11:03:39.6324549+08:00",
+  "Version": "2.2.7",
+  "LastUpdateTime": "2022-02-19T16:40:24.6075403+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -16,34 +16,12 @@
     {
       "Name": "KeqingNiuza Launcher.exe",
       "Path": ".\\KeqingNiuza Launcher.exe",
-      "Size": 1475072,
-      "CompressedSize": 1059751,
-      "SHA256": "993AFAF844BF121C34BC8527F08A78B61A6CC7989285A96055CA972CBE4006B5",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/993AFAF844BF121C34BC8527F08A78B61A6CC7989285A96055CA972CBE4006B5",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/993AFAF844BF121C34BC8527F08A78B61A6CC7989285A96055CA972CBE4006B5",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/9/993AFAF844BF121C34BC8527F08A78B61A6CC7989285A96055CA972CBE4006B5",
-      "ContentEncoding": "Deflate"
-    },
-    {
-      "Name": "KeqingNiuza Launcher.exe.config",
-      "Path": ".\\KeqingNiuza Launcher.exe.config",
-      "Size": 187,
-      "CompressedSize": 136,
-      "SHA256": "F82338E8E9C746B5D95CD2CCC7BF94DD5DE2B9B8982FFFDDF2118E475DE50E15",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F82338E8E9C746B5D95CD2CCC7BF94DD5DE2B9B8982FFFDDF2118E475DE50E15",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F82338E8E9C746B5D95CD2CCC7BF94DD5DE2B9B8982FFFDDF2118E475DE50E15",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F82338E8E9C746B5D95CD2CCC7BF94DD5DE2B9B8982FFFDDF2118E475DE50E15",
-      "ContentEncoding": "Deflate"
-    },
-    {
-      "Name": "Newtonsoft.Json.dll",
-      "Path": ".\\Newtonsoft.Json.dll",
-      "Size": 701992,
-      "CompressedSize": 262616,
-      "SHA256": "B624949DF8B0E3A6153FDFB730A7C6F4990B6592EE0D922E1788433D276610F3",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B624949DF8B0E3A6153FDFB730A7C6F4990B6592EE0D922E1788433D276610F3",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B624949DF8B0E3A6153FDFB730A7C6F4990B6592EE0D922E1788433D276610F3",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B624949DF8B0E3A6153FDFB730A7C6F4990B6592EE0D922E1788433D276610F3",
+      "Size": 1762304,
+      "CompressedSize": 1346608,
+      "SHA256": "28248DB0EC94E40CDEBB974F05E17F2FA420EA7AF5EF4D08D9C971D3CF26CEB9",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/28248DB0EC94E40CDEBB974F05E17F2FA420EA7AF5EF4D08D9C971D3CF26CEB9",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/28248DB0EC94E40CDEBB974F05E17F2FA420EA7AF5EF4D08D9C971D3CF26CEB9",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/28248DB0EC94E40CDEBB974F05E17F2FA420EA7AF5EF4D08D9C971D3CF26CEB9",
       "ContentEncoding": "Deflate"
     },
     {
@@ -55,6 +33,17 @@
       "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/D9C44A7B49550D620E8018DCF96D0A4814E11472A3D573E3E798CB0468910723",
       "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/D9C44A7B49550D620E8018DCF96D0A4814E11472A3D573E3E798CB0468910723",
       "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/D9C44A7B49550D620E8018DCF96D0A4814E11472A3D573E3E798CB0468910723",
+      "ContentEncoding": "Deflate"
+    },
+    {
+      "Name": "无法下载看这里.txt",
+      "Path": ".\\无法下载看这里.txt",
+      "Size": 308,
+      "CompressedSize": 258,
+      "SHA256": "4A328DB1972F533B22167E8BCBB195ECBC58993F419321C83FA512180ABEE07D",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/4A328DB1972F533B22167E8BCBB195ECBC58993F419321C83FA512180ABEE07D",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/4A328DB1972F533B22167E8BCBB195ECBC58993F419321C83FA512180ABEE07D",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/4/4A328DB1972F533B22167E8BCBB195ECBC58993F419321C83FA512180ABEE07D",
       "ContentEncoding": "Deflate"
     },
     {
@@ -104,34 +93,34 @@
     {
       "Name": "KeqingNiuza.Core.dll",
       "Path": ".\\bin\\KeqingNiuza.Core.dll",
-      "Size": 137728,
-      "CompressedSize": 58745,
-      "SHA256": "2214067FA83E3E4DE3A6EB8F258680A202F8671DFD85047E96FFE3D7DDD8C3BD",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2214067FA83E3E4DE3A6EB8F258680A202F8671DFD85047E96FFE3D7DDD8C3BD",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2214067FA83E3E4DE3A6EB8F258680A202F8671DFD85047E96FFE3D7DDD8C3BD",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2214067FA83E3E4DE3A6EB8F258680A202F8671DFD85047E96FFE3D7DDD8C3BD",
+      "Size": 136704,
+      "CompressedSize": 58554,
+      "SHA256": "CD49FCBEC32177A6042E1AFBA0D2C11B58E4C36E7328BF2F2A7EA7DB15708AE6",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CD49FCBEC32177A6042E1AFBA0D2C11B58E4C36E7328BF2F2A7EA7DB15708AE6",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CD49FCBEC32177A6042E1AFBA0D2C11B58E4C36E7328BF2F2A7EA7DB15708AE6",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CD49FCBEC32177A6042E1AFBA0D2C11B58E4C36E7328BF2F2A7EA7DB15708AE6",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "KeqingNiuza.Core.pdb",
       "Path": ".\\bin\\KeqingNiuza.Core.pdb",
-      "Size": 429568,
-      "CompressedSize": 93570,
-      "SHA256": "B8A4E732AE24A7B9ACC06B87CE31F376BFF3ACDC828FA09A8BC7C12C5AEBE0F4",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B8A4E732AE24A7B9ACC06B87CE31F376BFF3ACDC828FA09A8BC7C12C5AEBE0F4",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B8A4E732AE24A7B9ACC06B87CE31F376BFF3ACDC828FA09A8BC7C12C5AEBE0F4",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/B8A4E732AE24A7B9ACC06B87CE31F376BFF3ACDC828FA09A8BC7C12C5AEBE0F4",
+      "Size": 427520,
+      "CompressedSize": 93082,
+      "SHA256": "57A9E1C8F6773FDF838E02F6BE0BE1956DFDBDCAF11F0B39505EA87319DED658",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/57A9E1C8F6773FDF838E02F6BE0BE1956DFDBDCAF11F0B39505EA87319DED658",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/57A9E1C8F6773FDF838E02F6BE0BE1956DFDBDCAF11F0B39505EA87319DED658",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/57A9E1C8F6773FDF838E02F6BE0BE1956DFDBDCAF11F0B39505EA87319DED658",
       "ContentEncoding": "Deflate"
     },
     {
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
-      "Size": 1754624,
-      "CompressedSize": 1196508,
-      "SHA256": "CEF03457AABB92EA5C820C0F9F6B47BE45476D6C86972C160953A42484E1B7D3",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CEF03457AABB92EA5C820C0F9F6B47BE45476D6C86972C160953A42484E1B7D3",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CEF03457AABB92EA5C820C0F9F6B47BE45476D6C86972C160953A42484E1B7D3",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/CEF03457AABB92EA5C820C0F9F6B47BE45476D6C86972C160953A42484E1B7D3",
+      "Size": 1755648,
+      "CompressedSize": 1196980,
+      "SHA256": "F260DC1A284F97BE4FD62EF9C2806DE6E2EB7FC363E19ACBFF65A20671C41186",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F260DC1A284F97BE4FD62EF9C2806DE6E2EB7FC363E19ACBFF65A20671C41186",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F260DC1A284F97BE4FD62EF9C2806DE6E2EB7FC363E19ACBFF65A20671C41186",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F260DC1A284F97BE4FD62EF9C2806DE6E2EB7FC363E19ACBFF65A20671C41186",
       "ContentEncoding": "Deflate"
     },
     {
@@ -160,11 +149,11 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 454144,
-      "CompressedSize": 92763,
-      "SHA256": "F9BCD18ED13D8DC665FA06164A4C2E1D4E06EC17CB1BAD182BF5F2ECB0F4EEE5",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F9BCD18ED13D8DC665FA06164A4C2E1D4E06EC17CB1BAD182BF5F2ECB0F4EEE5",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F9BCD18ED13D8DC665FA06164A4C2E1D4E06EC17CB1BAD182BF5F2ECB0F4EEE5",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/F9BCD18ED13D8DC665FA06164A4C2E1D4E06EC17CB1BAD182BF5F2ECB0F4EEE5",
+      "CompressedSize": 92757,
+      "SHA256": "5EFFB0FFD2078D6301DF49915EB7322A75230B36F0F97A735CC44BBFEEB6A7AC",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5EFFB0FFD2078D6301DF49915EB7322A75230B36F0F97A735CC44BBFEEB6A7AC",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5EFFB0FFD2078D6301DF49915EB7322A75230B36F0F97A735CC44BBFEEB6A7AC",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/5EFFB0FFD2078D6301DF49915EB7322A75230B36F0F97A735CC44BBFEEB6A7AC",
       "ContentEncoding": "Deflate"
     },
     {
@@ -1930,12 +1919,12 @@
     {
       "Name": "Character_Yae_Miko_Portrait.png",
       "Path": ".\\bin\\resource\\character\\Character_Yae_Miko_Portrait.png",
-      "Size": 659099,
-      "CompressedSize": 657326,
-      "SHA256": "E8C5E77794D1AB0273FB27BEE5930F9A146D8C90ACB22509CEBF94F62185D9F3",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E8C5E77794D1AB0273FB27BEE5930F9A146D8C90ACB22509CEBF94F62185D9F3",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E8C5E77794D1AB0273FB27BEE5930F9A146D8C90ACB22509CEBF94F62185D9F3",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/E/E8C5E77794D1AB0273FB27BEE5930F9A146D8C90ACB22509CEBF94F62185D9F3",
+      "Size": 341611,
+      "CompressedSize": 341190,
+      "SHA256": "FAF3A738C09F4A0D125C085E8C0694EB6B69F233085A302EF399CD2E0749BEB1",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/FAF3A738C09F4A0D125C085E8C0694EB6B69F233085A302EF399CD2E0749BEB1",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/FAF3A738C09F4A0D125C085E8C0694EB6B69F233085A302EF399CD2E0749BEB1",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/F/FAF3A738C09F4A0D125C085E8C0694EB6B69F233085A302EF399CD2E0749BEB1",
       "ContentEncoding": "Deflate"
     },
     {
