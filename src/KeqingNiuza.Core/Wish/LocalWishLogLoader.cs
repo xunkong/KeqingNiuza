@@ -22,26 +22,12 @@ namespace KeqingNiuza.Core.Wish
                 return null;
             }
             var resultList = new List<WishData>(originalList.Count);
-            var sublist = originalList.Where(x => x.WishType == WishType.CharacterEvent || x.WishType == WishType.CharacterEvent_2).OrderBy(x => x.Id).ToList();
-            if (sublist.Any())
+            var groups = originalList.GroupBy(x => x.QueryType);
+            foreach (var group in groups)
             {
-                resultList.AddRange(ComputeWishInfo(WishEventList, sublist));
+                resultList.AddRange(ComputeWishInfo(WishEventList, group.ToList()));
             }
-            sublist = originalList.Where(x => x.WishType == WishType.WeaponEvent).OrderBy(x => x.Id).ToList();
-            if (sublist.Any())
-            {
-                resultList.AddRange(ComputeWishInfo(WishEventList, sublist));
-            }
-            sublist = originalList.Where(x => x.WishType == WishType.Permanent).OrderBy(x => x.Id).ToList();
-            if (sublist.Any())
-            {
-                resultList.AddRange(ComputeWishInfo(WishEventList, sublist));
-            }
-            sublist = originalList.Where(x => x.WishType == WishType.Novice).OrderBy(x => x.Id).ToList();
-            if (sublist.Any())
-            {
-                resultList.AddRange(ComputeWishInfo(WishEventList, sublist));
-            }
+
             return resultList.OrderBy(x => x.Id).ToList();
         }
 
@@ -63,10 +49,10 @@ namespace KeqingNiuza.Core.Wish
                 if (data.Rank == 5)
                 {
                     tmp = i;
-                    if (data.WishType == WishType.CharacterEvent || data.WishType == WishType.WeaponEvent)
+                    if (data.WishType != WishType.Permanent && data.WishType != WishType.Novice)
                     {
                         var wishevent = WishEventList.Find(x =>
-                            x.WishType == data.WishType
+                            x.WishType == data.QueryType
                             && x.StartTime <= data.Time
                             && x.EndTime >= data.Time);
                         if (wishevent != null)
@@ -84,10 +70,10 @@ namespace KeqingNiuza.Core.Wish
                 }
                 if (data.Rank == 5 || data.Rank == 4)
                 {
-                    if (data.WishType == WishType.CharacterEvent || data.WishType == WishType.WeaponEvent)
+                    if (data.WishType != WishType.Permanent && data.WishType != WishType.Novice)
                     {
                         var wishevent = WishEventList.Find(x =>
-                            x.WishType == data.WishType
+                            x.WishType == data.QueryType
                             && x.StartTime <= data.Time
                             && x.EndTime >= data.Time);
                         if (wishevent != null)

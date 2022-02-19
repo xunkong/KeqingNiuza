@@ -264,18 +264,18 @@ namespace KeqingNiuza.View
             Count_NotUp = info.WishDataList.Count(x => x.IsUp == false);
             StartTime = info.WishDataList.First().Time;
             EndTime = info.WishDataList.Last().Time;
-            Count_Character = info.WishDataList.Count(x => x.WishType == WishType.CharacterEvent);
-            Count_Weapon = info.WishDataList.Count(x => x.WishType == WishType.WeaponEvent);
-            Count_Permanent = info.WishDataList.Count(x => x.WishType == WishType.Permanent);
-            Count_Novice = info.WishDataList.Count(x => x.WishType == WishType.Novice);
-            SourceList = info.WishDataList.Where(x => x.WishType == WishType.CharacterEvent).ToList();
+            Count_Character = info.WishDataList.Count(x => x.QueryType == WishType.CharacterEvent);
+            Count_Weapon = info.WishDataList.Count(x => x.QueryType == WishType.WeaponEvent);
+            Count_Permanent = info.WishDataList.Count(x => x.QueryType == WishType.Permanent);
+            Count_Novice = info.WishDataList.Count(x => x.QueryType == WishType.Novice);
+            SourceList = info.WishDataList.Where(x => x.QueryType == WishType.CharacterEvent).ToList();
             RadioButton_Character.IsChecked = true;
 
             var eventList = new List<RelativeEvent>();
-            var infoList = info.WishDataList.Where(x => x.WishType == WishType.Novice).ToList();
+            var infoList = info.WishDataList.Where(x => x.QueryType == WishType.Novice).ToList();
             if (infoList.Any())
             {
-                var allList = MainWindowViewModel.WishDataList.Where(x => x.WishType == WishType.Novice).ToList();
+                var allList = MainWindowViewModel.WishDataList.Where(x => x.QueryType == WishType.Novice).ToList();
                 var relativeEvent = new RelativeEvent
                 {
                     EventName = "新手池",
@@ -287,10 +287,10 @@ namespace KeqingNiuza.View
             }
             foreach (var @event in WishEventList)
             {
-                var infolist = info.WishDataList.Where(x => x.WishType == @event.WishType && x.Time >= @event.StartTime && x.Time <= @event.EndTime).ToList();
+                var infolist = info.WishDataList.Where(x => x.QueryType == @event.WishType && x.Time >= @event.StartTime && x.Time <= @event.EndTime).ToList();
                 if (infolist.Any())
                 {
-                    var allList = MainWindowViewModel.WishDataList.Where(x => x.WishType == @event.WishType && x.Time >= @event.StartTime && x.Time <= @event.EndTime).ToList();
+                    var allList = MainWindowViewModel.WishDataList.Where(x => x.QueryType == @event.WishType && x.Time >= @event.StartTime && x.Time <= @event.EndTime).ToList();
                     var relativeEvent = new RelativeEvent
                     {
                         EventName = @event.DisplayName,
@@ -306,10 +306,10 @@ namespace KeqingNiuza.View
                     eventList.Add(relativeEvent);
                 }
             }
-            infoList = info.WishDataList.Where(x => x.WishType == WishType.Permanent).ToList();
+            infoList = info.WishDataList.Where(x => x.QueryType == WishType.Permanent).ToList();
             if (infoList.Any())
             {
-                var allList = MainWindowViewModel.WishDataList.Where(x => x.WishType == WishType.Permanent).ToList();
+                var allList = MainWindowViewModel.WishDataList.Where(x => x.QueryType == WishType.Permanent).ToList();
                 var relativeEvent = new RelativeEvent
                 {
                     EventName = $"常驻池",
@@ -339,16 +339,16 @@ namespace KeqingNiuza.View
             switch (content)
             {
                 case "Character":
-                    SourceList = SelectedItemInfo.WishDataList.Where(x => x.WishType == WishType.CharacterEvent).ToList();
+                    SourceList = SelectedItemInfo.WishDataList.Where(x => x.QueryType == WishType.CharacterEvent || x.WishType == WishType.CharacterEvent_2).ToList();
                     break;
                 case "Weapon":
-                    SourceList = SelectedItemInfo.WishDataList.Where(x => x.WishType == WishType.WeaponEvent).ToList();
+                    SourceList = SelectedItemInfo.WishDataList.Where(x => x.QueryType == WishType.WeaponEvent).ToList();
                     break;
                 case "Permanent":
-                    SourceList = SelectedItemInfo.WishDataList.Where(x => x.WishType == WishType.Permanent).ToList();
+                    SourceList = SelectedItemInfo.WishDataList.Where(x => x.QueryType == WishType.Permanent).ToList();
                     break;
                 case "Novice":
-                    SourceList = SelectedItemInfo.WishDataList.Where(x => x.WishType == WishType.Novice).ToList();
+                    SourceList = SelectedItemInfo.WishDataList.Where(x => x.QueryType == WishType.Novice).ToList();
                     break;
                 default:
                     break;

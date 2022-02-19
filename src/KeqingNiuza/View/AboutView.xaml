@@ -89,6 +89,21 @@
 
                 <TextBlock Margin="0,20,0,0"
                            FontSize="20"
+                           Text="关于软件更新" />
+                <TextBlock Margin="0,6,0,0" Text="因为 jsDelivr 的下载服务不太稳定，简要说明一下软件更新的问题。" />
+                <TextBlock Margin="0,6,0,0" Text="软件使用启动器更新，启动器下载新文件时会有两种情况：" />
+                <TextBlock Margin="0,6,0,0" Text="1、版本号不变，更新图片卡池信息等内容，不更新影响不大；" />
+                <TextBlock Margin="0,6,0,0" Text="2、版本号+1，更新软件本体，不更新影响也不大。" />
+                <TextBlock Margin="0,6,0,0" Text="鼠标左键双击启动器窗口可以跳过更新，缩短启动时间，您可以通过以上信息决定是否更新。" />
+                <TextBlock Margin="0,6,0,0" Text="以后每次更新会在 Github 和 Coding 放出完整安装包，如无法使用启动器更新，可以前去下载。" />
+                <TextBlock Margin="0,6,0,0" Text="（不能使用启动器更新，估计也看不到这一条）" />
+                <TextBlock Margin="0,6,0,0">
+                    Coding：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://scighost.coding.net/public-artifacts/keqingniuza/packages/packages">传送门</Hyperlink>
+                </TextBlock>
+              
+
+                <TextBlock Margin="0,20,0,0"
+                           FontSize="20"
                            Text="寻空" />
                 <TextBlock Margin="0,6,0,0" Text="寻空是牛杂店的下一代项目，仍处于开发阶段，功能残缺。（笑" />
                 <TextBlock Margin="0,6,0,0">

@@ -313,26 +313,6 @@ namespace KeqingNiuza.Launcher
             }
             if (downloadingFiles?.Any() ?? false)
             {
-                try
-                {
-                    var ipjson = await client.GetStringAsync(geoIpApi);
-                    var jobj = JObject.Parse(ipjson);
-                    if (jobj["countryCode"].Value<string>() == "CN")
-                    {
-                        foreach (var item in downloadingFiles)
-                        {
-                            item.Url = item.Url_CN;
-                        }
-                    }
-                    else
-                    {
-                        foreach (var item in downloadingFiles)
-                        {
-                            item.Url = item.Url_OS;
-                        }
-                    }
-                }
-                catch { }
                 CanCancel = false;
                 try
                 {
@@ -386,28 +366,6 @@ namespace KeqingNiuza.Launcher
             }
             if (list?.Any() ?? false)
             {
-                try
-                {
-                    InfoTest = "正在检测适合的下载线路";
-                    var client = new HttpClient { Timeout = TimeSpan.FromSeconds(3) };
-                    var json = await client.GetStringAsync(geoIpApi);
-                    var jobj = JObject.Parse(json);
-                    if (jobj["countryCode"].Value<string>() == "CN")
-                    {
-                        foreach (var item in list)
-                        {
-                            item.Url = item.Url_CN;
-                        }
-                    }
-                    else
-                    {
-                        foreach (var item in list)
-                        {
-                            item.Url = item.Url_OS;
-                        }
-                    }
-                }
-                catch { }
                 CanCancel = false;
                 try
                 {

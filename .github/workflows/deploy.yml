@@ -63,4 +63,8 @@ jobs:
         coscmd upload -r bin/Release/cdn2 keqingniuza/cdn2
         coscmd upload -r bin/Release/cdn2/meta keqingniuza/meta
 
+    - name: Upload to coding
+      shell: cmd
+      run: curl -T bin/KeqingNiuza.zip -u ${{secrets.CODING_KEY}} "https://scighost-generic.pkg.coding.net/keqingniuza/packages/KeqingNiuza.zip"
+
     

@@ -70,26 +70,18 @@ namespace KeqingNiuza.Core.Wish
         /// <summary>
         /// 此值仅作为导出到 UIGF 使用
         /// </summary>
-        [JsonPropertyName("uigf_gacha_type")]
-        [Obsolete("此值仅作为导出到 UIGF 使用")]
-        public string QueryType
+        [JsonPropertyName("uigf_gacha_type"), JsonConverter(typeof(GachaTypeJsonConverter))]
+        public WishType QueryType
         {
             get
             {
                 switch (WishType)
                 {
-                    case WishType.Novice:
-                        return "100";
-                    case WishType.Permanent:
-                        return "200";
-                    case WishType.CharacterEvent:
-                        return "301";
-                    case WishType.WeaponEvent:
-                        return "302";
+
                     case WishType.CharacterEvent_2:
-                        return "301";
+                        return WishType.CharacterEvent;
                     default:
-                        return "";
+                        return WishType;
                 }
             }
             set { }

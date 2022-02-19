@@ -43,7 +43,7 @@ namespace KeqingNiuza.Launcher
 
         public Downloader(double progressInterval = 100)
         {
-            HttpClient = new HttpClient();
+            HttpClient = new HttpClient { Timeout = TimeSpan.FromSeconds(15) };
             HttpClient.DefaultRequestHeaders.Add("User-Agent", $"KeqingLauncher/{MetaData.FileVersion} UserId/{MetaData.UserId}");
             timer = new System.Timers.Timer(progressInterval);
             timer.Elapsed += ComputeSpeed;
@@ -90,25 +90,49 @@ namespace KeqingNiuza.Launcher
             stopwatch = Stopwatch.StartNew();
             timer.Start();
 
-            await ParallelForEachAsync(infos, async info =>
+            using (var source = new CancellationTokenSource())
             {
-                if (string.IsNullOrWhiteSpace(info.Url))
-                {
-                    return;
-                }
+                var tasks = infos.Select(async info => await DownloadOneFileAsync(info, source));
+                await Task.WhenAll(tasks).ConfigureAwait(false);
+            }
+
+            var args = new ProgressChangedEventArgs(TotalSize, DownloadedSize, Speed);
+            ProgressChanged?.Invoke(this, args);
+            IsDownloading = false;
+            DownloadFinished?.Invoke(this, null);
+        }
+
+
+        public void Cancel()
+        {
+            if (IsDownloading)
+            {
+                isCancel = true;
+            }
+        }
+
+
+        private async Task DownloadOneFileAsync(KeqingNiuzaFileInfo info, CancellationTokenSource cts)
+        {
+            if (isCancel)
+            {
+                return;
+            }
+            try
+            {
                 byte[] buffer = new byte[BUFFERSIZE];
                 MemoryStream ms = new MemoryStream();
-                using (Stream hs = await HttpClient.GetStreamAsync(info.Url))
+                var message = await HttpClient.GetAsync(info.Url, HttpCompletionOption.ResponseHeadersRead, cts.Token);
+                using (Stream hs = await message.Content.ReadAsStreamAsync())
                 {
                     while (true)
                     {
                         if (isCancel)
                         {
-                            isCancel = false;
                             IsDownloading = false;
                             return;
                         }
-                        int readSize = await hs.ReadAsync(buffer, 0, BUFFERSIZE);
+                        int readSize = await hs.ReadAsync(buffer, 0, BUFFERSIZE, cts.Token);
                         if (readSize == 0)
                         {
                             break;
@@ -118,56 +142,24 @@ namespace KeqingNiuza.Launcher
                     }
                 }
                 ms.Position = 0;
-                await WriteStreamToFile(info, ms);
-            });
-            var args = new ProgressChangedEventArgs(TotalSize, DownloadedSize, Speed);
-            ProgressChanged?.Invoke(this, args);
-            IsDownloading = false;
-            DownloadFinished?.Invoke(this, null);
-        }
-
-        private async Task WriteStreamToFile(KeqingNiuzaFileInfo info, MemoryStream ms)
-        {
-            Directory.CreateDirectory(Path.GetDirectoryName(info.Path));
-            using (var ds = new DeflateStream(ms, CompressionMode.Decompress))
-            {
-                using (var fs = File.OpenWrite(info.Path))
+                Directory.CreateDirectory(Path.GetDirectoryName(info.Path));
+                using (var ds = new DeflateStream(ms, CompressionMode.Decompress))
                 {
-                    fs.SetLength(info.Size);
-                    await ds.CopyToAsync(fs);
+                    using (var fs = File.OpenWrite(info.Path))
+                    {
+                        fs.SetLength(info.Size);
+                        await ds.CopyToAsync(fs);
+                    }
                 }
             }
-        }
-
-        public async Task ParallelForEachAsync<T>(IEnumerable<T> source, Func<T, Task> asyncAction)
-        {
-            //Environment.ProcessorCount 逻辑处理器
-            SemaphoreSlim throttler = new SemaphoreSlim(Environment.ProcessorCount * 4);
-            IEnumerable<Task> tasks = source.Select(async item =>
-            {
-                await throttler.WaitAsync();
-                try
-                {
-                    await asyncAction(item);
-                }
-                catch
-                {
-                    throw;
-                }
-                finally
-                {
-                    throttler.Release();
-                }
-            });
-            await Task.WhenAll(tasks);
-        }
-
-        public void Cancel()
-        {
-            if (IsDownloading)
+            catch (Exception ex)
             {
                 isCancel = true;
+                IsDownloading = false;
+                cts.Cancel();
+                throw;
             }
         }
+
     }
 }

@@ -191,9 +191,7 @@ namespace KeqingNiuza.Core.Wish
                 cells[i + 2, 8].Value = datas[i].Rank.ToString();
                 cells[i + 2, 9].Value = datas[i].Time.ToString("yyyy-MM-dd HH:mm:ss");
                 cells[i + 2, 10].Value = datas[i].Uid.ToString();
-#pragma warning disable CS0618 // 类型或成员已过时
-                cells[i + 2, 11].Value = datas[i].QueryType;
-#pragma warning restore CS0618 // 类型或成员已过时
+                cells[i + 2, 11].Value = ((int)datas[i].QueryType).ToString();
                 cells[i + 2, 1, i + 2, 11].Style.Font.Color.SetColor(Color.Gray);
                 if (datas[i].Rank == 4)
                 {

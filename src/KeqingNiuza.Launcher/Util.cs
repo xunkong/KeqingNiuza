@@ -94,6 +94,16 @@ namespace KeqingNiuza.Launcher
             }
             Directory.CreateDirectory(".\\cdn2");
             var files = Directory.GetFiles(".\\", "*", SearchOption.AllDirectories);
+            using (var fs = File.Create($"..\\KeqingNiuza.zip"))
+            {
+                using (var zip = new ZipArchive(fs, ZipArchiveMode.Create))
+                {
+                    foreach (var file in files)
+                    {
+                        ZipFileExtensions.CreateEntryFromFile(zip, file, "KeqingNiuza" + file.Substring(1));
+                    }
+                }
+            }
             var infos = files.Select(x => KeqingNiuzaFileInfo.Create(x)).ToList();
             foreach (var info in infos)
             {
