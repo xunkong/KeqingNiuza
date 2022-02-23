@@ -106,15 +106,19 @@ namespace KeqingNiuza.Core.Wish
                 EndTime = list.Max(x => x.Time),
                 Count = list.Count
             };
+            ws.GuaranteeType = list.Last().GuaranteeType;
             if (list.Last().Rank == 5)
             {
                 ws.Guarantee = 0;
+                if (ws.WishType != WishType.Permanent && ws.WishType != WishType.Novice && (list.Last().IsUp ?? false))
+                {
+                    ws.GuaranteeType = "小保底";
+                }
             }
             else
             {
                 ws.Guarantee = list.Last().Guarantee;
             }
-            ws.GuaranteeType = list.Last().GuaranteeType;
             ws.Count_XiaoBaoDi = list.Count(x => (x.GuaranteeType == "小保底" || x.GuaranteeType == "保底内") && x.Rank == 5);
             ws.Count_DaBaoDi = list.Count(x => x.GuaranteeType == "大保底" && x.Rank == 5);
             ws.Star5List = GetDetailList(list, 5);
