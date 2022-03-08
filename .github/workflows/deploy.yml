@@ -62,9 +62,10 @@ jobs:
         coscmd config -a ${{secrets.QCLOUD_SECRET_ID}} -s ${{ secrets.QCLOUD_SECRET_KEY }} -b ${{ secrets.QCLOUD_COS_BUCKET }} -e ${{secrets.QCLOUD_COS_ENDPOINT}}
         coscmd upload -r bin/Release/cdn2 keqingniuza/cdn2
         coscmd upload -r bin/Release/cdn2/meta keqingniuza/meta
+        coscmd upload bin/KeqingNiuza.zip keqingniuza/KeqingNiuza.zip
 
-    - name: Upload to coding
-      shell: cmd
-      run: curl -T bin/KeqingNiuza.zip -u ${{secrets.CODING_KEY}} "https://scighost-generic.pkg.coding.net/keqingniuza/packages/KeqingNiuza.zip"
+    # - name: Upload to coding
+    #   shell: cmd
+    #   run: curl -T bin/KeqingNiuza.zip -u ${{secrets.CODING_KEY}} "https://scighost-generic.pkg.coding.net/keqingniuza/packages/KeqingNiuza.zip"
 
     
