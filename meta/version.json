@@ -1,6 +1,6 @@
 {
   "Version": "2.2.7",
-  "LastUpdateTime": "2022-02-23T20:42:25.510873+08:00",
+  "LastUpdateTime": "2022-03-08T10:11:14.1153462+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -116,11 +116,11 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1755648,
-      "CompressedSize": 1196978,
-      "SHA256": "2CA028794517E0C5C8609797121D8F6C6654C8FF32BE65F30FE90B804699144D",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2CA028794517E0C5C8609797121D8F6C6654C8FF32BE65F30FE90B804699144D",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2CA028794517E0C5C8609797121D8F6C6654C8FF32BE65F30FE90B804699144D",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2CA028794517E0C5C8609797121D8F6C6654C8FF32BE65F30FE90B804699144D",
+      "CompressedSize": 1196980,
+      "SHA256": "C60898225CCA5C1726EAAE24C567A345EBD6481E8F543CF72F793DEEDDC97E23",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C60898225CCA5C1726EAAE24C567A345EBD6481E8F543CF72F793DEEDDC97E23",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C60898225CCA5C1726EAAE24C567A345EBD6481E8F543CF72F793DEEDDC97E23",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C60898225CCA5C1726EAAE24C567A345EBD6481E8F543CF72F793DEEDDC97E23",
       "ContentEncoding": "Deflate"
     },
     {
@@ -149,11 +149,11 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 456192,
-      "CompressedSize": 92872,
-      "SHA256": "58D3C0C2F6E984FDC475BED3F349EF3BD1134689373BBDAED2EA632B93F7A157",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/58D3C0C2F6E984FDC475BED3F349EF3BD1134689373BBDAED2EA632B93F7A157",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/58D3C0C2F6E984FDC475BED3F349EF3BD1134689373BBDAED2EA632B93F7A157",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/5/58D3C0C2F6E984FDC475BED3F349EF3BD1134689373BBDAED2EA632B93F7A157",
+      "CompressedSize": 92871,
+      "SHA256": "BD21D727515AECCAAD9393FFBD618D8C8D769ED01705465773571DBE781D78C2",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/BD21D727515AECCAAD9393FFBD618D8C8D769ED01705465773571DBE781D78C2",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/BD21D727515AECCAAD9393FFBD618D8C8D769ED01705465773571DBE781D78C2",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/BD21D727515AECCAAD9393FFBD618D8C8D769ED01705465773571DBE781D78C2",
       "ContentEncoding": "Deflate"
     },
     {
@@ -2051,12 +2051,12 @@
     {
       "Name": "WishEventList.json",
       "Path": ".\\bin\\resource\\list\\WishEventList.json",
-      "Size": 16698,
-      "CompressedSize": 2188,
-      "SHA256": "14A745D4E1F075D5DCF8577AFD8C1465A84237BA6C93257721CF6CBD3245D823",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/14A745D4E1F075D5DCF8577AFD8C1465A84237BA6C93257721CF6CBD3245D823",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/14A745D4E1F075D5DCF8577AFD8C1465A84237BA6C93257721CF6CBD3245D823",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/1/14A745D4E1F075D5DCF8577AFD8C1465A84237BA6C93257721CF6CBD3245D823",
+      "Size": 17408,
+      "CompressedSize": 2252,
+      "SHA256": "2E2A9BBE1113BAA03D945E928C9243D4E9483F989856009E4A94AEF7D7F00B53",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2E2A9BBE1113BAA03D945E928C9243D4E9483F989856009E4A94AEF7D7F00B53",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2E2A9BBE1113BAA03D945E928C9243D4E9483F989856009E4A94AEF7D7F00B53",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/2/2E2A9BBE1113BAA03D945E928C9243D4E9483F989856009E4A94AEF7D7F00B53",
       "ContentEncoding": "Deflate"
     },
     {
