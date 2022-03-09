@@ -5,7 +5,7 @@
              xmlns:hc="https://handyorg.github.io/handycontrol"
              xmlns:local="clr-namespace:KeqingNiuza.View"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="600"
+             d:DesignHeight="1000"
              d:DesignWidth="800"
              Background="{StaticResource ContentViewBackground}"
              DataContext="{Binding RelativeSource={RelativeSource Self}}"
@@ -105,12 +105,12 @@
                 <TextBlock Margin="0,20,0,0"
                            FontSize="20"
                            Text="寻空" />
-                <TextBlock Margin="0,6,0,0" Text="寻空是牛杂店的下一代项目，仍处于开发阶段，功能残缺。（笑" />
+                <TextBlock Margin="0,6,0,0" Text="寻空是牛杂店的下一代项目，现已发布。（刻记牛杂店已不再添加新功能，建议使用寻空）" />
                 <TextBlock Margin="0,6,0,0">
                     项目地址：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/Scighost/Xunkong">Github@Scighost/Xunkong</Hyperlink>
                 </TextBlock>
                 <TextBlock Margin="0,6,0,0">
-                    下载尝鲜：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://xunkong-1306705684.file.myqcloud.com/download/Xunkong.Desktop.Installer.zip">传送门</Hyperlink>
+                    下载页面：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://bbs.nga.cn/read.php?tid=30966009">传送门</Hyperlink>
                 </TextBlock>
                 
                 

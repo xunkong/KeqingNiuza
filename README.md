@@ -2,7 +2,7 @@
 
 # 刻记牛杂店
 
-刻记牛杂店的下一代项目 [寻空](https://github.com/Scighost/Xunkong) 正在开发中，目前的功能不能完全代替牛杂店。
+刻记牛杂店已转入维护状态，不再添加新功能，下一代项目 [寻空](https://github.com/Scighost/Xunkong) 已发布。
 
 ## 下载地址
 
