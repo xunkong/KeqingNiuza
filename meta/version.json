@@ -1,6 +1,6 @@
 {
-  "Version": "2.2.7",
-  "LastUpdateTime": "2022-03-08T10:11:14.1153462+08:00",
+  "Version": "2.2.7.1",
+  "LastUpdateTime": "2022-03-09T10:25:39.63058+08:00",
   "KeqingNiuzaFiles": [
     {
       "Name": "Digital_Certificate_for_KeqingNiuza_by_Scighost.cer",
@@ -17,11 +17,11 @@
       "Name": "KeqingNiuza Launcher.exe",
       "Path": ".\\KeqingNiuza Launcher.exe",
       "Size": 1762304,
-      "CompressedSize": 1346602,
-      "SHA256": "8580B843A6FB31FA2F9EC7B2C0809477E6214FA0561C25B74D5F8510D41C52F4",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/8580B843A6FB31FA2F9EC7B2C0809477E6214FA0561C25B74D5F8510D41C52F4",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/8580B843A6FB31FA2F9EC7B2C0809477E6214FA0561C25B74D5F8510D41C52F4",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/8580B843A6FB31FA2F9EC7B2C0809477E6214FA0561C25B74D5F8510D41C52F4",
+      "CompressedSize": 1346600,
+      "SHA256": "8E0AC05E1B09B48234E31C447ED84B2ECA5265ECB1FDE5140DC5B0F5CFEF0837",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/8E0AC05E1B09B48234E31C447ED84B2ECA5265ECB1FDE5140DC5B0F5CFEF0837",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/8E0AC05E1B09B48234E31C447ED84B2ECA5265ECB1FDE5140DC5B0F5CFEF0837",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/8/8E0AC05E1B09B48234E31C447ED84B2ECA5265ECB1FDE5140DC5B0F5CFEF0837",
       "ContentEncoding": "Deflate"
     },
     {
@@ -116,11 +116,11 @@
       "Name": "KeqingNiuza.exe",
       "Path": ".\\bin\\KeqingNiuza.exe",
       "Size": 1755648,
-      "CompressedSize": 1196980,
-      "SHA256": "C60898225CCA5C1726EAAE24C567A345EBD6481E8F543CF72F793DEEDDC97E23",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C60898225CCA5C1726EAAE24C567A345EBD6481E8F543CF72F793DEEDDC97E23",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C60898225CCA5C1726EAAE24C567A345EBD6481E8F543CF72F793DEEDDC97E23",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C60898225CCA5C1726EAAE24C567A345EBD6481E8F543CF72F793DEEDDC97E23",
+      "CompressedSize": 1196979,
+      "SHA256": "C97AD03206AAC00C63D77130A199C54A55239C85320758D25496D59264DE7355",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C97AD03206AAC00C63D77130A199C54A55239C85320758D25496D59264DE7355",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C97AD03206AAC00C63D77130A199C54A55239C85320758D25496D59264DE7355",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/C/C97AD03206AAC00C63D77130A199C54A55239C85320758D25496D59264DE7355",
       "ContentEncoding": "Deflate"
     },
     {
@@ -149,11 +149,11 @@
       "Name": "KeqingNiuza.pdb",
       "Path": ".\\bin\\KeqingNiuza.pdb",
       "Size": 456192,
-      "CompressedSize": 92871,
-      "SHA256": "BD21D727515AECCAAD9393FFBD618D8C8D769ED01705465773571DBE781D78C2",
-      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/BD21D727515AECCAAD9393FFBD618D8C8D769ED01705465773571DBE781D78C2",
-      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/BD21D727515AECCAAD9393FFBD618D8C8D769ED01705465773571DBE781D78C2",
-      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/B/BD21D727515AECCAAD9393FFBD618D8C8D769ED01705465773571DBE781D78C2",
+      "CompressedSize": 92874,
+      "SHA256": "DE8E16F68C3EC402C48D74E4CA88D46076BBFB389EB3FB4637F81B780C869C06",
+      "Url": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/DE8E16F68C3EC402C48D74E4CA88D46076BBFB389EB3FB4637F81B780C869C06",
+      "Url_CN": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/DE8E16F68C3EC402C48D74E4CA88D46076BBFB389EB3FB4637F81B780C869C06",
+      "Url_OS": "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@cdn2/obj/D/DE8E16F68C3EC402C48D74E4CA88D46076BBFB389EB3FB4637F81B780C869C06",
       "ContentEncoding": "Deflate"
     },
     {
