@@ -40,11 +40,11 @@ namespace KeqingNiuza.Launcher
 
 
 
-        private readonly string versionUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/version.json";
+        private readonly string versionUrl = "";
 
-        private readonly string wallpaperUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/meta/wallpaper.json";
+        private readonly string wallpaperUrl = "";
 
-        private readonly string geoIpApi = "http://ip-api.com/json";
+        private readonly string geoIpApi = "";
 
         private string _arg;
 

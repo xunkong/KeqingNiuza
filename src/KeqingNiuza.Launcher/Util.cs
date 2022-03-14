@@ -18,12 +18,6 @@ namespace KeqingNiuza.Launcher
 
         private static readonly string jsDelivrUrl = "https://cdn.jsdelivr.net/gh/Scighost/KeqingNiuza@";
 
-        private static readonly string fastgitUrl = "https://raw.fastgit.org/Scighost/KeqingNiuza/";
-
-        private static readonly string qcloudUrl = "https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/";
-
-        private static readonly string coding = "https://scighost-generic.pkg.coding.net/keqingniuza/";
-
 
         public static string HashData(byte[] bytes)
         {

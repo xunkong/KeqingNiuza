@@ -1,15 +1,16 @@
-﻿<UserControl x:Class="KeqingNiuza.View.AboutView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:hc="https://handyorg.github.io/handycontrol"
-             xmlns:local="clr-namespace:KeqingNiuza.View"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             d:DesignHeight="1000"
-             d:DesignWidth="800"
-             Background="{StaticResource ContentViewBackground}"
-             DataContext="{Binding RelativeSource={RelativeSource Self}}"
-             mc:Ignorable="d">
+﻿<UserControl
+    x:Class="KeqingNiuza.View.AboutView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    xmlns:local="clr-namespace:KeqingNiuza.View"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="1000"
+    d:DesignWidth="800"
+    Background="{StaticResource ContentViewBackground}"
+    DataContext="{Binding RelativeSource={RelativeSource Self}}"
+    mc:Ignorable="d">
 
     <UserControl.Resources>
         <Style TargetType="TextBlock">
@@ -26,9 +27,10 @@
 
             <!--  项目信息  -->
             <StackPanel Margin="30,0,10,10">
-                <TextBlock Margin="0,0,0,10"
-                           FontSize="20"
-                           Text="关于" />
+                <TextBlock
+                    Margin="0,0,0,10"
+                    FontSize="20"
+                    Text="关于" />
                 <TextBlock x:Name="TextBlock_Version" Margin="0,5,0,5" />
                 <TextBlock Margin="0,5,0,5" Text="本软件以MIT协议开源" />
                 <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
@@ -39,57 +41,66 @@
                 </StackPanel>
 
                 <!--  导入6个月前的数据  -->
-                <TextBlock Margin="0,10,0,10"
-                           FontSize="16"
-                           Text="导入6个月之前的数据" />
-                <Button x:Name="Button_ImportExcel"
-                        Margin="0,5,0,5"
-                        HorizontalAlignment="Left"
-                        Click="Button_ImportExcel_Click"
-                        Content="导入数据"
-                        FontSize="12" />
+                <TextBlock
+                    Margin="0,10,0,10"
+                    FontSize="16"
+                    Text="导入6个月之前的数据" />
+                <Button
+                    x:Name="Button_ImportExcel"
+                    Margin="0,5,0,5"
+                    HorizontalAlignment="Left"
+                    Click="Button_ImportExcel_Click"
+                    Content="导入数据"
+                    FontSize="12" />
 
                 <!--  手动输入祈愿记录网址  -->
-                <TextBlock Margin="0,10,0,4"
-                           FontSize="16"
-                           Text="手动输入祈愿记录网址" />
-                <TextBlock Margin="0,4,0,5"
-                           Foreground="Gray"
-                           Text="以 https 开头、以 #log 结尾" />
+                <TextBlock
+                    Margin="0,10,0,4"
+                    FontSize="16"
+                    Text="手动输入祈愿记录网址" />
+                <TextBlock
+                    Margin="0,4,0,5"
+                    Foreground="Gray"
+                    Text="以 https 开头、以 #log 结尾" />
                 <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
                     <TextBox x:Name="TextBox_InputUrl" Width="300" />
-                    <Button x:Name="Button_InputUrl"
-                            Margin="8,0,0,0"
-                            Click="Button_InputUrl_Click"
-                            Content="确认"
-                            FontSize="12" />
+                    <Button
+                        x:Name="Button_InputUrl"
+                        Margin="8,0,0,0"
+                        Click="Button_InputUrl_Click"
+                        Content="确认"
+                        FontSize="12" />
                 </StackPanel>
 
                 <!--  祈愿记录备份  -->
-                <TextBlock Margin="0,20,0,0"
-                           FontSize="20"
-                           Text="祈愿记录备份" />
+                <TextBlock
+                    Margin="0,20,0,0"
+                    FontSize="20"
+                    Text="祈愿记录备份" />
                 <TextBlock Margin="0,6,0,0" Text="刻记牛杂店提供的祈愿记录备份服务。" />
-                <Button x:Name="Button_WishlogBackup"
-                        Margin="0,6,0,0"
-                        HorizontalAlignment="Left"
-                        Click="Button_WishlogBackup_Click"
-                        Content="祈愿记录备份" />
+                <Button
+                    x:Name="Button_WishlogBackup"
+                    Margin="0,6,0,0"
+                    HorizontalAlignment="Left"
+                    Click="Button_WishlogBackup_Click"
+                    Content="祈愿记录备份" />
 
 
                 <!--  捐赠  -->
-                <TextBlock Margin="0,20,0,0"
-                           FontSize="20"
-                           Text="捐赠" />
+                <TextBlock
+                    Margin="0,20,0,0"
+                    FontSize="20"
+                    Text="捐赠" />
                 <TextBlock Margin="0,6,0,0" Text="如果觉得我写的软件还不错，欢迎推荐给朋友，也欢迎投喂。" />
                 <TextBlock Margin="0,6,0,0">
-                    投喂途径：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/alipay.jpg">支付宝</Hyperlink>
-                    、<Hyperlink Click="Hyperlink_Click" NavigateUri="https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/wechatpay.png">微信支付</Hyperlink>
+                    投喂途径：<Hyperlink Click="Hyperlink_Click" NavigateUri="">支付宝</Hyperlink>
+                    、<Hyperlink Click="Hyperlink_Click" NavigateUri="">微信支付</Hyperlink>
                 </TextBlock>
 
-                <TextBlock Margin="0,20,0,0"
-                           FontSize="20"
-                           Text="关于软件更新" />
+                <TextBlock
+                    Margin="0,20,0,0"
+                    FontSize="20"
+                    Text="关于软件更新" />
                 <TextBlock Margin="0,6,0,0" Text="因为 jsDelivr 的下载服务不太稳定，简要说明一下软件更新的问题。" />
                 <TextBlock Margin="0,6,0,0" Text="软件使用启动器更新，启动器下载新文件时会有两种情况：" />
                 <TextBlock Margin="0,6,0,0" Text="1、版本号不变，更新图片卡池信息等内容，不更新影响不大；" />
@@ -100,11 +111,12 @@
                 <TextBlock Margin="0,6,0,0">
                     Coding：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://scighost.coding.net/public-artifacts/keqingniuza/packages/packages">传送门</Hyperlink>
                 </TextBlock>
-              
 
-                <TextBlock Margin="0,20,0,0"
-                           FontSize="20"
-                           Text="寻空" />
+
+                <TextBlock
+                    Margin="0,20,0,0"
+                    FontSize="20"
+                    Text="寻空" />
                 <TextBlock Margin="0,6,0,0" Text="寻空是牛杂店的下一代项目，现已发布。（刻记牛杂店已不再添加新功能，建议使用寻空）" />
                 <TextBlock Margin="0,6,0,0">
                     项目地址：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/Scighost/Xunkong">Github@Scighost/Xunkong</Hyperlink>
@@ -112,8 +124,8 @@
                 <TextBlock Margin="0,6,0,0">
                     下载页面：<Hyperlink Click="Hyperlink_Click" NavigateUri="https://bbs.nga.cn/read.php?tid=30966009">传送门</Hyperlink>
                 </TextBlock>
-                
-                
+
+
             </StackPanel>
 
         </Grid>

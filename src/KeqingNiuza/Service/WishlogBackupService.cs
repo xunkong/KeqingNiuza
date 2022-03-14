@@ -17,9 +17,9 @@ namespace KeqingNiuza.Service
     {
 
         private readonly HttpClient _client;
-        private const string WishlogBackupUrl = "https://api.xk.scighost.com/v1/wishlog";
-        private const string WishlogBackupUrl2 = "https://api.xunkong.cc/v0.1/wishlog";
-        private const string WishlogBackupUrl3 = "https://localhost:44362/v0.1/wishlog";
+        private const string WishlogBackupUrl = "";
+        private const string WishlogBackupUrl2 = "";
+        private const string WishlogBackupUrl3 = "";
 
         public string RequestInfo { get; set; }
 

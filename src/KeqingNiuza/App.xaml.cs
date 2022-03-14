@@ -41,7 +41,7 @@ namespace KeqingNiuza
             else
             {
 #if !DEBUG
-                AppCenter.Start("67db8a8a-9f6e-4f36-bf69-aa61bb78245d", typeof(Analytics), typeof(Crashes));
+                AppCenter.Start("", typeof(Analytics), typeof(Crashes));
                 AppCenter.SetUserId(Const.UserId);
 #endif
                 var extensionPath = $"{Const.UserDataPath}\\ExtensionSetting.json";

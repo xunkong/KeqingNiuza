@@ -2,7 +2,7 @@
 
 # 刻记牛杂店
 
-刻记牛杂店已转入维护状态，不再添加新功能，下一代项目 [寻空](https://github.com/Scighost/Xunkong) 已发布。
+刻记牛杂店已停止维护，下一代项目 [寻空](https://github.com/Scighost/Xunkong) 已发布。
 
 ## 下载地址
 
@@ -35,11 +35,6 @@
 - [WebDavClient](https://github.com/skazantsev/WebDavClient)
 - [WindowsCommunityToolkit](https://github.com/CommunityToolkit/WindowsCommunityToolkit)
 
-## 捐赠
-
-如果觉得我写的软件还不错，欢迎推荐给朋友，也欢迎投喂。
-
-投喂途径：[支付宝](https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/alipay.jpg)、[微信支付](https://xw6dp97kei-1306705684.file.myqcloud.com/keqingniuza/wechatpay.png)
 
 ## 截图
 
