@@ -1,0 +1,340 @@
+﻿<UserControl x:Class="KeqingNiuza.View.MidiView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:KeqingNiuza.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="{StaticResource ContentViewBackground}"
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style TargetType="hc:RangeThumb">
+            <Setter Property="Visibility" Value="Collapsed" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <!--  播放列表  -->
+        <Grid Grid.Row="0" Grid.Column="0" Margin="10,10,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <StackPanel Margin="20,0,0,0" Orientation="Horizontal">
+                <TextBlock FontSize="20" Text="播放列表" />
+                <TextBlock Margin="10,0,0,0"
+                           VerticalAlignment="Bottom"
+                           Foreground="Gray"
+                           Text="(双击演奏)" />
+            </StackPanel>
+            <ListBox x:Name="ListBox_MidiFileInfo"
+                     Grid.Row="1"
+                     Margin="20,10,0,0"
+                     Background="Transparent"
+                     ItemsSource="{Binding MidiFileInfoList}"
+                     MouseDoubleClick="ListBox_MidiFileInfo_MouseDoubleClick"
+                     SelectedItem="{Binding SelectedMidiFile}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1" Margin="20,10,10,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <!--  设置  -->
+            <StackPanel Grid.Row="0">
+                <TextBlock Margin="0,0,0,10"
+                           VerticalAlignment="Center"
+                           FontSize="20"
+                           Text="设置" />
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="功能状态：" />
+                    <TextBlock VerticalAlignment="Center" Foreground="{Binding TextBlock_Color}" Text="{Binding StateText}">
+                        <TextBlock.ToolTip>
+                            <TextBlock Text="{Binding Tooltip_Content}" Visibility="{Binding Tooltip_Content, Converter={StaticResource Object2VisibilityConverter}}" />
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+                    <Button Name="Button_Restart"
+                            Margin="10,0,0,0"
+                            Click="Button_Restart_Click"
+                            Content="{Binding Button_Restart_Content}"
+                            Visibility="{Binding Button_Restart_Content, Converter={StaticResource Object2VisibilityConverter}}" />
+                </StackPanel>
+                <Grid Width="250" Margin="0,10,0,0" HorizontalAlignment="Left">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                        <RowDefinition Height="30" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="140" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="自动跳转到原神窗口" />
+                    <ToggleButton Grid.Row="0"
+                                  Grid.Column="1"
+                                  HorizontalAlignment="Left"
+                                  IsChecked="{Binding AutoSwitchToGenshinWindow}"
+                                  Style="{StaticResource ToggleButtonSwitch}" />
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="后台演奏(可能会卡顿)" />
+                    <ToggleButton Grid.Row="1"
+                                  Grid.Column="1"
+                                  HorizontalAlignment="Left"
+                                  IsChecked="{Binding PlayBackground}"
+                                  Style="{StaticResource ToggleButtonSwitch}" />
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="速度" />
+                    <hc:NumericUpDown Grid.Row="2"
+                                      Grid.Column="1"
+                                      Width="70"
+                                      HorizontalAlignment="Left"
+                                      DecimalPlaces="1"
+                                      FontSize="12"
+                                      Increment="0.1"
+                                      IsEnabled="{Binding IsPlaying, Converter={StaticResource Boolean2BooleanReConverter}}"
+                                      Value="{Binding Speed, UpdateSourceTrigger=PropertyChanged}" />
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="0"
+                               VerticalAlignment="Center"
+                               Text="升降调" />
+                    <StackPanel Grid.Row="3"
+                                Grid.Column="1"
+                                HorizontalAlignment="Left"
+                                Orientation="Horizontal">
+                        <hc:NumericUpDown Width="70"
+                                          HorizontalAlignment="Left"
+                                          FontSize="12"
+                                          Maximum="48"
+                                          Minimum="-39"
+                                          ShowClearButton="True"
+                                          Value="{Binding NoteLevel, UpdateSourceTrigger=PropertyChanged}" />
+                        <TextBlock Margin="10,0,0,0" VerticalAlignment="Center" Text="{Binding NoteLevel, Converter={StaticResource NoteLevelToNoteStringConverter}}" />
+                    </StackPanel>
+
+                </Grid>
+            </StackPanel>
+
+            <!--  文件信息  -->
+            <StackPanel Grid.Row="1">
+                <TextBlock FontSize="20" Text="文件信息" />
+                <TextBlock Margin="0,4,0,0" Text="{Binding SelectedMidiFile.Name}" />
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <TextBlock Text="总音符数：" />
+                    <TextBlock Width="50" Text="{Binding SelectedMidiFile.NoteNumber}" />
+                    <TextBlock Text="总可演奏音符数：" />
+                    <TextBlock Width="50" Text="{Binding SelectedMidiFile.CanPlayNoteNumber}" />
+                    <TextBlock Text="总命中率：" />
+                    <TextBlock Text="{Binding SelectedMidiFile.CanPlayNoteRadio, StringFormat=P1}" />
+                </StackPanel>
+                <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                    <TextBlock Text="音域范围：" />
+                    <TextBlock Text="{Binding SelectedMidiFile.MinNoteLevel, Converter={StaticResource NoteNumberToNoteStringConverter}}" />
+                    <hc:RangeSlider Width="100"
+                                    VerticalAlignment="Center"
+                                    Background="LightGray"
+                                    Maximum="108"
+                                    Minimum="21"
+                                    ValueEnd="{Binding SelectedMidiFile.MaxNoteLevel}"
+                                    ValueStart="{Binding SelectedMidiFile.MinNoteLevel}" />
+                    <TextBlock Text="{Binding SelectedMidiFile.MaxNoteLevel, Converter={StaticResource NoteNumberToNoteStringConverter}}" />
+                </StackPanel>
+                <TextBlock Margin="0,10,0,0" FontSize="16" Text="音轨信息" />
+            </StackPanel>
+
+            <hc:ScrollViewer Grid.Row="2"
+                             Margin="0,10,0,0"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             IsInertiaEnabled="True"
+                             VerticalScrollBarVisibility="Visible">
+                <ItemsControl ItemsSource="{Binding SelectedMidiFile.CanPlayTracks}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border Margin="0,0,20,10" Background="White" CornerRadius="6">
+                                <StackPanel Margin="4" Orientation="Horizontal">
+                                    <ToggleButton x:Name="ToggleButton_CheckTrack"
+                                                  Width="60"
+                                                  Click="ToggleButton_CheckTrack_Click"
+                                                  IsChecked="{Binding IsCheck}"
+                                                  Style="{StaticResource ToggleButtonSwitch}" />
+                                    <StackPanel Margin="10,0,0,0">
+
+                                        <TextBlock VerticalAlignment="Center" Text="{Binding Name}" />
+                                        <StackPanel Margin="0,4,0,0">
+                                            <StackPanel Orientation="Horizontal">
+                                                <TextBlock Text="音符数：" />
+                                                <TextBlock Width="50" Text="{Binding NoteNumber}" />
+                                                <TextBlock Text="可演奏音符数：" />
+                                                <TextBlock Width="50" Text="{Binding CanPlayNoteNumber}" />
+                                                <TextBlock VerticalAlignment="Center" Text="命中率：" />
+                                                <TextBlock VerticalAlignment="Center" Text="{Binding CanPlayNoteRadio, StringFormat=P1}" />
+                                            </StackPanel>
+                                            <StackPanel Margin="0,4,0,0" Orientation="Horizontal">
+                                                <TextBlock Text="音域范围：" />
+                                                <TextBlock Text="{Binding MinNoteLevel, Converter={StaticResource NoteNumberToNoteStringConverter}}" />
+                                                <hc:RangeSlider Width="100"
+                                                                VerticalAlignment="Center"
+                                                                Background="LightGray"
+                                                                Maximum="108"
+                                                                Minimum="21"
+                                                                ValueEnd="{Binding MaxNoteLevel}"
+                                                                ValueStart="{Binding MinNoteLevel}" />
+                                                <TextBlock Text="{Binding MaxNoteLevel, Converter={StaticResource NoteNumberToNoteStringConverter}}" />
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </StackPanel>
+
+                            </Border>
+
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+            </hc:ScrollViewer>
+        </Grid>
+
+
+
+        <!--  进度条栏  -->
+        <Grid Grid.Row="2" Grid.ColumnSpan="2" Height="100">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Background" Value="Transparent" />
+                    </Style>
+                    <Style TargetType="ToggleButton">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="ToggleButton">
+                                    <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" RecognizesAccessKey="True" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Background" Value="Transparent" />
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Content" Value="{StaticResource PauseBold}" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter Property="Content" Value="{StaticResource PlaySolid}" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Resources>
+                <Button Name="Button_Back"
+                        Margin="20"
+                        Click="Button_Back_Click"
+                        Content="{StaticResource BackSolidBold}"
+                        FontFamily="{StaticResource IconFamily}"
+                        FontSize="20" />
+                <ToggleButton Name="ToggleButton_PlayOrPause"
+                              Margin="20"
+                              FontFamily="{StaticResource IconFamily}"
+                              FontSize="30"
+                              IsChecked="{Binding IsPlaying}" />
+                <Button Name="Button_Forward"
+                        Margin="20"
+                        Click="Button_Forward_Click"
+                        Content="{StaticResource ForwardSolidBold}"
+                        FontFamily="{StaticResource IconFamily}"
+                        FontSize="20" />
+            </StackPanel>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <DockPanel Grid.Row="0">
+                    <StackPanel Margin="0,0,10,0"
+                                VerticalAlignment="Bottom"
+                                DockPanel.Dock="Right"
+                                Orientation="Horizontal">
+                        <TextBlock Text="{Binding Value, ElementName=Slider_Play, Converter={StaticResource MilliSecondToTimeConverter}}" />
+                        <TextBlock Text=" / " />
+                        <TextBlock Text="{Binding Maximum, ElementName=Slider_Play, Converter={StaticResource MilliSecondToTimeConverter}}" />
+                    </StackPanel>
+
+                    <TextBlock Margin="10,0,0,0" VerticalAlignment="Bottom" Text="{Binding Name}" />
+                </DockPanel>
+
+                <Slider Name="Slider_Play"
+                        Grid.Row="1"
+                        Width="500"
+                        VerticalAlignment="Center"
+                        Background="Gray"
+                        IsMoveToPointEnabled="True"
+                        Maximum="{Binding TotalTime, Converter={StaticResource TimeSpanToSliderValueConverter}}"
+                        UseLayoutRounding="False"
+                        Value="{Binding CurrentTime, Converter={StaticResource TimeSpanToSliderValueConverter}, Delay=500}" />
+            </Grid>
+
+            <StackPanel Grid.Column="2" Margin="20" VerticalAlignment="Center">
+                <TextBlock Margin="2" VerticalAlignment="Center" Text="播放/暂停：Ctrl + Shift + G" />
+                <TextBlock Margin="2" VerticalAlignment="Center" Text="上一首：Ctrl + Shift + ←" />
+                <TextBlock Margin="2" VerticalAlignment="Center" Text="下一首：Ctrl + Shift + →" />
+            </StackPanel>
+
+        </Grid>
+
+    </Grid>
+</UserControl>

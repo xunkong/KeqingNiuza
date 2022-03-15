@@ -1,0 +1,162 @@
+﻿<UserControl x:Class="KeqingNiuza.View.ExcelImportDialog"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:KeqingNiuza.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Width="1000"
+             Height="600"
+             d:DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style TargetType="DataGridCellsPresenter">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style TargetType="DataGridColumnHeadersPresenter">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+    </UserControl.Resources>
+
+    <Border Background="{StaticResource ContentViewBackground}"
+            BorderThickness="0"
+            CornerRadius="4">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <DockPanel Margin="10">
+                <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                    <TextBlock HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               FontSize="12"
+                               Text="导入数据模板：" />
+                    <ComboBox x:Name="ComboBox_ImportTemplate" Width="180">
+                        <ComboBoxItem Content="Excel文件 (UIGF v2.0)"
+                                      FontSize="12"
+                                      Tag="excel" />
+                        <ComboBoxItem Content="Json文件  (UIGF v2.0)"
+                                      FontSize="12"
+                                      Tag="json" />
+                        <ComboBoxItem Content="Excel文件  (老格式)"
+                                      FontSize="12"
+                                      Tag="excel.old" />
+                    </ComboBox>
+
+                    <TextBlock Margin="20,0,0,0"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"
+                               Text="导入数据的Uid：" />
+                    <TextBox Width="120" Text="{Binding ImportUid}" />
+
+
+                    <Button x:Name="Button_SelectFile"
+                            Margin="10,0,0,0"
+                            Click="Button_SelectFile_Click"
+                            Content="选择文件" />
+                    <TextBlock x:Name="TextBlock_Info"
+                               Margin="10,0,0,0"
+                               VerticalAlignment="Center" />
+                </StackPanel>
+            </DockPanel>
+
+            <StackPanel Grid.Row="1"
+                        Margin="20"
+                        Visibility="{Binding ImportedWishDatas, Converter={StaticResource Object2VisibilityReConverter}}">
+                <TextBlock Margin="0,10,0,10"
+                           FontSize="20"
+                           Text="导入祈愿数据" />
+                <TextBlock Margin="0,5,0,5"
+                           Foreground="Red"
+                           Text="操作前记得备份" />
+                <TextBlock Margin="0,5,0,5" Text="导入过程不会对数据进行校验，请确保数据的完整性" />
+                <TextBlock Margin="0,5,0,5" Text="祈愿Id不一致时，近6个月的数据可能会重复，请根据数据页面已有的数据选择从第几行开始导入" />
+                <TextBlock Margin="0,5,0,5" Text="加载的祈愿数据自动按照时间倒序排列" />
+                <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+                    <TextBlock Text="导入文件规范请参考：" />
+                    <TextBlock>
+                        <Hyperlink Click="Hyperlink_Click" NavigateUri="https://github.com/DGP-Studio/Snap.Genshin/wiki/StandardFormat">统一可交换祈愿记录标准</Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+
+            <DataGrid x:Name="DataGrid_ImportedData"
+                      Grid.Row="1"
+                      AutoGenerateColumns="False"
+                      ColumnHeaderHeight="30"
+                      EnableRowVirtualization="True"
+                      HorizontalGridLinesBrush="LightGray"
+                      IsReadOnly="True"
+                      ItemsSource="{Binding ImportedWishDatas}"
+                      LoadingRow="DataGrid_ImportedData_LoadingRow"
+                      RowHeaderWidth="40"
+                      RowHeight="30"
+                      VerticalGridLinesBrush="Transparent"
+                      Visibility="{Binding ImportedWishDatas, Converter={StaticResource Object2VisibilityConverter}}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="150"
+                                        Binding="{Binding Time, StringFormat='yyyy-MM-dd HH:mm:ss'}"
+                                        Header="时间" />
+                    <DataGridTextColumn Width="150"
+                                        Binding="{Binding Name}"
+                                        Header="名称" />
+                    <DataGridTextColumn Width="80"
+                                        Binding="{Binding ItemType}"
+                                        Header="类型" />
+                    <DataGridTextColumn Width="80"
+                                        Binding="{Binding Rank}"
+                                        Header="星级" />
+                    <DataGridTextColumn Width="150"
+                                        Binding="{Binding WishType, Converter={StaticResource WishTypeConverter}}"
+                                        Header="祈愿类型" />
+                    <DataGridTextColumn Width="200"
+                                        Binding="{Binding Id}"
+                                        Header="祈愿ID" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <DockPanel Grid.Row="2" Margin="10">
+                <StackPanel HorizontalAlignment="Right"
+                            DockPanel.Dock="Right"
+                            Orientation="Horizontal">
+                    <TextBlock x:Name="TextBlock_Error"
+                               Margin="0,0,10,0"
+                               VerticalAlignment="Center"
+                               FontSize="12"
+                               Foreground="Red" />
+                    <TextBlock VerticalAlignment="Center"
+                               FontSize="12"
+                               Foreground="Red"
+                               Text="从第几行开始导入：" />
+                    <TextBox Width="60"
+                             Margin="0,0,15,0"
+                             Text="{Binding StartRow}" />
+                    <Button x:Name="Button_Import"
+                            Width="60"
+                            Margin="5,0,5,0"
+                            Click="Button_Import_Click"
+                            Content="导入"
+                            FontSize="12"
+                            IsEnabled="{Binding ImportedWishDatas, Converter={StaticResource Object2BooleanConverter}}"
+                            Style="{StaticResource YesButtonStyle}" />
+                    <Button x:Name="Button_Cancel"
+                            Width="60"
+                            Margin="5,0,5,0"
+                            Click="Button_Cancel_Click"
+                            Content="取消" />
+                </StackPanel>
+
+            </DockPanel>
+
+
+        </Grid>
+    </Border>
+
+</UserControl>

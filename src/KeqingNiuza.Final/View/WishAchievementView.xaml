@@ -1,0 +1,156 @@
+﻿<UserControl x:Class="KeqingNiuza.View.WishAchievementView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:KeqingNiuza.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             Name="UserControl_WishAchievement"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="#F2ECE6"
+             DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
+             Loaded="UserControl_WishAchievement_Loaded"
+             mc:Ignorable="d">
+    
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="1"
+                   Margin="4"
+                   HorizontalAlignment="Center"
+                   Foreground="#84603D"
+                   Text="功能尚不完善，欢迎给出建议" />
+
+
+        <hc:ScrollViewer IsInertiaEnabled="True" Margin="0,10,0,0">
+            <ItemsControl Margin="0,5,0,5" ItemsSource="{Binding AchievementInfoList}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel />
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="800"
+                                Height="80"
+                                Margin="10,3,10,3"
+                                BorderThickness="1">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="BorderBrush" Value="#EBE2D8" />
+                                    <Setter Property="Background" Value="#F4F0EA" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsFinished}" Value="True">
+                                            <Setter Property="Background" Value="#EBE2D8" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+
+                            <DockPanel>
+
+                                <!--  左边成就图片  -->
+                                <Grid DockPanel.Dock="Left">
+                                    <Image Margin="3"
+                                           DockPanel.Dock="Left"
+                                           Source="/resource/embed/achievement_achieved.png"
+                                           Visibility="{Binding IsFinished, Converter={StaticResource Boolean2VisibilityConverter}}" />
+                                    <Image Margin="3"
+                                           DockPanel.Dock="Left"
+                                           Source="/resource/embed/achievement_unachieve.png"
+                                           Visibility="{Binding IsFinished, Converter={StaticResource Boolean2VisibilityReConverter}}" />
+                                </Grid>
+
+                                <!--  右边时间和进度  -->
+                                <Grid Width="110"
+                                      HorizontalAlignment="Right"
+                                      Background="#EBE3D8"
+                                      DockPanel.Dock="Right">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition />
+                                        <RowDefinition Height="22" />
+                                    </Grid.RowDefinitions>
+                                    <Image Grid.RowSpan="3" Source="/resource/embed/achievement_show.png" Visibility="{Binding IsFinished, Converter={StaticResource Boolean2VisibilityConverter}}" />
+                                    <TextBlock Grid.Row="2"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontWeight="Bold"
+                                               FontSize="12"
+                                               Foreground="#BCA896"
+                                               Text="{Binding FinishTime, StringFormat='yyyy/MM/dd'}"
+                                               Visibility="{Binding IsFinished, Converter={StaticResource Boolean2VisibilityConverter}}" />
+                                    <StackPanel Grid.Row="1" VerticalAlignment="Center">
+                                        <TextBlock HorizontalAlignment="Center"
+                                                   FontSize="14"
+                                                   FontWeight="Bold"
+                                                   Foreground="#BAA58F"
+                                                   Text="达成"
+                                                   Visibility="{Binding IsFinished, Converter={StaticResource Boolean2VisibilityConverter}}" />
+                                        <TextBlock Margin="0,1,0,0"
+                                                   HorizontalAlignment="Center"
+                                                   FontSize="16"
+                                                   FontWeight="Bold"
+                                                   Foreground="#84603D"
+                                                   Text="{Binding Total}"
+                                                   Visibility="{Binding Total, Converter={StaticResource Object2VisibilityConverter}}" />
+                                    </StackPanel>
+                                    <TextBlock Grid.RowSpan="3"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="14"
+                                               FontWeight="Bold"
+                                               Foreground="#B7A18C"
+                                               Text="{Binding Progress}"
+                                               Visibility="{Binding IsFinished, Converter={StaticResource Boolean2VisibilityReConverter}}" />
+                                </Grid>
+
+                                <!--  中间介绍  -->
+                                <StackPanel Grid.RowSpan="2" Margin="20,0,20,0" VerticalAlignment="Center">
+                                    <TextBlock Margin="0,0,0,2"
+                                               FontSize="16"
+                                               FontWeight="Bold"
+                                               Foreground="#555555"
+                                               Text="{Binding Name}" />
+                                    <TextBlock Margin="0,2,0,2"
+                                               FontSize="14"
+                                               FontWeight="Bold"
+                                               Foreground="#B7A18C"
+                                               Text="{Binding Description}" />
+                                    <TextBlock Grid.Row="1"
+                                               Margin="0,2,0,0"
+                                               VerticalAlignment="Center"
+                                               FontFamily="楷体,微软雅黑"
+                                               FontSize="14"
+                                               FontWeight="Black"
+                                               Foreground="#B7A18C"
+                                               Text="{Binding Comment}"
+                                               Visibility="{Binding Comment, Converter={StaticResource Object2VisibilityConverter}}" />
+                                </StackPanel>
+
+                            </DockPanel>
+                        </Border>
+
+
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </hc:ScrollViewer>
+
+        <hc:LoadingCircle HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Foreground="#84603D"
+                          Visibility="{Binding AchievementInfoList, Converter={StaticResource Object2VisibilityReConverter}}" />
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7A7839D1-CC50-4C5C-8D8F-D28E6331CF92}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>KeqingNiuza</RootNamespace>
+    <AssemblyName>KeqingNiuza.Final</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>embedded</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>embedded</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Control\ScrollViewerEx.cs" />
+    <Compile Include="Converter\DailyCheckStartTimeConverter.cs" />
+    <Compile Include="Converter\ImageConverter.cs" />
+    <Compile Include="Converter\ItemDetailRankConverter.cs" />
+    <Compile Include="Converter\MilliSecondToTimeConverter.cs" />
+    <Compile Include="Converter\NoteLevelToNoteStringConverter.cs" />
+    <Compile Include="Converter\NoteNumberToNoteStringConverter.cs" />
+    <Compile Include="Converter\ProbabilityConverter.cs" />
+    <Compile Include="Converter\ReVisibilityConverter.cs" />
+    <Compile Include="Converter\TimeSpanToSliderValueConverter.cs" />
+    <Compile Include="Converter\TriggerTypeToBoolConverter.cs" />
+    <Compile Include="Converter\TriggerTypeToVisibilityConverter.cs" />
+    <Compile Include="Converter\UidConverter.cs" />
+    <Compile Include="Converter\WishTypeConverter.cs" />
+    <Compile Include="Core\CloudBackup\AccountInfo.cs" />
+    <Compile Include="Core\CloudBackup\BackupFileinfo.cs" />
+    <Compile Include="Core\CloudBackup\CloudClient.cs" />
+    <Compile Include="Core\CloudBackup\CloudType.cs" />
+    <Compile Include="Core\CloudBackup\Const.cs" />
+    <Compile Include="Core\CloudBackup\Endecryption.cs" />
+    <Compile Include="Core\CloudBackup\WebDavBackupClient.cs" />
+    <Compile Include="Core\DailyCheck\Config.cs" />
+    <Compile Include="Core\DailyCheck\GenShinClient.cs" />
+    <Compile Include="Core\DailyCheck\GenShinException.cs" />
+    <Compile Include="Core\DailyCheck\GenshinHttpRequestMessage.cs" />
+    <Compile Include="Core\DailyCheck\JsonContent.cs" />
+    <Compile Include="Core\DailyCheck\Program.cs" />
+    <Compile Include="Core\DailyCheck\RootEntity.cs" />
+    <Compile Include="Core\DailyCheck\SafeUtil.cs" />
+    <Compile Include="Core\DailyCheck\SignDayEntity.cs" />
+    <Compile Include="Core\DailyCheck\SignResultEntity.cs" />
+    <Compile Include="Core\DailyCheck\UserGameRolesEntity.cs" />
+    <Compile Include="Core\DailyCheck\WriteLineUtil.cs" />
+    <Compile Include="Core\Midi\Const.cs" />
+    <Compile Include="Core\Midi\MidiFileInfo.cs" />
+    <Compile Include="Core\Midi\MidiPlayer.cs" />
+    <Compile Include="Core\Midi\MidiPlaySetting.cs" />
+    <Compile Include="Core\Midi\MidiTrack.cs" />
+    <Compile Include="Core\Midi\Util.cs" />
+    <Compile Include="Core\MusicGame\ButtonType.cs" />
+    <Compile Include="Core\MusicGame\MusicGameUtil.cs" />
+    <Compile Include="Core\MusicGame\NoteInfo.cs" />
+    <Compile Include="Core\MusicGame\OperationType.cs" />
+    <Compile Include="Core\Native\FsModifier.cs" />
+    <Compile Include="Core\Native\Msg.cs" />
+    <Compile Include="Core\Native\User32.cs" />
+    <Compile Include="Core\Native\VirtualKey.cs" />
+    <Compile Include="Core\Wish\AchievementAnalyzer.cs" />
+    <Compile Include="Core\Wish\AchievementComputeMethod.cs" />
+    <Compile Include="Core\Wish\AchievementInfo.cs" />
+    <Compile Include="Core\Wish\CharacterInfo.cs" />
+    <Compile Include="Core\Wish\Const.cs" />
+    <Compile Include="Core\Wish\ElementType.cs" />
+    <Compile Include="Core\Wish\ExcelExpoter.cs" />
+    <Compile Include="Core\Wish\ExcelImporter.cs" />
+    <Compile Include="Core\Wish\GenshinLogLoader.cs" />
+    <Compile Include="Core\Wish\ImportedWishData.cs" />
+    <Compile Include="Core\Wish\ItemInfo.cs" />
+    <Compile Include="Core\Wish\JsonConverter.cs" />
+    <Compile Include="Core\Wish\JsonImporter.cs" />
+    <Compile Include="Core\Wish\LocalWishLogLoader.cs" />
+    <Compile Include="Core\Wish\Prediction.cs" />
+    <Compile Include="Core\Wish\QueryParam.cs" />
+    <Compile Include="Core\Wish\RelativeEvent.cs" />
+    <Compile Include="Core\Wish\ResponseData.cs" />
+    <Compile Include="Core\Wish\StarDetail.cs" />
+    <Compile Include="Core\Wish\UIGFExcelImporter.cs" />
+    <Compile Include="Core\Wish\WeaponInfo.cs" />
+    <Compile Include="Core\Wish\WeaponType.cs" />
+    <Compile Include="Core\Wish\WishData.cs" />
+    <Compile Include="Core\Wish\WishEvent.cs" />
+    <Compile Include="Core\Wish\WishLogExporter.cs" />
+    <Compile Include="Core\Wish\WishStatistics.cs" />
+    <Compile Include="Core\Wish\WishSummary.cs" />
+    <Compile Include="Core\Wish\WishType.cs" />
+    <Compile Include="Core\XunkongApi\CharacterInfo.cs" />
+    <Compile Include="Core\XunkongApi\MetadataDto.cs" />
+    <Compile Include="Core\XunkongApi\ResponseBaseWrapper.cs" />
+    <Compile Include="Core\XunkongApi\WeaponInfo.cs" />
+    <Compile Include="Core\XunkongApi\WishEventInfo.cs" />
+    <Compile Include="Core\XunkongApi\XunkongApiClient.cs" />
+    <Compile Include="Core\XunkongApi\XunkongException.cs" />
+    <Compile Include="Model\Config.cs" />
+    <Compile Include="Model\ExtensionSetting.cs" />
+    <Compile Include="Model\RecordingKey.cs" />
+    <Compile Include="Model\ResponseData.cs" />
+    <Compile Include="Model\ScheduleInfo.cs" />
+    <Compile Include="Model\ScheduleInfoTriggerType.cs" />
+    <Compile Include="Model\UserData.cs" />
+    <Compile Include="Model\WishlogModel.cs" />
+    <Compile Include="Model\WishlogResult.cs" />
+    <Compile Include="Model\XunkongServerException.cs" />
+    <Compile Include="Service\Const.cs" />
+    <Compile Include="Service\DailyCheckTask.cs" />
+    <Compile Include="Service\Log.cs" />
+    <Compile Include="Service\LogType.cs" />
+    <Compile Include="Service\Native.cs" />
+    <Compile Include="Service\ScheduleTask.cs" />
+    <Compile Include="Service\WishlogBackupService.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="ViewModel\MainWindowViewModel.cs" />
+    <Compile Include="ViewModel\MidiViewModel.cs" />
+    <Compile Include="ViewModel\WishAchievementViewModel.cs" />
+    <Compile Include="ViewModel\WishOriginalDataViewModel.cs" />
+    <Compile Include="ViewModel\WishSummaryViewModel.cs" />
+    <Compile Include="View\AboutView.xaml.cs">
+      <DependentUpon>AboutView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ChangeAvatarDialog.xaml.cs">
+      <DependentUpon>ChangeAvatarDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\CloudLoginDialog.xaml.cs">
+      <DependentUpon>CloudLoginDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DailyCheckView.xaml.cs">
+      <DependentUpon>DailyCheckView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\DeleteUidDialog.xaml.cs">
+      <DependentUpon>DeleteUidDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ErrorView.xaml.cs">
+      <DependentUpon>ErrorView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ExcelImportDialog.xaml.cs">
+      <DependentUpon>ExcelImportDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MidiView.xaml.cs">
+      <DependentUpon>MidiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\MusicGameView.xaml.cs">
+      <DependentUpon>MusicGameView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ScheduleTaskView.xaml.cs">
+      <DependentUpon>ScheduleTaskView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\SettingView.xaml.cs">
+      <DependentUpon>SettingView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WelcomeView.xaml.cs">
+      <DependentUpon>WelcomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WishAchievementView.xaml.cs">
+      <DependentUpon>WishAchievementView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WishItemDetailView.xaml.cs">
+      <DependentUpon>WishItemDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WishlogBackupWindow.xaml.cs">
+      <DependentUpon>WishlogBackupWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WishOriginalDataView.xaml.cs">
+      <DependentUpon>WishOriginalDataView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WishPredictionView.xaml.cs">
+      <DependentUpon>WishPredictionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WishSummaryView.xaml.cs">
+      <DependentUpon>WishSummaryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\WishTypeDetailView.xaml.cs">
+      <DependentUpon>WishTypeDetailView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Style\DataGridStyle.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\PropertyDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Style\StyleDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\AboutView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ChangeAvatarDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\CloudLoginDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DailyCheckView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\DeleteUidDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ErrorView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ExcelImportDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\MidiView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\MusicGameView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ScheduleTaskView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\SettingView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WelcomeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WishAchievementView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WishItemDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WishlogBackupWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WishOriginalDataView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WishPredictionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WishSummaryView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\WishTypeDetailView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ControlzEx">
+      <Version>5.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Costura.Fody">
+      <Version>5.7.0</Version>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="EPPlus">
+      <Version>4.5.3.3</Version>
+    </PackageReference>
+    <PackageReference Include="HandyControl">
+      <Version>3.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="LiveCharts.Wpf">
+      <Version>0.9.7</Version>
+    </PackageReference>
+    <PackageReference Include="Mapster">
+      <Version>7.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Melanchall.DryWetMidi">
+      <Version>5.2.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
+      <Version>7.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Windows.SDK.Contracts">
+      <Version>10.0.22000.196</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Net.Http.Json">
+      <Version>6.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Text.Json">
+      <Version>6.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="TaskScheduler">
+      <Version>2.10.1</Version>
+    </PackageReference>
+    <PackageReference Include="WebDav.Client">
+      <Version>2.7.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\embed\achievement_achieved.png" />
+    <Resource Include="resource\embed\achievement_show.png" />
+    <Resource Include="resource\embed\achievement_unachieve.png" />
+    <Resource Include="resource\embed\Element_Anemo.png" />
+    <Resource Include="resource\embed\Element_Cryo.png" />
+    <Resource Include="resource\embed\Element_Dendro.png" />
+    <Resource Include="resource\embed\Element_Electro.png" />
+    <Resource Include="resource\embed\Element_Geo.png" />
+    <Resource Include="resource\embed\Element_Hydro.png" />
+    <Resource Include="resource\embed\Element_Pyro.png" />
+    <Resource Include="resource\embed\Icon_1_Star.png" />
+    <Resource Include="resource\embed\Icon_2_Stars.png" />
+    <Resource Include="resource\embed\Icon_3_Stars.png" />
+    <Resource Include="resource\embed\Icon_4_Stars.png" />
+    <Resource Include="resource\embed\Icon_5_Stars.png" />
+    <Resource Include="resource\embed\JianguoyuLogo.png" />
+    <Resource Include="resource\embed\logo2_nbg.png" />
+    <Resource Include="resource\embed\logo_256.jpg" />
+    <Resource Include="resource\embed\logo_nbg.png" />
+    <Resource Include="resource\embed\Rarity_1_background.png" />
+    <Resource Include="resource\embed\Rarity_2_background.png" />
+    <Resource Include="resource\embed\Rarity_3_background.png" />
+    <Resource Include="resource\embed\Rarity_4_background.png" />
+    <Resource Include="resource\embed\Rarity_5_background.png" />
+    <Resource Include="resource\embed\UI_Icon_Element_White.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="resource\embed\Paimon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="logo.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

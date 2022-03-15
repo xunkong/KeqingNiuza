@@ -1,0 +1,121 @@
+﻿<UserControl x:Class="KeqingNiuza.View.WishOriginalDataView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:KeqingNiuza.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="{StaticResource ContentViewBackground}"
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style BasedOn="{StaticResource ComboBoxBaseStyle}" TargetType="ComboBox">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <DockPanel>
+            <ToggleButton x:Name="ToggleButton_Search"
+                          Width="50"
+                          Margin="0,0,5,0"
+                          Content="搜索"
+                          DockPanel.Dock="Right"
+                          IsChecked="{Binding ToggleButton_Search_IsChecked}" />
+            <StackPanel Orientation="Horizontal">
+                <Button Name="Buton_Reset"
+                        Width="50"
+                        Margin="5,0,0,0"
+                        Click="Buton_Reset_Click"
+                        Content="重置"
+                        FontSize="12" />
+                <hc:Divider LineStroke="Gray" Orientation="Vertical" />
+                <TextBlock VerticalAlignment="Center" Text="祈愿类型：" />
+                <ComboBox Width="120" ItemsSource="{Binding WishTypeList}" SelectedItem="{Binding SelectedWishType}" />
+                <hc:Divider LineStroke="Gray" Orientation="Vertical" />
+                <TextBlock VerticalAlignment="Center" Text="物品类型：" />
+                <ComboBox Width="80" ItemsSource="{Binding ItemTypeList}" SelectedItem="{Binding SelectedItemType}" />
+                <hc:Divider LineStroke="Gray" Orientation="Vertical" />
+                <TextBlock VerticalAlignment="Center" Text="星级：" />
+                <ComboBox Width="60" ItemsSource="{Binding ItemRankList}" SelectedItem="{Binding SelectedItemRank}" />
+                <hc:Divider LineStroke="Gray" Orientation="Vertical" />
+                <TextBlock VerticalAlignment="Center" Text="祈愿活动：" />
+                <ComboBox MinWidth="170" ItemsSource="{Binding WishEventList}" SelectedItem="{Binding SelectedWishEvent}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding DisplayName}">
+                                <TextBlock.ToolTip>
+                                    <TextBlock Text="{Binding UpItems}" />
+                                </TextBlock.ToolTip>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <hc:Divider LineStroke="Gray" Orientation="Vertical" />
+                <TextBlock VerticalAlignment="Center" Foreground="Gray" Text="{Binding SelectedWishEvent.UpItems}" />
+            </StackPanel>
+        </DockPanel>
+
+
+        <DataGrid Grid.Row="1"
+                  Grid.RowSpan="2"
+                  AutoGenerateColumns="False"
+                  ColumnHeaderHeight="30"
+                  EnableRowVirtualization="True"
+                  HorizontalGridLinesBrush="LightGray"
+                  IsReadOnly="True"
+                  ItemsSource="{Binding FilteredWishData}"
+                  LoadingRow="DataGrid_LoadingRow"
+                  RowHeaderWidth="40"
+                  RowHeight="30"
+                  VerticalGridLinesBrush="Transparent">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridCellsPresenter">
+                    <Setter Property="FontSize" Value="12" />
+                </Style>
+                <Style TargetType="DataGridColumnHeadersPresenter">
+                    <Setter Property="FontSize" Value="12" />
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="160" Binding="{Binding Name}" Header="名称" />
+                <DataGridTextColumn Width="150" Binding="{Binding Time, StringFormat='yyyy-MM-dd  HH:mm:ss'}" Header="时间" />
+                <DataGridTextColumn Width="80" Binding="{Binding ItemType}" Header="类型" />
+                <DataGridTextColumn Width="80" Binding="{Binding Rank}" Header="星级" />
+                <DataGridTextColumn Width="80" Binding="{Binding Guarantee}" Header="保底内" />
+                <DataGridTextColumn Width="150" Binding="{Binding WishType, Converter={StaticResource WishTypeConverter}}" Header="祈愿类型" />
+                <DataGridTextColumn Width="200" Binding="{Binding Id}" Header="祈愿 Id" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <hc:LoadingCircle Grid.Row="2"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Foreground="Gray"
+                          Visibility="{Binding FilteredWishData, Converter={StaticResource Object2VisibilityReConverter}}" />
+
+        <TextBox Name="TextBox_Search"
+                 Grid.Row="1"
+                 Width="200"
+                 Margin="0,0,5,0"
+                 HorizontalAlignment="Right"
+                 Text="{Binding TextBox_Search_Text, UpdateSourceTrigger=PropertyChanged}"
+                 Visibility="{Binding ToggleButton_Search_IsChecked, Converter={StaticResource Boolean2VisibilityConverter}}" />
+
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,959 @@
+﻿<UserControl x:Class="KeqingNiuza.View.WishSummaryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:kc="clr-namespace:KeqingNiuza.Control"
+             xmlns:lc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+             xmlns:local="clr-namespace:KeqingNiuza.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DataContext="{Binding ViewModel, RelativeSource={RelativeSource Self}}"
+             d:DesignHeight="450"
+             d:DesignWidth="800"
+             Background="{StaticResource ContentViewBackground}"
+             Loaded="UserControl_Loaded"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+        <Style x:Key="GuaranteeText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="DarkOrchid" />
+            <Setter Property="FontSize" Value="12" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding GuaranteeType}" Value="大保底">
+                    <Setter Property="Foreground" Value="{StaticResource Star5}" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <Style BasedOn="{StaticResource ScrollViewerBaseStyle}" TargetType="kc:ScrollViewerEx" />
+        <Style x:Key="FilterRadioButton" TargetType="RadioButton">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="WishCheckBox" TargetType="CheckBox">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              RecognizesAccessKey="True"
+                                              Validation.Error="ContentPresenter_Error" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DetailButton" TargetType="Button">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="Gray" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" BorderThickness="0">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"
+                                              RecognizesAccessKey="True" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="FontWeight" Value="Bold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <hc:ScrollViewer IsInertiaEnabled="True" Visibility="{Binding Visibility, ElementName=LoadingCircle, Converter={StaticResource ReVisibilityConverter}}">
+            <StackPanel Margin="20,10,20,10">
+                <StackPanel Margin="5,0,0,0" Orientation="Horizontal">
+                    <TextBlock FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="Gray"
+                               Text="统计" />
+                    <TextBlock Margin="20,0,0,0"
+                               VerticalAlignment="Bottom"
+                               Foreground="Gray"
+                               Text="忽略第一个5星：" />
+                    <CheckBox Margin="0,0,10,0"
+                              VerticalAlignment="Bottom"
+                              Content="角色祈愿"
+                              IsChecked="{Binding IgnoreFirstStar5Character}"
+                              Style="{StaticResource WishCheckBox}" />
+                    <CheckBox Margin="0,0,10,0"
+                              VerticalAlignment="Bottom"
+                              Content="武器祈愿"
+                              IsChecked="{Binding IgnoreFirstStar5Weapon}"
+                              Style="{StaticResource WishCheckBox}" />
+                    <CheckBox Margin="0,0,10,0"
+                              VerticalAlignment="Bottom"
+                              Content="常驻祈愿"
+                              IsChecked="{Binding IgnoreFirstStar5Permanent}"
+                              Style="{StaticResource WishCheckBox}" />
+                    <Button x:Name="Button_TypeDetail"
+                            Margin="20,0,0,0"
+                            VerticalAlignment="Bottom"
+                            Click="Button_Detail_Click"
+                            Content="详细信息"
+                            Style="{StaticResource DetailButton}"
+                            Tag="Type"
+                            Visibility="Collapsed" />
+                </StackPanel>
+
+                <!--  角色祈愿统计  -->
+                <Border Margin="5,10,5,0"
+                        Background="White"
+                        CornerRadius="4"
+                        Visibility="{Binding WishSummary.CharacterStatistics, Converter={StaticResource Object2VisibilityConverter}}">
+                    <Grid Margin="10,10,10,10" DataContext="{Binding WishSummary.CharacterStatistics}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <!--  总计  -->
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Foreground="Gray" Text="角色祈愿" />
+                            <StackPanel Margin="0,18,0,0" Orientation="Horizontal">
+                                <TextBlock Margin="0,0,0,2"
+                                           VerticalAlignment="Bottom"
+                                           Foreground="Gray"
+                                           Text="总计" />
+                                <TextBlock Margin="10,0,0,0"
+                                           FontSize="20"
+                                           Foreground="#8C531B"
+                                           Text="{Binding Count}" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="已垫" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Style="{StaticResource GuaranteeText}"
+                                           Text="{Binding GuaranteeType}" />
+                                <TextBlock Style="{StaticResource GuaranteeText}" Text="{Binding Guarantee, StringFormat=' {0} '}" />
+                                <TextBlock Style="{StaticResource GuaranteeText}" Text="抽" />
+                            </StackPanel>
+                            <ProgressBar Width="150"
+                                         Margin="0,4,0,0"
+                                         HorizontalAlignment="Left"
+                                         Foreground="CornflowerBlue"
+                                         Maximum="90"
+                                         Style="{StaticResource BaseStyle}"
+                                         Value="{Binding Guarantee}" />
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="下一次出5星的概率" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="CornflowerBlue"
+                                           Text="{Binding ., Converter={StaticResource ProbabilityConverter}}" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="{Binding StartTime, StringFormat=yyyy/MM/dd}" />
+                                <TextBlock Foreground="Gray" Text=" - " />
+                                <TextBlock Foreground="Gray" Text="{Binding EndTime, StringFormat=yyyy/MM/dd}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <!--  概率展示  -->
+                        <StackPanel Grid.Column="1" Margin="50,0,0,0">
+                            <TextBlock Foreground="Gray" Text="概率" />
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Foreground="Orange" Text="5星：" />
+                                    <TextBlock Foreground="DarkOrchid" Text="4星：" />
+                                    <TextBlock Foreground="CornflowerBlue" Text="3星：" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Foreground="Orange" Text="{Binding Star5Count, Mode=OneTime}" />
+                                    <TextBlock Foreground="DarkOrchid" Text="{Binding Star4Count, Mode=OneTime}" />
+                                    <TextBlock Foreground="CornflowerBlue" Text="{Binding Star3Count, Mode=OneTime}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="3" Margin="6,0,0,0">
+                                    <TextBlock Foreground="Orange" Text="{Binding Ratio5, Mode=OneTime, StringFormat='[{0:P3}]'}" />
+                                    <TextBlock Foreground="DarkOrchid" Text="{Binding Ratio4, Mode=OneTime, StringFormat='[{0:P3}]'}" />
+                                    <TextBlock Foreground="CornflowerBlue" Text="{Binding Ratio3, Mode=OneTime, StringFormat='[{0:P3}]'}" />
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="平均5星次数" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="ForestGreen"
+                                           Text="{Binding Average5, StringFormat=F2}">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="截止到最后一次5星" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="平均Up5星次数" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="ForestGreen"
+                                           Text="{Binding AverageUp5, StringFormat=F2}">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="截止到最后一次Up5星" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="小保底" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="OrangeRed"
+                                           Text="{Binding Count_XiaoBaoDi}" />
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="大保底" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="Purple"
+                                           Text="{Binding Count_DaBaoDi}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="最欧" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="OrangeRed"
+                                           Text="{Binding GuaranteeMin}">
+                                    <TextBlock.ToolTip>
+                                        <ItemsControl ItemsSource="{Binding GuaranteeMinItems}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
+                                                        <TextBlock Margin="6,0,0,0"
+                                                                   Foreground="{Binding Brush}"
+                                                                   Text="{Binding Time}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="最非" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="Purple"
+                                           Text="{Binding GuaranteeMax}">
+                                    <TextBlock.ToolTip>
+                                        <ItemsControl ItemsSource="{Binding GuaranteeMaxItems}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
+                                                        <TextBlock Margin="6,0,0,0"
+                                                                   Foreground="{Binding Brush}"
+                                                                   Text="{Binding Time}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <!--  5星记录  -->
+                        <StackPanel Grid.Column="2" Margin="50,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="5星记录" />
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="排序：" />
+                                <RadioButton Margin="0,0,10,0"
+                                             Content="正序"
+                                             IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                             Style="{StaticResource FilterRadioButton}" />
+                                <RadioButton Margin="0,0,0,0"
+                                             Content="倒序"
+                                             IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource Boolean2BooleanReConverter}}"
+                                             Style="{StaticResource FilterRadioButton}" />
+                            </StackPanel>
+                            <kc:ScrollViewerEx Height="100"
+                                               Margin="0,10,0,0"
+                                               IsInertiaEnabled="True"
+                                               VerticalScrollBarVisibility="Auto">
+                                <ItemsControl ItemsSource="{Binding Star5List}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Margin="0,0,6,0" Orientation="Horizontal">
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="{Binding Name}" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="[" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="{Binding Num}" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="]" />
+                                                <StackPanel.ToolTip>
+                                                    <TextBlock Text="{Binding Time}" />
+                                                </StackPanel.ToolTip>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </kc:ScrollViewerEx>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+
+                <!--  武器祈愿统计  -->
+                <Border Margin="5,10,5,0"
+                        Background="White"
+                        CornerRadius="4"
+                        Visibility="{Binding WishSummary.WeaponStatistics, Converter={StaticResource Object2VisibilityConverter}}">
+                    <Grid Margin="10,10,10,10" DataContext="{Binding WishSummary.WeaponStatistics}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <!--  总计  -->
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Foreground="Gray" Text="武器祈愿" />
+                            <StackPanel Margin="0,18,0,0" Orientation="Horizontal">
+                                <TextBlock Margin="0,0,0,2"
+                                           VerticalAlignment="Bottom"
+                                           Foreground="Gray"
+                                           Text="总计" />
+                                <TextBlock Margin="10,0,0,0"
+                                           FontSize="20"
+                                           Foreground="#8C531B"
+                                           Text="{Binding Count}" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="已垫" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Style="{StaticResource GuaranteeText}"
+                                           Text="{Binding GuaranteeType}" />
+                                <TextBlock Style="{StaticResource GuaranteeText}" Text="{Binding Guarantee, StringFormat=' {0} '}" />
+                                <TextBlock Style="{StaticResource GuaranteeText}" Text="抽" />
+                            </StackPanel>
+                            <ProgressBar Width="150"
+                                         Margin="0,4,0,0"
+                                         HorizontalAlignment="Left"
+                                         Foreground="CornflowerBlue"
+                                         Maximum="80"
+                                         Style="{StaticResource BaseStyle}"
+                                         Value="{Binding Guarantee}" />
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="下一次出5星的概率" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="CornflowerBlue"
+                                           Text="{Binding ., Converter={StaticResource ProbabilityConverter}}" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="{Binding StartTime, StringFormat=yyyy/MM/dd}" />
+                                <TextBlock Foreground="Gray" Text=" - " />
+                                <TextBlock Foreground="Gray" Text="{Binding EndTime, StringFormat=yyyy/MM/dd}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <!--  概率展示  -->
+                        <StackPanel Grid.Column="1" Margin="50,0,0,0">
+                            <TextBlock Foreground="Gray" Text="概率" />
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Foreground="Orange" Text="5星：" />
+                                    <TextBlock Foreground="DarkOrchid" Text="4星：" />
+                                    <TextBlock Foreground="CornflowerBlue" Text="3星：" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Foreground="Orange" Text="{Binding Star5Count, Mode=OneTime}" />
+                                    <TextBlock Foreground="DarkOrchid" Text="{Binding Star4Count, Mode=OneTime}" />
+                                    <TextBlock Foreground="CornflowerBlue" Text="{Binding Star3Count, Mode=OneTime}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="3" Margin="6,0,0,0">
+                                    <TextBlock Foreground="Orange" Text="{Binding Ratio5, Mode=OneTime, StringFormat='[{0:P3}]'}" />
+                                    <TextBlock Foreground="DarkOrchid" Text="{Binding Ratio4, Mode=OneTime, StringFormat='[{0:P3}]'}" />
+                                    <TextBlock Foreground="CornflowerBlue" Text="{Binding Ratio3, Mode=OneTime, StringFormat='[{0:P3}]'}" />
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="平均5星次数" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="ForestGreen"
+                                           Text="{Binding Average5, StringFormat=F2}">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="截止到最后一次5星" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="平均Up5星次数" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="ForestGreen"
+                                           Text="{Binding AverageUp5, StringFormat=F2}">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="截止到最后一次Up5星" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="小保底" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="OrangeRed"
+                                           Text="{Binding Count_XiaoBaoDi}" />
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="大保底" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="Purple"
+                                           Text="{Binding Count_DaBaoDi}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="最欧" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="OrangeRed"
+                                           Text="{Binding GuaranteeMin}">
+                                    <TextBlock.ToolTip>
+                                        <ItemsControl ItemsSource="{Binding GuaranteeMinItems}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
+                                                        <TextBlock Margin="6,0,0,0"
+                                                                   Foreground="{Binding Brush}"
+                                                                   Text="{Binding Time}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="最非" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="Purple"
+                                           Text="{Binding GuaranteeMax}">
+                                    <TextBlock.ToolTip>
+                                        <ItemsControl ItemsSource="{Binding GuaranteeMaxItems}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
+                                                        <TextBlock Margin="6,0,0,0"
+                                                                   Foreground="{Binding Brush}"
+                                                                   Text="{Binding Time}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <!--  5星记录  -->
+                        <StackPanel Grid.Column="2" Margin="50,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="5星记录" />
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="排序：" />
+                                <RadioButton Margin="0,0,10,0"
+                                             Content="正序"
+                                             IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                             Style="{StaticResource FilterRadioButton}" />
+                                <RadioButton Margin="0,0,0,0"
+                                             Content="倒序"
+                                             IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource Boolean2BooleanReConverter}}"
+                                             Style="{StaticResource FilterRadioButton}" />
+                            </StackPanel>
+                            <kc:ScrollViewerEx Height="100"
+                                               Margin="0,10,0,0"
+                                               IsInertiaEnabled="True"
+                                               VerticalScrollBarVisibility="Auto">
+                                <ItemsControl ItemsSource="{Binding Star5List}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Margin="0,0,6,0" Orientation="Horizontal">
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="{Binding Name}" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="[" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="{Binding Num}" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="]" />
+                                                <StackPanel.ToolTip>
+                                                    <TextBlock Text="{Binding Time}" />
+                                                </StackPanel.ToolTip>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </kc:ScrollViewerEx>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+
+                <!--  常驻祈愿统计  -->
+                <Border Margin="5,10,5,0"
+                        Background="White"
+                        CornerRadius="4"
+                        Visibility="{Binding WishSummary.PermanentStatistics, Converter={StaticResource Object2VisibilityConverter}}">
+                    <Grid Margin="10,10,10,10" DataContext="{Binding WishSummary.PermanentStatistics}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <!--  总计  -->
+                        <StackPanel Grid.Column="0">
+                            <TextBlock Foreground="Gray" Text="常驻祈愿" />
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Margin="0,0,0,2"
+                                           VerticalAlignment="Bottom"
+                                           Foreground="Gray"
+                                           Text="总计" />
+                                <TextBlock Margin="10,0,0,0"
+                                           FontSize="20"
+                                           Foreground="#8C531B"
+                                           Text="{Binding Count}" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="已垫" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Style="{StaticResource GuaranteeText}"
+                                           Text="{Binding GuaranteeType}" />
+                                <TextBlock Style="{StaticResource GuaranteeText}" Text="{Binding Guarantee, StringFormat=' {0} '}" />
+                                <TextBlock Style="{StaticResource GuaranteeText}" Text="抽" />
+                            </StackPanel>
+                            <ProgressBar Width="150"
+                                         Margin="0,4,0,0"
+                                         HorizontalAlignment="Left"
+                                         Foreground="CornflowerBlue"
+                                         Maximum="90"
+                                         Style="{StaticResource BaseStyle}"
+                                         Value="{Binding Guarantee}" />
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="下一次出5星的概率" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="CornflowerBlue"
+                                           Text="{Binding ., Converter={StaticResource ProbabilityConverter}}" />
+                            </StackPanel>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="{Binding StartTime, StringFormat=yyyy/MM/dd}" />
+                                <TextBlock Foreground="Gray" Text=" - " />
+                                <TextBlock Foreground="Gray" Text="{Binding EndTime, StringFormat=yyyy/MM/dd}" />
+                            </StackPanel>
+                        </StackPanel>
+                        <!--  概率展示  -->
+                        <StackPanel Grid.Column="1" Margin="50,0,0,0">
+                            <TextBlock Foreground="Gray" Text="概率" />
+                            <Grid Margin="0,10,0,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Foreground="Orange" Text="5星：" />
+                                    <TextBlock Foreground="DarkOrchid" Text="4星：" />
+                                    <TextBlock Foreground="CornflowerBlue" Text="3星：" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1">
+                                    <TextBlock Foreground="Orange" Text="{Binding Star5Count, Mode=OneTime}" />
+                                    <TextBlock Foreground="DarkOrchid" Text="{Binding Star4Count, Mode=OneTime}" />
+                                    <TextBlock Foreground="CornflowerBlue" Text="{Binding Star3Count, Mode=OneTime}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="3" Margin="6,0,0,0">
+                                    <TextBlock Foreground="Orange" Text="{Binding Ratio5, Mode=OneTime, StringFormat='[{0:P3}]'}" />
+                                    <TextBlock Foreground="DarkOrchid" Text="{Binding Ratio4, Mode=OneTime, StringFormat='[{0:P3}]'}" />
+                                    <TextBlock Foreground="CornflowerBlue" Text="{Binding Ratio3, Mode=OneTime, StringFormat='[{0:P3}]'}" />
+                                </StackPanel>
+                            </Grid>
+                            <StackPanel Margin="0,10,0,0" Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="平均5星次数" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="ForestGreen"
+                                           Text="{Binding Average5, StringFormat=F2}">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock Text="截止到最后一次5星" />
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="小保底" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="OrangeRed"
+                                           Text="{Binding Count_XiaoBaoDi}" />
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="大保底" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="Purple"
+                                           Text="{Binding Count_DaBaoDi}" />
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="最欧" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="OrangeRed"
+                                           Text="{Binding GuaranteeMin}">
+                                    <TextBlock.ToolTip>
+                                        <ItemsControl ItemsSource="{Binding GuaranteeMinItems}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
+                                                        <TextBlock Margin="6,0,0,0"
+                                                                   Foreground="{Binding Brush}"
+                                                                   Text="{Binding Time}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="最非" />
+                                <TextBlock Margin="4,0,0,0"
+                                           Foreground="Purple"
+                                           Text="{Binding GuaranteeMax}">
+                                    <TextBlock.ToolTip>
+                                        <ItemsControl ItemsSource="{Binding GuaranteeMaxItems}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel />
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <StackPanel Orientation="Horizontal">
+                                                        <TextBlock Foreground="{Binding Brush}" Text="{Binding Name}" />
+                                                        <TextBlock Margin="6,0,0,0"
+                                                                   Foreground="{Binding Brush}"
+                                                                   Text="{Binding Time}" />
+                                                    </StackPanel>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </TextBlock.ToolTip>
+                                </TextBlock>
+                            </StackPanel>
+                        </StackPanel>
+                        <!--  5星记录  -->
+                        <StackPanel Grid.Column="2" Margin="50,0,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Foreground="Gray" Text="5星记录" />
+                                <TextBlock Margin="10,0,0,0"
+                                           Foreground="Gray"
+                                           Text="排序：" />
+                                <RadioButton Margin="0,0,10,0"
+                                             Content="正序"
+                                             IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                             Style="{StaticResource FilterRadioButton}" />
+                                <RadioButton Margin="0,0,0,0"
+                                             Content="倒序"
+                                             IsChecked="{Binding DataContext.IsCorrectOrder, RelativeSource={RelativeSource AncestorType=UserControl}, Converter={StaticResource Boolean2BooleanReConverter}}"
+                                             Style="{StaticResource FilterRadioButton}" />
+                            </StackPanel>
+                            <kc:ScrollViewerEx Height="100"
+                                               Margin="0,10,0,0"
+                                               IsInertiaEnabled="True"
+                                               VerticalScrollBarVisibility="Auto">
+                                <ItemsControl ItemsSource="{Binding Star5List}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Margin="0,0,6,0" Orientation="Horizontal">
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="{Binding Name}" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="[" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="{Binding Num}" />
+                                                <TextBlock FontSize="12"
+                                                           Foreground="{Binding Brush}"
+                                                           Text="]" />
+                                                <StackPanel.ToolTip>
+                                                    <TextBlock Text="{Binding Time}" />
+                                                </StackPanel.ToolTip>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </kc:ScrollViewerEx>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+
+                <!--  角色按钮  -->
+                <StackPanel Margin="5,20,0,10" Orientation="Horizontal">
+                    <TextBlock FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="Gray"
+                               Text="角色" />
+                    <Button x:Name="Button_CharacterDetail"
+                            Margin="20,0,0,0"
+                            VerticalAlignment="Bottom"
+                            Click="Button_Detail_Click"
+                            Content="详细信息"
+                            Style="{StaticResource DetailButton}"
+                            Tag="Character" />
+                    <TextBlock Margin="10,0,0,0"
+                               VerticalAlignment="Bottom"
+                               Foreground="Gray"
+                               Text="排序：" />
+                    <RadioButton Margin="0,0,10,0"
+                                 VerticalAlignment="Bottom"
+                                 Click="CharacterOrderRadioButton_Click"
+                                 Content="星级"
+                                 GroupName="CharacterFilterGroup"
+                                 IsChecked="True"
+                                 Style="{StaticResource FilterRadioButton}" />
+                    <RadioButton Margin="0,0,10,0"
+                                 VerticalAlignment="Bottom"
+                                 Click="CharacterOrderRadioButton_Click"
+                                 Content="数量"
+                                 GroupName="CharacterFilterGroup"
+                                 Style="{StaticResource FilterRadioButton}" />
+                    <RadioButton Margin="0,0,10,0"
+                                 VerticalAlignment="Bottom"
+                                 Click="CharacterOrderRadioButton_Click"
+                                 Content="最近获得"
+                                 GroupName="CharacterFilterGroup"
+                                 Style="{StaticResource FilterRadioButton}" />
+                </StackPanel>
+
+
+                <!--  角色列表  -->
+                <ItemsControl ItemsSource="{Binding CharacterInfoList}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="4" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
+                                <Image Width="100" Style="{StaticResource RarityBackground}" />
+                                <Border x:Name="ImageBorder"
+                                        Width="100"
+                                        Height="100"
+                                        VerticalAlignment="Top"
+                                        BorderThickness="0"
+                                        CornerRadius="0 0 20 0"
+                                        RenderOptions.BitmapScalingMode="HighQuality">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="{Binding Thumb, Converter={StaticResource ImageConverter}}" />
+                                    </Border.Background>
+                                </Border>
+                                <TextBlock Height="18"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Bottom"
+                                           FontSize="12"
+                                           FontWeight="Bold"
+                                           Foreground="#84603D"
+                                           Text="{Binding Name}" />
+                                <Border Height="20"
+                                        MinWidth="20"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Background="#80000000"
+                                        CornerRadius="0 4 0 4">
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Foreground="White"
+                                               Text="{Binding Count}" />
+                                </Border>
+                                <Image Width="20"
+                                       Margin="2,2,0,0"
+                                       HorizontalAlignment="Left"
+                                       VerticalAlignment="Top"
+                                       Style="{StaticResource ElementIcon}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+
+                <!--  武器按钮  -->
+                <StackPanel Margin="5,20,0,10" Orientation="Horizontal">
+                    <TextBlock FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="Gray"
+                               Text="武器" />
+                    <Button x:Name="Button_WeaponDetail"
+                            Margin="20,0,0,0"
+                            VerticalAlignment="Bottom"
+                            Click="Button_Detail_Click"
+                            Content="详细信息"
+                            Style="{StaticResource DetailButton}"
+                            Tag="Weapon" />
+                    <TextBlock Margin="10,0,0,0"
+                               VerticalAlignment="Bottom"
+                               Foreground="Gray"
+                               Text="排序：" />
+                    <RadioButton Margin="0,0,10,0"
+                                 VerticalAlignment="Bottom"
+                                 Click="WeaponOrderRadioButton_Click"
+                                 Content="星级"
+                                 GroupName="WeaponFilterGroup"
+                                 IsChecked="True"
+                                 Style="{StaticResource FilterRadioButton}" />
+                    <RadioButton Margin="0,0,10,0"
+                                 VerticalAlignment="Bottom"
+                                 Click="WeaponOrderRadioButton_Click"
+                                 Content="数量"
+                                 GroupName="WeaponFilterGroup"
+                                 Style="{StaticResource FilterRadioButton}" />
+                    <RadioButton Margin="0,0,10,0"
+                                 VerticalAlignment="Bottom"
+                                 Click="WeaponOrderRadioButton_Click"
+                                 Content="最近获得"
+                                 GroupName="WeaponFilterGroup"
+                                 Style="{StaticResource FilterRadioButton}" />
+                </StackPanel>
+
+
+                <!--  武器列表  -->
+                <ItemsControl ItemsSource="{Binding WeaponInfoList}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="4,0,4,6" MouseLeftButtonUp="Grid_MouseLeftButtonUp">
+                                <Image Width="100" Style="{StaticResource RarityBackground}" />
+                                <Border x:Name="ImageBorder"
+                                        Width="100"
+                                        Height="100"
+                                        VerticalAlignment="Top"
+                                        BorderThickness="0"
+                                        CornerRadius="0 0 20 0"
+                                        RenderOptions.BitmapScalingMode="HighQuality">
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="{Binding Thumb, Converter={StaticResource ImageConverter}}" />
+                                    </Border.Background>
+                                </Border>
+                                <TextBlock Height="18"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Bottom"
+                                           FontSize="12"
+                                           FontWeight="Bold"
+                                           Foreground="#84603d"
+                                           Text="{Binding Name}" />
+                                <Border Height="20"
+                                        MinWidth="20"
+                                        HorizontalAlignment="Right"
+                                        VerticalAlignment="Top"
+                                        Background="#80000000"
+                                        CornerRadius="0 4 0 4">
+                                    <TextBlock HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="12"
+                                               Foreground="White"
+                                               Text="{Binding Count}" />
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+
+
+            </StackPanel>
+
+        </hc:ScrollViewer>
+
+
+        <hc:LoadingCircle Name="LoadingCircle"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Center"
+                          Foreground="Gray"
+                          Visibility="{Binding WishSummary, Converter={StaticResource Object2VisibilityReConverter}}" />
+
+        <ContentControl Content="{Binding DetailContent}" />
+    </Grid>
+</UserControl>

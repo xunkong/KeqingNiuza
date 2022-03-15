@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="KeqingNiuza.View.WelcomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:local="clr-namespace:KeqingNiuza.View"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             d:DesignHeight="800"
+             d:DesignWidth="800"
+             Background="{StaticResource ContentViewBackground}"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontSize" Value="12"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid Margin="40">
+        <StackPanel>
+            <TextBlock Margin="0,10,0,10" FontSize="20" Text="刻记牛杂店 最终版" />
+            <TextBlock Margin="0,5,0,5"  Text="这是刻记牛杂店最后的版本，且不再维护" />
+            <TextBlock Margin="0,5,0,5" Text="相比于之前的版本，最终版删掉了更新功能、AppCenter统计功能，新增了通过寻空服务器下载图片和卡池信息的功能。" />
+            <TextBlock Margin="0,5,0,5" Text="以后可能会出现新增卡池或米游社API变更导致软件不可用的情况。" />
+            <TextBlock Margin="0,10,0,10" FontSize="20" Text="如何加载祈愿数据" />
+            <TextBlock Margin="0,5,0,5" Text="● 在游戏中打开任意祈愿历史记录，游戏内需使用简中" />
+            <TextBlock Margin="0,5,0,5" Text="● 点击软件右上角加载数据" />
+            <TextBlock Margin="0,5,0,5" Text="● 短时间添加多个Uid：个人信息->更换Uid->添加Uid->加载数据" />
+            <TextBlock Margin="0,10,0,10" FontSize="20" Text="如何进行云备份" />
+            <TextBlock Margin="0,5,0,5" Text="● 注册坚果云账户" />
+            <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+                <TextBlock Text="● 授权第三方应用，" />
+                <TextBlock>
+                    <Hyperlink Click="Hyperlink_Click" NavigateUri="https://help.jianguoyun.com/?p=2064" TextDecorations="None">
+                        授权教程
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
+                <TextBlock Text="● 点击软件右上角的云，填写账户和" />
+                <TextBlock FontWeight="Bold" Text="应用密码" />
+            </StackPanel>
+            <TextBlock Margin="0,5,0,5" Text="● 坚果云账户和用户密码会加密保存在本地" />
+            <TextBlock Margin="0,10,0,10" FontSize="20" Text="如何导入6个月之前的数据" />
+            <TextBlock Margin="0,5,0,5" Text="在关于页面导入数据" />
+            <!--<TextBlock Margin="0,10,0,10" FontSize="20" Text="使用手册" />
+            <TextBlock Margin="0,5,0,5" Text="使用手册已长时间未更新，但大部分问题都能在使用手册中找到答案" />-->
+
+        </StackPanel>
+        <Image Width="256"
+               Margin="0,0,20,0"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Bottom"
+               Source="/resource/embed/logo_nbg.png" />
+    </Grid>
+</UserControl>
