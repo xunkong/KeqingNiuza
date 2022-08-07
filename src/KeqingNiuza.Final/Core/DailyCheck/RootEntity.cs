@@ -33,7 +33,6 @@ namespace KeqingNiuza.Core.DailyCheck
         /// <returns></returns>
         public string CheckOutCodeAndSleep()
         {
-            Task.Delay(3 * 1000).Wait();
             switch (Retcode)
             {
                 case 0:
