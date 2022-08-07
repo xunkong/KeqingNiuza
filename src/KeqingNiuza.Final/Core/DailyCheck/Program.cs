@@ -75,6 +75,8 @@ namespace KeqingNiuza.Core.DailyCheck
                                 jsonContent: new JsonContent(data));
 
                         PrintLog(result.CheckOutCodeAndSleep());
+                        
+                        await Task.Delay(1000);
                     }
                 }
             }
