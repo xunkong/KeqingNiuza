@@ -6,11 +6,11 @@
     public static class Config
     {
         public static string Ua =>
-            $"Mozilla/5.0 (Linux; Android 5.1.1; f103 Build/LYZ28N; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/52.0.2743.100 Safari/537.36 miHoYoBBS/{AppVersion}";
+            $"Mozilla/5.0 miHoYoBBS/{AppVersion}";
 
         public static string AcceptEncoding => "gzip, deflate";
 
-        public static string AppVersion => "2.3.0";
+        public static string AppVersion => "2.34.1";
 
         public static string ClientType => "5";
 
@@ -30,7 +30,7 @@
         /// <summary>
         /// 盐(AppVersion的md5得到)
         /// </summary>
-        public static string Salt => "h8w582wxwgqvahcdkpvdhbh2w9casgfl";
+        public static string Salt => "9nQiU3AV0rJSIBWgdynfoGMGKaklfbM7";
 
         #region Referer
 
