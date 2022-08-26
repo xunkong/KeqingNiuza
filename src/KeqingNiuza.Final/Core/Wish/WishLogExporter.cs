@@ -21,7 +21,7 @@ namespace KeqingNiuza.Core.Wish
 
         public WishLogExporter(string url)
         {
-            if (url.StartsWith("https://") && url.EndsWith("#/log"))
+            if (url.StartsWith("https://"))
             {
                 authString = url.Substring(url.IndexOf('?')).Replace("#/log", "");
                 HttpClient = new HttpClient();
