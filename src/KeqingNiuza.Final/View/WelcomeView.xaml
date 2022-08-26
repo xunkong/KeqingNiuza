@@ -13,26 +13,38 @@
 
     <UserControl.Resources>
         <Style TargetType="TextBlock">
-            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontSize" Value="12" />
         </Style>
     </UserControl.Resources>
 
     <Grid Margin="40">
         <StackPanel>
-            <TextBlock Margin="0,10,0,10" FontSize="20" Text="刻记牛杂店 最终版" />
-            <TextBlock Margin="0,5,0,5"  Text="这是刻记牛杂店最后的版本，且不再维护" />
+            <TextBlock Margin="0,10,0,10"
+                       FontSize="20"
+                       Text="刻记牛杂店 最终版" />
+            <TextBlock Margin="0,5,0,5" Text="这是刻记牛杂店最后的版本，且不再维护" />
             <TextBlock Margin="0,5,0,5" Text="相比于之前的版本，最终版删掉了更新功能、AppCenter统计功能，新增了通过寻空服务器下载图片和卡池信息的功能。" />
-            <TextBlock Margin="0,5,0,5" Text="以后可能会出现新增卡池或米游社API变更导致软件不可用的情况。" />
-            <TextBlock Margin="0,10,0,10" FontSize="20" Text="如何加载祈愿数据" />
+            <TextBlock Margin="0,5,0,5">
+                <Run Text="以后可能会出现新增卡池或米游社API变更导致软件不可用的情况，推荐迁移到新项目" />
+                <Hyperlink Click="Hyperlink_Click" NavigateUri="https://xunkong.cc">寻空</Hyperlink>
+                <Run Text="。" />
+            </TextBlock>
+            <TextBlock Margin="0,10,0,10"
+                       FontSize="20"
+                       Text="如何加载祈愿数据" />
             <TextBlock Margin="0,5,0,5" Text="● 在游戏中打开任意祈愿历史记录，游戏内需使用简中" />
             <TextBlock Margin="0,5,0,5" Text="● 点击软件右上角加载数据" />
-            <TextBlock Margin="0,5,0,5" Text="● 短时间添加多个Uid：个人信息->更换Uid->添加Uid->加载数据" />
-            <TextBlock Margin="0,10,0,10" FontSize="20" Text="如何进行云备份" />
+            <TextBlock Margin="0,5,0,5" Text="● 短时间添加多个Uid：个人信息-&gt;更换Uid-&gt;添加Uid-&gt;加载数据" />
+            <TextBlock Margin="0,10,0,10"
+                       FontSize="20"
+                       Text="如何进行云备份" />
             <TextBlock Margin="0,5,0,5" Text="● 注册坚果云账户" />
             <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
                 <TextBlock Text="● 授权第三方应用，" />
                 <TextBlock>
-                    <Hyperlink Click="Hyperlink_Click" NavigateUri="https://help.jianguoyun.com/?p=2064" TextDecorations="None">
+                    <Hyperlink Click="Hyperlink_Click"
+                               NavigateUri="https://help.jianguoyun.com/?p=2064"
+                               TextDecorations="None">
                         授权教程
                     </Hyperlink>
                 </TextBlock>
@@ -42,7 +54,9 @@
                 <TextBlock FontWeight="Bold" Text="应用密码" />
             </StackPanel>
             <TextBlock Margin="0,5,0,5" Text="● 坚果云账户和用户密码会加密保存在本地" />
-            <TextBlock Margin="0,10,0,10" FontSize="20" Text="如何导入6个月之前的数据" />
+            <TextBlock Margin="0,10,0,10"
+                       FontSize="20"
+                       Text="如何导入6个月之前的数据" />
             <TextBlock Margin="0,5,0,5" Text="在关于页面导入数据" />
             <!--<TextBlock Margin="0,10,0,10" FontSize="20" Text="使用手册" />
             <TextBlock Margin="0,5,0,5" Text="使用手册已长时间未更新，但大部分问题都能在使用手册中找到答案" />-->

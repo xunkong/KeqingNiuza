@@ -32,7 +32,11 @@
                 <TextBlock x:Name="TextBlock_Version" Margin="0,5,0,5" />
                 <TextBlock Margin="0,5,0,5" Text="本软件以MIT协议开源，但已停止维护；" />
                 <TextBlock Margin="0,5,0,5" Text="相比于之前的版本，最终版删掉了更新功能、AppCenter统计功能，新增了通过寻空服务器下载图片和卡池信息的功能。" />
-                <TextBlock Margin="0,5,0,5" Text="以后可能会出现新增卡池或米游社API变更导致软件不可用的情况。" />
+                <TextBlock Margin="0,5,0,5">
+                    <Run Text="以后可能会出现新增卡池或米游社API变更导致软件不可用的情况，推荐迁移到新项目" />
+                    <Hyperlink Click="Hyperlink_Click" NavigateUri="https://xunkong.cc">寻空</Hyperlink>
+                    <Run Text="。" />
+                </TextBlock>
                 <StackPanel Margin="0,5,0,5" Orientation="Horizontal">
                     <TextBlock Text="项目地址：" />
                     <TextBlock>
