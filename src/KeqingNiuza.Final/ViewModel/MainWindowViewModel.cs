@@ -58,6 +58,8 @@ namespace KeqingNiuza.ViewModel
             _timer.AutoReset = false;
             _timer.Elapsed += LoadCloudAccount;
             _timer.Start();
+            IsLoadIdle = true;
+            _proxyService = new ProxyService();
         }
 
 
@@ -256,12 +258,15 @@ namespace KeqingNiuza.ViewModel
                 }
                 if (!skipLoadGenshinLogFile)
                 {
-                    var url = GenshinLogLoader.FindUrlFromLogFile();
-                    await LoadDataFromUrl(url, getAll);
-                    ReloadViewContent();
-                    ChangeViewContent("WishSummaryView");
+                    await StartProxy(getAll);
+                    return;
+                    //var url = GenshinLogLoader.FindUrlFromLogFile();
+                    //await LoadDataFromUrl(url, getAll);
+                    //ReloadViewContent();
+                    //ChangeViewContent("WishSummaryView");
                 }
                 LoadWishDataProgress = "加载完成";
+                IsLoadIdle = true;
             }
             catch (Exception ex)
             {
@@ -299,6 +304,7 @@ namespace KeqingNiuza.ViewModel
                     }
                 }
                 LoadWishDataProgress = "加载完成";
+                
             }
             catch (Exception ex)
             {
@@ -543,7 +549,52 @@ namespace KeqingNiuza.ViewModel
             ReloadViewContent();
         }
 
+        private bool _IsLoadIdle;
+        public bool IsLoadIdle
+        {
+            get { return _IsLoadIdle; }
+            set
+            {
+                _IsLoadIdle = value;
+                OnPropertyChanged();
+            }
+        }
 
+        public event EventHandler<string> GotWishlogUrl 
+        { 
+            add { _proxyService.GotWishlogUrl += value; }
+            remove { _proxyService.GotWishlogUrl -= value; }
+        }
+
+        private readonly ProxyService _proxyService;
+        private bool _getAll;
+        public async Task StartProxy(bool getAll = false)
+        {
+            _getAll = getAll;
+            await _proxyService.StartProxyAsync();
+            LoadWishDataProgress = "已启动代理模式";
+            Growl.Info("代理模式已启动，请在游戏中重新进入祈愿历史记录页。");
+        }
+
+        public async Task<bool> StopProxy()
+        {
+            if(await _proxyService.StopProxyAsync())
+            {
+                LoadWishDataProgress = "已停止代理模式";
+                Growl.Info("代理模式已关闭。");
+                return true;
+            }
+            return false;
+        }
+
+        public async Task OnCaptured(string url)
+        {
+            await LoadDataFromUrl(url, _getAll);
+            ReloadViewContent();
+            ChangeViewContent("WishSummaryView");
+            LoadWishDataProgress = "加载完成";
+            IsLoadIdle = true;
+        }
 
     }
 }

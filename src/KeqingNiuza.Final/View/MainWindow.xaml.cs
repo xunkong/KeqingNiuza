@@ -28,6 +28,7 @@ namespace KeqingNiuza.View
             InitializeComponent();
             ViewModel = new MainWindowViewModel();
             DataContext = ViewModel;
+            ViewModel.GotWishlogUrl += _proxyService_GotWishlogUrl;
         }
 
 
@@ -126,24 +127,30 @@ namespace KeqingNiuza.View
 
         private async void Button_Load_Click(object sender, RoutedEventArgs e)
         {
-            Button_Load.IsEnabled = false;
-            Button_LoadAll.IsEnabled = false;
+            ViewModel.IsLoadIdle = false;
             await ViewModel.UpdateWishData();
-            Button_LoadAll.IsEnabled = true;
-            Button_Load.IsEnabled = true;
+            //Button_LoadAll.IsEnabled = true;
+            //Button_Load.IsEnabled = true;
         }
 
 
         private async void Button_LoadAll_Click(object sender, RoutedEventArgs e)
         {
-            Button_Load.IsEnabled = false;
-            Button_LoadAll.IsEnabled = false;
+            ViewModel.IsLoadIdle = false;
             await ViewModel.UpdateWishData(true);
-            Button_LoadAll.IsEnabled = true;
-            Button_Load.IsEnabled = true;
         }
-
-
+        private async void _proxyService_GotWishlogUrl(object sender, string url)
+        {
+            await ViewModel.StopProxy();
+            await Dispatcher.BeginInvoke(new Action(async () =>
+            {
+                await ViewModel.OnCaptured(url);
+            }));
+        }
+        private async void Button_StopProxy_Click(object sender, RoutedEventArgs e)
+        {
+            if(await ViewModel.StopProxy()) ViewModel.IsLoadIdle = true;
+        }
         private void Button_Export_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.ExportExcelFile();
@@ -214,7 +221,7 @@ namespace KeqingNiuza.View
         private void Popup_Uid_Closed(object sender, EventArgs e)
         {
             Grid_UserData.Visibility = Visibility.Collapsed;
-            ViewModel.LoadWishDataProgress = null;
+            if(ViewModel.IsLoadIdle) ViewModel.LoadWishDataProgress = null;
         }
 
         private void Button_AddUid_Click(object sender, RoutedEventArgs e)
