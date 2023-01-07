@@ -229,6 +229,7 @@ namespace KeqingNiuza.Core.Wish
             {
                 x.WishDataList = y.Where(y1 => x.Name == y1.Name).OrderBy(y1 => y1.Id).ToList();
                 x.Count = x.WishDataList.Count;
+                x.Thumb =  "resource\\character\\Character_" + x.NameEn.Replace(" ", "_") + "_Thumb.png";
                 //todo 可能有问题
                 x.LastGetTime = x.WishDataList.LastOrDefault()?.Time ?? new DateTime();
                 return x;
@@ -242,6 +243,7 @@ namespace KeqingNiuza.Core.Wish
             {
                 x.WishDataList = y.Where(y1 => x.Name == y1.Name).OrderBy(y1 => y1.Id).ToList();
                 x.Count = x.WishDataList.Count;
+                x.Thumb = "resource\\weapon\\Weapon_" + x.NameEn.Replace(" ","_") + ".png";
                 //todo 可能有问题
                 x.LastGetTime = x.WishDataList.LastOrDefault()?.Time ?? new DateTime();
                 return x;

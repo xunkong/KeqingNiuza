@@ -31,9 +31,9 @@ namespace KeqingNiuza.Core.Wish
 
         public static List<WishEvent> LoadWishEventList()
         {
-            if (File.Exists("Resource\\List\\WishEventList.json"))
+            if (File.Exists("esource\\List\\WishEventList.json"))
             {
-                var json = File.ReadAllText("Resource\\List\\WishEventList.json");
+                var json = File.ReadAllText("esource\\List\\WishEventList.json");
                 return JsonSerializer.Deserialize<List<WishEvent>>(json);
             }
             else

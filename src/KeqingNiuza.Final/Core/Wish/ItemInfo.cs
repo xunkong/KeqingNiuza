@@ -23,6 +23,8 @@ namespace KeqingNiuza.Core.Wish
 
         public string Thumb { get; set; }
 
+        public string NameEn { get; set; }
+
         public string Portrait { get; set; }
     }
 

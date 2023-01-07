@@ -317,9 +317,9 @@
             <DataTrigger Binding="{Binding ElementType}" Value="4">
                 <Setter Property="Source" Value="/resource/embed/Element_Electro.png" />
             </DataTrigger>
-            <!--<DataTrigger Binding="{Binding ElementType}" Value="5">
-                    <Setter Property="Source" Value="/resource/embed/Element_Pyro.png" />
-                </DataTrigger>-->
+			<DataTrigger Binding="{Binding ElementType}" Value="5">
+				<Setter Property="Source" Value="/resource/embed/Element_Dendro.png" />
+			</DataTrigger>
             <DataTrigger Binding="{Binding ElementType}" Value="6">
                 <Setter Property="Source" Value="/resource/embed/Element_Cryo.png" />
             </DataTrigger>
